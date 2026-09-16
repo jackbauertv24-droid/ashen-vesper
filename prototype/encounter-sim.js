@@ -28,6 +28,8 @@ export function create() {
     vy: 0,
     facing: 1,
     grounded: true,
+    crouching: false,
+    attackCrouched: false,
     hp: 5,
     invulnerable: 0,
     attack: 0,
@@ -84,9 +86,54 @@ export function message(s, text) {
   s.notice = text;
   s.noticeTime = 4;
 }
+export const BODY = { halfWidth: 13, standing: 120, crouched: 56 };
+export const solidHeight = (p) => p.h ?? 150;
+export const bodyBox = (s) => ({
+  x: s.x - BODY.halfWidth,
+  y: s.y - (s.crouching ? BODY.crouched : BODY.standing),
+  w: BODY.halfWidth * 2,
+  h: s.crouching ? BODY.crouched : BODY.standing,
+});
+export function staffPose(e) {
+  let angle = -1.15;
+  if (e.mode === "windup") angle = -1.15 - (1 - e.timer / 0.8) * 0.85;
+  if (e.mode === "strike") angle = -2 + (1 - e.timer / 0.28) * 2.65;
+  if (e.mode === "recover") angle = 0.65 - (1 - e.timer / 0.9) * 1.8;
+  const x = e.x + e.facing * 18,
+    y = e.y - 90;
+  return {
+    x,
+    y,
+    tipX: x + e.facing * Math.cos(angle) * 118,
+    tipY: y + Math.sin(angle) * 118,
+  };
+}
+export function staffHits(e, body, previousTimer = e.timer) {
+  const samples = Math.max(
+    1,
+    Math.ceil(Math.abs(previousTimer - e.timer) / 0.008),
+  );
+  for (let j = 0; j <= samples; j++) {
+    const p = staffPose({
+      ...e,
+      timer: previousTimer + ((e.timer - previousTimer) * j) / samples,
+    });
+    for (let t = 0; t <= 1; t += 0.025) {
+      const x = p.x + (p.tipX - p.x) * t,
+        y = p.y + (p.tipY - p.y) * t;
+      if (overlaps({ x: x - 6, y: y - 6, w: 12, h: 12 }, body)) return true;
+    }
+  }
+  return false;
+}
 export function hitbox(s) {
   return s.attack > 0.12 && s.attack < 0.28
-    ? { x: s.facing > 0 ? s.x + 8 : s.x - 115, y: s.y - 110, w: 107, h: 82 }
+    ? {
+        x: s.facing > 0 ? s.x + 8 : s.x - 115,
+        y: s.y - (s.attackCrouched ? 52 : 110),
+        w: 107,
+        h: s.attackCrouched ? 45 : 82,
+      }
     : null;
 }
 export function respawn(s) {
@@ -95,6 +142,8 @@ export function respawn(s) {
   s.vx = s.vy = 0;
   s.hp = 5;
   s.attack = 0;
+  s.crouching = false;
+  s.attackCrouched = false;
   s.invulnerable = 1;
   s.grounded = true;
   s.camera = Math.max(0, Math.min(5120, s.x - 500));
@@ -133,44 +182,75 @@ export function step(s, input, dt, options = {}) {
     return;
   }
   const dir = Number(!!input.right) - Number(!!input.left);
-  if (input.attack && s.attack <= 0 && s.grounded) {
+  // Never force the standing body through a low ceiling when crouch is released.
+  const standBlocked = platforms.some((p) =>
+    overlaps(
+      { x: s.x - 13, y: s.y - 120, w: 26, h: 120 },
+      { x: p.x, y: p.y, w: p.w, h: solidHeight(p) },
+    ),
+  );
+  s.crouching =
+    s.grounded &&
+    (!!input.crouch ||
+      (s.attack > 0 && s.attackCrouched) ||
+      (s.crouching && standBlocked));
+  if (s.grounded && !s.attack && dir) s.facing = dir;
+  if (input.attack && s.attack <= 0) {
     s.attack = 0.42;
     s.attackId++;
+    s.attackCrouched = s.crouching;
     s.events.push("swing");
   }
-  if (s.attack > 0) {
-    s.attack = Math.max(0, s.attack - dt);
-    s.vx = 0;
-  } else if (s.grounded) {
-    s.vx = dir * 235;
-    if (dir) s.facing = dir;
-    if (input.jump) {
+  if (s.attack > 0) s.attack = Math.max(0, s.attack - dt);
+  if (s.grounded) {
+    s.vx = s.attack > 0 ? 0 : dir * (s.crouching ? 85 : 235);
+    if (input.jump && !s.crouching) {
+      s.vx = dir * 235;
       s.vy = -650;
       s.grounded = false;
       s.events.push("jump");
     }
-  } else if (options.airControl) {
+  } else if (options.airControl)
     s.vx += (dir * 235 - s.vx) * Math.min(1, dt * 5);
-  }
-  const old = s.y;
+  const oldX = s.x,
+    oldY = s.y,
+    height = s.crouching ? 56 : 120;
   s.x = Math.max(20, Math.min(6380, s.x + s.vx * dt));
+  // Resolve solid side faces independently from top/bottom collisions.
+  for (const p of platforms) {
+    if (oldY > p.y + 0.01 && oldY - height < p.y + solidHeight(p) - 0.01) {
+      if (s.vx > 0 && oldX + 13 <= p.x + 0.01 && s.x + 13 > p.x) {
+        s.x = p.x - 13;
+        if (s.grounded) s.vx = 0;
+      } else if (
+        s.vx < 0 &&
+        oldX - 13 >= p.x + p.w - 0.01 &&
+        s.x - 13 < p.x + p.w
+      ) {
+        s.x = p.x + p.w + 13;
+        if (s.grounded) s.vx = 0;
+      }
+    }
+  }
   if (!s.gateOpen) s.x = Math.min(s.x, LEVEL.gate - 36);
   s.vy += 1850 * dt;
   s.y += s.vy * dt;
   s.grounded = false;
-  for (const p of platforms)
-    if (
-      s.vy >= 0 &&
-      old <= p.y + 0.01 &&
-      s.y >= p.y &&
-      s.x + 12 > p.x &&
-      s.x - 12 < p.x + p.w
-    ) {
+  for (const p of platforms) {
+    if (s.x + 13 <= p.x || s.x - 13 >= p.x + p.w) continue;
+    if (s.vy >= 0 && oldY <= p.y + 0.01 && s.y >= p.y) {
       s.y = p.y;
       s.vy = 0;
       s.grounded = true;
-      break;
+    } else if (
+      s.vy < 0 &&
+      oldY - height >= p.y + solidHeight(p) - 0.01 &&
+      s.y - height < p.y + solidHeight(p)
+    ) {
+      s.y = p.y + solidHeight(p) + height;
+      s.vy = 0;
     }
+  }
   if (s.y > 900) respawn(s);
   if (s.grounded && Math.abs(s.vx) > 1) s.walk += dt;
   else s.walk = 0;
@@ -213,6 +293,8 @@ export function step(s, input, dt, options = {}) {
   s.drops = s.drops.filter((d) => !d.taken);
   for (const e of s.enemies) {
     if (e.hp <= 0) continue;
+    const oldEnemyX = e.x;
+    const previousTimer = e.timer;
     e.timer = Math.max(0, e.timer - dt);
     if (
       box &&
@@ -238,18 +320,11 @@ export function step(s, input, dt, options = {}) {
     if (e.mode === "windup") {
       if (!e.timer) {
         e.mode = "strike";
-        e.timer = 0.18;
+        e.timer = 0.28;
         s.events.push("staff");
       }
     } else if (e.mode === "strike") {
-      const area = {
-        x: e.facing > 0 ? e.x : e.x - 145,
-        y: e.y - 100,
-        w: 145,
-        h: 100,
-      };
-      if (overlaps(area, { x: s.x - 13, y: s.y - 120, w: 26, h: 120 }))
-        damage(s);
+      if (staffHits(e, bodyBox(s), previousTimer)) damage(s);
       if (!e.timer) {
         e.mode = "recover";
         e.timer = 0.9;
@@ -272,15 +347,24 @@ export function step(s, input, dt, options = {}) {
         e.mode = "patrol";
         e.x = e.home + Math.sin(s.time * 0.5 + e.home) * 45;
       }
+      for (const p of platforms) {
+        if (e.y <= p.y || e.y - 130 >= p.y + solidHeight(p)) continue;
+        if (e.x > oldEnemyX && oldEnemyX + 24 <= p.x && e.x + 24 > p.x)
+          e.x = p.x - 24;
+        else if (
+          e.x < oldEnemyX &&
+          oldEnemyX - 24 >= p.x + p.w &&
+          e.x - 24 < p.x + p.w
+        )
+          e.x = p.x + p.w + 24;
+      }
     }
   }
   if (Math.abs(s.x - LEVEL.gate) < 150 && !s.gateOpen) {
     if (input.interact) {
       if (!s.embers)
         message(s, "The gate needs one ember. Braziers mark the way back.");
-      else if (
-        s.enemies.some((e) => e.hp > 0 && Math.abs(e.x - LEVEL.gate) < 550)
-      )
+      else if (s.enemies.some((e) => e.hp > 0 && e.home === 5300))
         message(s, "Defeat the gate’s guardian first.");
       else {
         s.embers--;

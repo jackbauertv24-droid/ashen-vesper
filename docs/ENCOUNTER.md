@@ -14,8 +14,8 @@ A direct practiced run is short; exploring optional paths, learning combat and c
 
 ## Controls and comparisons
 
-- Keyboard: A/D or arrows move, Space/W/up jump, J/X attack, E interact, R restart.
-- Standard gamepad: left stick or D-pad move, A jump, X attack, B interact. Enter the game first with its button. Browser standard mapping is assumed.
+- Keyboard: A/D or arrows move, Space/W/up jump, J/X attack on the ground or in the air, S/down crouch and crawl, E interact, R restart.
+- Standard gamepad: left stick or D-pad move, A jump, X attack, B interact, down crouch. Enter the game first with its button. Browser standard mapping is assumed.
 - Touch: simultaneous movement and action buttons.
 - Camera: smooth or tighter exponential follow, horizontal dead zone, gradual facing look-ahead, fixed vertical position. Background, architecture silhouettes and foreground marks move at different rates.
 - Optional limited air control; default commits horizontal movement at takeoff.
@@ -24,7 +24,9 @@ A direct practiced run is short; exploring optional paths, learning combat and c
 
 ## Rules
 
-The player has five health, 1.1 seconds of post-hit invulnerability and a 0.42-second grounded attack. A swing can hit each enemy only once. Guards patrol, approach, telegraph for 0.8 seconds, strike for 0.18 seconds and recover for 0.9 seconds. Hurt briefly interrupts a guard. Patrol/chase bounds keep them on safe ground. They deal damage through attacks rather than contact.
+The player has five health, 1.1 seconds of post-hit invulnerability and a 0.42-second attack usable on the ground or in the air. Aerial attacks preserve horizontal travel and gravity. Crouching reduces body height from 120 to 56 units, permits a slow 85-unit/second crawl and lowers the attack. Releasing crouch below a ceiling keeps the player crouched until there is standing room. Masonry blocks are solid on all faces; the original art study retains its older one-way platform behavior.
+
+A swing can hit each enemy only once. Guards patrol, approach, telegraph for 0.8 seconds, strike for 0.28 seconds and recover for 0.9 seconds. The staff's shared pose defines rendering and swept melee contact; there is no large rectangular damage field or beam. A high part of the sweep can miss a crouched player, but the low portion can still hit. Hurt briefly interrupts a guard. They deal damage through attacks rather than contact. The final guardian must be defeated even if lured away from the gate.
 
 Braziers break once; each drops one ember. Collection, broken braziers, defeated enemies and gate state persist across death in the current run. Restart resets everything. Progress is not saved across page reloads. The gate requires both one ember and defeat of its nearby guardian. Missing requirements are shown in the notice bar. The final sanctuary restores health and becomes the respawn location. Completing the encounter disables further damage; exploration remains available.
 
@@ -32,7 +34,7 @@ Braziers break once; each drops one ember. Collection, broken braziers, defeated
 
 All source files remain unchanged. Runtime canvas compositing removes only border-connected dark background pixels from the enemy concept, braziers and airborne study; this is a provisional mask and may lose connected dark details. Native alpha exports remain preferable. The existing magenta-key hero sheet remains the basis for ground movement and attacks. Dedicated airborne poses use separately defined runtime crop/anchor values, without modifying the submitted draft JSON.
 
-The enemy uses the retained single-pose concept with small transformations, an anticipation indicator and a code-drawn staff strike. It does not claim a finished multi-frame enemy animation. The submitted enemy motion sheet remains retained pending crop/facing cleanup. The gate is a flattened portal with a separate glowing gameplay seal; spending the ember removes that seal, not an independently animated portcullis. No new image generations were needed.
+The enemy uses a body crop from the retained concept with small transformations, an anticipation indicator and a separately drawn rotating bell staff. Crouch currently compresses the original standing/attack frames; aerial attacks reuse ground attack poses while in flight. These are functional placeholders, not finished animations. [Contributor briefs](art-jobs/README.md) define replacement poses, anchors, timing and visual tests. The submitted enemy motion sheet remains retained pending crop/facing cleanup. The gate is a flattened portal with a separate glowing gameplay seal; spending the ember removes that seal, not an independently animated portcullis. No new image generations were needed.
 
 ## Validation
 

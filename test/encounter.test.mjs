@@ -6,6 +6,10 @@ import {
   respawn,
   platforms,
   LEVEL,
+  staffPose,
+  staffHits,
+  bodyBox,
+  hitbox,
 } from "../prototype/encounter-sim.js";
 const tick = (s, i = {}, n = 1, o = {}) => {
   for (let k = 0; k < n; k++) step(s, i, 1 / 60, o);
@@ -54,7 +58,7 @@ test("enemy telegraphs before dealing damage and invulnerability prevents repeat
   tick(s, {}, 30);
   assert.equal(s.hp, 5);
   assert.equal(s.enemies[0].mode, "windup");
-  tick(s, {}, 25);
+  tick(s, {}, 36);
   assert.equal(s.hp, 4);
   tick(s, {}, 6);
   assert.equal(s.hp, 4);
@@ -131,16 +135,29 @@ test("full route can be completed using movement, jumping, combat and interactio
   const s = create();
   for (let frame = 0; frame < 12000 && !s.complete; frame++) {
     const nearby = s.enemies.find(
-      (e) => e.hp > 0 && e.x > s.x - 10 && e.x - s.x < 110,
+      (e) =>
+        e.hp > 0 &&
+        Math.abs(e.x - s.x) < 340 &&
+        s.grounded &&
+        Math.abs(e.y - s.y) < 100,
     );
     const atBrazier = !s.broken[0] && s.x > 330 && s.x < 430;
     const edge = platforms
       .slice(0, 4)
       .find((p) => s.x > p.x + p.w - 40 && s.x < p.x + p.w);
     const input = {
-      right: !nearby && !atBrazier,
-      attack: !!nearby || atBrazier,
-      jump: !!edge && s.grounded,
+      right: !atBrazier && (!nearby || nearby.x - s.x > 100),
+      left: !!nearby && nearby.x < s.x,
+      attack: (!!nearby && Math.abs(nearby.x - s.x) <= 100) || atBrazier,
+      jump:
+        s.grounded &&
+        (!!edge ||
+          platforms
+            .slice(4)
+            .some(
+              (p) =>
+                p.x - s.x < 100 && p.x > s.x && p.y < s.y && p.y >= s.y - 115,
+            )),
       interact: s.x > 5550,
     };
     tick(s, input);
@@ -150,4 +167,84 @@ test("full route can be completed using movement, jumping, combat and interactio
   assert.equal(s.enemies.filter((e) => e.hp <= 0).length, 3);
   assert.equal(s.collected, 1);
   assert.equal(s.gateOpen, true);
+});
+
+test("air attack keeps jump momentum and gravity, including simultaneous jump and attack", () => {
+  const s = create();
+  tick(s, { right: true, jump: true });
+  const vx = s.vx,
+    y = s.y;
+  tick(s, { attack: true });
+  assert.ok(s.attack > 0);
+  assert.equal(s.vx, vx);
+  assert.ok(s.y < y);
+  assert.equal(s.grounded, false);
+  const b = create();
+  tick(b, { right: true, jump: true, attack: true });
+  assert.ok(b.attack > 0);
+  assert.equal(b.grounded, false);
+});
+test("solid masonry blocks both directions and jumping clears a step", () => {
+  const s = create();
+  s.x = 1200;
+  tick(s, { right: true }, 60);
+  assert.equal(s.x, 1227);
+  tick(s, { right: true, jump: true });
+  for (let i = 0; i < 50 && !s.grounded; i++) tick(s, { right: true });
+  assert.ok(s.x > 1240);
+  assert.equal(s.y, 520);
+  const b = create();
+  b.x = 1490;
+  tick(b, { left: true }, 60);
+  assert.ok(b.x >= 1433);
+});
+test("crouch changes hurtbox and attack height; low ceiling prevents standing", () => {
+  const s = create();
+  tick(s, { crouch: true });
+  assert.equal(s.crouching, true);
+  s.x = 1800;
+  tick(s, {});
+  assert.equal(s.crouching, true);
+  tick(s, { right: true }, 80);
+  assert.ok(s.x > 1893);
+  tick(s, {});
+  assert.equal(s.crouching, false);
+});
+test("underside of solid ledge stops a jump instead of allowing passage", () => {
+  const s = create();
+  s.x = 1800;
+  s.crouching = true;
+  tick(s, { jump: true });
+  assert.equal(s.crouching, true);
+  assert.equal(s.y, 600);
+  const b = create();
+  b.x = 2100;
+  b.y = 880;
+  b.grounded = false;
+  b.vy = -650;
+  tick(b);
+  assert.equal(b.y, 870);
+  assert.equal(b.vy, 0);
+  tick(b);
+  assert.ok(b.y > 870, "gravity resumes after hitting the ceiling");
+});
+test("gate guardian cannot be bypassed by luring it outside the old proximity radius", () => {
+  const s = create();
+  s.x = 5650;
+  s.embers = 1;
+  s.enemies[2].x = 5000;
+  tick(s, { interact: true });
+  assert.equal(s.gateOpen, false);
+  assert.equal(s.embers, 1);
+});
+
+test("staff damage follows the physical weapon rather than filling its whole reach", () => {
+  const e = { x: 2000, y: 600, facing: 1, mode: "strike", timer: 0.14 };
+  const p = staffPose(e);
+  assert.equal(
+    staffHits(e, { x: p.tipX - 5, y: p.tipY - 5, w: 10, h: 10 }),
+    true,
+  );
+  assert.equal(staffHits(e, { x: 2110, y: 545, w: 26, h: 55 }), false);
+  assert.equal(staffHits(e, { x: 2200, y: 480, w: 26, h: 120 }), false);
 });

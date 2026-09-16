@@ -45,7 +45,7 @@
             width="1280"
             height="720"
             tabindex="0"
-            aria-label="Platform game. A and D move, Space jumps, J attacks, E interacts. R restarts."
+            aria-label="Platform game. A and D move, Space jumps, J attacks, E interacts. S or down crouches. R restarts."
           ></canvas>
           <div class="start-overlay" id="start-overlay">
             <p class="eyebrow">THE PILGRIM ROAD</p>
@@ -74,6 +74,7 @@
           <div><kbd>A</kbd><kbd>D</kbd><span>Move</span></div>
           <div><kbd>SPACE</kbd><span>Jump</span></div>
           <div><kbd>J</kbd><span>Strike</span></div>
+          <div><kbd>S/↓</kbd><span>Crouch</span></div>
           <div><kbd>E</kbd><span>Offer ember</span></div>
         </div>
         <div class="touch-controls">
@@ -82,6 +83,7 @@
             ><button data-control="right" aria-label="Move right">→</button>
           </div>
           <div>
+            <button data-control="crouch">Duck</button>
             <button data-control="jump">Jump</button
             ><button data-control="attack">Strike</button
             ><button data-control="interact">Use</button>
@@ -100,7 +102,8 @@
           ><input id="hitstop" type="checkbox" checked /> Brief impact
           pause</label
         ><span
-          >Gamepad: stick / D-pad move · A jump · X strike · B interact</span
+          >Gamepad: stick / D-pad move · A jump · X strike · B interact · down
+          crouch</span
         >
       </section>
       <section class="study-details">
@@ -136,9 +139,10 @@
             <span class="number">03</span>
             <h3>Bring an ember home</h3>
             <p>
-              Strike a hanging brazier and collect its falling ember. Defeat the
-              final guardian and press E at the gate. The sanctuary restores
-              health and saves your restart location.
+              Swing on the ground or in the air. Strike a hanging brazier and
+              collect its falling ember. Defeat the final guardian and press E
+              at the gate. The sanctuary restores health and saves your restart
+              location.
             </p>
             <a href="art/library/gallery.html"
               >Browse every preserved image ↗</a

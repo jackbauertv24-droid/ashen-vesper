@@ -6,6 +6,9 @@ import {
   create,
   step,
   hitbox,
+  bodyBox,
+  staffPose,
+  solidHeight,
 } from "./encounter-sim.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
@@ -18,6 +21,7 @@ let s = create(),
   guide = false,
   audioContext;
 const input = {
+    crouch: false,
     left: false,
     right: false,
     jump: false,
@@ -44,6 +48,8 @@ const keys = {
   KeyJ: "attack",
   KeyX: "attack",
   KeyE: "interact",
+  KeyS: "crouch",
+  ArrowDown: "crouch",
 };
 const load = (path) =>
   new Promise((resolve, reject) => {
@@ -157,7 +163,8 @@ window.addEventListener("keydown", (e) => {
   if (action) {
     e.preventDefault();
     held.add(e.code);
-    if (!e.repeat && !["left", "right"].includes(action)) input[action] = true;
+    if (!e.repeat && !["left", "right", "crouch"].includes(action))
+      input[action] = true;
   }
   if (e.code === "KeyR") reset();
 });
@@ -173,13 +180,16 @@ for (const b of document.querySelectorAll("[data-control]")) {
     start();
     b.setPointerCapture(e.pointerId);
     touch.set(e.pointerId, b.dataset.control);
-    if (!["left", "right"].includes(b.dataset.control))
+    if (!["left", "right", "crouch"].includes(b.dataset.control))
       input[b.dataset.control] = true;
   };
   for (const event of ["pointerup", "pointercancel", "lostpointercapture"])
     b.addEventListener(event, (e) => touch.delete(e.pointerId));
 }
 function controls() {
+  input.crouch =
+    [...held].some((k) => keys[k] === "crouch") ||
+    [...touch.values()].includes("crouch");
   input.left =
     [...held].some((k) => keys[k] === "left") ||
     [...touch.values()].includes("left");
@@ -191,6 +201,7 @@ function controls() {
     padPrevious = {};
     return;
   }
+  input.crouch ||= pad.axes[1] > 0.5 || pad.buttons[13]?.pressed;
   input.left ||= pad.axes[0] < -0.25 || pad.buttons[14]?.pressed;
   input.right ||= pad.axes[0] > 0.25 || pad.buttons[15]?.pressed;
   for (const [action, index] of Object.entries({
@@ -262,7 +273,7 @@ function background() {
 function platform(p) {
   ctx.save();
   ctx.beginPath();
-  ctx.rect(p.x, p.y, p.w, 150);
+  ctx.rect(p.x, p.y, p.w, solidHeight(p));
   ctx.clip();
   for (let x = p.x; x < p.x + p.w; x += 240) {
     ctx.drawImage(art.stone, x, p.y, 240, 80);
@@ -290,7 +301,9 @@ function hero() {
   let f = atlas.frames[0],
     sheet = art.hero,
     scale = 144 / 418;
-  if (air) {
+  if (s.attack > 0)
+    f = atlas.frames[s.attack > 0.28 ? 5 : s.attack > 0.1 ? 6 : 7];
+  else if (air) {
     const frames = [
       { x: 40, y: 20, width: 415, height: 680, pivotX: 240, pivotY: 644 },
       { x: 475, y: 130, width: 420, height: 390, pivotX: 245, pivotY: 354 },
@@ -299,13 +312,12 @@ function hero() {
     f = frames[s.vy < -140 ? 0 : s.vy > 140 ? 2 : 1];
     sheet = art.air;
     scale = 144 / 510;
-  } else if (s.attack > 0)
-    f = atlas.frames[s.attack > 0.28 ? 5 : s.attack > 0.1 ? 6 : 7];
-  else if (Math.abs(s.vx) > 0)
+  } else if (Math.abs(s.vx) > 0)
     f = atlas.frames[1 + (Math.floor(s.walk / 0.115) % 4)];
   ctx.save();
   ctx.translate(s.x, s.y);
-  ctx.scale(s.facing, 1);
+  // Temporary pose until contributor job 01 supplies anatomically drawn crouch frames.
+  ctx.scale(s.facing, s.crouching ? 0.39 : 1);
   if (s.invulnerable > 0 && Math.floor(s.time * 15) % 2) ctx.globalAlpha = 0.4;
   ctx.drawImage(
     sheet,
@@ -331,7 +343,8 @@ function enemy(e) {
   ctx.scale(-e.facing, 1);
   if (e.mode === "hurt") ctx.globalAlpha = 0.5;
   ctx.rotate(e.mode === "windup" ? 0.1 : e.mode === "strike" ? -0.16 : 0);
-  ctx.drawImage(art.enemy, 100, 100, 670, 1018, -50, -150, 100, 150);
+  // Body-only source crop avoids showing the old painted staff alongside the moving weapon.
+  ctx.drawImage(art.enemy, 330, 175, 430, 945, -37, -138, 74, 138);
   ctx.restore();
   if (e.mode === "windup") {
     text("!", e.x - 5, e.y - 172, "#ffcc77", 28);
@@ -347,14 +360,33 @@ function enemy(e) {
     );
     ctx.stroke();
   }
-  if (e.mode === "strike") {
-    ctx.strokeStyle = "#ffcd86";
-    ctx.lineWidth = 6;
-    ctx.beginPath();
-    ctx.moveTo(e.x, e.y - 110);
-    ctx.lineTo(e.x + e.facing * 145, e.y - 12);
-    ctx.stroke();
-  }
+  const weapon = staffPose(e);
+  ctx.save();
+  ctx.strokeStyle = "#5e4936";
+  ctx.lineWidth = 5;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(weapon.x, weapon.y);
+  ctx.lineTo(weapon.tipX, weapon.tipY);
+  ctx.stroke();
+  ctx.strokeStyle = "#a49980";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  // A solid bell head follows the same tip used by the melee collision sweep.
+  ctx.translate(weapon.tipX, weapon.tipY);
+  ctx.rotate(Math.atan2(weapon.tipY - weapon.y, weapon.tipX - weapon.x));
+  ctx.fillStyle = "#9b7a4c";
+  ctx.beginPath();
+  ctx.moveTo(-8, -7);
+  ctx.lineTo(8, -11);
+  ctx.lineTo(8, 11);
+  ctx.lineTo(-8, 7);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = "#d3b98a";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.restore();
   ctx.fillStyle = "#292333";
   ctx.fillRect(e.x - 22, e.y - 150, 44, 4);
   ctx.fillStyle = "#d0a079";
@@ -446,11 +478,13 @@ function draw() {
   text("J / X · BREAK", 340, 380);
   text("Optional embers above", 1280, 300);
   text("Jump near the edge", 650, 475);
+  text("S / ↓ · crouch below the arch", 1640, 565);
   text("Watch the windup. Strike, then retreat.", 1770, 370);
   if (guide) {
     ctx.strokeStyle = "#8ee6d2";
     for (const p of platforms) ctx.strokeRect(p.x, p.y, p.w, 5);
-    ctx.strokeRect(s.x - 13, s.y - 120, 26, 120);
+    const body = bodyBox(s);
+    ctx.strokeRect(body.x, body.y, body.w, body.h);
     const b = hitbox(s);
     if (b) {
       ctx.fillStyle = "#ffa95a66";

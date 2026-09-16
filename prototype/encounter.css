@@ -124,3 +124,15 @@
     gap: 8px;
   }
 }
+@media (max-width: 760px) {
+  .touch-controls button {
+    min-width: 40px;
+    font-size: 10px;
+  }
+  .touch-controls > div {
+    gap: 4px;
+  }
+  .controls-bar {
+    flex-wrap: wrap;
+  }
+}
