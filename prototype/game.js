@@ -10,6 +10,14 @@ const hits = document.querySelector('#hit-count');
 const state = createState();
 const input = { left: false, right: false, jump: false, attack: false };
 let running = false, guides = false, art = null, atlas = null;
+let scene = "causeway";
+const sceneButton = document.querySelector("#scene-toggle");
+sceneButton.addEventListener("click", () => {
+  scene = scene === "causeway" ? "courtyard" : "causeway";
+  sceneButton.textContent = scene === "causeway" ? "Visit courtyard" : "Visit causeway";
+  document.querySelector("#scene-name").textContent = scene === "causeway" ? "THE DISTANT CAUSEWAY" : "THE OUTER COURT";
+  canvas.focus({ preventScroll: true });
+});
 let accumulator = 0, lastTime = 0;
 const keys = new Set(), touches = new Map();
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -84,7 +92,22 @@ document.querySelectorAll('[data-control]').forEach(button => {
 });
 
 function drawBackdrop() {
-  ctx.drawImage(art.background, 0, 0, WORLD.width, WORLD.height);
+  if (scene === 'courtyard') ctx.drawImage(art.background, 0, 0, WORLD.width, WORLD.height);
+  else {
+    // Overscan keeps this finite, non-seamless skyline inside the viewport.
+    const offset = (state.x / WORLD.width - 0.5) * 36;
+    ctx.drawImage(art.skyline, -40 - offset, -15, WORLD.width + 80, WORLD.height + 45);
+    const fog = ctx.createLinearGradient(0, 350, 0, WORLD.height);
+    fog.addColorStop(0, '#111a2700'); fog.addColorStop(1, '#0c131ff5');
+    ctx.fillStyle = fog; ctx.fillRect(0, 350, WORLD.width, WORLD.height - 350);
+    // Static opaque doorway; source is preserved. No alpha extraction or moving gate claimed.
+    ctx.save(); ctx.beginPath();
+    const outline = [[82,95],[814,95],[814,398],[830,402],[830,442],[816,447],[817,1028],[864,1070],[864,1115],[34,1115],[34,1070],[76,1060],[82,447],[69,444],[69,403],[82,402]];
+    outline.forEach(([x,y], i) => { const px=1060+(x-34)*330/830, py=205+(y-95)*405/1020; if(i) ctx.lineTo(px,py); else ctx.moveTo(px,py); });
+    ctx.closePath(); ctx.clip();
+    ctx.drawImage(art.portal, 34, 95, 830, 1020, 1060, 205, 330, 405);
+    ctx.restore();
+  }
   const wash = ctx.createLinearGradient(0, 0, 0, WORLD.height);
   wash.addColorStop(0, '#0a142b16'); wash.addColorStop(0.65, '#050d190a'); wash.addColorStop(1, '#040b13aa');
   ctx.fillStyle = wash; ctx.fillRect(0, 0, WORLD.width, WORLD.height);
@@ -189,15 +212,17 @@ try {
   const response = await fetch('art/production/bellwarden/bellwarden-pilot-v001.json');
   if (!response.ok) throw new Error('The character atlas metadata is unavailable.');
   atlas = await response.json();
-  const [background, character, stone] = await Promise.all([
+  const [background, character, stone, skyline, portal] = await Promise.all([
     loadImage('art/concepts/abbey-gate-concept-v001.png'),
     loadImage('art/production/bellwarden/bellwarden-pilot-v001.png'),
     loadImage('art/production/abbey/masonry-module-v001.png'),
+    loadImage('art/production/abbey/skyline-distant-v001.png'),
+    loadImage('art/production/abbey/abbey-gate-portal-v001.png'),
   ]);
-  art = { background, character: prepareCharacter(character, atlas), stone };
+  art = { background, character: prepareCharacter(character, atlas), stone, skyline, portal };
   enter.disabled = false; enter.textContent = 'Enter the courtyard';
   // Read-only state supports automated checks without introducing debug controls in the player flow.
-  window.artStudy = { snapshot: () => ({ ...state }), get ready() { return !!art; } };
+  window.artStudy = { snapshot: () => ({ ...state, scene }), get ready() { return !!art; } };
   draw(); requestAnimationFrame(tick);
 } catch (error) {
   overlay.classList.add('hidden'); document.querySelector('#error-panel').hidden = false;

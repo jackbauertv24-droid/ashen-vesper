@@ -62,3 +62,7 @@ Move with A/D or arrow keys, jump with Space, attack with J, reset with R. Touch
 Checks: `npm test`, `npm run validate:assets`; install Chromium with `npx playwright install chromium --with-deps`, then run `npm run test:browser`.
 
 This pilot demonstrates walking, jumping, one sword attack, and repeated masonry. It has a practice target, a flattened backdrop, and temporary jump art. It is not yet the full entrance encounter.
+
+## Latest demo: two environments
+
+The distant causeway now uses the submitted skyline and static abbey portal. Switch to the original courtyard using the scene button. Browse every retained source in the [art gallery](art/library/gallery.html). Unused images, proposed metadata and submission notes remain preserved; [review notes](docs/ASSET_PR_REVIEW.md) distinguish scenery integration from pending animation and gameplay work.

@@ -11,22 +11,22 @@
 <body>
   <header class="site-header">
     <a class="wordmark" href="./"><span class="sigil" aria-hidden="true">✧</span> ASHEN VESPER</a>
-    <nav aria-label="Main"><a href="#the-study">The study</a><a href="https://github.com/jackbauertv24-droid/ashen-vesper">Repository <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main"><a href="art/library/gallery.html">Art library</a><a href="#the-study">The study</a><a href="https://github.com/jackbauertv24-droid/ashen-vesper">Repository <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="title">
       <div><p class="eyebrow"><span></span> FIELD STUDY 001 <span class="divider">/</span> THE ABBEY GATE</p>
       <h1 id="title">A world worth stepping into.</h1>
       <p class="lede">Moonlit stone. A watchful silence. Take the first steps into Ashen Vesper.</p></div>
-      <div class="study-mark"><span class="pulse"></span> PLAYABLE ART TEST <small>Character & environment · v0.1</small></div>
+      <div class="study-mark"><span class="pulse"></span> PLAYABLE ART TEST <small>Character & environment · v0.2</small></div>
     </section>
 
     <section class="game-shell" aria-label="Interactive platformer art test">
-      <div class="game-top"><span><span class="live-dot"></span> THE OUTER COURT</span><span id="motion-status" role="status">Loading the scene…</span></div>
+      <div class="game-top"><span><span class="live-dot"></span> <span id="scene-name">THE DISTANT CAUSEWAY</span></span><span id="motion-status" role="status">Loading the scene…</span></div>
       <div class="viewport" id="viewport">
         <canvas id="game" width="1440" height="810" tabindex="0" aria-label="Platformer. Arrow keys or A and D to move, Space to jump, J to attack. Jump the gap and strike the brass practice ward. Press R to return to the start."></canvas>
         <div class="scene-caption"><span>01 — THE BELLWARDEN</span><p>Cross the broken causeway.<br>Strike the brass ward.</p></div>
-        <div class="scene-actions"><button id="inspect" aria-pressed="false" title="Toggle collision and pivot guides">Show guides</button><button id="reset" title="Return to the start">Reset <span>↺</span></button></div>
+        <div class="scene-actions"><button id="scene-toggle">Visit courtyard</button><button id="inspect" aria-pressed="false" title="Toggle collision and pivot guides">Show guides</button><button id="reset" title="Return to the start">Reset <span>↺</span></button></div>
         <div class="start-overlay" id="start-overlay"><span class="eyebrow">THE ABBEY AWAITS</span><button id="enter" disabled>Loading artwork…</button><p>Headphones optional. Curiosity required.</p><small>This study has no audio yet.</small></div>
         <div class="error-panel" id="error-panel" hidden><h2>The scene could not load.</h2><p id="error-message"></p><button onclick="location.reload()">Try again</button></div>
       </div>
@@ -39,7 +39,7 @@
       <div class="details-grid">
         <article><span class="number">01</span><h3>A readable silhouette</h3><p>The Bellwarden’s pale mantle separates her from the abbey’s shadows. Eight poses explore standing, walking, and a deliberate blade strike.</p><a href="art/production/bellwarden/bellwarden-pilot-v001.png">View character sheet ↗</a></article>
         <article><span class="number">02</span><h3>Stone you can stand on</h3><p>Reusable masonry modules form the causeway and raised ledge. Their collision surfaces are independent of the painted detail.</p><a href="art/production/abbey/masonry-module-v001.png">View masonry module ↗</a></article>
-        <article><span class="number">03</span><h3>A beginning, not a finished game</h3><p>The abbey is still a single backdrop. Jump artwork, additional animation cleanup, enemies, and separate scenery layers remain to be developed.</p><a href="docs/ROADMAP.md">Read the roadmap ↗</a></article>
+        <article><span class="number">03</span><h3>A beginning, not a finished game</h3><p>Visit the distant causeway or the original courtyard. The new skyline shifts gently with movement; the portal is static scenery. Animation cleanup and enemy behavior remain in development.</p><a href="docs/ROADMAP.md">Read the roadmap ↗</a></article>
       </div>
     </section>
   </main>

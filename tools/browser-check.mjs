@@ -12,6 +12,11 @@ try {
   await page.goto('http://127.0.0.1:4174');
   await page.waitForFunction(()=>window.artStudy?.ready);
   await page.locator('#enter').click();
+  assert.equal(await page.evaluate(()=>window.artStudy.snapshot().scene),'causeway');
+  await page.locator('#scene-toggle').click();
+  assert.equal(await page.evaluate(()=>window.artStudy.snapshot().scene),'courtyard');
+  await page.locator('#scene-toggle').click();
+  assert.equal(await page.evaluate(()=>window.artStudy.snapshot().scene),'causeway');
   await page.keyboard.down('KeyD'); await page.waitForFunction(()=>window.artStudy.snapshot().x>=480); await page.keyboard.up('KeyD');
   await page.keyboard.down('KeyD'); await page.keyboard.press('Space');
   await page.waitForFunction(()=>window.artStudy.snapshot().x>630 && window.artStudy.snapshot().grounded);
@@ -31,5 +36,10 @@ try {
   assert.equal(await mobile.evaluate(()=>window.artStudy.snapshot().x),stopped);
   assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await mobile.screenshot({path:'tmp/mobile-study.png',fullPage:true});
+  await mobile.locator('#scene-toggle').tap();
+  assert.equal(await mobile.evaluate(()=>window.artStudy.snapshot().scene),'courtyard');
+  await page.goto('http://127.0.0.1:4174/art/library/gallery.html');
+  assert.equal(await page.locator('article').count(),15);
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>{im.loading='eager';return im.decode();}));});
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

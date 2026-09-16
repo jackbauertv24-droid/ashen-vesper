@@ -52,3 +52,16 @@ For future contributions, use one bounded asset family per PR, state whether it 
 ## Validation and preservation
 
 The submitted combined branch passes asset validation, eight simulation tests and the desktop/touch browser regression. The preservation check additionally verifies original file hashes and catalog coverage. It deliberately does not claim that masks, crops or pivots pass visual validation. A local Git bundle also preserves the original submitted commit history independently of PR branches.
+
+## Follow-up: PR #8 and demo v0.2
+
+Reviewed #8 at `9ef2ee1`, on top of the preserved #5–#7 stack. It adds four images, four proposed metadata files and a proposal document. All four images were visually inspected. The retention lock includes the nine additions; all 25 retained resources verify unchanged.
+
+- **Left end-cap:** useful counterpart to the earlier right edge. Pale opaque surround and source top near y=215 still require a measured export; its draft baseline is not accepted as collision data.
+- **Causeway arch:** useful architecture reference. The image has opaque fill through its arch and a painted broken top. It cannot simply be placed across the playable gap without masking and checking that visible footing agrees with collisions. Retained, not activated.
+- **Portal:** accepted as static doorway scenery. The demo uses an explicit source crop (34,95,830,1020) and displays it at (1060,205,330,405), placing the threshold at ground y=610. This keeps the dark doorway intact. Draft portcullis travel and portal trigger metadata are not used; a flattened gate cannot animate independently.
+- **Balustrade:** coherent detail, retained for later. Dark-filled openings need masks, and the front-facing panel has visible top/base depth. It is not yet a transparent, seamless railing module.
+
+The new default causeway scene combines the PR #6 skyline and PR #8 portal with the existing playable masonry and character. Finite overscan bounds the skyline's small movement-linked parallax without assuming seamless tiling. The original courtyard remains selectable; switching scenes preserves movement and combat state. A browser gallery exposes all 15 catalogued images, including every unused candidate.
+
+New browser checks exercise both scene selections, mobile switching and decoding all 15 gallery images, alongside the existing traversal and combat checks. Source preservation and eight simulation tests remain required. Character-sheet integration blockers from the first review remain open. No images were regenerated or modified during this update.
