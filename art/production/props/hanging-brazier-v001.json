@@ -1,0 +1,36 @@
+{
+  "id": "hanging-brazier-v001",
+  "name": "Hanging Bell Brazier",
+  "archetype": "interactive-censer-prop",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1024
+  },
+  "displayBounds": {
+    "width": 96,
+    "height": 96
+  },
+  "mountAnchor": {
+    "x": 512,
+    "y": 32
+  },
+  "censerCenter": {
+    "x": 512,
+    "y": 620
+  },
+  "strikeBox": {
+    "x": 320,
+    "y": 420,
+    "width": 384,
+    "height": 480
+  },
+  "emberEmitter": {
+    "x": 512,
+    "y": 660,
+    "palette": [
+      "#ffedb9",
+      "#d99a52",
+      "#151822"
+    ]
+  }
+}

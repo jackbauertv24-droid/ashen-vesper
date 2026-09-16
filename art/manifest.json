@@ -63,6 +63,92 @@
         "fileDecoded": true,
         "engineIntegration": "Browser art study"
       }
+    },
+    {
+      "id": "hollow-pilgrim-concept-v001",
+      "path": "art/concepts/hollow-pilgrim-concept-v001.png",
+      "status": "concept",
+      "title": "The Hollow Pilgrim",
+      "description": "Wandering Gothic penitent hostile silhouette in ragged slate vestments, carrying a cracked bell-topped staff.",
+      "width": 896,
+      "height": 1200,
+      "format": "png",
+      "alpha": false,
+      "sha256": "12c197b36563d9e7a6331c8ef2f50dba53181b34b302a13377d868296e271f35",
+      "intendedUse": "Candidate enemy design fulfilling M0/M2 roadmap; slow-advancing wandering encounter.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Compliant with ART_DIRECTION palette (#151822, #333D58, #8292A6, #D99A52); crisp 2D orthographic side profile.",
+        "engineIntegration": "Pending sprite cleanup, animation frames, and collision bounds"
+      },
+      "limitations": [
+        "Concept art; single keyframe pose.",
+        "Requires multi-pose animation sheet (walk, swing, hit-reaction, perish) before engine integration."
+      ]
+    },
+    {
+      "id": "hanging-brazier-v001",
+      "path": "art/production/props/hanging-brazier-v001.png",
+      "status": "prototype",
+      "title": "Hanging Bell Brazier",
+      "description": "Wrought-iron Gothic bell-censer brazier suspended by chains with warm amber ember glow.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "296f1202c400adb41964b38c3b9117e08d707fee66fe7aede80b1a38ce17cb4b",
+      "intendedUse": "Interactive destructible prop replacing classic candle/torch archetype; releases sanctified embers when struck.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Adheres to moonlit slate highlights (#8292A6) and amber flame (#D99A52); orthographic side elevation.",
+        "engineIntegration": "Accompanied by atlas definition with attachment anchor and strike box"
+      },
+      "limitations": [
+        "Opaque background; intended for color-keying or alpha masking in production.",
+        "Destruction and swing animation frames pending."
+      ]
+    },
+    {
+      "id": "consecration-ember-v001",
+      "path": "art/production/props/consecration-ember-v001.png",
+      "status": "prototype",
+      "title": "Consecration Ember Pickup",
+      "description": "Sacred bell-metal relic shard enveloped in radiant amber consecrated fire.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "d948616e56fb4684f4c0cdea8d245f3b8c5be2a055fe9bbbbcc7b94acf50cdc4",
+      "intendedUse": "Loot drop and sanctified collectible released upon shattering hanging censers.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "High-contrast silhouette legible at 32-48px gameplay scale against deep shadow recesses.",
+        "engineIntegration": "Atlas metadata includes pickup bounds and light radius"
+      },
+      "limitations": [
+        "Single frame study; bobbing and glimmer shader/frames planned for M3."
+      ]
+    },
+    {
+      "id": "masonry-endcap-v001",
+      "path": "art/production/abbey/masonry-endcap-v001.png",
+      "status": "prototype",
+      "title": "Abbey Masonry End-Cap Module",
+      "description": "Weathered Gothic limestone platform end-cap and broken edge terminal.",
+      "width": 1200,
+      "height": 896,
+      "format": "png",
+      "alpha": false,
+      "sha256": "d158dc8f70859c0505832308debb6f3d1add1d44c60ba520cdf3be47da41670d",
+      "intendedUse": "Platform termination piece to cap raw cuts on causeway edges and raised ledges.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Continuous flat limestone top surface matching masonry-module-v001 stone cap height and palette.",
+        "engineIntegration": "Ledge edge alignment metadata defined"
+      },
+      "limitations": [
+        "Right-hand end-cap; left-hand edge can be mirrored or complemented with dedicated left variant."
+      ]
     }
   ]
 }

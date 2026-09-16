@@ -1,0 +1,20 @@
+{
+  "id": "consecration-ember-v001",
+  "name": "Consecration Ember",
+  "archetype": "collectible-pickup",
+  "nativeSize": {
+    "width": 1024,
+    "height": 1024
+  },
+  "displayBounds": {
+    "width": 40,
+    "height": 40
+  },
+  "center": {
+    "x": 512,
+    "y": 550
+  },
+  "pickupRadius": 22,
+  "lightRadius": 72,
+  "lightColor": "#d99a52"
+}

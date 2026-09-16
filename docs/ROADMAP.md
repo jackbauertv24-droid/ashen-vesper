@@ -5,15 +5,15 @@
 - [x] Review the first abbey-gate concept.
 - [ ] Confirm palette, material rendering, and side-on camera.
 - [ ] Choose a protagonist silhouette and signature weapon.
-- [ ] Approve one enemy design.
+- [ ] Approve one enemy design (candidate submitted: [The Hollow Pilgrim](PROPOSALS_GOTHIC_ASSETS.md#asset-4-the-hollow-pilgrim-enemy-concept-hollow-pilgrim-concept-v001)).
 
 Exit criterion: one coherent scene reference and approved character silhouettes.
 
 ## M1 — Entrance environment kit
 
 - [ ] Separate sky and distant architecture.
-- [ ] Create modular ground, walls, pillars, and gate pieces.
-- [ ] Add a small foreground prop set.
+- [ ] Create modular ground, walls, pillars, and gate pieces (edge module submitted: [masonry-endcap-v001](PROPOSALS_GOTHIC_ASSETS.md#asset-3-abbey-masonry-end-cap-module-masonry-endcap-v001)).
+- [ ] Add a small foreground prop set (destructible bell-brazier & consecrated ember submitted: [PROPOSALS_GOTHIC_ASSETS.md](PROPOSALS_GOTHIC_ASSETS.md)).
 - [ ] Validate seams, parallax, and ground readability.
 
 Exit criterion: assemble an entrance scene from separate assets in-engine.
