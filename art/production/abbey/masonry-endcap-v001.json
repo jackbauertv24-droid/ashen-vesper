@@ -1,0 +1,14 @@
+{
+  "id": "masonry-endcap-v001",
+  "name": "Abbey Masonry End-Cap Module",
+  "archetype": "platform-terminal-module",
+  "nativeSize": {
+    "width": 1200,
+    "height": 896
+  },
+  "capHeight": 110,
+  "walkableBaselineY": 110,
+  "edgeOverhangWidth": 90,
+  "orientation": "right-terminal",
+  "compatibleWith": "masonry-module-v001"
+}
