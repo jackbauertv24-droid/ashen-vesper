@@ -1,0 +1,15 @@
+{
+  "transparency": "magenta-key",
+  "displayHeight": 144,
+  "referenceHeight": 418,
+  "frames": [
+    {"name":"idle","x":80,"y":5,"width":260,"height":433,"pivotX":96,"pivotY":427},
+    {"name":"walk-contact","x":495,"y":5,"width":352,"height":433,"pivotX":149,"pivotY":427},
+    {"name":"walk-passing","x":977,"y":5,"width":309,"height":433,"pivotX":109,"pivotY":427},
+    {"name":"walk-opposite-contact","x":1408,"y":5,"width":365,"height":433,"pivotX":147,"pivotY":427},
+    {"name":"walk-opposite-passing","x":73,"y":443,"width":324,"height":432,"pivotX":124,"pivotY":421},
+    {"name":"attack-windup","x":474,"y":439,"width":357,"height":436,"pivotX":174,"pivotY":425},
+    {"name":"attack-extension","x":895,"y":494,"width":561,"height":381,"pivotX":177,"pivotY":370},
+    {"name":"attack-recovery","x":1440,"y":445,"width":333,"height":430,"pivotX":137,"pivotY":419}
+  ]
+}

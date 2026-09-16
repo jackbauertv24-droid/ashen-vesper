@@ -2,11 +2,13 @@
 
 An original Gothic action-platformer art project inspired by classic side-scrolling adventures: haunted architecture, deliberate movement, readable combat, and a world painted in moonlight.
 
-**Working title · visual development · no playable build yet**
+**Working title · playable browser art study**
+
+[Play the courtyard study](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Pilot notes](docs/PILOT.md)
 
 ![The Abbey Gate — first environment concept](art/concepts/abbey-gate-concept-v001.png)
 
-*The Abbey Gate, concept v001. A flattened visual study; modular layers and character assets are next.*
+*The Abbey Gate, concept v001. A flattened visual study; used as the backdrop for the first motion study.*
 
 ## Visual direction
 
@@ -48,3 +50,13 @@ docs/            Art direction, specifications, and production decisions
 This is an independent project, not an official release or an affiliated continuation of any existing franchise. Character designs, architecture, names, and visual motifs are developed for this project.
 
 No blanket reuse license has been selected yet. See [RIGHTS.md](RIGHTS.md).
+
+## Run locally
+
+Requires Node.js 20 or later. Run `npm ci`, then `npm run dev`, and open http://127.0.0.1:4173.
+
+Move with A/D or arrow keys, jump with Space, attack with J, reset with R. Touch controls are available on small screens. Click **Show guides** to inspect collision surfaces.
+
+Checks: `npm test`, `npm run validate:assets`; install Chromium with `npx playwright install chromium --with-deps`, then run `npm run test:browser`.
+
+This pilot demonstrates walking, jumping, one sword attack, and repeated masonry. It has a practice target, a flattened backdrop, and temporary jump art. It is not yet the full entrance encounter.

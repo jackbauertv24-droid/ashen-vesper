@@ -1,0 +1,20 @@
+{
+  "name": "ashen-vesper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A playable Gothic art study: character motion and modular masonry.",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "test": "node --test test/*.test.mjs",
+    "validate:assets": "node tools/validate-assets.mjs",
+    "test:browser": "node tools/browser-check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "pngjs": "^7.0.0"
+  }
+}

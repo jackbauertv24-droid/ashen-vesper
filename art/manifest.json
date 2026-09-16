@@ -16,15 +16,53 @@
       "intendedUse": "Visual direction reference; flattened environment concept.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Checked: coherent environment, clear continuous ground, no text or characters. Direction awaits project review.",
-        "engineIntegration": "not-started"
+        "visualReview": "Theme and mood accepted by project owner.",
+        "engineIntegration": "Browser pilot: flattened backdrop"
       },
       "limitations": [
         "Single flattened image; layers are not separated.",
-        "Not a seamless tile or collision map.",
-        "Protagonist and enemies not yet designed.",
-        "Working concept; final art direction awaits review."
+        "Not a seamless tile or collision map."
       ]
+    },
+    {
+      "id": "bellwarden-pilot-v001",
+      "path": "art/production/bellwarden/bellwarden-pilot-v001.png",
+      "title": "Bellwarden motion pilot",
+      "status": "prototype",
+      "width": 1774,
+      "height": 887,
+      "format": "png",
+      "alpha": false,
+      "sha256": "722ac1844219f3dd79f20d7ca02e3468d99b79c016db400841b75fdad481c377",
+      "intendedUse": "Eight prototype poses with atlas foot pivots; runtime magenta-key compositing.",
+      "limitations": [
+        "Opaque source; not a native transparent sprite sheet.",
+        "Four walk poses and three attack poses require animation cleanup.",
+        "Jump temporarily reuses a walk pose."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Browser art study"
+      }
+    },
+    {
+      "id": "masonry-module-v001",
+      "path": "art/production/abbey/masonry-module-v001.png",
+      "title": "Abbey masonry module",
+      "status": "prototype",
+      "width": 2172,
+      "height": 724,
+      "format": "png",
+      "alpha": false,
+      "sha256": "324fecdd75ab7500251dc422b23164998edd782348caacb1e22ceba13c0e96d2",
+      "intendedUse": "Repeated platform face with deliberate mortar joins.",
+      "limitations": [
+        "Not guaranteed seamless; no end caps or corners."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Browser art study"
+      }
     }
   ]
 }

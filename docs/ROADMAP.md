@@ -2,7 +2,7 @@
 
 ## M0 — Art direction
 
-- [ ] Review the first abbey-gate concept.
+- [x] Review the first abbey-gate concept.
 - [ ] Confirm palette, material rendering, and side-on camera.
 - [ ] Choose a protagonist silhouette and signature weapon.
 - [ ] Approve one enemy design.
@@ -29,7 +29,7 @@ Exit criterion: consistent motion at normal gameplay scale.
 
 ## M3 — Playable slice
 
-- [ ] Implement movement and collision.
+- [x] Implement movement and collision (browser pilot).
 - [ ] Integrate one enemy, attack, pickup, and room transition.
 - [ ] Test input response, visual readability, and scene performance.
 - [ ] Record a short in-engine demonstration.
@@ -49,3 +49,7 @@ Choose the next environment only after M3. Extend reusable materials and charact
 - Distribution and asset licensing.
 
 Track concrete tasks in GitHub issues. An accepted concept does not automatically close production or integration tasks.
+
+## Pilot delivered
+
+The browser courtyard integrates a Bellwarden eight-pose animation study, repeated masonry, a gap jump, a raised one-way ledge, and a practice ward. See [pilot notes](PILOT.md). Character approval, animation cleanup, dedicated jump art, separate scenery layers, and the full encounter remain open.
