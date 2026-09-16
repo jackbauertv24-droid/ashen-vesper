@@ -11,8 +11,8 @@ Exit criterion: one coherent scene reference and approved character silhouettes.
 
 ## M1 — Entrance environment kit
 
-- [ ] Separate sky and distant architecture.
-- [ ] Create modular ground, walls, pillars, and gate pieces (edge module submitted: [masonry-endcap-v001](PROPOSALS_GOTHIC_ASSETS.md#asset-3-abbey-masonry-end-cap-module-masonry-endcap-v001)).
+- [ ] Separate sky and distant architecture (skyline submitted: [skyline-distant-v001](PROPOSALS_AIRBORNE_AND_PARALLAX.md#asset-2-distant-abbey-skyline-parallax-layer-skyline-distant-v001)).
+- [ ] Create modular ground, walls, pillars, and gate pieces (edge module: [masonry-endcap-v001](PROPOSALS_GOTHIC_ASSETS.md#asset-3-abbey-masonry-end-cap-module-masonry-endcap-v001); vertical arch: [buttress-pillar-v001](PROPOSALS_AIRBORNE_AND_PARALLAX.md#asset-4-abbey-buttress-pillar--arch-segment-buttress-pillar-v001)).
 - [ ] Add a small foreground prop set (destructible bell-brazier & consecrated ember submitted: [PROPOSALS_GOTHIC_ASSETS.md](PROPOSALS_GOTHIC_ASSETS.md)).
 - [ ] Validate seams, parallax, and ground readability.
 
@@ -21,8 +21,8 @@ Exit criterion: assemble an entrance scene from separate assets in-engine.
 ## M2 — Character production pilot
 
 - [ ] Select animation method: rigged 2D, rendered 3D, or cleaned frame sequences.
-- [ ] Produce idle, walk, jump, and one attack.
-- [ ] Produce one enemy idle/move/hit sequence.
+- [ ] Produce idle, walk, jump, and one attack (airborne ascent/apex/descent study submitted: [bellwarden-airborne-v001](PROPOSALS_AIRBORNE_AND_PARALLAX.md#asset-1-bellwarden-airborne-motion-study-bellwarden-airborne-v001)).
+- [ ] Produce one enemy idle/move/hit sequence (4-pose study submitted: [hollow-pilgrim-motion-v001](PROPOSALS_AIRBORNE_AND_PARALLAX.md#asset-3-hollow-pilgrim-motion-pilot-sheet-hollow-pilgrim-motion-v001)).
 - [ ] Validate foot pivots, action timing, and silhouettes.
 
 Exit criterion: consistent motion at normal gameplay scale.

@@ -149,6 +149,91 @@
       "limitations": [
         "Right-hand end-cap; left-hand edge can be mirrored or complemented with dedicated left variant."
       ]
+    },
+    {
+      "id": "bellwarden-airborne-v001",
+      "path": "art/production/bellwarden/bellwarden-airborne-v001.png",
+      "status": "prototype",
+      "title": "Bellwarden Airborne Motion Study",
+      "description": "Three dedicated airborne poses for the Bellwarden: jump takeoff/ascent, apex tuck, and descending fall with drawn blade.",
+      "width": 1376,
+      "height": 768,
+      "format": "png",
+      "alpha": false,
+      "sha256": "d7a35ba53c45ac8423743773b9f6f81ce8bb2a9de52b27583eb480bfe2a7de08",
+      "intendedUse": "Replaces the temporary passing pose during jump/fall states with dedicated jump frames.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Consistent with Bellwarden pale mantle, leather corslet, and straight sword; orthographic side profile.",
+        "engineIntegration": "Atlas defines jump-ascent, jump-apex, and jump-descent frames and foot pivots"
+      },
+      "limitations": [
+        "Opaque dark background; requires color-keying or alpha mask for production."
+      ]
+    },
+    {
+      "id": "skyline-distant-v001",
+      "path": "art/production/abbey/skyline-distant-v001.png",
+      "status": "prototype",
+      "title": "Distant Abbey Skyline Parallax Layer",
+      "description": "Distant Gothic bell towers, spires, and mountain ridges under the moonlit sky without foreground obstruction.",
+      "width": 1376,
+      "height": 768,
+      "format": "png",
+      "alpha": false,
+      "sha256": "d821eeb957e545c341ac0e58f089326db13e9b8d8fa07173106702ededc7b27c",
+      "intendedUse": "Distant parallax background layer enabling independent scrolling behind playable masonry.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Atmospheric haze and rim lighting (#8292A6) matching ART_DIRECTION palette; zero foreground collision geometry.",
+        "engineIntegration": "Suitable for canvas drawImage with fractional parallax scroll factor"
+      },
+      "limitations": [
+        "Fixed width panoramic section; seamless horizontal tiling wrap requires seam blend."
+      ]
+    },
+    {
+      "id": "hollow-pilgrim-motion-v001",
+      "path": "art/production/enemies/hollow-pilgrim-motion-v001.png",
+      "status": "prototype",
+      "title": "Hollow Pilgrim Motion Pilot",
+      "description": "Four-pose enemy animation sequence: idle stance, shuffling stride, overhead staff windup, and downward bell strike impact.",
+      "width": 1376,
+      "height": 768,
+      "format": "png",
+      "alpha": false,
+      "sha256": "ca6e9b9b9dc634e6576a44b32c6016ad193ed8eac378d942f2c554eef3f87db6",
+      "intendedUse": "First enemy motion sheet fulfilling M2 roadmap criteria.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Consistent anatomy, staff design, and amber eyes across all 4 action poses.",
+        "engineIntegration": "Atlas defines idle, shuffle, windup, and strike bounds with foot anchors"
+      },
+      "limitations": [
+        "Opaque dark background; requires alpha extraction.",
+        "Hit recoil and death ash dissolve frames planned for next phase."
+      ]
+    },
+    {
+      "id": "buttress-pillar-v001",
+      "path": "art/production/abbey/buttress-pillar-v001.png",
+      "status": "prototype",
+      "title": "Abbey Buttress Pillar & Arch Segment",
+      "description": "Modular Gothic architectural pillar with blind tracery lancets and springing ribbed arch.",
+      "width": 896,
+      "height": 1200,
+      "format": "png",
+      "alpha": false,
+      "sha256": "2c7f0786effddf6cda5dedfa51a444748a23291ca4b9214841e1d339b05c4204",
+      "intendedUse": "Modular vertical architectural divider and archway support between platforms.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Matches worn limestone texture and mortar joint styling of masonry-module-v001 and masonry-endcap-v001.",
+        "engineIntegration": "Flat base aligns directly with platform collision bounds"
+      },
+      "limitations": [
+        "Single left-side springing arch; matching right-side arch spring can be mirrored."
+      ]
     }
   ]
 }

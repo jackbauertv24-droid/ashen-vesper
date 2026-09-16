@@ -1,0 +1,34 @@
+{
+  "transparency": "dark-key",
+  "displayHeight": 144,
+  "referenceHeight": 650,
+  "frames": [
+    {
+      "name": "jump-ascent",
+      "x": 50,
+      "y": 30,
+      "width": 400,
+      "height": 700,
+      "pivotX": 230,
+      "pivotY": 680
+    },
+    {
+      "name": "jump-apex",
+      "x": 480,
+      "y": 150,
+      "width": 420,
+      "height": 500,
+      "pivotX": 250,
+      "pivotY": 480
+    },
+    {
+      "name": "jump-descent",
+      "x": 920,
+      "y": 160,
+      "width": 380,
+      "height": 600,
+      "pivotX": 250,
+      "pivotY": 590
+    }
+  ]
+}
