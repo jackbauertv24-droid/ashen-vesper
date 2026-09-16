@@ -28,3 +28,9 @@ Simulation tests cover elapsed-time movement, takeoff direction, gap crossing, r
 ## Next production gate
 
 Approve the Bellwarden silhouette and weapon, then clean the animation and export real alpha. Produce separate abbey scenery layers and a complete modular platform kit. Only then expand to an enemy encounter, pickup, and room transition.
+
+## v0.2 — Reviewed scenery integration
+
+The default scene is now the distant causeway: the retained skyline has bounded movement-linked parallax, and the retained portal forms a static doorway at the right-hand platform. Use **Visit courtyard / Visit causeway** to compare scenes without resetting the character. The original environment stays available. Neither the doorway nor its portcullis is interactive yet.
+
+The [art gallery](../art/library/gallery.html) exposes every retained source, including designs still awaiting cleanup. See [asset review](ASSET_PR_REVIEW.md) for the acceptance criteria and unresolved sprite extraction issues.

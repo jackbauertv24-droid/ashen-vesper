@@ -221,14 +221,14 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
+        "engineIntegration": "Causeway background with bounded movement-linked parallax."
       },
       "limitations": [
         "Fixed width panoramic section; seamless horizontal tiling wrap requires seam blend."
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-static-scenery",
         "metadataStatus": "draft-unverified",
         "sourcePullRequest": 6,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
@@ -315,7 +315,8 @@
         "retention": "preserve-original",
         "runtimeStatus": "not-integrated",
         "metadataStatus": "draft-unverified",
-        "notes": "Pairs with masonry-endcap-v001 to resolve both platform edges."
+        "notes": "Reviewed in docs/ASSET_PR_REVIEW.md; original source and proposed metadata retained.",
+        "sourcePullRequest": 8
       }
     },
     {
@@ -342,7 +343,8 @@
         "retention": "preserve-original",
         "runtimeStatus": "not-integrated",
         "metadataStatus": "draft-unverified",
-        "notes": "Provides architectural justification for the 80-unit causeway jump."
+        "notes": "Reviewed in docs/ASSET_PR_REVIEW.md; original source and proposed metadata retained.",
+        "sourcePullRequest": 8
       }
     },
     {
@@ -360,16 +362,17 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
-        "engineIntegration": "Not integrated; proposed metadata is draft source."
+        "engineIntegration": "Static doorway scenery in causeway; gate animation and room transition not implemented."
       },
       "limitations": [
         "Opaque dark doorway background; intended as visual room transition backdrop."
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-static-scenery",
         "metadataStatus": "draft-unverified",
-        "notes": "Room transition portal module."
+        "notes": "Reviewed in docs/ASSET_PR_REVIEW.md; original source and proposed metadata retained.",
+        "sourcePullRequest": 8
       }
     },
     {
@@ -396,7 +399,8 @@
         "retention": "preserve-original",
         "runtimeStatus": "not-integrated",
         "metadataStatus": "draft-unverified",
-        "notes": "Elevated ledge railing module."
+        "notes": "Reviewed in docs/ASSET_PR_REVIEW.md; original source and proposed metadata retained.",
+        "sourcePullRequest": 8
       }
     }
   ]
