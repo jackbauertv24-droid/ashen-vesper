@@ -32,3 +32,14 @@ assert.ok(pillarMeta.baseWidth > 0 && pillarMeta.springlineY > 0);
 console.log(`${manifest.assets.length} image dimensions/checksums, 15 atlas frames across 3 sheets, and 4 prop/module metadata files validated.`);
 
 
+// Submission retention is independent of whether an asset is selected for play.
+const submissions = JSON.parse(fs.readFileSync('art/library/submissions.lock.json'));
+const preservedPaths = new Set();
+for (const resource of submissions.resources) {
+  assert.ok(!preservedPaths.has(resource.path), `Duplicate retained resource: ${resource.path}`);
+  preservedPaths.add(resource.path);
+  assert.equal(createHash('sha256').update(fs.readFileSync(resource.path)).digest('hex'), resource.sha256,
+    `Original submission changed: ${resource.path}. Create a versioned derivative instead.`);
+  if (resource.path.endsWith('.png')) assert.ok(manifest.assets.some(a => a.path === resource.path), `Retained image missing from catalog: ${resource.path}`);
+}
+console.log(`${preservedPaths.size} original submission resources preserved byte-for-byte. Structural checks do not certify crop, alpha or gameplay readiness.`);
