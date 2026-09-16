@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "project": "Ashen Vesper",
+  "assets": [
+    {
+      "id": "abbey-gate-concept-v001",
+      "path": "art/concepts/abbey-gate-concept-v001.png",
+      "status": "concept",
+      "title": "The Abbey Gate",
+      "description": "Moonlit abbey entrance environment study for a side-scrolling Gothic action-platformer.",
+      "width": 1672,
+      "height": 941,
+      "format": "png",
+      "alpha": false,
+      "sha256": "07f385c78ecbbdbd2a5ffddf110449d8854a3617ee5cb6aefb14e733d90403a4",
+      "intendedUse": "Visual direction reference; flattened environment concept.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Checked: coherent environment, clear continuous ground, no text or characters. Direction awaits project review.",
+        "engineIntegration": "not-started"
+      },
+      "limitations": [
+        "Single flattened image; layers are not separated.",
+        "Not a seamless tile or collision map.",
+        "Protagonist and enemies not yet designed.",
+        "Working concept; final art direction awaits review."
+      ]
+    }
+  ]
+}
