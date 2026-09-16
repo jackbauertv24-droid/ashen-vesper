@@ -1,0 +1,14 @@
+{
+  "id": "masonry-endcap-left-v001",
+  "name": "Abbey Masonry Left End-Cap Module",
+  "archetype": "platform-terminal-module",
+  "orientation": "left-terminal",
+  "nativeSize": {
+    "width": 1200,
+    "height": 896
+  },
+  "measuredBaselineY": 215,
+  "capHeight": 110,
+  "overhangWidth": 90,
+  "pairedWith": "masonry-endcap-v001"
+}

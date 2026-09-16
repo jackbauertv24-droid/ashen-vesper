@@ -1,0 +1,19 @@
+{
+  "id": "abbey-gate-portal-v001",
+  "name": "Abbey Entrance Portal & Portcullis Gate",
+  "archetype": "room-transition-portal",
+  "nativeSize": {
+    "width": 896,
+    "height": 1200
+  },
+  "portalOpening": {
+    "x": 260,
+    "y": 380,
+    "width": 376,
+    "height": 620
+  },
+  "portcullisTravel": {
+    "closedY": 380,
+    "openY": 120
+  }
+}

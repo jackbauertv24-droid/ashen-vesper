@@ -290,6 +290,114 @@
         "sourcePullRequest": 6,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
       }
+    },
+    {
+      "id": "masonry-endcap-left-v001",
+      "path": "art/production/abbey/masonry-endcap-left-v001.png",
+      "status": "prototype",
+      "title": "Abbey Masonry Left End-Cap Module",
+      "description": "Weathered Gothic limestone platform left end-cap and broken edge terminal.",
+      "width": 1200,
+      "height": 896,
+      "format": "png",
+      "alpha": false,
+      "sha256": "9c232abf0316e9f06daddb3c5e82137b11077a4035f1fcc57b4998eac1d59ee0",
+      "intendedUse": "Platform termination piece for left causeway edges; pairs with masonry-endcap-v001.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
+        "engineIntegration": "Not integrated; proposed metadata is draft source."
+      },
+      "limitations": [
+        "Left-hand end-cap; requires measured baseline calibration against runtime platform height."
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "notes": "Pairs with masonry-endcap-v001 to resolve both platform edges."
+      }
+    },
+    {
+      "id": "masonry-causeway-arch-v001",
+      "path": "art/production/abbey/masonry-causeway-arch-v001.png",
+      "status": "prototype",
+      "title": "Abbey Causeway Bridge Arch Module",
+      "description": "Vaulted Gothic stone bridge arch designed to span beneath broken causeway gaps.",
+      "width": 1200,
+      "height": 896,
+      "format": "png",
+      "alpha": false,
+      "sha256": "fd010c74e46747873ced9fbfc3ee5ac8b3f570f71e0c9cea172d2d835d123d47",
+      "intendedUse": "Structural under-arch supporting platform gap jumps and causeway undercrofts.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
+        "engineIntegration": "Not integrated; proposed metadata is draft source."
+      },
+      "limitations": [
+        "Full-depth stone module; requires depth-sorting behind character action plane."
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "notes": "Provides architectural justification for the 80-unit causeway jump."
+      }
+    },
+    {
+      "id": "abbey-gate-portal-v001",
+      "path": "art/production/abbey/abbey-gate-portal-v001.png",
+      "status": "prototype",
+      "title": "Abbey Entrance Portal & Portcullis Gate",
+      "description": "Heavy Gothic archway with suspended rusted iron portcullis and shadow transition void.",
+      "width": 896,
+      "height": 1200,
+      "format": "png",
+      "alpha": false,
+      "sha256": "c0380135eb4947dba251e4bfd955304c9eb5ea4c08c9a064c5ef71c2be420f4b",
+      "intendedUse": "Gateway transition module defining room exit/entry boundaries for M1 and M3.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
+        "engineIntegration": "Not integrated; proposed metadata is draft source."
+      },
+      "limitations": [
+        "Opaque dark doorway background; intended as visual room transition backdrop."
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "notes": "Room transition portal module."
+      }
+    },
+    {
+      "id": "abbey-balustrade-railing-v001",
+      "path": "art/production/abbey/abbey-balustrade-railing-v001.png",
+      "status": "prototype",
+      "title": "Abbey Gothic Parapet Balustrade Railing",
+      "description": "Pierced quatrefoil Gothic stone parapet railing for elevated platforms and ledges.",
+      "width": 1376,
+      "height": 768,
+      "format": "png",
+      "alpha": false,
+      "sha256": "b1c0ddae37ec3f1044e5ba8d9de8528e26eeb28749c5339cbf0ef9ab7b67ddab",
+      "intendedUse": "Modular ledge railing capping elevated walkways without obstructing play.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
+        "engineIntegration": "Not integrated; proposed metadata is draft source."
+      },
+      "limitations": [
+        "Pierced openings currently dark-filled; transparent alpha extraction needed for layering."
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "notes": "Elevated ledge railing module."
+      }
     }
   ]
 }
