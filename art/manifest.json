@@ -78,13 +78,20 @@
       "intendedUse": "Candidate enemy design fulfilling M0/M2 roadmap; slow-advancing wandering encounter.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Compliant with ART_DIRECTION palette (#151822, #333D58, #8292A6, #D99A52); crisp 2D orthographic side profile.",
-        "engineIntegration": "Pending sprite cleanup, animation frames, and collision bounds"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Concept art; single keyframe pose.",
         "Requires multi-pose animation sheet (walk, swing, hit-reaction, perish) before engine integration."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 5,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "hanging-brazier-v001",
@@ -100,13 +107,20 @@
       "intendedUse": "Interactive destructible prop replacing classic candle/torch archetype; releases sanctified embers when struck.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Adheres to moonlit slate highlights (#8292A6) and amber flame (#D99A52); orthographic side elevation.",
-        "engineIntegration": "Accompanied by atlas definition with attachment anchor and strike box"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Opaque background; intended for color-keying or alpha masking in production.",
         "Destruction and swing animation frames pending."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 5,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "consecration-ember-v001",
@@ -122,12 +136,19 @@
       "intendedUse": "Loot drop and sanctified collectible released upon shattering hanging censers.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "High-contrast silhouette legible at 32-48px gameplay scale against deep shadow recesses.",
-        "engineIntegration": "Atlas metadata includes pickup bounds and light radius"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Single frame study; bobbing and glimmer shader/frames planned for M3."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 5,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "masonry-endcap-v001",
@@ -143,12 +164,19 @@
       "intendedUse": "Platform termination piece to cap raw cuts on causeway edges and raised ledges.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Continuous flat limestone top surface matching masonry-module-v001 stone cap height and palette.",
-        "engineIntegration": "Ledge edge alignment metadata defined"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Right-hand end-cap; left-hand edge can be mirrored or complemented with dedicated left variant."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 5,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "bellwarden-airborne-v001",
@@ -164,12 +192,19 @@
       "intendedUse": "Replaces the temporary passing pose during jump/fall states with dedicated jump frames.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Consistent with Bellwarden pale mantle, leather corslet, and straight sword; orthographic side profile.",
-        "engineIntegration": "Atlas defines jump-ascent, jump-apex, and jump-descent frames and foot pivots"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Opaque dark background; requires color-keying or alpha mask for production."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 6,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "skyline-distant-v001",
@@ -185,12 +220,19 @@
       "intendedUse": "Distant parallax background layer enabling independent scrolling behind playable masonry.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Atmospheric haze and rim lighting (#8292A6) matching ART_DIRECTION palette; zero foreground collision geometry.",
-        "engineIntegration": "Suitable for canvas drawImage with fractional parallax scroll factor"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Fixed width panoramic section; seamless horizontal tiling wrap requires seam blend."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 6,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "hollow-pilgrim-motion-v001",
@@ -206,13 +248,20 @@
       "intendedUse": "First enemy motion sheet fulfilling M2 roadmap criteria.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Consistent anatomy, staff design, and amber eyes across all 4 action poses.",
-        "engineIntegration": "Atlas defines idle, shuffle, windup, and strike bounds with foot anchors"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Opaque dark background; requires alpha extraction.",
         "Hit recoil and death ash dissolve frames planned for next phase."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 6,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     },
     {
       "id": "buttress-pillar-v001",
@@ -228,12 +277,19 @@
       "intendedUse": "Modular vertical architectural divider and archway support between platforms.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Matches worn limestone texture and mortar joint styling of masonry-module-v001 and masonry-endcap-v001.",
-        "engineIntegration": "Flat base aligns directly with platform collision bounds"
+        "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
+        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
       },
       "limitations": [
         "Single left-side springing arch; matching right-side arch spring can be mirrored."
-      ]
+      ],
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "draft-unverified",
+        "sourcePullRequest": 6,
+        "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
+      }
     }
   ]
 }

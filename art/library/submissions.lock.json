@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "policy": "Retain original submitted files byte-for-byte. Put cleanup, corrected metadata and exports in new versioned files. Runtime selection does not control retention.",
+  "pullRequests": [
+    {
+      "number": 5,
+      "commit": "22fa382"
+    },
+    {
+      "number": 6,
+      "commit": "1592119"
+    }
+  ],
+  "resources": [
+    {
+      "path": "art/concepts/hollow-pilgrim-concept-v001.png",
+      "sha256": "12c197b36563d9e7a6331c8ef2f50dba53181b34b302a13377d868296e271f35"
+    },
+    {
+      "path": "art/production/abbey/buttress-pillar-v001.json",
+      "sha256": "a764cd249c3ca0c67fc520bf4a68ee621e2ec11199627ba8e8f19d0a4338c666"
+    },
+    {
+      "path": "art/production/abbey/buttress-pillar-v001.png",
+      "sha256": "2c7f0786effddf6cda5dedfa51a444748a23291ca4b9214841e1d339b05c4204"
+    },
+    {
+      "path": "art/production/abbey/masonry-endcap-v001.json",
+      "sha256": "edacd6715e0366420f368a3d46d1c02b13617d9797671d4f9d77de4d87ee4692"
+    },
+    {
+      "path": "art/production/abbey/masonry-endcap-v001.png",
+      "sha256": "d158dc8f70859c0505832308debb6f3d1add1d44c60ba520cdf3be47da41670d"
+    },
+    {
+      "path": "art/production/abbey/skyline-distant-v001.png",
+      "sha256": "d821eeb957e545c341ac0e58f089326db13e9b8d8fa07173106702ededc7b27c"
+    },
+    {
+      "path": "art/production/bellwarden/bellwarden-airborne-v001.json",
+      "sha256": "bbd9d7cb6f17f3d0ff0d1d38f1c76ce0b83c390d4c0c1fb44a5abb4d4f0e68d2"
+    },
+    {
+      "path": "art/production/bellwarden/bellwarden-airborne-v001.png",
+      "sha256": "d7a35ba53c45ac8423743773b9f6f81ce8bb2a9de52b27583eb480bfe2a7de08"
+    },
+    {
+      "path": "art/production/enemies/hollow-pilgrim-motion-v001.json",
+      "sha256": "71cd7caa96a97a63e1efbc3bb811383c6608bbc7512e3433f986636404d534df"
+    },
+    {
+      "path": "art/production/enemies/hollow-pilgrim-motion-v001.png",
+      "sha256": "ca6e9b9b9dc634e6576a44b32c6016ad193ed8eac378d942f2c554eef3f87db6"
+    },
+    {
+      "path": "art/production/props/consecration-ember-v001.json",
+      "sha256": "81a7ab3c7bf1f5dc216c072280ce3cf45637de029f60f92b71f77424da8118f6"
+    },
+    {
+      "path": "art/production/props/consecration-ember-v001.png",
+      "sha256": "d948616e56fb4684f4c0cdea8d245f3b8c5be2a055fe9bbbbcc7b94acf50cdc4"
+    },
+    {
+      "path": "art/production/props/hanging-brazier-v001.json",
+      "sha256": "4977f9722e38a800f7deb5b27705e75df6a5f974d5d281781c1f8e3d7cfe833c"
+    },
+    {
+      "path": "art/production/props/hanging-brazier-v001.png",
+      "sha256": "296f1202c400adb41964b38c3b9117e08d707fee66fe7aede80b1a38ce17cb4b"
+    },
+    {
+      "path": "docs/PROPOSALS_AIRBORNE_AND_PARALLAX.md",
+      "sha256": "ddb0fd1a830f3fd2ba406f21a0752e1cca8e4c015a68be316cff12e1ac6166df"
+    },
+    {
+      "path": "docs/PROPOSALS_GOTHIC_ASSETS.md",
+      "sha256": "7affa9d546ad65519ab5b576353ec91668ba8ceb6f2633218ec8455ce765f1ae"
+    }
+  ]
+}

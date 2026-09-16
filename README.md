@@ -33,6 +33,8 @@ Concept illustrations establish direction. Production assets need separate expor
 - [Art direction](docs/ART_DIRECTION.md)
 - [Production roadmap](docs/ROADMAP.md)
 - [Asset catalog](art/manifest.json)
+- [Retained asset library](art/library/README.md)
+- [Asset PR review and integration priorities](docs/ASSET_PR_REVIEW.md)
 - [Asset specification](docs/ASSET_SPEC.md)
 - [Contributing](CONTRIBUTING.md)
 
