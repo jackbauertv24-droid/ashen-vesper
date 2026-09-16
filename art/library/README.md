@@ -25,3 +25,8 @@ Every submitted asset is worth retaining, even when it is not selected for the c
 | PR #6 | [Buttress pillar](../production/abbey/buttress-pillar-v001.png) | Mask and anchor alignment pending |
 
 See the [PR review](../../docs/ASSET_PR_REVIEW.md) for evidence, priorities and integration order. These links expose the full original resources; none are discarded or regenerated.
+
+| Round 3 | [Left end-cap](../production/abbey/masonry-endcap-left-v001.png) | Left-side causeway platform terminal |
+| Round 3 | [Causeway arch](../production/abbey/masonry-causeway-arch-v001.png) | Bridge under-arch for causeway gap |
+| Round 3 | [Gate portal](../production/abbey/abbey-gate-portal-v001.png) | Portcullis entrance transition portal |
+| Round 3 | [Balustrade railing](../production/abbey/abbey-balustrade-railing-v001.png) | Pierced parapet railing for elevated ledges |

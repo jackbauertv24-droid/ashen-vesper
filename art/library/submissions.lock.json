@@ -17,12 +17,44 @@
       "sha256": "12c197b36563d9e7a6331c8ef2f50dba53181b34b302a13377d868296e271f35"
     },
     {
+      "path": "art/production/abbey/abbey-balustrade-railing-v001.json",
+      "sha256": "a362ac4493fcdc3e2036ae60238ddc5b89cb27e35353a7336e733f2b37566aa8"
+    },
+    {
+      "path": "art/production/abbey/abbey-balustrade-railing-v001.png",
+      "sha256": "b1c0ddae37ec3f1044e5ba8d9de8528e26eeb28749c5339cbf0ef9ab7b67ddab"
+    },
+    {
+      "path": "art/production/abbey/abbey-gate-portal-v001.json",
+      "sha256": "0a0beb89e10930a44241c732a00e49e6d1db42899fbb1133a55ebbdf1d596954"
+    },
+    {
+      "path": "art/production/abbey/abbey-gate-portal-v001.png",
+      "sha256": "c0380135eb4947dba251e4bfd955304c9eb5ea4c08c9a064c5ef71c2be420f4b"
+    },
+    {
       "path": "art/production/abbey/buttress-pillar-v001.json",
       "sha256": "a764cd249c3ca0c67fc520bf4a68ee621e2ec11199627ba8e8f19d0a4338c666"
     },
     {
       "path": "art/production/abbey/buttress-pillar-v001.png",
       "sha256": "2c7f0786effddf6cda5dedfa51a444748a23291ca4b9214841e1d339b05c4204"
+    },
+    {
+      "path": "art/production/abbey/masonry-causeway-arch-v001.json",
+      "sha256": "5b865b21ab2970ee7b274c52be6e2f71470e47f8581dda852d6874163e6a5902"
+    },
+    {
+      "path": "art/production/abbey/masonry-causeway-arch-v001.png",
+      "sha256": "fd010c74e46747873ced9fbfc3ee5ac8b3f570f71e0c9cea172d2d835d123d47"
+    },
+    {
+      "path": "art/production/abbey/masonry-endcap-left-v001.json",
+      "sha256": "26f0432bd2910ba0ffa04968957a43e8de374e22b37765f66f0ca2e379e3026b"
+    },
+    {
+      "path": "art/production/abbey/masonry-endcap-left-v001.png",
+      "sha256": "9c232abf0316e9f06daddb3c5e82137b11077a4035f1fcc57b4998eac1d59ee0"
     },
     {
       "path": "art/production/abbey/masonry-endcap-v001.json",
@@ -71,6 +103,10 @@
     {
       "path": "docs/PROPOSALS_AIRBORNE_AND_PARALLAX.md",
       "sha256": "ddb0fd1a830f3fd2ba406f21a0752e1cca8e4c015a68be316cff12e1ac6166df"
+    },
+    {
+      "path": "docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md",
+      "sha256": "5af52500f549450681e5c75c7a1dfb8d5e4919cba4b8ebce77dbc926d58c6578"
     },
     {
       "path": "docs/PROPOSALS_GOTHIC_ASSETS.md",

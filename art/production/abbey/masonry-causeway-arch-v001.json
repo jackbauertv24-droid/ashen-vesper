@@ -1,0 +1,13 @@
+{
+  "id": "masonry-causeway-arch-v001",
+  "name": "Abbey Causeway Bridge Arch Module",
+  "archetype": "gap-support-arch",
+  "nativeSize": {
+    "width": 1200,
+    "height": 896
+  },
+  "gapWidthTarget": 80,
+  "archSpanWidth": 740,
+  "springlineY": 480,
+  "walkableBaselineY": 140
+}

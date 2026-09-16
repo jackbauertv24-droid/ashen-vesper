@@ -1,0 +1,11 @@
+{
+  "id": "abbey-balustrade-railing-v001",
+  "name": "Abbey Gothic Parapet Balustrade Railing",
+  "archetype": "ledge-railing-module",
+  "nativeSize": {
+    "width": 1376,
+    "height": 768
+  },
+  "railingHeight": 210,
+  "repeatSegmentWidth": 120
+}
