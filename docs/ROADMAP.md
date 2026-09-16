@@ -53,3 +53,7 @@ Track concrete tasks in GitHub issues. An accepted concept does not automaticall
 ## Pilot delivered
 
 The browser courtyard integrates a Bellwarden eight-pose animation study, repeated masonry, a gap jump, a raised one-way ledge, and a practice ward. See [pilot notes](PILOT.md). Character approval, animation cleanup, dedicated jump art, separate scenery layers, and the full encounter remain open.
+
+## v0.3 encounter milestone
+
+Implemented a five-screen road, three guarded encounters, breakable braziers and collectible embers, a gate interaction and a final checkpoint. Camera presets, optional air control, synthesized cues and keyboard/touch/standard-gamepad controls are available. See [ENCOUNTER.md](ENCOUNTER.md). M3 remains a prototype: enemy animation, native alpha exports and a true room transition are unfinished; opening the gate continues within the same connected map.

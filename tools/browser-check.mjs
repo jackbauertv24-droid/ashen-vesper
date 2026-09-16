@@ -9,7 +9,7 @@ try {
   browser = await chromium.launch({headless:true});
   const page = await browser.newPage({viewport:{width:1440,height:1100}});
   const errors=[]; page.on('pageerror',e=>errors.push(e.message)); page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
-  await page.goto('http://127.0.0.1:4174');
+  await page.goto('http://127.0.0.1:4174/study.html');
   await page.waitForFunction(()=>window.artStudy?.ready);
   await page.locator('#enter').click();
   assert.equal(await page.evaluate(()=>window.artStudy.snapshot().scene),'causeway');
@@ -28,7 +28,7 @@ try {
   await page.locator('#inspect').click(); assert.equal(await page.locator('#inspect').getAttribute('aria-pressed'),'true');
   const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
   mobile.on('pageerror',e=>errors.push(e.message));
-  await mobile.goto('http://127.0.0.1:4174');await mobile.waitForFunction(()=>window.artStudy?.ready);
+  await mobile.goto('http://127.0.0.1:4174/study.html');await mobile.waitForFunction(()=>window.artStudy?.ready);
   await mobile.locator('#enter').tap();
   const right=mobile.locator('[data-control="right"]');await right.dispatchEvent('pointerdown',{pointerId:1});
   await mobile.waitForFunction(()=>window.artStudy.snapshot().x>270);await right.dispatchEvent('pointerup',{pointerId:1});

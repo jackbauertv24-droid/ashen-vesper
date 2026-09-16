@@ -79,7 +79,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
+        "engineIntegration": "Pilgrim Road: provisional single-pose guard rendering with runtime background removal; behavior, telegraph and staff strike implemented."
       },
       "limitations": [
         "Concept art; single keyframe pose.",
@@ -87,7 +87,7 @@
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-prototype",
         "metadataStatus": "draft-unverified",
         "sourcePullRequest": 5,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
@@ -108,7 +108,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
+        "engineIntegration": "Pilgrim Road: breakable prop with one falling ember per source. Runtime background removal is provisional."
       },
       "limitations": [
         "Opaque background; intended for color-keying or alpha masking in production.",
@@ -116,7 +116,7 @@
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-prototype",
         "metadataStatus": "draft-unverified",
         "sourcePullRequest": 5,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
@@ -137,14 +137,14 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
+        "engineIntegration": "Pilgrim Road: falling collectible rendered with screen compositing."
       },
       "limitations": [
         "Single frame study; bobbing and glimmer shader/frames planned for M3."
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-prototype",
         "metadataStatus": "draft-unverified",
         "sourcePullRequest": 5,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
@@ -193,14 +193,14 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Not integrated; proposed metadata is not runtime validation."
+        "engineIntegration": "Pilgrim Road: three airborne poses with separate runtime crops and provisional background removal; original draft atlas retained."
       },
       "limitations": [
         "Opaque dark background; requires color-keying or alpha mask for production."
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "not-integrated",
+        "runtimeStatus": "integrated-prototype",
         "metadataStatus": "draft-unverified",
         "sourcePullRequest": 6,
         "notes": "See docs/ASSET_PR_REVIEW.md. Original proposal text is retained as submitted; review findings supersede readiness claims."
@@ -362,14 +362,14 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/PROPOSALS_CAUSEWAY_ARCHITECTURE.md.",
-        "engineIntegration": "Static doorway scenery in causeway; gate animation and room transition not implemented."
+        "engineIntegration": "Pilgrim Road: static portal plus interactive code-drawn seal; original art study retains its static scenery."
       },
       "limitations": [
         "Opaque dark doorway background; intended as visual room transition backdrop."
       ],
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "integrated-static-scenery",
+        "runtimeStatus": "integrated-prototype",
         "metadataStatus": "draft-unverified",
         "notes": "Reviewed in docs/ASSET_PR_REVIEW.md; original source and proposed metadata retained.",
         "sourcePullRequest": 8
