@@ -15,5 +15,20 @@ const emberMeta = JSON.parse(fs.readFileSync('art/production/props/consecration-
 assert.ok(emberMeta.pickupRadius > 0 && emberMeta.lightRadius > emberMeta.pickupRadius);
 const endcapMeta = JSON.parse(fs.readFileSync('art/production/abbey/masonry-endcap-v001.json'));
 assert.ok(endcapMeta.capHeight > 0 && endcapMeta.walkableBaselineY > 0);
-console.log(`${manifest.assets.length} image dimensions/checksums, 8 atlas frames, and 3 prop/module metadata files validated.`);
+
+const airborneAtlas = JSON.parse(fs.readFileSync('art/production/bellwarden/bellwarden-airborne-v001.json'));
+const airbornePng = PNG.sync.read(fs.readFileSync('art/production/bellwarden/bellwarden-airborne-v001.png'));
+assert.equal(airborneAtlas.frames.length, 3);
+for(const f of airborneAtlas.frames){assert.ok(f.x>=0&&f.y>=0&&f.x+f.width<=airbornePng.width&&f.y+f.height<=airbornePng.height,f.name);assert.ok(f.pivotX>=0&&f.pivotX<=f.width&&f.pivotY>=0&&f.pivotY<=f.height,f.name);}
+
+const pilgrimAtlas = JSON.parse(fs.readFileSync('art/production/enemies/hollow-pilgrim-motion-v001.json'));
+const pilgrimPng = PNG.sync.read(fs.readFileSync('art/production/enemies/hollow-pilgrim-motion-v001.png'));
+assert.equal(pilgrimAtlas.frames.length, 4);
+for(const f of pilgrimAtlas.frames){assert.ok(f.x>=0&&f.y>=0&&f.x+f.width<=pilgrimPng.width&&f.y+f.height<=pilgrimPng.height,f.name);assert.ok(f.pivotX>=0&&f.pivotX<=f.width&&f.pivotY>=0&&f.pivotY<=f.height,f.name);}
+
+const pillarMeta = JSON.parse(fs.readFileSync('art/production/abbey/buttress-pillar-v001.json'));
+assert.ok(pillarMeta.baseWidth > 0 && pillarMeta.springlineY > 0);
+
+console.log(`${manifest.assets.length} image dimensions/checksums, 15 atlas frames across 3 sheets, and 4 prop/module metadata files validated.`);
+
 

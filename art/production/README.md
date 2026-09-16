@@ -7,6 +7,10 @@ These assets are integrated into the browser art study and catalogued as **proto
 - `abbey/masonry-endcap-v001.png`: platform end-cap and broken edge module capping raw causeway cuts; accompanying JSON defines cap height and edge alignment.
 - `props/hanging-brazier-v001.png`: wrought-iron hanging bell censer prop; accompanying JSON defines mount anchor, censer strike bounds, and ember emitter origin.
 - `props/consecration-ember-v001.png`: sacred ember relic pickup released from struck censers; accompanying JSON defines pickup radius and light bounds.
+- `bellwarden/bellwarden-airborne-v001.png`: dedicated jump ascent, apex, and descent poses resolving temporary passing pose; accompanying JSON defines atlas frames and pivots.
+- `abbey/skyline-distant-v001.png`: distant panoramic Gothic spires and mountain skyline parallax layer free of foreground collision baseline.
+- `enemies/hollow-pilgrim-motion-v001.png`: four-pose enemy motion sequence (idle, shuffle, windup, strike); accompanying JSON defines atlas frame bounds.
+- `abbey/buttress-pillar-v001.png`: modular Gothic vertical buttress pillar and springing arch module; accompanying JSON defines springline and arch span.
 
 See [pilot notes](../../docs/PILOT.md) for integration checks and remaining cleanup. Preserve the source images when preparing future exports.
 

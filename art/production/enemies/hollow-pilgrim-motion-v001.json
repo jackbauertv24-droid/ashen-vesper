@@ -1,0 +1,43 @@
+{
+  "transparency": "dark-key",
+  "displayHeight": 150,
+  "referenceHeight": 600,
+  "frames": [
+    {
+      "name": "idle",
+      "x": 10,
+      "y": 140,
+      "width": 330,
+      "height": 620,
+      "pivotX": 190,
+      "pivotY": 600
+    },
+    {
+      "name": "shuffle",
+      "x": 360,
+      "y": 220,
+      "width": 370,
+      "height": 540,
+      "pivotX": 200,
+      "pivotY": 530
+    },
+    {
+      "name": "windup",
+      "x": 740,
+      "y": 80,
+      "width": 350,
+      "height": 680,
+      "pivotX": 190,
+      "pivotY": 670
+    },
+    {
+      "name": "strike",
+      "x": 1100,
+      "y": 260,
+      "width": 270,
+      "height": 500,
+      "pivotX": 180,
+      "pivotY": 490
+    }
+  ]
+}
