@@ -1,68 +1,59 @@
 # Ashen Vesper
 
-An original Gothic action-platformer art project inspired by classic side-scrolling adventures: haunted architecture, deliberate movement, readable combat, and a world painted in moonlight.
+An original Gothic action-platformer inspired by classic side-scrolling adventures: haunted architecture, deliberate movement, readable combat and a world painted in moonlight.
 
-**Working title · playable browser art study**
+**Working title · playable encounter prototype v0.3**
 
-[Play the courtyard study](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Pilot notes](docs/PILOT.md)
+[Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
 
-![The Abbey Gate — first environment concept](art/concepts/abbey-gate-concept-v001.png)
+## The Pilgrim Road
 
-*The Abbey Gate, concept v001. A flattened visual study; used as the backdrop for the first motion study.*
+Cross a five-screen causeway, break a hanging brazier, collect its falling ember, defeat the guards and offer the ember at the sealed gate. Reach the sanctuary to complete the encounter and set a checkpoint.
 
-## Visual direction
+- Three main-route gaps and two optional elevated routes.
+- Three guards with anticipation, attack, recovery and damage states.
+- Five player health points, brief invulnerability, death and respawn.
+- Smooth/tighter camera presets, gradual look-ahead and layered scrolling.
+- Optional air control, impact pause and synthesized sound cues.
+- Keyboard, touch and standard-mapped gamepad controls.
 
-High-definition, non-pixel, hand-painted environments with a side-on gameplay camera. Weathered limestone, aged iron, thorny vegetation, cool moonlight, and small pools of amber light establish the first scene: a ruined abbey entrance.
+**Keyboard:** A/D or arrows move · Space jumps · J strikes · E interacts · R restarts. Gamepad: stick/D-pad move, A jump, X strike, B interact. Sound starts muted.
 
-The emphasis is on clear silhouettes and traversable surfaces. Detail supports the action; scenery stays quieter than characters and hazards.
+Character masks and enemy animation remain provisional. The enemy currently uses a transformed concept pose with a separate attack effect. The gate's gameplay seal opens; the painted portcullis is not independently animated. Progress persists through death within a run, not across reloads. See [encounter notes](docs/ENCOUNTER.md).
 
-## First milestone: the abbey gate
+## Run and check
 
-Create one cohesive scene, then turn it into a small playable slice with a protagonist, one enemy, an attack, a pickup, and a room transition.
+Requires Node.js 20 or later:
 
-1. Review the entrance environment concept.
-2. Establish protagonist and enemy designs against that environment.
-3. Produce separate background layers and modular environment pieces.
-4. Prototype movement, animation alignment, and collision in a small scene.
-5. Validate readability and consistency before extending the world.
+```sh
+npm ci
+npm run dev
+```
 
-Concept illustrations establish direction. Production assets need separate exports and validation before they are ready for an engine.
+Open http://127.0.0.1:4173. The original art study is at `/study.html`.
 
-## Project guide
+```sh
+npm test
+npm run validate:assets
+npx playwright install chromium --with-deps
+npm run test:encounter
+npm run test:browser
+```
+
+The encounter browser check completes the main route using keyboard events, then checks settings, simulated gamepad movement and touch controls. The other browser check covers the original study and retained art gallery.
+
+## Art preservation
+
+All original submissions stay at their original paths and resolution, including unused designs and draft metadata. Runtime selection does not control retention. Versioned sources are checked against the [preservation lock](art/library/submissions.lock.json). This milestone required no new image generation.
 
 - [Art direction](docs/ART_DIRECTION.md)
-- [Production roadmap](docs/ROADMAP.md)
-- [Asset catalog](art/manifest.json)
-- [Retained asset library](art/library/README.md)
-- [Asset PR review and integration priorities](docs/ASSET_PR_REVIEW.md)
+- [Retained library](art/library/README.md) and [asset catalog](art/manifest.json)
+- [Submission reviews](docs/ASSET_PR_REVIEW.md)
 - [Asset specification](docs/ASSET_SPEC.md)
+- [Production roadmap](docs/ROADMAP.md)
+- [Original pilot notes](docs/PILOT.md)
 - [Contributing](CONTRIBUTING.md)
-
-## Repository layout
-
-```text
-art/concepts/     Visual development and reference images
-art/production/   Validated assets intended for engine integration
-art/manifest.json Asset status, dimensions, and intended use
-docs/            Art direction, specifications, and production decisions
-```
 
 ## Project status
 
-This is an independent project, not an official release or an affiliated continuation of any existing franchise. Character designs, architecture, names, and visual motifs are developed for this project.
-
-No blanket reuse license has been selected yet. See [RIGHTS.md](RIGHTS.md).
-
-## Run locally
-
-Requires Node.js 20 or later. Run `npm ci`, then `npm run dev`, and open http://127.0.0.1:4173.
-
-Move with A/D or arrow keys, jump with Space, attack with J, reset with R. Touch controls are available on small screens. Click **Show guides** to inspect collision surfaces.
-
-Checks: `npm test`, `npm run validate:assets`; install Chromium with `npx playwright install chromium --with-deps`, then run `npm run test:browser`.
-
-This pilot demonstrates walking, jumping, one sword attack, and repeated masonry. It has a practice target, a flattened backdrop, and temporary jump art. It is not yet the full entrance encounter.
-
-## Latest demo: two environments
-
-The distant causeway now uses the submitted skyline and static abbey portal. Switch to the original courtyard using the scene button. Browse every retained source in the [art gallery](art/library/gallery.html). Unused images, proposed metadata and submission notes remain preserved; [review notes](docs/ASSET_PR_REVIEW.md) distinguish scenery integration from pending animation and gameplay work.
+An independent project, not an official release or affiliated continuation of an existing franchise. No blanket reuse license has been selected. See [RIGHTS.md](RIGHTS.md).

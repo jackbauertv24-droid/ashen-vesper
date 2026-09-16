@@ -1,0 +1,126 @@
+.encounter-hud {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  background: #151e29;
+  font-size: 12px;
+}
+.encounter-hud button {
+  padding: 5px 9px;
+  background: #202d3b;
+  border: 1px solid #465461;
+  border-radius: 3px;
+}
+.encounter-hud #health {
+  color: #dbab89;
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+.encounter-hud progress {
+  flex: 1;
+  min-width: 40px;
+  height: 5px;
+  accent-color: #c5aa7b;
+}
+#notice {
+  min-height: 40px;
+  margin: 0;
+  padding: 9px 18px;
+  font-size: 12px;
+  color: #e1c796;
+  background: #0e1722;
+}
+.tuning {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  color: #a5b3c3;
+  font-size: 12px;
+}
+.tuning select {
+  margin-left: 8px;
+  background: #1c2835;
+  color: #e1d4bd;
+  padding: 7px;
+  border: 1px solid #465461;
+}
+.tuning input {
+  accent-color: #c5aa7b;
+}
+.tuning span {
+  width: 100%;
+  font-size: 11px;
+  color: #778a9d;
+}
+.game-top {
+  letter-spacing: 0.6px;
+}
+.start-overlay p {
+  max-width: 90%;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  nav a:first-child {
+    display: inline;
+  }
+  nav a:nth-child(2) {
+    display: none;
+  }
+  .wordmark {
+    font-size: 12px;
+  }
+  .encounter-hud {
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 9px;
+    font-size: 10px;
+  }
+  .encounter-hud #health {
+    font-size: 14px;
+  }
+  .encounter-hud button {
+    font-size: 10px;
+    padding: 5px;
+  }
+  .tuning {
+    gap: 12px;
+  }
+  #notice {
+    font-size: 10px;
+    min-height: 48px;
+  }
+  .touch-controls {
+    padding: 10px 7px;
+  }
+  .touch-controls > div {
+    gap: 5px;
+  }
+  .touch-controls button {
+    min-width: 47px;
+    font-size: 11px;
+  }
+  .start-overlay p {
+    font-size: 8px;
+  }
+  .game-top {
+    font-size: 7px;
+  }
+}
+@media (max-width: 760px) {
+  .study-mark {
+    white-space: normal;
+    line-height: 1.8;
+  }
+  .study-mark small {
+    display: block;
+    margin-left: 0;
+  }
+  .game-top #motion-status {
+    white-space: nowrap;
+  }
+  .game-top {
+    gap: 8px;
+  }
+}
