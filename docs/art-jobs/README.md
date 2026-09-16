@@ -6,7 +6,7 @@ These are ready-to-use generation briefs for outside contributors, including oth
 
 | Job | Deliverable | Gameplay requirement |
 | --- | --- | --- |
-| [01 Bellwarden crouch](01-bellwarden-crouch.md) | Six crouch/crawl/attack frames | 56-unit crouched hurtbox, low sword attack |
+| [01 Bellwarden crouch](01-bellwarden-crouch.md) | Six crouch/crawl/attack frames | 72-unit crouched hurtbox, low sword attack |
 | [02 Bellwarden aerial attack](02-bellwarden-air-attack.md) | Six airborne sword frames | Gravity and horizontal travel continue during a 0.42s attack |
 | [03 Hollow Pilgrim melee](03-hollow-pilgrim-melee.md) | Twelve enemy poses | Physical bell staff, anticipation, sweep and recovery; no beam |
 

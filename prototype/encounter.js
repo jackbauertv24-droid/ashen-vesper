@@ -7,9 +7,9 @@ import {
   step,
   hitbox,
   bodyBox,
-  staffPose,
   solidHeight,
 } from "./encounter-sim.js";
+import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
 let s = create(),
@@ -58,7 +58,7 @@ const load = (path) =>
     im.onerror = () => reject(Error("Artwork unavailable: " + path));
     im.src = path;
   });
-function keyed(im, magenta = false) {
+function keyed(im, magenta = false, checker = false) {
   const c = document.createElement("canvas");
   c.width = im.width;
   c.height = im.height;
@@ -91,7 +91,10 @@ function keyed(im, magenta = false) {
         (a[i] - base[0]) ** 2 +
         (a[i + 1] - base[1]) ** 2 +
         (a[i + 2] - base[2]) ** 2;
-      if (distance <= 64) queue[tail++] = n;
+      const neutral =
+        Math.max(a[i], a[i + 1], a[i + 2]) - Math.min(a[i], a[i + 1], a[i + 2]);
+      if (checker ? neutral < 18 && a[i] > 85 : distance <= 64)
+        queue[tail++] = n;
     };
     for (let x = 0; x < c.width; x++) {
       add(x);
@@ -111,6 +114,18 @@ function keyed(im, magenta = false) {
     }
   }
   g.putImageData(pixels, 0, 0);
+  return c;
+}
+function silhouette(sheet, outline) {
+  const c = document.createElement("canvas");
+  c.width = sheet.width;
+  c.height = sheet.height;
+  const g = c.getContext("2d");
+  g.beginPath();
+  outline.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+  g.closePath();
+  g.clip();
+  g.drawImage(sheet, 0, 0);
   return c;
 }
 function clear() {
@@ -316,9 +331,38 @@ function hero() {
     f = atlas.frames[1 + (Math.floor(s.walk / 0.115) % 4)];
   ctx.save();
   ctx.translate(s.x, s.y);
-  // Temporary pose until contributor job 01 supplies anatomically drawn crouch frames.
-  ctx.scale(s.facing, s.crouching ? 0.39 : 1);
+  ctx.scale(s.facing, 1);
   if (s.invulnerable > 0 && Math.floor(s.time * 15) % 2) ctx.globalAlpha = 0.4;
+  if (s.crouching) {
+    const index =
+      s.attack > 0
+        ? s.attack > 0.28
+          ? 3
+          : s.attack > 0.12
+            ? 4
+            : 5
+        : Math.abs(s.vx) > 0
+          ? 1 + (Math.floor(s.walk / 0.18) % 2)
+          : 0;
+    const anchors = [
+      [200, 460],
+      [730, 460],
+      [1250, 460],
+      [200, 960],
+      [715, 960],
+      [1260, 960],
+    ];
+    const [x, y] = anchors[index];
+    ctx.drawImage(
+      art.crouchFrames[index],
+      -x * 0.215,
+      -y * 0.215,
+      1536 * 0.215,
+      1024 * 0.215,
+    );
+    ctx.restore();
+    return;
+  }
   ctx.drawImage(
     sheet,
     f.x,
@@ -340,11 +384,17 @@ function enemy(e) {
   }
   ctx.save();
   ctx.translate(e.x, e.y);
-  ctx.scale(-e.facing, 1);
+  const pose = pilgrimPose(e),
+    frame = pilgrimFrames[pose];
+  ctx.scale(e.facing * frame.facing, 1);
   if (e.mode === "hurt") ctx.globalAlpha = 0.5;
-  ctx.rotate(e.mode === "windup" ? 0.1 : e.mode === "strike" ? -0.16 : 0);
-  // Body-only source crop avoids showing the old painted staff alongside the moving weapon.
-  ctx.drawImage(art.enemy, 330, 175, 430, 945, -37, -138, 74, 138);
+  ctx.drawImage(
+    art.enemyFrames[pose],
+    -frame.pivot[0] * pilgrimScale,
+    -frame.pivot[1] * pilgrimScale,
+    1376 * pilgrimScale,
+    768 * pilgrimScale,
+  );
   ctx.restore();
   if (e.mode === "windup") {
     text("!", e.x - 5, e.y - 172, "#ffcc77", 28);
@@ -360,33 +410,6 @@ function enemy(e) {
     );
     ctx.stroke();
   }
-  const weapon = staffPose(e);
-  ctx.save();
-  ctx.strokeStyle = "#5e4936";
-  ctx.lineWidth = 5;
-  ctx.lineCap = "round";
-  ctx.beginPath();
-  ctx.moveTo(weapon.x, weapon.y);
-  ctx.lineTo(weapon.tipX, weapon.tipY);
-  ctx.stroke();
-  ctx.strokeStyle = "#a49980";
-  ctx.lineWidth = 1;
-  ctx.stroke();
-  // A solid bell head follows the same tip used by the melee collision sweep.
-  ctx.translate(weapon.tipX, weapon.tipY);
-  ctx.rotate(Math.atan2(weapon.tipY - weapon.y, weapon.tipX - weapon.x));
-  ctx.fillStyle = "#9b7a4c";
-  ctx.beginPath();
-  ctx.moveTo(-8, -7);
-  ctx.lineTo(8, -11);
-  ctx.lineTo(8, 11);
-  ctx.lineTo(-8, 7);
-  ctx.closePath();
-  ctx.fill();
-  ctx.strokeStyle = "#d3b98a";
-  ctx.lineWidth = 1;
-  ctx.stroke();
-  ctx.restore();
   ctx.fillStyle = "#292333";
   ctx.fillRect(e.x - 22, e.y - 150, 44, 4);
   ctx.fillStyle = "#d0a079";
@@ -543,6 +566,7 @@ try {
     brazier: "props/hanging-brazier-v001",
     ember: "props/consecration-ember-v001",
     portal: "abbey/abbey-gate-portal-v001",
+    enemy: "enemies/hollow-pilgrim-motion-v001",
   };
   art = Object.fromEntries(
     await Promise.all(
@@ -552,9 +576,94 @@ try {
       ]),
     ),
   );
-  art.enemy = await load("art/concepts/hollow-pilgrim-concept-v001.png");
   art.hero = keyed(art.hero, true);
   for (const k of ["air", "brazier", "enemy"]) art[k] = keyed(art[k]);
+  art.enemyFrames = Object.fromEntries(
+    Object.entries(pilgrimFrames).map(([name, frame]) => [
+      name,
+      silhouette(art.enemy, frame.outline),
+    ]),
+  );
+  const crouchSource = await load(
+    "art/contributions/01-bellwarden-crouch/v001/source/crouch-generated-v001.png",
+  );
+  const crouch = keyed(crouchSource, false, true);
+  // Protect the neutral steel blades from the neutral checkerboard key.
+  for (const blade of [
+    [
+      [266, 362],
+      [480, 417],
+      [268, 376],
+    ],
+    [
+      [814, 337],
+      [1019, 383],
+      [814, 350],
+    ],
+    [
+      [1370, 342],
+      [1518, 409],
+      [1367, 356],
+    ],
+    [
+      [163, 768],
+      [404, 818],
+      [160, 781],
+    ],
+    [
+      [972, 725],
+      [1188, 732],
+      [972, 741],
+    ],
+    [
+      [1374, 796],
+      [1508, 763],
+      [1380, 809],
+    ],
+  ])
+    crouch.getContext("2d").drawImage(silhouette(crouchSource, blade), 0, 0);
+  art.crouchFrames = [
+    [
+      [0, 110],
+      [505, 110],
+      [505, 480],
+      [0, 480],
+    ],
+    [
+      [525, 110],
+      [1020, 110],
+      [1020, 480],
+      [525, 480],
+    ],
+    [
+      [1045, 110],
+      [1536, 110],
+      [1536, 480],
+      [1045, 480],
+    ],
+    [
+      [0, 610],
+      [510, 610],
+      [510, 980],
+      [0, 980],
+    ],
+    [
+      [515, 610],
+      [1200, 610],
+      [1200, 750],
+      [980, 750],
+      [980, 980],
+      [515, 980],
+    ],
+    [
+      [1070, 840],
+      [1200, 700],
+      [1200, 610],
+      [1536, 610],
+      [1536, 980],
+      [1070, 980],
+    ],
+  ].map((outline) => silhouette(crouch, outline));
   $("#enter").disabled = false;
   $("#enter").textContent = "Enter the pilgrim road";
   window.encounter = { snapshot: () => structuredClone(s), ready: true };

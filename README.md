@@ -21,7 +21,7 @@ Cross a five-screen causeway, break a hanging brazier, collect its falling ember
 
 Masonry blocks have solid sides and undersides. Jump up the steps, or crouch through passages with enough headroom. Enemy staff damage follows the physical weapon sweep. The crouch pose and aerial strike art remain provisional; [contributor art jobs](docs/art-jobs/README.md) provide generation prompts, exact export specifications and acceptance tests for replacement animations.
 
-Character masks and enemy animation remain provisional. The enemy currently uses a transformed concept pose with a separate attack effect. The gate's gameplay seal opens; the painted portcullis is not independently animated. Progress persists through death within a run, not across reloads. See [encounter notes](docs/ENCOUNTER.md).
+Crouching uses dedicated bent-knee poses. Enemy melee uses the retained whole-body windup and contact artwork, including its painted staff. Character masks and sparse animation timing still need refinement. The gate's gameplay seal opens; the painted portcullis is not independently animated. Progress persists through death within a run, not across reloads. See [encounter notes](docs/ENCOUNTER.md).
 
 ## Run and check
 

@@ -13,8 +13,8 @@
 - One 3072 × 2304 RGBA sheet: 4 columns × 3 rows of 768 × 768 cells. Individual frame PNGs may be generated first, then assembled; retain them all.
 - Names: `idle`, `walk-a`, `walk-pass`, `walk-b`, `windup-a`, `windup-b`, `strike-a`, `strike-b`, `recover-a`, `recover-b`, `hurt`, `death`.
 - Common feet anchor (256,704), reference standing height 480px, runtime height 150 units (scale 0.3125).
-- Runtime grip is about (18,-90) relative to feet and mirrors with facing. Staff grip-to-head length: 118 units (about 378 source pixels). Preserve 4px padding even when raised.
-- Runtime windup lasts 0.8s and rotates from -1.15 to -2 radians. Strike lasts 0.28s, rotating from -2 to +0.65 radians. Recovery lasts 0.9s, returning to -1.15. Angles are measured from forward horizontal, negative upward. Pair the artwork with the current `staffPose()` geometry; do not change weapon reach silently.
+- Contact grip is about (29,-61) relative to feet and mirrors with facing. Target grip-to-bell length is about 60 runtime units (192 source pixels at the export scale). Preserve 4px padding even when raised. Keep length consistent across the new sequence; the retained prototype has some perspective/length drift.
+- Runtime windup lasts 0.8s overhead. Strike lasts 0.28s; its final 0.16s use the painted contact pose. Recovery lasts 0.9s. Current right-facing contact grip is about (29,-61) and bell tip (59,-10) relative to the enemy's ground anchor, from the retained sheet. Use `staffPose()` and `pilgrim-poses.js` as the integration reference. Add intermediate poses without silently restoring the rejected rotating-stick effect or extending damage reach.
 - All frames have one staff only. If proposing separate body/weapon layers, supply them in addition to the full sequence and document grip anchors. Do not erase the originals.
 
 ## Job-specific tests

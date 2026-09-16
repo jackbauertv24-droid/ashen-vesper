@@ -247,4 +247,10 @@ test("staff damage follows the physical weapon rather than filling its whole rea
   );
   assert.equal(staffHits(e, { x: 2110, y: 545, w: 26, h: 55 }), false);
   assert.equal(staffHits(e, { x: 2200, y: 480, w: 26, h: 120 }), false);
+  const target = { x: p.tipX - 5, y: p.tipY - 5, w: 10, h: 10 };
+  assert.equal(staffHits({ ...e, timer: 0.2 }, target), false);
+  assert.equal(staffHits({ ...e, mode: "recover" }, target), false);
+  const mirrored = { ...e, facing: -1 };
+  const tip = staffPose(mirrored);
+  assert.equal(staffHits(mirrored, { x: tip.tipX - 5, y: tip.tipY - 5, w: 10, h: 10 }), true);
 });

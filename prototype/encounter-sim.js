@@ -1,3 +1,4 @@
+import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 export const VIEW = { width: 1280, height: 720 };
 export const LEVEL = { width: 6400, height: 720, gate: 5700, checkpoint: 6020 };
 export const platforms = [
@@ -7,10 +8,10 @@ export const platforms = [
   { x: 4090, y: 600, w: 2310 },
   { x: 1240, y: 520, w: 180 },
   { x: 1420, y: 450, w: 200 },
-  { x: 1620, y: 390, w: 260 },
+  { x: 1620, y: 390, w: 260, h: 130 },
   { x: 4400, y: 530, w: 180 },
   { x: 4580, y: 460, w: 180 },
-  { x: 4760, y: 390, w: 280 },
+  { x: 4760, y: 390, w: 280, h: 130 },
 ];
 export const braziers = [
   { x: 420, y: 515 },
@@ -86,7 +87,7 @@ export function message(s, text) {
   s.notice = text;
   s.noticeTime = 4;
 }
-export const BODY = { halfWidth: 13, standing: 120, crouched: 56 };
+export const BODY = { halfWidth: 13, standing: 120, crouched: 72 };
 export const solidHeight = (p) => p.h ?? 150;
 export const bodyBox = (s) => ({
   x: s.x - BODY.halfWidth,
@@ -95,20 +96,28 @@ export const bodyBox = (s) => ({
   h: s.crouching ? BODY.crouched : BODY.standing,
 });
 export function staffPose(e) {
-  let angle = -1.15;
-  if (e.mode === "windup") angle = -1.15 - (1 - e.timer / 0.8) * 0.85;
-  if (e.mode === "strike") angle = -2 + (1 - e.timer / 0.28) * 2.65;
-  if (e.mode === "recover") angle = 0.65 - (1 - e.timer / 0.9) * 1.8;
-  const x = e.x + e.facing * 18,
-    y = e.y - 90;
+  const pose = pilgrimPose(e),
+    frame = pilgrimFrames[pose];
+  const points = {
+    idle: [90, 330, 60, 165],
+    shuffle: [550, 420, 710, 315],
+    windup: [850, 155, 1000, 100],
+    strike: [1185, 470, 1290, 650],
+  }[pose];
+  const x = (value) =>
+    e.x + (value - frame.pivot[0]) * pilgrimScale * e.facing * frame.facing;
+  const y = (value) => e.y + (value - frame.pivot[1]) * pilgrimScale;
   return {
-    x,
-    y,
-    tipX: x + e.facing * Math.cos(angle) * 118,
-    tipY: y + Math.sin(angle) * 118,
+    x: x(points[0]),
+    y: y(points[1]),
+    tipX: x(points[2]),
+    tipY: y(points[3]),
   };
 }
 export function staffHits(e, body, previousTimer = e.timer) {
+  // Only the authored contact pose deals damage; anticipation and recovery do not.
+  if (e.mode !== "strike" || e.timer > 0.16) return false;
+  previousTimer = Math.min(previousTimer, 0.16);
   const samples = Math.max(
     1,
     Math.ceil(Math.abs(previousTimer - e.timer) / 0.008),
@@ -214,7 +223,7 @@ export function step(s, input, dt, options = {}) {
     s.vx += (dir * 235 - s.vx) * Math.min(1, dt * 5);
   const oldX = s.x,
     oldY = s.y,
-    height = s.crouching ? 56 : 120;
+    height = s.crouching ? BODY.crouched : BODY.standing;
   s.x = Math.max(20, Math.min(6380, s.x + s.vx * dt));
   // Resolve solid side faces independently from top/bottom collisions.
   for (const p of platforms) {
@@ -334,7 +343,7 @@ export function step(s, input, dt, options = {}) {
     } else {
       const distance = s.x - e.x;
       e.facing = distance > 0 ? 1 : -1;
-      if (Math.abs(distance) < 125 && Math.abs(s.y - e.y) < 80) {
+      if (Math.abs(distance) < 80 && Math.abs(s.y - e.y) < 80) {
         e.mode = "windup";
         e.timer = 0.8;
       } else if (Math.abs(distance) < 430) {

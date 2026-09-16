@@ -111,6 +111,18 @@
     {
       "path": "docs/PROPOSALS_GOTHIC_ASSETS.md",
       "sha256": "7affa9d546ad65519ab5b576353ec91668ba8ceb6f2633218ec8455ce765f1ae"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-crouch/v001/source/crouch-generated-v001.png",
+      "sha256": "4e12812fe4ca2982a55acce57e7ec1eb15f4f2454e26e42dd708ef3af429f963"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-crouch/v001/PROMPT.txt",
+      "sha256": "256889e33558eda89a132d4b129efd812c0b757f6bf1f402098a3896f87bbaa8"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-crouch/v001/NOTES.md",
+      "sha256": "e6df582655c35e0b3fe3ce46ffa1d9c1c824b9cc62967a4ad5c1f176dc9f190a"
     }
   ]
 }
