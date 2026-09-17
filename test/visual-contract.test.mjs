@@ -36,3 +36,25 @@ test("replacement brazier has real exterior and chain-gap transparency", () => {
       0,
     );
 });
+test("ember cutout has genuine RGBA transparency and clear 32px outer border", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  for (const [x, y] of [
+    [0, 0],
+    [1023, 0],
+    [0, 1023],
+    [1023, 1023],
+    [16, 512],
+    [1007, 512],
+    [512, 16],
+    [512, 1007],
+  ]) {
+    assert.equal(im.data[(y * im.width + x) * 4 + 3], 0);
+  }
+  assert.ok(im.data[(550 * im.width + 512) * 4 + 3] > 200);
+});
