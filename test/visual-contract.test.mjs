@@ -52,3 +52,20 @@ test("ember cutout has genuine RGBA transparency and clear 32px outer border", (
     }
   assert.ok(im.data[(550 * im.width + 512) * 4 + 3] > 200);
 });
+test("healing vial pickup candidate has genuine RGBA transparency, clear 32px border, and valid envelope", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  for (let y = 0; y < 1024; y++)
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha) assert.ok(x >= 256 && x <= 768 && y >= 192 && y <= 832);
+    }
+  assert.ok(im.data[(512 * im.width + 512) * 4 + 3] > 200);
+});
+

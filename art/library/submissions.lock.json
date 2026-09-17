@@ -203,6 +203,34 @@
     {
       "path": "docs/reviews/ember-alpha-v001.png",
       "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/source/healing-vial-generated-v001.png",
+      "sha256": "c954cdf6f90404f0d3cc6599b0dc286588b7a4d063c854b13570f54ba0c9d2f6"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
+      "sha256": "da39fae9452fcb684df2f81ff7f861db6c80707f29a0c22f756972881885724c"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/PROMPT.txt",
+      "sha256": "9f6b507a88058ea13715e59d905fc15c3f9028670866c62b4f455820d718ce87"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/NOTES.md",
+      "sha256": "498f7cb9ad06d64003d38bb5ca0471c0aa9acafdbc2338449a60b8f5b37093e0"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/preview.html",
+      "sha256": "7b1eba16c8eaa3346a38a7c06d6f09bb0e85bae47680c236ece0792124163e0a"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/submission.json",
+      "sha256": "d9e913aecc3ffbfffd1bf6f6f8054cf9f5b51a77b9d3f12159a50b563755dcce"
+    },
+    {
+      "path": "docs/reviews/healing-vial-v001.png",
+      "sha256": "46b2e0fafbe0f9b34c875d7271378337a453bb689010341c0a82efdfba03c690"
     }
   ]
 }
