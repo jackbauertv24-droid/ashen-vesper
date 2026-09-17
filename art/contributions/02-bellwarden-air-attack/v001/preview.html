@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 02 — Bellwarden Aerial Sword Attack Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #eab308;
+      --cyan: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+    }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .canvas-viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+    }
+    .canvas-viewport.bg-dark { background-color: #0b0d13; }
+    .canvas-viewport.bg-white { background-color: #ffffff; }
+    .canvas-viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    button, select {
+      background: #243042;
+      border: 1px solid #3b4d66;
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #32435c; }
+    button.active { background: var(--accent); color: #0f172a; font-weight: bold; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 { margin: 0 0 12px; font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); }
+    .checkbox-group { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .contact-sheet {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .sheet-item {
+      background: #0f1520;
+      border: 1px solid var(--border);
+      padding: 8px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .sheet-item canvas { width: 100%; height: auto; background: #080c12; }
+    .sheet-label { font-size: 12px; font-weight: bold; margin-top: 6px; }
+    .sheet-meta { font-size: 11px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 02 — Bellwarden Aerial Sword Attack Verification</h1>
+    <p>Visual acceptance review: 6-frame sequence at source and runtime scale against white, black, and abbey backdrop with virtual feet anchor (192, 464).</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="canvas-viewport bg-dark">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-play">Pause</button>
+        <button id="btn-step-prev">‹ Step</button>
+        <button id="btn-step-next">Step ›</button>
+        <select id="sel-speed">
+          <option value="0.25">Speed: 0.25×</option>
+          <option value="0.5">Speed: 0.5×</option>
+          <option value="1" selected>Speed: 1.0×</option>
+        </select>
+        <button id="btn-flip">Facing: Right</button>
+        <button id="btn-scale">Scale: Source (1×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark</option>
+          <option value="bg-white">Background: White</option>
+          <option value="bg-abbey">Background: Abbey</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Pose Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Frame:</span><span id="tele-frame">air-windup-a</span></div>
+      <div class="stat-row"><span class="stat-label">Duration:</span><span id="tele-dur">0.07s</span></div>
+      <div class="stat-row"><span class="stat-label">Elapsed:</span><span id="tele-elapsed">0.00s / 0.42s</span></div>
+      <div class="stat-row"><span class="stat-label">Anchor (X, Y):</span><span>(192, 464)</span></div>
+      <div class="stat-row"><span class="stat-label">Reach:</span><span id="tele-reach">+118 world units</span></div>
+
+      <h2 style="margin-top: 16px;">Overlays</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-anchor" checked> Virtual Feet Anchor</label>
+        <label><input type="checkbox" id="chk-hitbox" checked> Weapon Reach Geometry</label>
+        <label><input type="checkbox" id="chk-cell" checked> 4px Cell Margin Boundary</label>
+      </div>
+
+      <h2 style="margin-top: 16px;">Job Contract Verification</h2>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1536 × 1024 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Cell Size:</span><span>512 × 512 (3 cols × 2 rows)</span></div>
+      <div class="stat-row"><span class="stat-label">Reference Height:</span><span>384px (runtime 144)</span></div>
+      <div class="stat-row"><span class="stat-label">Cell Border Clear:</span><span style="color:#4ade80;">≥ 4px clean</span></div>
+      <div class="stat-row"><span class="stat-label">Submission Status:</span><span style="color:var(--accent);">candidate</span></div>
+    </div>
+  </div>
+
+  <div class="contact-sheet">
+    <h2 style="margin: 0; font-size: 18px;">Sequence Contact Sheet (512 × 512 Cells)</h2>
+    <div id="sheet-items" class="sheet-grid"></div>
+  </div>
+
+  <script type="module">
+    const sheetImg = new Image();
+    sheetImg.src = 'exports/air-attack-v001.png';
+
+    const frames = [
+      { name: 'air-windup-a', col: 0, row: 0, dur: 0.07, desc: 'Jump ascent, sword raised overhead' },
+      { name: 'air-windup-b', col: 1, row: 0, dur: 0.07, desc: 'Tucked apex flight, horizontal draw' },
+      { name: 'air-contact-a', col: 2, row: 0, dur: 0.08, desc: 'Full extension horizontal strike' },
+      { name: 'air-contact-b', col: 0, row: 1, dur: 0.08, desc: 'Follow-through forward thrust' },
+      { name: 'air-recovery-a', col: 1, row: 1, dur: 0.06, desc: 'Blade recovery, legs tucked' },
+      { name: 'air-recovery-b', col: 2, row: 1, dur: 0.06, desc: 'Descending flight, low guard' },
+    ];
+
+    const totalDuration = frames.reduce((acc, f) => acc + f.dur, 0); // 0.42s
+
+    let playing = true;
+    let animTime = 0;
+    let currentFrameIdx = 0;
+    let speed = 1.0;
+    let facing = 1; // 1 = right, -1 = left
+    let isRuntimeScale = false;
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    const btnPlay = document.getElementById('btn-play');
+    const btnPrev = document.getElementById('btn-step-prev');
+    const btnNext = document.getElementById('btn-step-next');
+    const selSpeed = document.getElementById('sel-speed');
+    const btnFlip = document.getElementById('btn-flip');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+
+    const chkAnchor = document.getElementById('chk-anchor');
+    const chkHitbox = document.getElementById('chk-hitbox');
+    const chkCell = document.getElementById('chk-cell');
+
+    const teleFrame = document.getElementById('tele-frame');
+    const teleDur = document.getElementById('tele-dur');
+    const teleElapsed = document.getElementById('tele-elapsed');
+    const teleReach = document.getElementById('tele-reach');
+
+    sheetImg.onload = () => {
+      buildContactSheet();
+      lastTime = performance.now();
+      requestAnimationFrame(loop);
+    };
+
+    let lastTime = performance.now();
+
+    function loop(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      if (playing) {
+        animTime += dt * speed;
+        if (animTime >= totalDuration) {
+          animTime = animTime % totalDuration;
+        }
+        let t = animTime;
+        for (let i = 0; i < frames.length; i++) {
+          if (t < frames[i].dur || i === frames.length - 1) {
+            currentFrameIdx = i;
+            break;
+          }
+          t -= frames[i].dur;
+        }
+      }
+
+      draw();
+      updateTelemetry();
+      requestAnimationFrame(loop);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+
+      const f = frames[currentFrameIdx];
+      const srcX = f.col * 512;
+      const srcY = f.row * 512;
+
+      ctx.save();
+
+      // Viewport scale & facing
+      const targetScale = isRuntimeScale ? (144 / 384) : 1.0;
+      const pivotX = 192;
+      const pivotY = 464;
+
+      if (isRuntimeScale) {
+        ctx.translate(256, 380);
+        ctx.scale(facing * targetScale, targetScale);
+        ctx.translate(-pivotX, -pivotY);
+      } else {
+        if (facing === -1) {
+          ctx.translate(512, 0);
+          ctx.scale(-1, 1);
+        }
+      }
+
+      // Draw character frame
+      ctx.drawImage(sheetImg, srcX, srcY, 512, 512, 0, 0, 512, 512);
+
+      // Overlays
+      if (chkCell.checked) {
+        ctx.strokeStyle = '#ec4899';
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(4, 4, 504, 504);
+        ctx.setLineDash([]);
+      }
+
+      if (chkHitbox.checked && (f.name === 'air-contact-a' || f.name === 'air-contact-b')) {
+        // Weapon contact range in cell pixels
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2;
+        const hx = pivotX + 21;
+        const hy = pivotY - 293;
+        const hw = 315 - 21;
+        const hh = 293 - 75;
+        ctx.fillRect(hx, hy, hw, hh);
+        ctx.strokeRect(hx, hy, hw, hh);
+      }
+
+      if (chkAnchor.checked) {
+        ctx.fillStyle = '#eab308';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(pivotX, pivotY, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.strokeStyle = '#eab308';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(pivotX - 16, pivotY);
+        ctx.lineTo(pivotX + 16, pivotY);
+        ctx.moveTo(pivotX, pivotY - 16);
+        ctx.lineTo(pivotX, pivotY + 16);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+
+    function updateTelemetry() {
+      const f = frames[currentFrameIdx];
+      teleFrame.textContent = f.name;
+      teleDur.textContent = `${f.dur.toFixed(2)}s`;
+      teleElapsed.textContent = `${animTime.toFixed(2)}s / ${totalDuration.toFixed(2)}s`;
+      teleReach.textContent = (f.name.includes('contact')) ? '118 world units (strike)' : 'Travel momentum';
+    }
+
+    function buildContactSheet() {
+      const container = document.getElementById('sheet-items');
+      container.innerHTML = '';
+
+      frames.forEach((f, idx) => {
+        const item = document.createElement('div');
+        item.className = 'sheet-item';
+
+        const thumb = document.createElement('canvas');
+        thumb.width = 512;
+        thumb.height = 512;
+        const tctx = thumb.getContext('2d');
+        tctx.drawImage(sheetImg, f.col * 512, f.row * 512, 512, 512, 0, 0, 512, 512);
+
+        tctx.fillStyle = '#eab308';
+        tctx.beginPath();
+        tctx.arc(192, 464, 8, 0, Math.PI * 2);
+        tctx.fill();
+
+        const label = document.createElement('div');
+        label.className = 'sheet-label';
+        label.textContent = `${idx + 1}. ${f.name}`;
+
+        const meta = document.createElement('div');
+        meta.className = 'sheet-meta';
+        meta.textContent = `${f.dur}s · ${f.desc}`;
+
+        item.appendChild(thumb);
+        item.appendChild(label);
+        item.appendChild(meta);
+        container.appendChild(item);
+      });
+    }
+
+    btnPlay.onclick = () => {
+      playing = !playing;
+      btnPlay.textContent = playing ? 'Pause' : 'Play';
+    };
+
+    btnPrev.onclick = () => {
+      playing = false;
+      btnPlay.textContent = 'Play';
+      currentFrameIdx = (currentFrameIdx - 1 + frames.length) % frames.length;
+      animTime = frames.slice(0, currentFrameIdx).reduce((a, b) => a + b.dur, 0);
+    };
+
+    btnNext.onclick = () => {
+      playing = false;
+      btnPlay.textContent = 'Play';
+      currentFrameIdx = (currentFrameIdx + 1) % frames.length;
+      animTime = frames.slice(0, currentFrameIdx).reduce((a, b) => a + b.dur, 0);
+    };
+
+    selSpeed.onchange = (e) => { speed = parseFloat(e.target.value); };
+
+    btnFlip.onclick = () => {
+      facing = facing === 1 ? -1 : 1;
+      btnFlip.textContent = `Facing: ${facing === 1 ? 'Right' : 'Left'}`;
+    };
+
+    btnScale.onclick = () => {
+      isRuntimeScale = !isRuntimeScale;
+      btnScale.textContent = isRuntimeScale ? 'Scale: Runtime (0.375×)' : 'Scale: Source (1×)';
+    };
+
+    selBg.onchange = (e) => {
+      viewport.className = `canvas-viewport ${e.target.value}`;
+    };
+  </script>
+</body>
+</html>
