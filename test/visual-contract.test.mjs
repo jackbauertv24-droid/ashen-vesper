@@ -232,3 +232,37 @@ test("cistern lurker design candidate has genuine RGBA transparency, clear 32px 
   assert.ok(im.data[barIdx + 3] > 200, "Grille bar must be opaque");
   assert.ok(im.data[barIdx] < im.data[coreIdx], "Grille bar must be darker than glowing amber core");
 });
+
+test("tollkeeper boss design candidate has genuine RGBA transparency, clear 32px border, and 220-unit runtime height", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/16-tollkeeper/v001/submission.json", "utf8"),
+  );
+  const asset = submission.assets[0];
+  assert.equal(maxX - minX + 1, asset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, asset.visibleBounds.height);
+  assert.ok(Math.abs(asset.standingHeight * asset.scale - asset.runtimeHeight) < 0.1);
+  const [acX, acY] = asset.landmarks.amberCore;
+  const coreAlpha = im.data[(acY * 1024 + acX) * 4 + 3];
+  assert.equal(coreAlpha, 255);
+  assert.equal(im.data[(500 * 1024 + 480) * 4 + 3], 255);
+});
