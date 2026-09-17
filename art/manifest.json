@@ -773,6 +773,82 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/bell-moth-v001.png"
       }
+    },
+    {
+      "id": "cistern-lurker-source-v001",
+      "path": "art/contributions/13-cistern-lurker/v001/source/cistern-lurker-generated-v001.png",
+      "status": "candidate",
+      "title": "Cistern Lurker Raw Generator Source",
+      "description": "Raw untouched output from generator prompt for Job 13 Cistern Lurker low ambush enemy design reference candidate.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "5e6640b7c348eb380b9dcbde3c403a19ae66972f57b075d4a37a397635ab662e",
+      "intendedUse": "Original generation source retained byte-for-byte.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Not integrated; raw generator source preserved under art/contributions/."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "cistern-lurker-export-v001",
+      "path": "art/contributions/13-cistern-lurker/v001/exports/cistern-lurker-v001.png",
+      "status": "candidate",
+      "title": "Cistern Lurker Low Ambush Enemy Design Reference Cutout",
+      "description": "Gothic creeping stone-and-root quadruped formed around an iron reliquary with amber core; true RGBA transparency and outer 32px border padding.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "471b345fb3b3a4ffcaa9ace62e641f2f9c182b624cf4e6693126088263c46e5c",
+      "intendedUse": "Low crouch-height threat enemy design reference candidate providing targets for low sword attacks.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved visual review evidence in docs/reviews/cistern-lurker-v001.png",
+        "engineIntegration": "Enemy design reference; six-pose motion sheet and Flooded Cistern ambush behavior pending reference selection."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "silhouetteSize": [
+          942,
+          506
+        ],
+        "runtimeSize": [
+          96,
+          48
+        ],
+        "scale": 0.1019,
+        "measuredVisibleBounds": {
+          "minX": 43,
+          "maxX": 984,
+          "minY": 267,
+          "maxY": 772
+        }
+      }
+    },
+    {
+      "id": "cistern-lurker-review-v001",
+      "path": "docs/reviews/cistern-lurker-v001.png",
+      "title": "Contributor Cistern Lurker compositing and crouch alignment evidence",
+      "status": "review-evidence",
+      "width": 1400,
+      "height": 950,
+      "format": "png",
+      "alpha": false,
+      "sha256": "b72e5f543e332dcace6e72307b4213f5e368225fbd97d165855441a421478264",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/cistern-lurker-v001.png"
+      }
     }
   ]
 }

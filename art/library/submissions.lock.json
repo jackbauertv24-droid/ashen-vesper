@@ -267,6 +267,34 @@
     {
       "path": "art/contributions/11-bell-moth/v002/runtime-metrics.json",
       "sha256": "0a86105e5528ef091d726ac6cfb64ed3f1e1ec95cdd348cd7d1f001c82e7462a"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/source/cistern-lurker-generated-v001.png",
+      "sha256": "5e6640b7c348eb380b9dcbde3c403a19ae66972f57b075d4a37a397635ab662e"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/exports/cistern-lurker-v001.png",
+      "sha256": "471b345fb3b3a4ffcaa9ace62e641f2f9c182b624cf4e6693126088263c46e5c"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/PROMPT.txt",
+      "sha256": "52fef00ece17bd95437650fbd17621f7aabe0c9099de989338fd1043845a7ef5"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/NOTES.md",
+      "sha256": "3d329c5fe43a02f63e4a93d75609f497edc232a53f63afd94e60d7df1e536793"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/preview.html",
+      "sha256": "a320591ed4336cf7626454ec6513a44be968517c890c6950b12b5a95505a050b"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/submission.json",
+      "sha256": "e7d6ad463afa3235e9acdc9f76270d1a0c7335a4a0ba8f866041fae2ef38477b"
+    },
+    {
+      "path": "docs/reviews/cistern-lurker-v001.png",
+      "sha256": "b72e5f543e332dcace6e72307b4213f5e368225fbd97d165855441a421478264"
     }
   ]
 }
