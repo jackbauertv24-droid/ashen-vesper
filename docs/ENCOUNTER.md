@@ -47,3 +47,5 @@ See [crouch and alpha calibration](CROUCH_ALPHA_REVIEW.md) for measurements and 
 `npm run test:encounter` completes the route using keyboard events and accelerated browser time, then checks reset, configuration, sound toggle, simulated standard-gamepad movement and touch release/layout. It does not mutate gameplay state. Screenshots cover entrance, middle, completion and mobile. A physical controller and subjective combat/camera feel still need human playtesting.
 
 `npm run test:browser` verifies the preserved art study and gallery. `npm run validate:assets` verifies original image checksums and all 25 locked submission resources.
+
+The native-alpha ember is integrated following [PR 12 review](PR_12_REVIEW.md). [Runtime prop evidence](reviews/ember-runtime-v002.png) shows the actual export against the scene and white/black/blue.

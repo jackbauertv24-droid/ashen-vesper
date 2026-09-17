@@ -137,7 +137,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Encounter pickup: provisional warm-color alpha separation, normal source-over; native alpha requested in Job 05."
+        "engineIntegration": "Retained original reference; encounter now uses ember-alpha-export-v001."
       },
       "limitations": [
         "Single frame study; bobbing and glimmer shader/frames planned for M3."
@@ -593,13 +593,51 @@
       "intendedUse": "Replacement collectible pickup fulfilling Job 05 brief.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Normal source-over compositing verified over 4 backgrounds in docs/reviews/ember-alpha-v001.png.",
-        "engineIntegration": "Pending maintainer review"
+        "visualReview": "Reviewed in docs/PR_12_REVIEW.md and docs/reviews/ember-runtime-v002.png.",
+        "engineIntegration": "Encounter falling/collectible ember; direct RGBA, normal source-over, 54x54 display."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
-        "metadataStatus": "ready-for-review"
+        "runtimeStatus": "integrated-prototype",
+        "metadataStatus": "ready-for-review",
+        "measuredVisibleBounds": {
+          "minX": 322,
+          "maxX": 688,
+          "minY": 190,
+          "maxY": 744
+        }
+      }
+    },
+    {
+      "id": "ember-runtime-review-v002",
+      "path": "docs/reviews/ember-runtime-v002.png",
+      "title": "Integrated ember runtime alpha review",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1104,
+      "format": "png",
+      "alpha": false,
+      "sha256": "082cb8328a900db5f053274248d96f9328da77f25eabfdddbf1b9de14fbb30cc",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/PR_12_REVIEW.md"
+      }
+    },
+    {
+      "id": "ember-contributor-review-v001",
+      "path": "docs/reviews/ember-alpha-v001.png",
+      "title": "Contributor ember compositing evidence",
+      "status": "review-evidence",
+      "width": 1200,
+      "height": 600,
+      "format": "png",
+      "alpha": true,
+      "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/PR_12_REVIEW.md"
       }
     }
   ]

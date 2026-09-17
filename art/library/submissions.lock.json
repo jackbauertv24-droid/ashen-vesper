@@ -195,6 +195,14 @@
     {
       "path": "art/contributions/05-ember-alpha/v001/preview.html",
       "sha256": "cfae668111712ce7bee437caca3ab9d09ea4ab9175d9b427f822fd7093da6ee5"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/submission.json",
+      "sha256": "759b999330611f406f1e2df8183630323b85b06183b04ebaa98c645724045c8c"
+    },
+    {
+      "path": "docs/reviews/ember-alpha-v001.png",
+      "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9"
     }
   ]
 }

@@ -44,17 +44,11 @@ test("ember cutout has genuine RGBA transparency and clear 32px outer border", (
   assert.equal(bytes[25], 6);
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
-  for (const [x, y] of [
-    [0, 0],
-    [1023, 0],
-    [0, 1023],
-    [1023, 1023],
-    [16, 512],
-    [1007, 512],
-    [512, 16],
-    [512, 1007],
-  ]) {
-    assert.equal(im.data[(y * im.width + x) * 4 + 3], 0);
-  }
+  for (let y = 0; y < 1024; y++)
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha) assert.ok(x >= 256 && x <= 768 && y >= 160 && y <= 864);
+    }
   assert.ok(im.data[(550 * im.width + 512) * 4 + 3] > 200);
 });

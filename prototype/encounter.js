@@ -11,7 +11,6 @@ import {
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 import { crouchScale, crouchAnchors } from "./character-metrics.js";
-import { emberCutout } from "./prop-compositing.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
 let s = create(),
@@ -556,7 +555,6 @@ try {
     stone: "abbey/masonry-module-v001",
     hero: "bellwarden/bellwarden-pilot-v001",
     air: "bellwarden/bellwarden-airborne-v001",
-    ember: "props/consecration-ember-v001",
     portal: "abbey/abbey-gate-portal-v001",
     enemy: "enemies/hollow-pilgrim-motion-v001",
   };
@@ -573,7 +571,9 @@ try {
   art.brazier = await load(
     "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
   );
-  art.ember = emberCutout(art.ember);
+  art.ember = await load(
+    "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+  );
   art.enemyFrames = Object.fromEntries(
     Object.entries(pilgrimFrames).map(([name, frame]) => [
       name,
