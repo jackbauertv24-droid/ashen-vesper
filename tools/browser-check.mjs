@@ -2,6 +2,7 @@ import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 const server = spawn(process.execPath, ['tools/serve.mjs'], { env: { ...process.env, PORT: '4174' }, stdio: 'pipe' });
 let browser;
 try {
@@ -39,7 +40,18 @@ try {
   await mobile.locator('#scene-toggle').tap();
   assert.equal(await mobile.evaluate(()=>window.artStudy.snapshot().scene),'courtyard');
   await page.goto('http://127.0.0.1:4174/art/library/gallery.html');
-  assert.equal(await page.locator('article').count(),16);
+  const manifest = JSON.parse(await readFile('art/manifest.json', 'utf8'));
+  assert.equal(await page.locator('article').count(),manifest.assets.length);
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>{im.loading='eager';return im.decode();}));});
+  await page.goto('http://127.0.0.1:4174/art/contributions/02-bellwarden-air-attack/v001/preview.html');
+  await page.waitForFunction(()=>document.querySelectorAll('.sheet-item').length===6);
+  await page.locator('#btn-play').click();
+  await page.locator('#btn-scale').click();
+  await page.locator('#btn-flip').click();
+  await page.locator('#btn-step-next').click();
+  for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
+    await page.locator('#sel-bg').selectOption(value);
+  }
+  await page.screenshot({path:'tmp/pr11-preview.png',fullPage:true});
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

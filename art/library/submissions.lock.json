@@ -143,6 +143,26 @@
     {
       "path": "art/contributions/02-bellwarden-air-attack/v001/preview.html",
       "sha256": "eef81e9f1d46a04fb6510ea7d9f015889c41f601743a72f92655f7ebdda57663"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/source/melee-generated-v001.png",
+      "sha256": "f77f02a2c11b0ef43d10fcc8033066006791e3a73b32bcd689f55d7671eaf545"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/PROMPT.txt",
+      "sha256": "5e114cea7959fdd3a4a2c8825adf6c0b55e8ba6f118adb16ea877dfd84078cf5"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/NOTES.md",
+      "sha256": "4ba0f40f7fa6b969f93afb3cb5007995a1834b8868cf531d1693d29cdde793c7"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/submission.json",
+      "sha256": "c82b7df8da8067fee4490e5d27805f5374d08fa053fd8c5244dbd7f40862742c"
+    },
+    {
+      "path": "docs/reviews/air-attack-v001.png",
+      "sha256": "88ae2a86f821abafe992eeb78e3e23fafb5abb20d61d0cd2accdbe02cd7556fd"
     }
   ]
 }

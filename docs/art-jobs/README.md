@@ -58,6 +58,8 @@ npm run test:encounter
 
 The submission validator checks each job's dimensions, frame order, grid bounds, shared anchor, SHA-256, actual transparency, nonempty frames and empty cell borders. It cannot judge anatomy, animation quality or exact visual weapon contact.
 
+Merging a candidate preserves its contribution; runtime acceptance is a separate decision recorded in the catalog. [PR 11's review](../PR_11_REVIEW.md) illustrates why clean transparent borders and matching declared pivots do not prove complete weapons, stable anatomy or correct costume. Keep candidate status until the visual and runtime evidence passes.
+
 ## Required visual acceptance evidence
 
 Provide a preview page or short video that displays the sequence at both source scale and runtime scale against white, black and the abbey backdrop. Include normal playback, paused frames with anchors/body boxes/weapon reach, and left-facing mirrored playback. Show at least three cycles; no camera movement should conceal anchor jitter. Every pose must be completely visible.

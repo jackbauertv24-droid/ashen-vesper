@@ -444,12 +444,12 @@
       "intendedUse": "Retained generator output for Job 02 submission.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Single-pass generator candidate retained byte-for-byte.",
-        "engineIntegration": "Pending maintainer review"
+        "visualReview": "Reviewed in docs/PR_11_REVIEW.md: incomplete sword, costume and scale drift; candidate only.",
+        "engineIntegration": "Not integrated; corrections and jump/landing evidence required."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-candidate",
         "metadataStatus": "draft-unverified"
       }
     },
@@ -467,13 +467,54 @@
       "intendedUse": "Replacement airborne sword attack sequence fulfilling Job 02 brief.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Passes validate-art-submission.mjs; reviewed in docs/reviews/air-attack-v001.png.",
-        "engineIntegration": "Pending maintainer review"
+        "visualReview": "Reviewed in docs/PR_11_REVIEW.md: incomplete sword, costume and scale drift; candidate only.",
+        "engineIntegration": "Not integrated; corrections and jump/landing evidence required."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-candidate",
         "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "hollow-pilgrim-intermediate-candidate-v001",
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/source/melee-generated-v001.png",
+      "title": "Hollow Pilgrim intermediate swing candidate",
+      "status": "candidate",
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "f77f02a2c11b0ef43d10fcc8033066006791e3a73b32bcd689f55d7671eaf545",
+      "intendedUse": "Intermediate swing reference for future cleaned animation.",
+      "limitations": [
+        "Baked shaded background; no native alpha.",
+        "Irregular grid and foot anchors; not integrated."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Pose study retained; production export rejected.",
+        "engineIntegration": "Not integrated"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "retained-candidate"
+      }
+    },
+    {
+      "id": "air-attack-review-evidence-v001",
+      "path": "docs/reviews/air-attack-v001.png",
+      "title": "Aerial attack contributor review evidence",
+      "status": "review-evidence",
+      "width": 1200,
+      "height": 480,
+      "format": "png",
+      "alpha": false,
+      "sha256": "88ae2a86f821abafe992eeb78e3e23fafb5abb20d61d0cd2accdbe02cd7556fd",
+      "intendedUse": "Retained contributor contact sheet; does not certify runtime acceptance.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence only; see docs/PR_11_REVIEW.md"
       }
     }
   ]
