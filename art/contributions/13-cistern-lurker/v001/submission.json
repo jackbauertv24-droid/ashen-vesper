@@ -1,0 +1,57 @@
+{
+  "jobId": "13-cistern-lurker",
+  "status": "candidate",
+  "role": "low-ambush-enemy-design-reference",
+  "assets": [
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/exports/cistern-lurker-v001.png",
+      "sha256": "471b345fb3b3a4ffcaa9ace62e641f2f9c182b624cf4e6693126088263c46e5c",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        772
+      ],
+      "visibleBounds": {
+        "minX": 43,
+        "maxX": 984,
+        "minY": 267,
+        "maxY": 772,
+        "width": 942,
+        "height": 506
+      },
+      "silhouetteSize": [
+        942,
+        506
+      ],
+      "runtimeSize": [
+        96,
+        48
+      ],
+      "scale": 0.1019,
+      "displaySize": [
+        104,
+        104
+      ],
+      "reliquaryCore": {
+        "center": [
+          730,
+          440
+        ],
+        "bounds": {
+          "minX": 660,
+          "maxX": 790,
+          "minY": 370,
+          "maxY": 510
+        }
+      },
+      "tuningTargets": {
+        "hp": 2,
+        "damage": 1,
+        "emergeWarningDuration": 0.7,
+        "lungeDuration": 0.25,
+        "recoveryDuration": 0.9
+      }
+    }
+  ]
+}

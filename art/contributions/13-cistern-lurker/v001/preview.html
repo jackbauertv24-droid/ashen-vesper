@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 13 — Cistern Lurker Low Enemy Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #1a2536; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    button, select {
+      background: #243042;
+      border: 1px solid #3b4d66;
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #32435c; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 { margin: 0 0 12px; font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); }
+    .checkbox-group { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 13 — Cistern Lurker Low Enemy Review</h1>
+    <p>Low ambush enemy design reference candidate: 1024 × 1024 native RGBA for low sword attack spacing.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="viewport bg-dark">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Facing: Right (Primary)</button>
+        <button id="btn-scale">Scale: Reference (0.5×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#1a2536)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Enemy Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>Cistern Lurker</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Bounds:</span><span>942 × 506 px</span></div>
+      <div class="stat-row"><span class="stat-label">Ground Pivot:</span><span>(512, 772)</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span><span>96 × 48 units</span></div>
+      <div class="stat-row"><span class="stat-label">Core Center:</span><span>(730, 440) Amber</span></div>
+      <div class="stat-row"><span class="stat-label">Outer 32px Border:</span><span style="color:#4ade80;">100% Alpha 0 (0 violations)</span></div>
+      <div class="stat-row"><span class="stat-label">Proposed HP:</span><span>2 hits</span></div>
+      <div class="stat-row"><span class="stat-label">Warning Time:</span><span>0.7s</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-pivot" checked> Ground Pivot (512, 772)</label>
+        <label><input type="checkbox" id="chk-core" checked> Reliquary Core Box</label>
+        <label><input type="checkbox" id="chk-bounds" checked> 32px Outer Border</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Hero at Runtime</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px;">Compositing Acceptance Review (White, Black, Blue, Abbey, Hero Low Attack, Facings & Silhouette)</h2>
+    <img src="../../../../docs/reviews/cistern-lurker-v001.png" alt="Cistern Lurker Review">
+  </div>
+
+  <script type="module">
+    const lurkerImg = new Image();
+    lurkerImg.src = 'exports/cistern-lurker-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let facing = 1;
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkPivot = document.getElementById('chk-pivot');
+    const chkCore = document.getElementById('chk-core');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkHero = document.getElementById('chk-hero');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    lurkerImg.onload = () => draw();
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+      if (!lurkerImg.complete) return;
+      prepareHero();
+
+      if (!isRuntime) {
+        const scale = 0.5;
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(512, 0);
+          ctx.scale(-1, 1);
+        }
+        ctx.drawImage(lurkerImg, 0, 0, 1024, 1024, 0, 0, 512, 512);
+
+        if (chkCore.checked) {
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(660 * scale, 370 * scale, 130 * scale, 140 * scale);
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(730 * scale, 440 * scale, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.arc(512 * scale, 772 * scale, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        ctx.restore();
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(32 * scale, 32 * scale, (1024 - 64) * scale, (1024 - 64) * scale);
+        }
+      } else {
+        const groundY = 400;
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+        ctx.beginPath();
+        ctx.moveTo(30, groundY);
+        ctx.lineTo(482, groundY);
+        ctx.stroke();
+
+        // Lurker runtime 96x48 units (display size ~ 130px wide, 70px tall)
+        const lScale = 140 / 942;
+        const lW = 1024 * lScale;
+        const lH = 1024 * lScale;
+        const lX = 280;
+        const lY = groundY - Math.round(772 * lScale);
+
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(lX + lW, 0);
+          ctx.scale(-1, 1);
+          ctx.drawImage(lurkerImg, 0, 0, 1024, 1024, 0, lY, lW, lH);
+        } else {
+          ctx.drawImage(lurkerImg, 0, 0, 1024, 1024, lX, lY, lW, lH);
+        }
+        ctx.restore();
+
+        if (chkHero.checked && heroPrepared) {
+          // Bellwarden attack-extension frame (561x381)
+          const heroH = 120;
+          const heroW = Math.round(561 * (heroH / 381));
+          const heroX = 70;
+          ctx.drawImage(heroCanvas, 895, 494, 561, 381, heroX, groundY - heroH, heroW, heroH);
+
+          // Target line
+          ctx.strokeStyle = '#f59e0b';
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(heroX + heroW - 10, groundY - 35);
+          ctx.lineTo(lX + (facing === 1 ? 730 * lScale : (1024 - 730) * lScale), groundY - 35);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.arc(lX + (facing === 1 ? 512 * lScale : (1024 - 512) * lScale), groundY, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    btnMode.addEventListener('click', () => {
+      facing = -facing;
+      btnMode.textContent = facing === 1 ? 'Facing: Right (Primary)' : 'Facing: Left (Mirrored)';
+      draw();
+    });
+
+    btnScale.addEventListener('click', () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = isRuntime ? 'Scale: Runtime (96×48u)' : 'Scale: Reference (0.5×)';
+      draw();
+    });
+
+    selBg.addEventListener('change', (e) => {
+      viewport.className = 'viewport ' + e.target.value;
+    });
+
+    for (const chk of [chkPivot, chkCore, chkBounds, chkHero]) {
+      chk.addEventListener('change', draw);
+    }
+  </script>
+</body>
+</html>
