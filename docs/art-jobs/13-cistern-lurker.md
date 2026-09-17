@@ -17,3 +17,7 @@ Reference 1024 × 1024 RGBA. Motion silhouette nominal 320 × 160 source pixels,
 Proposed HP 2, damage 1, emerge warning 0.7s, lunge 0.25s, recovery 0.9s. First version spawns on dry traversable platforms, not inside walls or inaccessible water. Low thrust hits its core, jumping can avoid a ground lunge, and standing sword should not be guaranteed to reach a target below its visible blade.
 
 Show low-attack guide alignment, matching limb count and anchored crawl at source/runtime scale over white/black/blue/stone. Integration shows warning before damage, miss/hit geometry, one hit per sword swing, no sinking into ground and no spawn directly under a respawning player.
+
+## Current review
+
+PR 17 v001 is the selected prototype design reference. Reuse its anatomy and grille/core for motion. At uniform reference scale 96/942 its height is 51.57; low blade/core contact remains unverified. See [PR 15–17 review](../PR_15_17_REVIEW.md).

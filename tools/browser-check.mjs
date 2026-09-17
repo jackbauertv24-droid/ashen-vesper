@@ -87,7 +87,16 @@ try {
     await page.locator('#sel-bg').selectOption(value);
   }
   await page.screenshot({path:'tmp/pr11-moth-preview.png',fullPage:true});
-  await page.goto('http://127.0.0.1:4174/art/contributions/15-mechanisms/v001/preview.html');
+  async function visibleBounds() {
+    await page.waitForTimeout(100);
+    return page.evaluate(()=>{
+      const c=document.querySelector('#view'),d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;
+      let x0=c.width,y0=c.height,x1=-1,y1=-1;
+      for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]>16){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}
+      return {width:x1-x0+1,height:y1-y0+1};
+    });
+  }
+  await page.goto('http://127.0.0.1:4174/art/contributions/15-mechanisms/v002/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#btn-toggle').click();
   await page.locator('#btn-mode').click();
@@ -98,21 +107,23 @@ try {
   }
   await page.screenshot({path:'tmp/pr15-lever-preview.png',fullPage:true});
 
-  await page.goto('http://127.0.0.1:4174/art/contributions/12-iron-sexton/v001/preview.html');
+  await page.goto('http://127.0.0.1:4174/art/contributions/12-iron-sexton/v002/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#btn-mode').click();
   await page.locator('#btn-scale').click();
   for(const id of ['#chk-pivot','#chk-grips','#chk-bounds','#chk-hero']) await page.locator(id).uncheck();
+  const sextonBounds=await visibleBounds(); assert.ok(Math.abs(sextonBounds.height-160)<=2,'Sexton actual rendered height must be 160');
   for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
     await page.locator('#sel-bg').selectOption(value);
   }
   await page.screenshot({path:'tmp/pr12-sexton-preview.png',fullPage:true});
 
-  await page.goto('http://127.0.0.1:4174/art/contributions/13-cistern-lurker/v001/preview.html');
+  await page.goto('http://127.0.0.1:4174/art/contributions/13-cistern-lurker/v002/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#btn-mode').click();
   await page.locator('#btn-scale').click();
   for(const id of ['#chk-pivot','#chk-core','#chk-bounds','#chk-hero']) await page.locator(id).uncheck();
+  const lurkerBounds=await visibleBounds(); assert.ok(Math.abs(lurkerBounds.width-96)<=2 && Math.abs(lurkerBounds.height-51.57)<=2,`Lurker actual rendered silhouette must preserve 96 by 51.57 proportions: ${JSON.stringify(lurkerBounds)}`);
   for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
     await page.locator('#sel-bg').selectOption(value);
   }

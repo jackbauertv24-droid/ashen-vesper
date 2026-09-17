@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 12 — Iron Sexton Heavy Enemy Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #1a2536; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    button, select {
+      background: #243042;
+      border: 1px solid #3b4d66;
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #32435c; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 { margin: 0 0 12px; font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); }
+    .checkbox-group { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body><p style="padding:16px">Maintainer v002: measured runtime scale; gameplay pending. Original v001 evidence is retained below and may contain superseded claims. <a href="../../../../docs/PR_15_17_REVIEW.md">Review</a></p>
+  <header>
+    <h1>Job 12 — Iron Sexton Heavy Enemy Design Reference</h1>
+    <p>Gothic abbey caretaker design reference candidate: 1024 × 1024 native RGBA for heavy melee encounter spacing.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="viewport bg-dark">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Facing: Right (Primary)</button>
+        <button id="btn-scale">Scale: Reference (0.5×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#1a2536)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Enemy Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>Iron Sexton Reference</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Standing Height:</span><span>898 px (y=76..973)</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Bounds:</span><span>826 × 898 px</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Height:</span><span>160 units (Scale 0.178)</span></div>
+      <div class="stat-row"><span class="stat-label">Shovel Reach:</span><span>868 px length (~155u)</span></div>
+      <div class="stat-row"><span class="stat-label">Outer 32px Border:</span><span style="color:#4ade80;">100% Alpha 0 (0 violations)</span></div>
+      <div class="stat-row"><span class="stat-label">Proposed HP:</span><span>4 hits</span></div>
+      <div class="stat-row"><span class="stat-label">Speed:</span><span>45 units/s</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-pivot" checked> Ground Pivot (480, 973)</label>
+        <label><input type="checkbox" id="chk-grips" checked> Shovel Grips & Tip</label>
+        <label><input type="checkbox" id="chk-bounds" checked> 32px Outer Border</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Bellwarden at Runtime</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px;">Compositing Acceptance Review (White, Black, Blue, Abbey, Hero Scale, Facings & Silhouette)</h2>
+    <img src="../../../../docs/reviews/iron-sexton-v001.png" alt="Iron Sexton Review">
+  </div>
+
+  <script type="module">
+    const sextonImg = new Image();
+    sextonImg.src = '../v001/exports/iron-sexton-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let facing = 1; // 1 = right, -1 = left
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkPivot = document.getElementById('chk-pivot');
+    const chkGrips = document.getElementById('chk-grips');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkHero = document.getElementById('chk-hero');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    sextonImg.onload = () => draw();
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+      if (!sextonImg.complete) return;
+      prepareHero();
+
+      if (!isRuntime) {
+        // Reference mode: 1024x1024 scaled 0.5x to 512x512
+        const scale = 0.5;
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(512, 0);
+          ctx.scale(-1, 1);
+        }
+        ctx.drawImage(sextonImg, 0, 0, 1024, 1024, 0, 0, 512, 512);
+
+        if (chkGrips.checked) {
+          // Rear hand (380, 560), forward hand (680, 480), tip (973, 388), butt (148, 660)
+          const points = [
+            { name: 'Rear Grip', x: 380, y: 560, color: '#f59e0b' },
+            { name: 'Lead Grip', x: 680, y: 480, color: '#f59e0b' },
+            { name: 'Blade Tip', x: 973, y: 388, color: '#ef4444' },
+            { name: 'Shaft Butt', x: 148, y: 660, color: '#3b82f6' }
+          ];
+
+          for (const pt of points) {
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();
+            ctx.arc(pt.x * scale, pt.y * scale, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.arc(480 * scale, 973 * scale, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        ctx.restore();
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(32 * scale, 32 * scale, (1024 - 64) * scale, (1024 - 64) * scale);
+        }
+      } else {
+        // Runtime Combat Scale mode
+        const groundY = 400;
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.beginPath();
+        ctx.moveTo(30, groundY);
+        ctx.lineTo(482, groundY);
+        ctx.stroke();
+
+        // Sexton target height = 160 units (scale = 160/898 * 1.3 for 512 viewport ~ 0.23)
+        const displayH = 160;
+        const sScale = displayH / 898;
+        const sW = 1024 * sScale;
+        const sH = 1024 * sScale;
+        const sX = 260;
+        const sY = groundY - Math.round(973 * sScale);
+
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(sX + sW, 0);
+          ctx.scale(-1, 1);
+          ctx.drawImage(sextonImg, 0, 0, 1024, 1024, 0, sY, sW, sH);
+        } else {
+          ctx.drawImage(sextonImg, 0, 0, 1024, 1024, sX, sY, sW, sH);
+        }
+        ctx.restore();
+
+        // Draw Bellwarden hero facing Sexton
+        if (chkHero.checked && heroPrepared) {
+          const heroScale = 144 / 418;
+          ctx.drawImage(heroCanvas, 80, 5, 260, 433, 90, groundY - 427 * heroScale, 260 * heroScale, 433 * heroScale);
+          const heroX = 90, heroW = 260 * heroScale;
+
+          // Threat line
+          ctx.strokeStyle = '#ef4444';
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(heroX + heroW, groundY - 60);
+          ctx.lineTo(sX + 30, groundY - 60);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.arc(sX + 480 * sScale, groundY, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    btnMode.addEventListener('click', () => {
+      facing = -facing;
+      btnMode.textContent = facing === 1 ? 'Facing: Right (Primary)' : 'Facing: Left (Mirrored)';
+      draw();
+    });
+
+    btnScale.addEventListener('click', () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = isRuntime ? 'Scale: Runtime (160u)' : 'Scale: Reference (0.5×)';
+      draw();
+    });
+
+    selBg.addEventListener('change', (e) => {
+      viewport.className = 'viewport ' + e.target.value;
+    });
+
+    for (const chk of [chkPivot, chkGrips, chkBounds, chkHero]) {
+      chk.addEventListener('change', draw);
+    }
+  </script>
+</body>
+</html>

@@ -25,11 +25,11 @@ Priority P0 means finish the current slice; P1 means next expansion; P2 means la
 | P1 | [08 Ruined Cloister](art-jobs/08-ruined-cloister.md) | Modular environment and map layout | Longer traversal with combat and a mechanism | Real room transition needs implementation |
 | P1 | [11 Bell Moth](art-jobs/11-bell-moth.md) | Flying enemy reference and motion | Practice aerial attacks against a telegraphed swoop | PR 14 design selected; motion and behavior needed |
 | P1 | [14 Useful pickups](art-jobs/14-pickups-and-relics.md) | Healing vial first | Choose when to spend healing | PR 13 vial selected; inventory/use action and binding needed |
-| P1 | [15 Mechanisms](art-jobs/15-mechanisms.md) | Lever and grate first | Action causes a visible world change | Interaction state and moving collision needed |
+| P1 | [15 Mechanisms](art-jobs/15-mechanisms.md) | Lever and grate first | Action causes a visible world change | PR 15 lever retained; missing attempt preservation, interaction and grate needed |
 | P1 | [Room transition](ROOM_TRANSITION_BRIEF.md) | Code and reused doorway layers | Sanctuary leads into a second area | Contributor implementation brief; no new image required |
-| P2 | [12 Iron Sexton](art-jobs/12-iron-sexton.md) | Heavy melee enemy | Bait a committed attack, punish recovery | New enemy type; tuning needed |
+| P2 | [12 Iron Sexton](art-jobs/12-iron-sexton.md) | Heavy melee enemy | Bait a committed attack, punish recovery | PR 16 reference selected; motion and combat tuning needed |
 | P2 | [09 Flooded Cistern](art-jobs/09-flooded-cistern.md) | Stone/water layers and layout | Timing around valves and moving routes | Lever/lift behavior should be proven first |
-| P2 | [13 Cistern Lurker](art-jobs/13-cistern-lurker.md) | Low ambush enemy | Read floor-level tells and crouched contact | New enemy type; spawn/contact rules needed |
+| P2 | [13 Cistern Lurker](art-jobs/13-cistern-lurker.md) | Low ambush enemy | Read floor-level tells and crouched contact | PR 17 reference selected; motion and low blade/core alignment needed |
 | P2 | [15 Counterweight lift](art-jobs/15-mechanisms.md) | Lift, chains and weight | Riding and landing on a moving surface | Platform carrying and crush safeguards needed |
 | P2 | [14 Seal fragment](art-jobs/14-pickups-and-relics.md) | Route key | Optional detour opens a shortcut | Key inventory and gate requirements needed |
 | P2 | [10 Bell Tower](art-jobs/10-bell-tower.md) | Vertical architecture kit and layout | Climbing, looking ahead and checkpointing | Vertical camera/world expansion; defer runtime |

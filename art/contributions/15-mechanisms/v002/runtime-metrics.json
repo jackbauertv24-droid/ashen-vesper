@@ -1,0 +1,17 @@
+{
+  "status": "retained-prototype-preservation-incomplete",
+  "cell": [
+    64,
+    64
+  ],
+  "scale": 0.125,
+  "pivot": [
+    256,
+    464
+  ],
+  "hinge": [
+    256,
+    280
+  ],
+  "gameplay": "pending"
+}

@@ -9,6 +9,18 @@
     {
       "number": 6,
       "commit": "1592119"
+    },
+    {
+      "number": 15,
+      "commit": "e8d3137"
+    },
+    {
+      "number": 16,
+      "commit": "cb5f8db"
+    },
+    {
+      "number": 17,
+      "commit": "193e664"
     }
   ],
   "resources": [
@@ -351,6 +363,30 @@
     {
       "path": "docs/reviews/cistern-lurker-v001.png",
       "sha256": "b72e5f543e332dcace6e72307b4213f5e368225fbd97d165855441a421478264"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v002/preview.html",
+      "sha256": "b651723e483fd771777fbe428315351d9e02dbda7739a4a5fdc4790b872075d8"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v002/runtime-metrics.json",
+      "sha256": "43c147c903df716d7b7b96c3bf7164e7d92e29180dc8d5baccf8c65c7d63afc3"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v002/preview.html",
+      "sha256": "bd25b6b3922b4e63f50aecf45559decfcda2fca9ad826a6f1db5f422b2adcd08"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v002/runtime-metrics.json",
+      "sha256": "03174d35475045db33e0f192d3e9a015ac4c3de21d096385b7a2bea5d9576b52"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v002/preview.html",
+      "sha256": "013240709320825b7741a665a1b9e9b9546ae94c4ca20e9faeaa37fe124a0cd4"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
+      "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
     }
   ]
 }

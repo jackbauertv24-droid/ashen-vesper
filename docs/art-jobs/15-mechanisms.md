@@ -21,3 +21,7 @@ Lever proposed E interaction when nearby, one connected grate, activation retain
 Lift is a later gameplay PR: declared path/endpoints/speed, carries the grounded player, permits jumping off, resolves solid sides/underside, safe reversal with no silent crushing or wall teleport. Keyboard/touch/gamepad interaction and respawn positions need tests. Pause/moving preview proves alignment; a static kit alone does not prove platform behavior.
 
 Show actual runtime size with hero, black/white/blue/abbey composites, complete pierced gaps and anchored movement. Include state/attachment/collision metadata, source/export hashes, prompts and attempts, plus general preservation/gameplay/browser checks.
+
+## Current review
+
+PR 15 lever is retained with preservation incomplete: notes report two attempts, but only one original is supplied. Supply the missing attempt and exact prompt without generating again. Gameplay/grate integration remains pending. See [PR 15–17 review](../PR_15_17_REVIEW.md).

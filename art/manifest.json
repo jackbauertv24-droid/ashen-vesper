@@ -811,11 +811,11 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Preserved visual review evidence in docs/reviews/abbey-lever-v001.png",
-        "engineIntegration": "Candidate mechanism; interaction binding ([E] trigger, proximity check, and gate linkage) pending maintainer integration."
+        "engineIntegration": "See docs/PR_15_17_REVIEW.md; corrected preview art/contributions/15-mechanisms/v002/preview.html; gameplay pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-prototype-preservation-incomplete",
         "metadataStatus": "ready-for-review",
         "hinge": [
           256,
@@ -885,11 +885,11 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Preserved visual review evidence in docs/reviews/iron-sexton-v001.png",
-        "engineIntegration": "Enemy design reference; eight-pose motion sheet and combat behavior pending reference selection."
+        "engineIntegration": "See docs/PR_15_17_REVIEW.md; corrected preview art/contributions/12-iron-sexton/v002/preview.html; gameplay pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-prototype-design-reference",
         "metadataStatus": "ready-for-review",
         "standingHeight": 898,
         "runtimeHeight": 160,
@@ -955,11 +955,11 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Preserved visual review evidence in docs/reviews/cistern-lurker-v001.png",
-        "engineIntegration": "Enemy design reference; six-pose motion sheet and Flooded Cistern ambush behavior pending reference selection."
+        "engineIntegration": "See docs/PR_15_17_REVIEW.md; corrected preview art/contributions/13-cistern-lurker/v002/preview.html; gameplay pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-prototype-design-reference",
         "metadataStatus": "ready-for-review",
         "silhouetteSize": [
           942,

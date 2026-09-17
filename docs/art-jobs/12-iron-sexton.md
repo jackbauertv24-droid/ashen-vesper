@@ -17,3 +17,7 @@ Reference 1024 × 1024 RGBA; motion as above, standing source height 400px, runt
 Proposed HP 4, damage 1, speed about 45 units/s, warning 0.9s, cleave 0.3s, recovery 1.1s. Actual grip/tip coordinates per pose must be recorded and used for contact timing. No invisible full-width damage rectangle. Keep an escape route; ground spacing should beat the attack without requiring an unimplemented dodge.
 
 Preview at real hero scale, both facings, grayscale and white/black/blue/abbey. Integration shows bait/miss, contact, recovery punish, interrupted hurt, solid-wall behavior and no repeated damage during one attack. Different enemy types must not share one mutable animation state accidentally. Label all tuning and unimplemented death behavior.
+
+## Current review
+
+PR 16 v001 is the selected prototype design reference. Reuse its body, armor and complete shovel for the eight-pose sequence. Corrected reference scale is 160/898; future motion scale remains 0.4. See [PR 15–17 review](../PR_15_17_REVIEW.md).

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 15 — Abbey Mechanism Lever Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #1a2536; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    button, select {
+      background: #243042;
+      border: 1px solid #3b4d66;
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #32435c; }
+    button.active-action {
+      background: #b45309;
+      border-color: #f59e0b;
+      color: #fff;
+    }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 { margin: 0 0 12px; font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); }
+    .checkbox-group { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body><p style="padding:16px">Maintainer v002: measured runtime scale; gameplay pending. Original v001 evidence is retained below and may contain superseded claims. <a href="../../../../docs/PR_15_17_REVIEW.md">Review</a></p>
+  <header>
+    <h1>Job 15 — Abbey Mechanism Lever Verification</h1>
+    <p>Two-state mechanism animation sheet verification: 1024 × 512 native RGBA candidate for the Ruined Cloister expansion.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="viewport bg-dark">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-toggle" class="active-action">Pull Lever [E]</button>
+        <button id="btn-mode">Mode: Manual Toggle</button>
+        <button id="btn-scale">Scale: Source (512×512)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#1a2536)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Mechanism Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>Abbey Mechanism Lever</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 512 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Cell Layout:</span><span>2 × (512 × 512)</span></div>
+      <div class="stat-row"><span class="stat-label">Current State:</span><span id="txt-state" style="color:#f59e0b; font-weight:bold;">Inactive (Cell 0)</span></div>
+      <div class="stat-row"><span class="stat-label">Hinge Point:</span><span>(256, 280)</span></div>
+      <div class="stat-row"><span class="stat-label">Ground Pivot:</span><span>(256, 464)</span></div>
+      <div class="stat-row"><span class="stat-label">Base Drift:</span><span style="color:#4ade80;">0.00 px (Exact)</span></div>
+      <div class="stat-row"><span class="stat-label">Cell Margin:</span><span style="color:#4ade80;">&gt; 30px (&gt;12px req)</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Cell:</span><span>64 × 64 units</span></div>
+      <div class="stat-row"><span class="stat-label">Interaction:</span><span>[E] Key, Retained</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-hinge" checked> Hinge (256, 280)</label>
+        <label><input type="checkbox" id="chk-pivot" checked> Ground Pivot (256, 464)</label>
+        <label><input type="checkbox" id="chk-padding" checked> 12px Cell Padding Box</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Hero at Runtime</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px;">Compositing Acceptance Review (White, Black, Blue, Abbey, Zero Base Drift, Hero Scale & Silhouette)</h2>
+    <img src="../../../../docs/reviews/abbey-lever-v001.png" alt="Abbey Lever Review">
+  </div>
+
+  <script type="module">
+    const leverImg = new Image();
+    leverImg.src = '../v001/exports/lever-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let state = 0; // 0 = inactive, 1 = active
+    let mode = 'manual'; // 'manual' or 'loop'
+    let isRuntime = false;
+
+    const btnToggle = document.getElementById('btn-toggle');
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const txtState = document.getElementById('txt-state');
+    const chkHinge = document.getElementById('chk-hinge');
+    const chkPivot = document.getElementById('chk-pivot');
+    const chkPadding = document.getElementById('chk-padding');
+    const chkHero = document.getElementById('chk-hero');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    let loopTimer = 0;
+    let lastTime = performance.now();
+
+    function tick(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      if (mode === 'loop') {
+        loopTimer += dt;
+        if (loopTimer > 0.8) {
+          loopTimer = 0;
+          state = (state === 0 ? 1 : 0);
+          updateStateDisplay();
+        }
+      }
+
+      prepareHero();
+      draw();
+      requestAnimationFrame(tick);
+    }
+
+    function updateStateDisplay() {
+      if (state === 0) {
+        txtState.textContent = 'Inactive (Cell 0)';
+        txtState.style.color = '#f59e0b';
+        btnToggle.textContent = 'Pull Lever [E]';
+      } else {
+        txtState.textContent = 'Active (Cell 1)';
+        txtState.style.color = '#10b981';
+        btnToggle.textContent = 'Reset Lever [E]';
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+      if (!leverImg.complete) return;
+
+      const sx = state * 512;
+      const sy = 0;
+
+      if (!isRuntime) {
+        // Source display: 512x512 direct cell
+        ctx.drawImage(leverImg, sx, sy, 512, 512, 0, 0, 512, 512);
+
+        if (chkPadding.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(12, 12, 512 - 24, 512 - 24);
+        }
+
+        if (chkHinge.checked) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(256, 280, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#3b82f6';
+          ctx.beginPath();
+          ctx.arc(256, 464, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      } else {
+        // Runtime scale: 64x64 cell displayed in center with ground line
+        const groundY = 380;
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.beginPath();
+        ctx.moveTo(40, groundY);
+        ctx.lineTo(472, groundY);
+        ctx.stroke();
+
+        const leverSize = 64;
+        const leverX = 256;
+        const leverY = groundY - Math.round((464 / 512) * leverSize);
+
+        // Hero Bellwarden standing at left of lever
+        if (chkHero.checked && heroPrepared) {
+          const heroScale = 144 / 418;
+          ctx.drawImage(heroCanvas, 80, 5, 260, 433, leverX - 100, groundY - 427 * heroScale, 260 * heroScale, 433 * heroScale);
+        }
+
+        // Draw lever at runtime scale
+        ctx.drawImage(leverImg, sx, sy, 512, 512, leverX, leverY, leverSize, leverSize);
+
+        // Interaction prompt bubble
+        if (state === 0) {
+          ctx.fillStyle = 'rgba(0,0,0,0.7)';
+          ctx.fillRect(leverX + 18, leverY - 26, 28, 20);
+          ctx.strokeStyle = '#f59e0b';
+          ctx.strokeRect(leverX + 18, leverY - 26, 28, 20);
+          ctx.fillStyle = '#f59e0b';
+          ctx.font = 'bold 12px monospace';
+          ctx.fillText('[E]', leverX + 23, leverY - 12);
+        }
+
+        if (chkHinge.checked) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(leverX + (256 / 512) * leverSize, leverY + (280 / 512) * leverSize, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#3b82f6';
+          ctx.beginPath();
+          ctx.arc(leverX + (256 / 512) * leverSize, groundY, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    btnToggle.addEventListener('click', () => {
+      state = (state === 0 ? 1 : 0);
+      updateStateDisplay();
+    });
+
+    btnMode.addEventListener('click', () => {
+      mode = (mode === 'manual' ? 'loop' : 'manual');
+      btnMode.textContent = (mode === 'manual' ? 'Mode: Manual Toggle' : 'Mode: Two-State Loop');
+    });
+
+    btnScale.addEventListener('click', () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = (isRuntime ? 'Scale: Runtime (64×64)' : 'Scale: Source (512×512)');
+    });
+
+    selBg.addEventListener('change', (e) => {
+      viewport.className = 'viewport ' + e.target.value;
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyE') {
+        state = (state === 0 ? 1 : 0);
+        updateStateDisplay();
+      }
+    });
+
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
