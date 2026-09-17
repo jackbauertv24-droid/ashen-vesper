@@ -1,0 +1,29 @@
+{
+  "jobId": "05-ember-alpha",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+      "sha256": "adfc9f4a74de7467a55a334aa8e56f380daf2776f3dcdc341ec85ac2eb89f10b",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        550
+      ],
+      "visibleBounds": {
+        "minX": 323,
+        "maxX": 687,
+        "minY": 191,
+        "maxY": 744,
+        "width": 365,
+        "height": 554
+      },
+      "displaySize": [
+        54,
+        54
+      ],
+      "pickupRadius": 22
+    }
+  ]
+}

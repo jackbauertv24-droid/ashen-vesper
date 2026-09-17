@@ -555,6 +555,52 @@
         "engineIntegration": "Review evidence"
       },
       "limitations": []
+    },
+    {
+      "id": "ember-alpha-source-v001",
+      "path": "art/contributions/05-ember-alpha/v001/source/ember-alpha-generated-v001.png",
+      "status": "candidate",
+      "title": "Consecration Ember Alpha Raw Generator Source",
+      "description": "Aged-bronze bell fragment surrounded by amber fire; untouched generator output.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "58fd3cfdfcd8be9b6f541ab0601e00f10885c0c3014f440331565db622527f21",
+      "intendedUse": "Retained generator output for Job 05 ember alpha submission.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Black-background studio study retained byte-for-byte.",
+        "engineIntegration": "Pending maintainer review"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "draft-unverified"
+      }
+    },
+    {
+      "id": "ember-alpha-export-v001",
+      "path": "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+      "status": "candidate",
+      "title": "Consecration Ember Native-Alpha Cutout",
+      "description": "Gothic bronze bell fragment in amber flame with true RGBA transparency and outer 32px border padding.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "adfc9f4a74de7467a55a334aa8e56f380daf2776f3dcdc341ec85ac2eb89f10b",
+      "intendedUse": "Replacement collectible pickup fulfilling Job 05 brief.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Normal source-over compositing verified over 4 backgrounds in docs/reviews/ember-alpha-v001.png.",
+        "engineIntegration": "Pending maintainer review"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

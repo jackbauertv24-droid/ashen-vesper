@@ -175,6 +175,26 @@
     {
       "path": "art/contributions/04-brazier-alpha/v001/NOTES.md",
       "sha256": "c13f0f5f83d938e52c910354747d6bce39e79f62a67041ddadd0b2ce87e32ab2"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/source/ember-alpha-generated-v001.png",
+      "sha256": "58fd3cfdfcd8be9b6f541ab0601e00f10885c0c3014f440331565db622527f21"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+      "sha256": "adfc9f4a74de7467a55a334aa8e56f380daf2776f3dcdc341ec85ac2eb89f10b"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/PROMPT.txt",
+      "sha256": "2221224c657d574e413f64a7d7b641af7bff1dd11abd3e59644a65c78f1ce5f6"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/NOTES.md",
+      "sha256": "dd1e3b8ad350ca511f9fe58a149d145d27c493ac26ced5ddaa9693ef4746ea7c"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/preview.html",
+      "sha256": "cfae668111712ce7bee437caca3ab9d09ea4ab9175d9b427f822fd7093da6ee5"
     }
   ]
 }
