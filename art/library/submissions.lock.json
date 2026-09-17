@@ -203,6 +203,34 @@
     {
       "path": "docs/reviews/ember-alpha-v001.png",
       "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/source/bell-moth-generated-v001.png",
+      "sha256": "2727381b36e1b0e12c1cffa81748a73df4d953575f415489bdbe7ef0028ea2f5"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
+      "sha256": "5ca014e8e3ddafb258f9c3895638c6594af4765a0093e59fb8f358f3affca06e"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/PROMPT.txt",
+      "sha256": "d66a100dc19e28b9a9a2d119eb5bb48dace9550fd78fa714baa78c7bcb28818c"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/NOTES.md",
+      "sha256": "4b85ab0066ab257c97f310a6166221293cf57cec3e5e97b7e8750ddd50e0bb52"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/preview.html",
+      "sha256": "9e91e6d0356379bd9ce11b765436c5925a9490e8e798258e6a076291299370d4"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/submission.json",
+      "sha256": "4b8a617f9eaf53bf2c696848be9a9480586ea50a1e138849bb92e7bfef0c128d"
+    },
+    {
+      "path": "docs/reviews/bell-moth-v001.png",
+      "sha256": "eab0536de1aa6f3a7181d929d446e55e2e6f7aa0c2498ca1f86cd8321e2f28cf"
     }
   ]
 }
