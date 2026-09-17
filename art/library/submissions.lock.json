@@ -295,6 +295,34 @@
     {
       "path": "docs/reviews/abbey-lever-v001.png",
       "sha256": "301f66801ea63ff89315ce1ed3b1bca0612d97cd5373f877131b5436aba6ae41"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/source/iron-sexton-generated-v001.png",
+      "sha256": "5472234b382e886f356fa856c0873dcf43397b072d4ab51d0a08d61a5ad020f0"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/exports/iron-sexton-v001.png",
+      "sha256": "6160870a5e7ee90ce74a9ef889d2301991abefd726bc1091dcc4e0a85f801fb4"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/PROMPT.txt",
+      "sha256": "3cf36168d4781d9e99a2e1e491d15b7105ad4def33f52577fb358aa50679d047"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/NOTES.md",
+      "sha256": "6eaea74c8144688db85009dfda397bbfa1cbd7d0580ff2f7a55921787f335078"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/preview.html",
+      "sha256": "0ff75010c529555441f79a2093d457469f7a94ee664633f1c0cd8a196750a707"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/submission.json",
+      "sha256": "b8fc3828bd98b9b5bed330f5383cf29b2f21a298615e6c62b4d67dbd2e0a718a"
+    },
+    {
+      "path": "docs/reviews/iron-sexton-v001.png",
+      "sha256": "cfa5787bc13e4927489201eec33793b5fd6703e8fb36a935b5c47e59d902299b"
     }
   ]
 }

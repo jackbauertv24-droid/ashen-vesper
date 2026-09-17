@@ -847,6 +847,76 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/abbey-lever-v001.png"
       }
+    },
+    {
+      "id": "iron-sexton-source-v001",
+      "path": "art/contributions/12-iron-sexton/v001/source/iron-sexton-generated-v001.png",
+      "status": "candidate",
+      "title": "Iron Sexton Raw Generator Source",
+      "description": "Raw untouched output from generator prompt for Job 12 Iron Sexton heavy enemy design reference candidate.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "5472234b382e886f356fa856c0873dcf43397b072d4ab51d0a08d61a5ad020f0",
+      "intendedUse": "Original generation source retained byte-for-byte.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Not integrated; raw generator source preserved under art/contributions/."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "iron-sexton-export-v001",
+      "path": "art/contributions/12-iron-sexton/v001/exports/iron-sexton-v001.png",
+      "status": "candidate",
+      "title": "Iron Sexton Heavy Enemy Design Reference Cutout",
+      "description": "Gothic abbey caretaker in battered iron half-mask and apron plates wielding a two-handed grave shovel; true RGBA transparency and outer 32px border padding.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "6160870a5e7ee90ce74a9ef889d2301991abefd726bc1091dcc4e0a85f801fb4",
+      "intendedUse": "Heavy melee enemy design reference candidate expanding melee spacing and encounter timing.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved visual review evidence in docs/reviews/iron-sexton-v001.png",
+        "engineIntegration": "Enemy design reference; eight-pose motion sheet and combat behavior pending reference selection."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "standingHeight": 898,
+        "runtimeHeight": 160,
+        "scale": 0.1782,
+        "measuredVisibleBounds": {
+          "minX": 148,
+          "maxX": 973,
+          "minY": 76,
+          "maxY": 973
+        }
+      }
+    },
+    {
+      "id": "iron-sexton-review-v001",
+      "path": "docs/reviews/iron-sexton-v001.png",
+      "title": "Contributor Iron Sexton compositing and facing evidence",
+      "status": "review-evidence",
+      "width": 1400,
+      "height": 950,
+      "format": "png",
+      "alpha": false,
+      "sha256": "cfa5787bc13e4927489201eec33793b5fd6703e8fb36a935b5c47e59d902299b",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/iron-sexton-v001.png"
+      }
     }
   ]
 }

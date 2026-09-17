@@ -145,3 +145,39 @@ test("mechanism lever candidate has genuine RGBA transparency, 12px clear cell p
   assert.ok(im.data[(460 * 1024 + 256) * 4 + 3] > 200);
   assert.ok(im.data[(460 * 1024 + 512 + 256) * 4 + 3] > 200);
 });
+
+test("iron sexton design candidate has genuine RGBA transparency, clear 32px border, and 898px standing height", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/12-iron-sexton/v001/exports/iron-sexton-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  assert.equal(minY, 76, "Hood peak height");
+  assert.equal(maxY, 973, "Boot contact ground level");
+  assert.equal(maxY - minY + 1, 898, "Standing character height must equal 898px");
+
+  // Verify solid core (iron breastplate)
+  assert.ok(im.data[(400 * 1024 + 500) * 4 + 3] > 200);
+
+  // Verify shovel blade tip
+  assert.ok(im.data[(388 * 1024 + 973) * 4 + 3] > 100);
+});
