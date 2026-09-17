@@ -1,0 +1,17 @@
+{
+  "image": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
+  "sourceWingspan": 640,
+  "runtimeWingspan": 64,
+  "scale": 0.1,
+  "pivot": [
+    512,
+    512
+  ],
+  "displayCanvas": [
+    102.4,
+    102.4
+  ],
+  "status": "selected-prototype-design-reference",
+  "animation": "pending",
+  "behavior": "pending"
+}

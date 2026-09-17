@@ -2,6 +2,8 @@
 
 Priority P1, first new enemy for the Cloister. A hovering threat with a clearly warned diagonal swoop creates a reason to attack in the air. No projectile or contact damage while harmlessly hovering.
 
+PR 14's v001 export is selected as the prototype design reference; reuse it for the motion stage. The corrected v002 preview/metrics use 0.1 scale for its 640px source wingspan. Motion cells below use 320px nominal wingspan at 0.2 scale. See docs/PR_13_14_REVIEW.md; preserve original metadata and previews.
+
 ## Design prompt
 
 > Design one original Bell Moth for Ashen Vesper: a ragged nocturnal moth with slate-indigo wings, pale worn wing markings, a small bronze bell husk suspended beneath its abdomen, and two restrained amber eyes. Haunted but readable, not cute or a humanoid, no costume copied from a franchise. HD painted non-pixel game art, orthographic right-facing side profile, complete isolated silhouette with genuine transparent background. Single neutral hovering pose, no scene, text, ground shadow, painted checkerboard or wide glow. Keep wings and dangling bell complete, material detail simple enough to read at small scale.

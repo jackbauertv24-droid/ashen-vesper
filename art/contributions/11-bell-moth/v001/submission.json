@@ -1,0 +1,27 @@
+{
+  "jobId": "11-bell-moth",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
+      "sha256": "5ca014e8e3ddafb258f9c3895638c6594af4765a0093e59fb8f358f3affca06e",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        512
+      ],
+      "visibleBounds": {
+        "minX": 192,
+        "maxX": 831,
+        "minY": 268,
+        "maxY": 755,
+        "width": 640,
+        "height": 488
+      },
+      "wingspan": 640,
+      "runtimeWingspan": 64,
+      "scale": 0.2
+    }
+  ]
+}

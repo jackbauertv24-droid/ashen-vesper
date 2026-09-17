@@ -69,5 +69,23 @@ try {
     await page.locator('#sel-bg').selectOption(value);
   }
   await page.screenshot({path:'tmp/pr14-preview.png',fullPage:true});
+  await page.goto('http://127.0.0.1:4174/art/contributions/11-bell-moth/v002/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btn-mode').click();
+  await page.locator('#btn-flip').click();
+  await page.locator('#btn-scale').click();
+  for(const id of ['#chk-pivot','#chk-bounds','#chk-border']) await page.locator(id).uncheck();
+  await page.waitForTimeout(100);
+  const renderedWingspan = await page.evaluate(()=>{
+    const c=document.querySelector('#view'),pixels=c.getContext('2d').getImageData(0,0,c.width,c.height).data;
+    let min=c.width,max=-1;
+    for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(pixels[(y*c.width+x)*4+3]>16){min=Math.min(min,x);max=Math.max(max,x);}
+    return max-min+1;
+  });
+  assert.ok(Math.abs(renderedWingspan-64)<=1,'Corrected moth preview must render a 64px visible wingspan');
+  for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
+    await page.locator('#sel-bg').selectOption(value);
+  }
+  await page.screenshot({path:'tmp/pr11-moth-preview.png',fullPage:true});
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

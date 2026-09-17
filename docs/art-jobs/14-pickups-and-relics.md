@@ -2,6 +2,8 @@
 
 Priority P1 for healing vial; P2 for seal fragment; P3 for optional currency/HUD. Choose one item per PR. New pickup art does not implement an inventory or economy.
 
+PR 13's healing-vial-v001.png is selected as the prototype pickup asset. Reuse that export for the inventory/use implementation; generating another vial is unnecessary. The remaining design/behavior review is in docs/PR_13_14_REVIEW.md. Seal and token work remain future candidates.
+
 ## Copyable prompts
 
 Healing vial:

@@ -1,6 +1,6 @@
 # Future content and contributor queue
 
-This is the forward plan for Ashen Vesper. **All new content below is planned, not implemented or accepted.** The playable Pilgrim Road remains the baseline. Contributions should help build a coherent next encounter, rather than unrelated concept images.
+This is the forward plan for Ashen Vesper. **Future features below are planned, not implemented.** Selected prototype assets are marked explicitly; asset selection does not complete a gameplay feature. The playable Pilgrim Road remains the baseline. Contributions should help build a coherent next encounter, rather than unrelated concept images.
 
 ## Build order
 
@@ -23,8 +23,8 @@ Priority P0 means finish the current slice; P1 means next expansion; P2 means la
 | P0 | [03 Pilgrim melee](art-jobs/03-hollow-pilgrim-melee.md) | Intermediate swing/recoil/death | Visible weight and recovery | Sparse poses integrated; new intermediate study retained |
 | P0 | [06 Gate layers](art-jobs/06-gate-layers.md) | Frame, portcullis and sill | See a gate physically open | Existing gate logic; layers not integrated |
 | P1 | [08 Ruined Cloister](art-jobs/08-ruined-cloister.md) | Modular environment and map layout | Longer traversal with combat and a mechanism | Real room transition needs implementation |
-| P1 | [11 Bell Moth](art-jobs/11-bell-moth.md) | Flying enemy reference and motion | Practice aerial attacks against a telegraphed swoop | New enemy behavior needed |
-| P1 | [14 Useful pickups](art-jobs/14-pickups-and-relics.md) | Healing vial first | Choose when to spend healing | Inventory/use action and input binding needed |
+| P1 | [11 Bell Moth](art-jobs/11-bell-moth.md) | Flying enemy reference and motion | Practice aerial attacks against a telegraphed swoop | PR 14 design selected; motion and behavior needed |
+| P1 | [14 Useful pickups](art-jobs/14-pickups-and-relics.md) | Healing vial first | Choose when to spend healing | PR 13 vial selected; inventory/use action and binding needed |
 | P1 | [15 Mechanisms](art-jobs/15-mechanisms.md) | Lever and grate first | Action causes a visible world change | Interaction state and moving collision needed |
 | P1 | [Room transition](ROOM_TRANSITION_BRIEF.md) | Code and reused doorway layers | Sanctuary leads into a second area | Contributor implementation brief; no new image required |
 | P2 | [12 Iron Sexton](art-jobs/12-iron-sexton.md) | Heavy melee enemy | Bait a committed attack, punish recovery | New enemy type; tuning needed |

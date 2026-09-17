@@ -18,10 +18,10 @@ For build order, gameplay ideas, dependencies and nice-to-have tasks, start with
 | [08 Ruined Cloister](08-ruined-cloister.md) | Modular kit and four-screen layout | Next connected map; lever court and optional upper route |
 | [09 Flooded Cistern](09-flooded-cistern.md) | Damp stone/water kit and layout | Later valve/lift traversal; swimming excluded from first slice |
 | [10 Bell Tower](10-bell-tower.md) | Vertical kit and layout | Later ascent; vertical camera required |
-| [11 Bell Moth](11-bell-moth.md) | Flying enemy reference and six poses | Aerial attack target with telegraphed committed swoop |
+| [11 Bell Moth](11-bell-moth.md) | Selected PR 14 reference; six poses next | Aerial attack target with telegraphed committed swoop |
 | [12 Iron Sexton](12-iron-sexton.md) | Heavy enemy reference and eight poses | Slow committed cleave and punishable recovery |
 | [13 Cistern Lurker](13-cistern-lurker.md) | Low ambush enemy reference and six poses | Readable floor tells and low sword contact |
-| [14 Pickups/relics](14-pickups-and-relics.md) | Healing vial first, then route key | One item per PR; inventory/use behavior pending |
+| [14 Pickups/relics](14-pickups-and-relics.md) | PR 13 vial selected; use behavior/key next | One item per PR; inventory/use behavior pending |
 | [15 Mechanisms](15-mechanisms.md) | Lever/grate first, then lift pieces | Anchored state changes and moving collision |
 | [16 Tollkeeper](16-tollkeeper.md) | Boss reference first, then one slam sequence | Later arena and recovery-based boss encounter |
 

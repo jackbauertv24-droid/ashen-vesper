@@ -676,12 +676,12 @@
       "intendedUse": "Consumable healing pickup candidate for Ruined Cloister expansion fulfilling Job 14 brief.",
       "validation": {
         "fileDecoded": true,
-        "visualReview": "Reviewed in docs/reviews/healing-vial-v001.png and art/contributions/14-pickups-and-relics/v001/preview.html.",
-        "engineIntegration": "Ruined Cloister pickup candidate; direct RGBA, normal source-over, 48x48 display, inventory pending."
+        "visualReview": "Maintainer review in docs/PR_13_14_REVIEW.md.",
+        "engineIntegration": "Selected Cloister pickup prototype; inventory/use binding and gameplay pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-prototype-asset",
         "metadataStatus": "ready-for-review",
         "measuredVisibleBounds": {
           "minX": 377,
@@ -705,6 +705,73 @@
       "validation": {
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/healing-vial-v001.png"
+      }
+    },
+    {
+      "id": "bell-moth-source-v001",
+      "path": "art/contributions/11-bell-moth/v001/source/bell-moth-generated-v001.png",
+      "status": "candidate",
+      "title": "Bell Moth Raw Generator Source",
+      "description": "Raw untouched output from generator prompt for Job 11 Bell Moth flying enemy design candidate.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "2727381b36e1b0e12c1cffa81748a73df4d953575f415489bdbe7ef0028ea2f5",
+      "intendedUse": "Original generation source retained byte-for-byte.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Not integrated; raw generator source preserved under art/contributions/."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "bell-moth-export-v001",
+      "path": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
+      "status": "candidate",
+      "title": "Bell Moth Design Reference Cutout",
+      "description": "Gothic nocturnal moth with slate-indigo wings, pale vein markings, suspended cracked bronze bell, and amber eyes; true RGBA transparency.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "5ca014e8e3ddafb258f9c3895638c6594af4765a0093e59fb8f358f3affca06e",
+      "intendedUse": "Flying enemy design reference candidate for Ruined Cloister expansion fulfilling Job 11 brief.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Maintainer review in docs/PR_13_14_REVIEW.md.",
+        "engineIntegration": "Selected enemy design reference; motion and flying behavior pending. Corrected scale in art/contributions/11-bell-moth/v002/."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-design-reference",
+        "metadataStatus": "ready-for-review",
+        "measuredVisibleBounds": {
+          "minX": 192,
+          "maxX": 831,
+          "minY": 268,
+          "maxY": 755
+        }
+      }
+    },
+    {
+      "id": "bell-moth-review-v001",
+      "path": "docs/reviews/bell-moth-v001.png",
+      "title": "Contributor Bell Moth compositing and facing evidence",
+      "status": "review-evidence",
+      "width": 1400,
+      "height": 950,
+      "format": "png",
+      "alpha": false,
+      "sha256": "eab0536de1aa6f3a7181d929d446e55e2e6f7aa0c2498ca1f86cd8321e2f28cf",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/bell-moth-v001.png"
       }
     }
   ]
