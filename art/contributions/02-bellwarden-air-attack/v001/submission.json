@@ -1,0 +1,72 @@
+{
+  "jobId": "02-bellwarden-air-attack",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/exports/air-attack-v001.png",
+      "sha256": "a42c03592cdef788b2ccf076f17449cc43da3bfb9e7dbf6106dad5891818db76",
+      "width": 1536,
+      "height": 1024,
+      "cellWidth": 512,
+      "cellHeight": 512,
+      "referenceHeight": 384,
+      "displayHeight": 144,
+      "frames": [
+        {
+          "name": "air-windup-a",
+          "x": 0,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        },
+        {
+          "name": "air-windup-b",
+          "x": 512,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        },
+        {
+          "name": "air-contact-a",
+          "x": 1024,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        },
+        {
+          "name": "air-contact-b",
+          "x": 0,
+          "y": 512,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        },
+        {
+          "name": "air-recovery-a",
+          "x": 512,
+          "y": 512,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        },
+        {
+          "name": "air-recovery-b",
+          "x": 1024,
+          "y": 512,
+          "width": 512,
+          "height": 512,
+          "pivotX": 192,
+          "pivotY": 464
+        }
+      ]
+    }
+  ]
+}

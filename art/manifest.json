@@ -429,6 +429,52 @@
         "runtimeStatus": "integrated-prototype",
         "metadataStatus": "custom-runtime-crops"
       }
+    },
+    {
+      "id": "bellwarden-air-attack-source-v001",
+      "path": "art/contributions/02-bellwarden-air-attack/v001/source/air-attack-generated-v001.png",
+      "status": "candidate",
+      "title": "Bellwarden aerial attack raw generator source",
+      "description": "Six airborne sword-attack poses; untouched generator output.",
+      "width": 1264,
+      "height": 848,
+      "format": "png",
+      "alpha": false,
+      "sha256": "eb7792cea7664c6d605d2e6d549c8c956542ceda5b09b7c2e6a7ec022210b4a1",
+      "intendedUse": "Retained generator output for Job 02 submission.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Single-pass generator candidate retained byte-for-byte.",
+        "engineIntegration": "Pending maintainer review"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "draft-unverified"
+      }
+    },
+    {
+      "id": "bellwarden-air-attack-export-v001",
+      "path": "art/contributions/02-bellwarden-air-attack/v001/exports/air-attack-v001.png",
+      "status": "candidate",
+      "title": "Bellwarden aerial sword attack export sheet",
+      "description": "Six-pose airborne sword attack sheet (1536x1024 RGBA PNG, 3x2 cells of 512x512, pivot 192,464).",
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "a42c03592cdef788b2ccf076f17449cc43da3bfb9e7dbf6106dad5891818db76",
+      "intendedUse": "Replacement airborne sword attack sequence fulfilling Job 02 brief.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Passes validate-art-submission.mjs; reviewed in docs/reviews/air-attack-v001.png.",
+        "engineIntegration": "Pending maintainer review"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

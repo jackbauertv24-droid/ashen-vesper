@@ -123,6 +123,26 @@
     {
       "path": "art/contributions/01-bellwarden-crouch/v001/NOTES.md",
       "sha256": "e6df582655c35e0b3fe3ce46ffa1d9c1c824b9cc62967a4ad5c1f176dc9f190a"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/source/air-attack-generated-v001.png",
+      "sha256": "eb7792cea7664c6d605d2e6d549c8c956542ceda5b09b7c2e6a7ec022210b4a1"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/exports/air-attack-v001.png",
+      "sha256": "a42c03592cdef788b2ccf076f17449cc43da3bfb9e7dbf6106dad5891818db76"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/PROMPT.txt",
+      "sha256": "cd9c31bc44315931b06285634163345c9706235a097226423763b9629e5b4aa4"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/NOTES.md",
+      "sha256": "43b41ae4c9c20966e0abe34738ce52c4687480fee0c269ba53cf8a43afa6d4fb"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/preview.html",
+      "sha256": "eef81e9f1d46a04fb6510ea7d9f015889c41f601743a72f92655f7ebdda57663"
     }
   ]
 }
