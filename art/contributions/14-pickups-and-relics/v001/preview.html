@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 14 — Healing Vial Pickup Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #e11d48;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #1a2536; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    button, select {
+      background: #243042;
+      border: 1px solid #3b4d66;
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #32435c; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 { margin: 0 0 12px; font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .stat-label { color: var(--muted); }
+    .checkbox-group { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 14 — Healing Vial Pickup Verification</h1>
+    <p>Normal source-over compositing verification: 1024 × 1024 native RGBA pickup candidate for the Ruined Cloister expansion.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="viewport bg-dark">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Mode: Gentle Float</button>
+        <button id="btn-scale">Scale: Runtime (48×48)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#1a2536)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Prop Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>Healing Vial</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Pivot Anchor:</span><span>(512, 768)</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Bounds:</span><span>270 × 556 px</span></div>
+      <div class="stat-row"><span class="stat-label">Envelope:</span><span>x=377..646, y=212..767</span></div>
+      <div class="stat-row"><span class="stat-label">Brief Limit:</span><span>x=256..768, y=192..832</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span><span>48 × 48 units</span></div>
+      <div class="stat-row"><span class="stat-label">Outer 32px Border:</span><span style="color:#4ade80;">100% Alpha 0</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-pivot" checked> Pivot Anchor (512, 768)</label>
+        <label><input type="checkbox" id="chk-bounds" checked> Visible Envelope Box</label>
+        <label><input type="checkbox" id="chk-border" checked> 32px Outer Border</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px;">Compositing Acceptance Review (White, Black, Blue, Abbey & Silhouette Readability)</h2>
+    <img src="../../../../docs/reviews/healing-vial-v001.png" alt="Healing Vial Review">
+  </div>
+
+  <script type="module">
+    const img = new Image();
+    img.src = 'exports/healing-vial-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let mode = 'float'; // 'float' or 'static'
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkPivot = document.getElementById('chk-pivot');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkBorder = document.getElementById('chk-border');
+
+    let time = 0;
+
+    img.onload = () => {
+      requestAnimationFrame(loop);
+    };
+
+    let lastTime = performance.now();
+
+    function loop(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+      time += dt;
+
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+
+      const floatOffset = mode === 'float' ? Math.sin(time * 2.5) * 6 : 0;
+
+      if (!isRuntime) {
+        // Source scale fitted to 512x512 (scaled 0.5x)
+        const scale = 0.5;
+        const dw = 1024 * scale;
+        const dh = 1024 * scale;
+        const dx = 0;
+        const dy = floatOffset;
+
+        ctx.drawImage(img, dx, dy, dw, dh);
+
+        if (chkBorder.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(32 * scale, 32 * scale + dy, (1024 - 64) * scale, (1024 - 64) * scale);
+        }
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(59, 130, 246, 0.7)';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(377 * scale, 212 * scale + dy, 270 * scale, 556 * scale);
+        }
+
+        if (chkPivot.checked) {
+          const px = 512 * scale;
+          const py = 768 * scale + dy;
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(px, py, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      } else {
+        // Runtime scale: 48x48 displayed at center
+        const size = 48;
+        const cx = 256 - size / 2;
+        const cy = 256 - size / 2 + floatOffset;
+
+        ctx.drawImage(img, cx, cy, size, size);
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(59, 130, 246, 0.7)';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(cx, cy, size, size);
+        }
+
+        if (chkPivot.checked) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(256, cy + (768 / 1024) * size, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    btnMode.addEventListener('click', () => {
+      mode = mode === 'float' ? 'static' : 'float';
+      btnMode.textContent = mode === 'float' ? 'Mode: Gentle Float' : 'Mode: Static Pose';
+    });
+
+    btnScale.addEventListener('click', () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = isRuntime ? 'Scale: Runtime (48×48)' : 'Scale: Source (0.5×)';
+    });
+
+    selBg.addEventListener('change', (e) => {
+      viewport.className = 'viewport ' + e.target.value;
+    });
+  </script>
+</body>
+</html>

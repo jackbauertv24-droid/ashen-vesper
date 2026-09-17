@@ -639,6 +639,73 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/PR_12_REVIEW.md"
       }
+    },
+    {
+      "id": "healing-vial-source-v001",
+      "path": "art/contributions/14-pickups-and-relics/v001/source/healing-vial-generated-v001.png",
+      "status": "candidate",
+      "title": "Healing Vial Raw Generator Source",
+      "description": "Raw untouched output from generator prompt for Job 14 healing vial pickup candidate.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": false,
+      "sha256": "c954cdf6f90404f0d3cc6599b0dc286588b7a4d063c854b13570f54ba0c9d2f6",
+      "intendedUse": "Original generation source retained byte-for-byte.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Not integrated; raw generator source preserved under art/contributions/."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "healing-vial-export-v001",
+      "path": "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
+      "status": "candidate",
+      "title": "Healing Vial Native-Alpha Cutout",
+      "description": "Gothic ruby glass vial with aged-brass filigree cage and ivory stopper; true RGBA transparency and outer 32px border padding.",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "da39fae9452fcb684df2f81ff7f861db6c80707f29a0c22f756972881885724c",
+      "intendedUse": "Consumable healing pickup candidate for Ruined Cloister expansion fulfilling Job 14 brief.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed in docs/reviews/healing-vial-v001.png and art/contributions/14-pickups-and-relics/v001/preview.html.",
+        "engineIntegration": "Ruined Cloister pickup candidate; direct RGBA, normal source-over, 48x48 display, inventory pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "measuredVisibleBounds": {
+          "minX": 377,
+          "maxX": 646,
+          "minY": 212,
+          "maxY": 767
+        }
+      }
+    },
+    {
+      "id": "healing-vial-review-v001",
+      "path": "docs/reviews/healing-vial-v001.png",
+      "title": "Contributor healing vial compositing evidence",
+      "status": "review-evidence",
+      "width": 1400,
+      "height": 950,
+      "format": "png",
+      "alpha": false,
+      "sha256": "46b2e0fafbe0f9b34c875d7271378337a453bb689010341c0a82efdfba03c690",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/healing-vial-v001.png"
+      }
     }
   ]
 }

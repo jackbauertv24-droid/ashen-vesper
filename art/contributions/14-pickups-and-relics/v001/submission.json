@@ -1,0 +1,29 @@
+{
+  "jobId": "14-pickups-and-relics",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
+      "sha256": "da39fae9452fcb684df2f81ff7f861db6c80707f29a0c22f756972881885724c",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        768
+      ],
+      "visibleBounds": {
+        "minX": 377,
+        "maxX": 646,
+        "minY": 212,
+        "maxY": 767,
+        "width": 270,
+        "height": 556
+      },
+      "displaySize": [
+        48,
+        48
+      ],
+      "pickupRadius": 20
+    }
+  ]
+}
