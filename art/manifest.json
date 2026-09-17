@@ -108,7 +108,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Pilgrim Road: breakable prop with one falling ember per source. Runtime background removal is provisional."
+        "engineIntegration": "Retained original; encounter uses brazier-alpha-cutout-v001."
       },
       "limitations": [
         "Opaque background; intended for color-keying or alpha masking in production.",
@@ -137,7 +137,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Reviewed as a retained candidate; see docs/ASSET_PR_REVIEW.md for limitations.",
-        "engineIntegration": "Pilgrim Road: falling collectible rendered with screen compositing."
+        "engineIntegration": "Encounter pickup: provisional warm-color alpha separation, normal source-over; native alpha requested in Job 05."
       },
       "limitations": [
         "Single frame study; bobbing and glimmer shader/frames planned for M3."
@@ -422,7 +422,7 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Runtime contact sheet reviewed; edge masks remain provisional.",
-        "engineIntegration": "Encounter crouch/crawl/low attack"
+        "engineIntegration": "Encounter crouch: uniformly calibrated scale 0.25, ground anchors unchanged; see docs/CROUCH_ALPHA_REVIEW.md."
       },
       "review": {
         "retention": "preserve-original",
@@ -516,6 +516,45 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence only; see docs/PR_11_REVIEW.md"
       }
+    },
+    {
+      "id": "brazier-alpha-cutout-v001",
+      "path": "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
+      "title": "Hanging brazier native-alpha cutout",
+      "status": "prototype",
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "alpha": true,
+      "sha256": "61c9d993f03aa76d776e70756b4dae3c89f5534ed0a23197633bac21815cd252",
+      "intendedUse": "Encounter decoration with real exterior/chain-gap transparency.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed over abbey, white, black and saturated blue.",
+        "engineIntegration": "Encounter brazier; direct RGBA compositing."
+      },
+      "limitations": [
+        "Actual 1254 canvas differs from requested 1024; runtime scales full source.",
+        "Fine antialias/fire details remain partially transparent."
+      ]
+    },
+    {
+      "id": "crouch-alpha-runtime-review-v003",
+      "path": "docs/reviews/crouch-alpha-v003.png",
+      "title": "Crouch scale and prop alpha runtime evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1104,
+      "format": "png",
+      "alpha": false,
+      "sha256": "944b8beca76ad97ddeacee857d81f93f348580beed33042c6dc4704d98301375",
+      "intendedUse": "Runtime visual comparison, not a production sprite.",
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Reviewed over abbey, white, black and saturated blue.",
+        "engineIntegration": "Review evidence"
+      },
+      "limitations": []
     }
   ]
 }

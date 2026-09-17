@@ -10,6 +10,8 @@ import {
   solidHeight,
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
+import { crouchScale, crouchAnchors } from "./character-metrics.js";
+import { emberCutout } from "./prop-compositing.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
 let s = create(),
@@ -344,21 +346,13 @@ function hero() {
         : Math.abs(s.vx) > 0
           ? 1 + (Math.floor(s.walk / 0.18) % 2)
           : 0;
-    const anchors = [
-      [200, 460],
-      [730, 460],
-      [1250, 460],
-      [200, 960],
-      [715, 960],
-      [1260, 960],
-    ];
-    const [x, y] = anchors[index];
+    const [x, y] = crouchAnchors[index];
     ctx.drawImage(
       art.crouchFrames[index],
-      -x * 0.215,
-      -y * 0.215,
-      1536 * 0.215,
-      1024 * 0.215,
+      -x * crouchScale,
+      -y * crouchScale,
+      1536 * crouchScale,
+      1024 * crouchScale,
     );
     ctx.restore();
     return;
@@ -436,7 +430,6 @@ function draw() {
   });
   for (const d of s.drops) {
     ctx.save();
-    ctx.globalCompositeOperation = "screen";
     ctx.drawImage(
       art.ember,
       d.x - 27,
@@ -563,7 +556,6 @@ try {
     stone: "abbey/masonry-module-v001",
     hero: "bellwarden/bellwarden-pilot-v001",
     air: "bellwarden/bellwarden-airborne-v001",
-    brazier: "props/hanging-brazier-v001",
     ember: "props/consecration-ember-v001",
     portal: "abbey/abbey-gate-portal-v001",
     enemy: "enemies/hollow-pilgrim-motion-v001",
@@ -577,7 +569,11 @@ try {
     ),
   );
   art.hero = keyed(art.hero, true);
-  for (const k of ["air", "brazier", "enemy"]) art[k] = keyed(art[k]);
+  for (const k of ["air", "enemy"]) art[k] = keyed(art[k]);
+  art.brazier = await load(
+    "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
+  );
+  art.ember = emberCutout(art.ember);
   art.enemyFrames = Object.fromEntries(
     Object.entries(pilgrimFrames).map(([name, frame]) => [
       name,

@@ -6,9 +6,13 @@ These are ready-to-use generation briefs for outside contributors, including oth
 
 | Job | Deliverable | Gameplay requirement |
 | --- | --- | --- |
-| [01 Bellwarden crouch](01-bellwarden-crouch.md) | Six crouch/crawl/attack frames | 72-unit crouched hurtbox, low sword attack |
+| [01 Bellwarden crouch](01-bellwarden-crouch.md) | Six crouch/crawl/attack frames | 84-unit crouched hurtbox, low sword attack |
 | [02 Bellwarden aerial attack](02-bellwarden-air-attack.md) | Six airborne sword frames | Gravity and horizontal travel continue during a 0.42s attack |
 | [03 Hollow Pilgrim melee](03-hollow-pilgrim-melee.md) | Twelve enemy poses | Physical bell staff, anticipation, sweep and recovery; no beam |
+| [04 Brazier alpha polish](04-brazier-alpha.md) | Standardized native-alpha prop | Initial real-alpha cutout integrated; improve edges/export |
+| [05 Ember alpha](05-ember-alpha.md) | Native-alpha bell/flame pickup | Highest remaining prop priority; remove backdrop veil |
+| [06 Gate layers](06-gate-layers.md) | Separate frame, gate and sill | Clear openings and aligned gate movement |
+| [07 Break/impact effects](07-break-impact-effects.md) | Six-frame local debris effect | One-shot effect; collectible stays separate |
 
 ## Shared requirements
 
@@ -57,6 +61,8 @@ npm run test:encounter
 ```
 
 The submission validator checks each job's dimensions, frame order, grid bounds, shared anchor, SHA-256, actual transparency, nonempty frames and empty cell borders. It cannot judge anatomy, animation quality or exact visual weapon contact.
+
+The character-sheet validator covers jobs 01–03 only. Jobs 04–07 supply their declared geometry, alpha evidence and general resource checks; do not apply the character schema to a single prop or claim an unsupported job passed it.
 
 Merging a candidate preserves its contribution; runtime acceptance is a separate decision recorded in the catalog. [PR 11's review](../PR_11_REVIEW.md) illustrates why clean transparent borders and matching declared pivots do not prove complete weapons, stable anatomy or correct costume. Keep candidate status until the visual and runtime evidence passes.
 

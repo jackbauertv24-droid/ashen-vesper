@@ -24,7 +24,7 @@ A direct practiced run is short; exploring optional paths, learning combat and c
 
 ## Rules
 
-The player has five health, 1.1 seconds of post-hit invulnerability and a 0.42-second attack usable on the ground or in the air. Aerial attacks preserve horizontal travel and gravity. Crouching reduces body height from 120 to 72 units, permits a slow 85-unit/second crawl and lowers the attack. The two low passages provide 80 units of clearance. Releasing crouch below a ceiling keeps the player crouched until there is standing room. Masonry blocks are solid on all faces; the original art study retains its older one-way platform behavior.
+The player has five health, 1.1 seconds of post-hit invulnerability and a 0.42-second attack usable on the ground or in the air. Aerial attacks preserve horizontal travel and gravity. Crouching reduces body height from 120 to 84 units, permits a slow 85-unit/second crawl and lowers the attack. The two low passages provide 90 units of clearance. Releasing crouch below a ceiling keeps the player crouched until there is standing room. Masonry blocks are solid on all faces; the original art study retains its older one-way platform behavior.
 
 A swing can hit each enemy only once. Guards patrol, approach within 80 units, telegraph for 0.8 seconds, strike for 0.28 seconds and recover for 0.9 seconds. The retained motion sheet supplies overhead anticipation and downward contact poses. Only the final 0.16 seconds of the strike deal damage, along the visible contact staff; raising the staff and recovering do not hurt the player. Crouching does not avoid a downward strike. Hurt briefly interrupts a guard. The final guardian must be defeated even if lured away from the gate.
 
@@ -32,11 +32,13 @@ Braziers break once; each drops one ember. Collection, broken braziers, defeated
 
 ## Art and limitations
 
-All source files remain unchanged. Runtime canvas compositing removes border-connected dark backgrounds from the enemy motion sheet, braziers and airborne study. New crouch artwork uses a runtime checkerboard mask with protected steel-blade regions. Masks can lose edge detail; native alpha exports remain preferable. The existing magenta-key hero sheet remains the basis for standing movement and attacks. Runtime crop/anchor values do not modify submitted draft metadata.
+All source files remain unchanged. Runtime canvas compositing removes border-connected dark backgrounds from the enemy motion sheet and airborne study. New crouch artwork uses a runtime checkerboard mask with protected steel-blade regions. Masks can lose edge detail; native alpha exports remain preferable. The existing magenta-key hero sheet remains the basis for standing movement and attacks. Runtime crop/anchor values do not modify submitted draft metadata.
 
 The enemy now uses whole-body shuffle, overhead windup, contact and recovery poses from the retained motion sheet, with the weapon drawn in the actor's hands. This is still a sparse animation: intermediate swing and shuffle frames remain contributor work. Six newly drawn crouch poses replace vertical sprite compression. One authorized built-in generation attempt was used; its original, exact prompt and limitations are preserved in `art/contributions/01-bellwarden-crouch/v001/`. The output failed the production alpha/grid contract and is integrated through reviewed runtime crops, not certified as a production export. Aerial attacks still reuse ground attack poses. [Contributor briefs](art-jobs/README.md) define further work. The gate seal opens; the painted portcullis is not independently animated.
 
 Run `node tools/pose-check.mjs` for a contact sheet of the actual runtime poses in `tmp/pose-review.png`. The [reviewed pose sheet](reviews/crouch-melee-v002.png) is retained here. Review anatomy, complete weapons, stable feet and contact timing alongside the interactive demo; gameplay tests alone cannot establish visual quality.
+
+See [crouch and alpha calibration](CROUCH_ALPHA_REVIEW.md) for measurements and [updated runtime evidence](reviews/crouch-alpha-v003.png). The one brazier edit attempt is preserved with its prompt in art/contributions/04-brazier-alpha/v001/.
 
 ## Validation
 

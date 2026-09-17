@@ -163,6 +163,18 @@
     {
       "path": "docs/reviews/air-attack-v001.png",
       "sha256": "88ae2a86f821abafe992eeb78e3e23fafb5abb20d61d0cd2accdbe02cd7556fd"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
+      "sha256": "61c9d993f03aa76d776e70756b4dae3c89f5534ed0a23197633bac21815cd252"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/PROMPT.txt",
+      "sha256": "8900e11bae65f0ed021ad48cb1beeaafb3acf818614767bf765f5fbba1bf01cf"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/NOTES.md",
+      "sha256": "c13f0f5f83d938e52c910354747d6bce39e79f62a67041ddadd0b2ce87e32ab2"
     }
   ]
 }

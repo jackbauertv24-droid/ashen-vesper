@@ -8,10 +8,10 @@ export const platforms = [
   { x: 4090, y: 600, w: 2310 },
   { x: 1240, y: 520, w: 180 },
   { x: 1420, y: 450, w: 200 },
-  { x: 1620, y: 390, w: 260, h: 130 },
+  { x: 1620, y: 390, w: 260, h: 120 },
   { x: 4400, y: 530, w: 180 },
   { x: 4580, y: 460, w: 180 },
-  { x: 4760, y: 390, w: 280, h: 130 },
+  { x: 4760, y: 390, w: 280, h: 120 },
 ];
 export const braziers = [
   { x: 420, y: 515 },
@@ -87,7 +87,7 @@ export function message(s, text) {
   s.notice = text;
   s.noticeTime = 4;
 }
-export const BODY = { halfWidth: 13, standing: 120, crouched: 72 };
+export const BODY = { halfWidth: 13, standing: 120, crouched: 84 };
 export const solidHeight = (p) => p.h ?? 150;
 export const bodyBox = (s) => ({
   x: s.x - BODY.halfWidth,
@@ -139,9 +139,9 @@ export function hitbox(s) {
   return s.attack > 0.12 && s.attack < 0.28
     ? {
         x: s.facing > 0 ? s.x + 8 : s.x - 115,
-        y: s.y - (s.attackCrouched ? 52 : 110),
+        y: s.y - (s.attackCrouched ? 64 : 110),
         w: 107,
-        h: s.attackCrouched ? 45 : 82,
+        h: s.attackCrouched ? 57 : 82,
       }
     : null;
 }

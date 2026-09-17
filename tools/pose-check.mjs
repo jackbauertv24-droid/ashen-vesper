@@ -20,7 +20,7 @@ try {
     const response = await route.fetch();
     const source = (await response.text()).replace(
       "snapshot: () => structuredClone(s)",
-      "preview: state => { s = {...s, ...state}; running = false; draw(); }, snapshot: () => structuredClone(s)",
+      "props: () => ({brazier:art.brazier,ember:art.ember}), preview: state => { s = {...s, ...state}; running = false; draw(); }, snapshot: () => structuredClone(s)",
     );
     await route.fulfill({ response, body: source });
   });
@@ -30,17 +30,17 @@ try {
     const review = document.createElement("canvas");
     review.id = "pose-review";
     review.width = 1200;
-    review.height = 460;
+    review.height = 920;
     document.body.prepend(review);
     const g = review.getContext("2d");
     g.fillStyle = "#142130";
-    g.fillRect(0, 0, 1200, 460);
+    g.fillRect(0, 0, 1200, 920);
     const snapshot = window.encounter.snapshot();
-    const capture = (state, x, y, label) => {
+    const capture = (state, x, y, label, sourceX = 110) => {
       window.encounter.preview({ ...snapshot, x: 180, camera: 0, ...state });
       g.drawImage(
         document.querySelector("#game"),
-        110,
+        sourceX,
         420,
         200,
         200,
@@ -61,6 +61,23 @@ try {
       "Contact",
       "Recovery",
     ];
+    capture({ crouching: false }, 0, 460, "Standing reference");
+    capture({ crouching: true }, 200, 460, "Crouch reference");
+    capture({ crouching: true, facing: -1 }, 400, 460, "Crouch mirrored");
+    capture({ x: 420, drops: [{ x: 180, y: 570 }] }, 600, 460, "Ember cutout");
+    capture({ x: 800 }, 800, 460, "Brazier alpha", 350);
+    const props = window.encounter.props();
+    for (const [i, color] of ["#ffffff", "#000000", "#287acb"].entries()) {
+      for (const [j, name] of ["brazier", "ember"].entries()) {
+        const x = (i * 2 + j) * 200;
+        g.fillStyle = color;
+        g.fillRect(x, 690, 200, 200);
+        g.drawImage(props[name], x + 50, 730, 100, 120);
+        g.fillStyle = "#dfba7b";
+        g.font = "13px sans-serif";
+        g.fillText(name + " / " + color, x + 8, 905);
+      }
+    }
     for (let i = 0; i < 6; i++)
       capture(
         {
