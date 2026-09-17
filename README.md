@@ -4,6 +4,8 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 **Working title · playable encounter prototype v0.3**
 
+**Contributors:** see the [prioritized future-content queue](docs/FUTURE_CONTENT.md) and [copyable art briefs](docs/art-jobs/README.md). Next: Ruined Cloister, Bell Moth, healing vial and lever/grate. Later: Flooded Cistern, Bell Tower, new enemies, relics and the Tollkeeper boss. These are planned additions, not current demo features.
+
 [Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
 
 ## The Pilgrim Road
@@ -46,13 +48,14 @@ The encounter browser check completes the main route using keyboard events, then
 
 ## Art preservation
 
-All original submissions stay at their original paths and resolution, including unused designs and draft metadata. Runtime selection does not control retention. Versioned sources are checked against the [preservation lock](art/library/submissions.lock.json). This milestone required no new image generation.
+All original submissions stay at their original paths and resolution, including unused designs and draft metadata. Runtime selection does not control retention. Versioned sources are checked against the [preservation lock](art/library/submissions.lock.json). Generation attempts and unknown usage costs are recorded with each contribution.
 
 - [Art direction](docs/ART_DIRECTION.md)
 - [Retained library](art/library/README.md) and [asset catalog](art/manifest.json)
 - [Submission reviews](docs/ASSET_PR_REVIEW.md)
 - [Asset specification](docs/ASSET_SPEC.md)
 - [Production roadmap](docs/ROADMAP.md)
+- [Future-content queue and prompts](docs/FUTURE_CONTENT.md)
 - [Original pilot notes](docs/PILOT.md)
 - [Contributing](CONTRIBUTING.md)
 

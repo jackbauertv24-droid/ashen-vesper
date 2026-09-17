@@ -1,5 +1,19 @@
 # Production roadmap
 
+## Current contributor plan
+
+Start with the [prioritized future-content queue](FUTURE_CONTENT.md) and [art-job catalog](art-jobs/README.md). They specify upcoming maps, enemies, useful items, mechanisms, a boss and optional polish, with prompts and acceptance criteria. Future content is planned until its runtime evidence passes.
+
+Delivered prototype: five-screen Pilgrim Road, solid masonry, jump/aerial attack/crouch, three pilgrim guards, breakable braziers, ember collection, gate/checkpoint, keyboard/touch/gamepad and horizontal camera presets. Native-alpha brazier and PR 12 ember are integrated. Crouch scale is calibrated; character masks and motion continuity remain prototype quality. PR 11 aerial attack and the new enemy intermediate sheet remain candidates.
+
+Next milestone: **Ruined Cloister**, four horizontal screens connected to the sanctuary, one Bell Moth, a limited healing vial and a lever-operated grate. Complete room transition and interaction state before calling this a second playable map. Exit evidence: traverse both maps, use the lever, evade/hit the moth, collect/use healing, die/return safely and complete the second checkpoint on keyboard, touch and gamepad.
+
+Following milestones: Iron Sexton and lift; Flooded Cistern and its low lurker; Bell Tower and Tollkeeper after vertical camera/moving-platform support. Candidate art can be prepared ahead of runtime work. Retain established protagonist scale and material rendering.
+
+## Original milestone checklist
+
+The checklist below records earlier production stages; partial prototype delivery does not certify finished animation, final art approval or a complete game. Use the current contributor queue above for task priority.
+
 ## M0 — Art direction
 
 - [x] Review the first abbey-gate concept.
@@ -38,7 +52,7 @@ Exit criterion: a small enjoyable encounter with no placeholder critical art.
 
 ## M4 — Expand
 
-Choose the next environment only after M3. Extend reusable materials and character rules rather than treating each room as a separate art project.
+Prepare the next environment and cast using the future-content briefs. Integrate expansion after the relevant M3 interaction and visual dependencies work. Reuse materials and character rules across rooms.
 
 ## Open decisions
 
@@ -56,4 +70,4 @@ The browser courtyard integrates a Bellwarden eight-pose animation study, repeat
 
 ## v0.3 encounter milestone
 
-Implemented a five-screen road, three guarded encounters, breakable braziers and collectible embers, a gate interaction and a final checkpoint. Camera presets, optional air control, synthesized cues and keyboard/touch/standard-gamepad controls are available. See [ENCOUNTER.md](ENCOUNTER.md). M3 remains a prototype: enemy animation, native alpha exports and a true room transition are unfinished; opening the gate continues within the same connected map.
+Implemented a five-screen road, three guarded encounters, breakable braziers and collectible embers, a gate interaction and a final checkpoint. Camera presets, optional air control, synthesized cues and keyboard/touch/standard-gamepad controls are available. See [ENCOUNTER.md](ENCOUNTER.md). M3 remains a prototype: actor animation continuity, some alpha exports and a true room transition are unfinished; opening the gate continues within the same connected map. Native-alpha brazier and ember are now integrated.

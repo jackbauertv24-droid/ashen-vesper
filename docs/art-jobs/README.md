@@ -2,6 +2,8 @@
 
 These are ready-to-use generation briefs for outside contributors, including other coding/image models. Submit work through a PR. Maintainer implementation changes go directly to main. No generation is requested by simply reading this document.
 
+For build order, gameplay ideas, dependencies and nice-to-have tasks, start with the [future-content queue](../FUTURE_CONTENT.md). **Next expansion: Ruined Cloister with Bell Moth, healing vial and lever/grate.** The later Cistern/Tower/boss jobs can supply candidates now; runtime integration waits for their listed systems.
+
 ## Choose one bounded job
 
 | Job | Deliverable | Gameplay requirement |
@@ -10,9 +12,18 @@ These are ready-to-use generation briefs for outside contributors, including oth
 | [02 Bellwarden aerial attack](02-bellwarden-air-attack.md) | Six airborne sword frames | Gravity and horizontal travel continue during a 0.42s attack |
 | [03 Hollow Pilgrim melee](03-hollow-pilgrim-melee.md) | Twelve enemy poses | Physical bell staff, anticipation, sweep and recovery; no beam |
 | [04 Brazier alpha polish](04-brazier-alpha.md) | Standardized native-alpha prop | Initial real-alpha cutout integrated; improve edges/export |
-| [05 Ember alpha](05-ember-alpha.md) | Native-alpha bell/flame pickup | Highest remaining prop priority; remove backdrop veil |
+| [05 Ember alpha](05-ember-alpha.md) | Native-alpha bell/flame pickup | PR 12 integrated; edge/retention follow-up only |
 | [06 Gate layers](06-gate-layers.md) | Separate frame, gate and sill | Clear openings and aligned gate movement |
 | [07 Break/impact effects](07-break-impact-effects.md) | Six-frame local debris effect | One-shot effect; collectible stays separate |
+| [08 Ruined Cloister](08-ruined-cloister.md) | Modular kit and four-screen layout | Next connected map; lever court and optional upper route |
+| [09 Flooded Cistern](09-flooded-cistern.md) | Damp stone/water kit and layout | Later valve/lift traversal; swimming excluded from first slice |
+| [10 Bell Tower](10-bell-tower.md) | Vertical kit and layout | Later ascent; vertical camera required |
+| [11 Bell Moth](11-bell-moth.md) | Flying enemy reference and six poses | Aerial attack target with telegraphed committed swoop |
+| [12 Iron Sexton](12-iron-sexton.md) | Heavy enemy reference and eight poses | Slow committed cleave and punishable recovery |
+| [13 Cistern Lurker](13-cistern-lurker.md) | Low ambush enemy reference and six poses | Readable floor tells and low sword contact |
+| [14 Pickups/relics](14-pickups-and-relics.md) | Healing vial first, then route key | One item per PR; inventory/use behavior pending |
+| [15 Mechanisms](15-mechanisms.md) | Lever/grate first, then lift pieces | Anchored state changes and moving collision |
+| [16 Tollkeeper](16-tollkeeper.md) | Boss reference first, then one slam sequence | Later arena and recovery-based boss encounter |
 
 ## Shared requirements
 
@@ -62,7 +73,7 @@ npm run test:encounter
 
 The submission validator checks each job's dimensions, frame order, grid bounds, shared anchor, SHA-256, actual transparency, nonempty frames and empty cell borders. It cannot judge anatomy, animation quality or exact visual weapon contact.
 
-The character-sheet validator covers jobs 01–03 only. Jobs 04–07 supply their declared geometry, alpha evidence and general resource checks; do not apply the character schema to a single prop or claim an unsupported job passed it.
+The character-sheet validator covers jobs 01–03 only. Jobs 04–16 supply their declared geometry, alpha evidence and general resource checks; do not claim an unsupported job passed this validator. New animation sheets must check their own frame order, dimensions, pivots and border alpha explicitly.
 
 Merging a candidate preserves its contribution; runtime acceptance is a separate decision recorded in the catalog. [PR 11's review](../PR_11_REVIEW.md) illustrates why clean transparent borders and matching declared pivots do not prove complete weapons, stable anatomy or correct costume. Keep candidate status until the visual and runtime evidence passes.
 
