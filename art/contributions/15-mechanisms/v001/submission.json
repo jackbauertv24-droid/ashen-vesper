@@ -1,0 +1,77 @@
+{
+  "jobId": "15-mechanisms",
+  "status": "candidate",
+  "mechanism": "lever",
+  "assets": [
+    {
+      "path": "art/contributions/15-mechanisms/v001/exports/lever-v001.png",
+      "sha256": "6a31f11eb267355e7d99f7a1651d6a89e1361d884847c99f5947994d2ed92c53",
+      "width": 1024,
+      "height": 512,
+      "cellWidth": 512,
+      "cellHeight": 512,
+      "cols": 2,
+      "rows": 1,
+      "referenceHeight": 512,
+      "displayHeight": 64,
+      "runtimeCell": [
+        64,
+        64
+      ],
+      "frames": [
+        {
+          "name": "inactive",
+          "x": 0,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "pivotX": 256,
+          "pivotY": 464,
+          "hingeX": 256,
+          "hingeY": 280,
+          "bounds": {
+            "minX": 112,
+            "maxX": 476,
+            "minY": 98,
+            "maxY": 464
+          }
+        },
+        {
+          "name": "active",
+          "x": 512,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "pivotX": 256,
+          "pivotY": 464,
+          "hingeX": 256,
+          "hingeY": 280,
+          "bounds": {
+            "minX": 112,
+            "maxX": 482,
+            "minY": 168,
+            "maxY": 464
+          }
+        }
+      ],
+      "geometry": {
+        "sharedBase": true,
+        "baseDriftPixels": 0,
+        "groundPivot": [
+          256,
+          464
+        ],
+        "hingePoint": [
+          256,
+          280
+        ],
+        "paddingPixels": 12
+      },
+      "interaction": {
+        "prompt": "E",
+        "reachRadius": 48,
+        "activationRetained": true
+      }
+    }
+  ]
+}

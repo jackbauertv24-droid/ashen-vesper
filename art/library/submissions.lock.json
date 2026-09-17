@@ -267,6 +267,34 @@
     {
       "path": "art/contributions/11-bell-moth/v002/runtime-metrics.json",
       "sha256": "0a86105e5528ef091d726ac6cfb64ed3f1e1ec95cdd348cd7d1f001c82e7462a"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/source/lever-generated-v001.png",
+      "sha256": "e51a4533e4c94ffb73ddc674e3bc0b7faba1fa30a1d4bcb7999325d25058a4da"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/exports/lever-v001.png",
+      "sha256": "6a31f11eb267355e7d99f7a1651d6a89e1361d884847c99f5947994d2ed92c53"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/PROMPT.txt",
+      "sha256": "72590168890294ff0b0d141d7d97f0c9361113ae1c125a48a9e3e271757a766b"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/NOTES.md",
+      "sha256": "919a7078f9a036a74aeb3a173c0a1541ba222cddcce107fcbe04631fd6f225ac"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/preview.html",
+      "sha256": "54fac779eb0d8efbc73fa1ae478a0bb24410f959823834c016c262c11e504107"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/submission.json",
+      "sha256": "25e0889ba12cdff034918dc2d7c9b251348f1d3ff6e5ad9fd108fe34bc9bfa47"
+    },
+    {
+      "path": "docs/reviews/abbey-lever-v001.png",
+      "sha256": "301f66801ea63ff89315ce1ed3b1bca0612d97cd5373f877131b5436aba6ae41"
     }
   ]
 }
