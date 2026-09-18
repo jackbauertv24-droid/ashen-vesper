@@ -1312,6 +1312,85 @@
       "validation": {
         "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
       }
+    },
+    {
+      "id": "damp-platform-cap-generated-v001",
+      "path": "art/contributions/world-03-flooded-cistern/v001/source/damp-platform-cap-generated-v001.jpg",
+      "title": "Flooded Cistern Walkable Damp Platform Cap Raw Generator Source",
+      "status": "retained-source",
+      "height": 768,
+      "width": 1376,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "8386007695fae7e3c4a9c1e9f07d1aaec2394d86dd182ebd4c8766df08f3e3e0",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/world/stages/03-flooded-cistern.md"
+      }
+    },
+    {
+      "id": "damp-platform-cap-v001",
+      "path": "art/contributions/world-03-flooded-cistern/v001/exports/damp-platform-cap-v001.png",
+      "title": "World 03 Flooded Cistern walkable damp platform and landing cap module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "c59fc284b70bfb032a28355ae418bd718adff138b23030c43f23452ddce4146c",
+      "intendedUse": "Stage 03 Flooded Cistern walkable damp platform and landing cap; 240x60 runtime canvas at scale 240/1024, painted top y=32, sockets (64, 32) & (960, 32).",
+      "limitations": [
+        "Candidate visual platform module; level collision and dry-route walkable solid handling managed by stage geometry.",
+        "Requires cistern pier or vault corbel support underneath for open water-crossing assemblies."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, 3-copy repeat, and hero/lurker lineup review in docs/reviews/cistern-damp-cap-v001.png",
+        "engineIntegration": "Pending Stage 03 layout integration"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "retained-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "paintedTopY": 32,
+        "measuredVisibleBounds": {
+          "minX": 64,
+          "maxX": 959,
+          "minY": 32,
+          "maxY": 214
+        },
+        "sockets": {
+          "leftContact": [
+            64,
+            32
+          ],
+          "rightContact": [
+            960,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "id": "cistern-damp-cap-review-v001",
+      "path": "docs/reviews/cistern-damp-cap-v001.png",
+      "title": "Contributor World 03 damp platform cap compositing and continuous run evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "2d5381941a7aa9b5a1ab91f6bcf14c0d59747920e0cb7918264d4d3834aa9e77",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/cistern-damp-cap-v001.png"
+      }
     }
   ]
 }

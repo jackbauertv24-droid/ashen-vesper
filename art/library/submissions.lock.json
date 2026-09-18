@@ -541,6 +541,34 @@
     {
       "path": "docs/reviews/tollkeeper-boss-v001.png",
       "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/source/damp-platform-cap-generated-v001.jpg",
+      "sha256": "8386007695fae7e3c4a9c1e9f07d1aaec2394d86dd182ebd4c8766df08f3e3e0"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/exports/damp-platform-cap-v001.png",
+      "sha256": "c59fc284b70bfb032a28355ae418bd718adff138b23030c43f23452ddce4146c"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/PROMPT.txt",
+      "sha256": "4158e34a9076f879c92b42b28fadd8660e81f0a8468d0211acd42bc376bb422d"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/NOTES.md",
+      "sha256": "ab95687e6598f6a1fa9dcc684d29ff9e29586896b331d3d138bde0fd7e5325d5"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/submission.json",
+      "sha256": "9d29e0c6d04a29f1926202d0802736739576b942684bf6fdcb964e588d920545"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/preview.html",
+      "sha256": "2a8f7964ab9a99655d0e5b0441aa6b77c7822c91f050a445faf565e211bbfa92"
+    },
+    {
+      "path": "docs/reviews/cistern-damp-cap-v001.png",
+      "sha256": "2d5381941a7aa9b5a1ab91f6bcf14c0d59747920e0cb7918264d4d3834aa9e77"
     }
   ]
 }
