@@ -1,0 +1,54 @@
+{
+  "stageId": "06-bell-tower",
+  "module": "tower-landing",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
+      "sha256": "9e9058c0762bef779e75e6899893cfd1ac3a0ed7c73048a36010e5c07397bd45",
+      "width": 1024,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        240,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 56,
+        "maxX": 967,
+        "minY": 30,
+        "maxY": 211,
+        "width": 912,
+        "height": 182
+      },
+      "sockets": {
+        "leftContact": [
+          56,
+          32
+        ],
+        "rightContact": [
+          968,
+          32
+        ],
+        "runtimeLeftContact": [
+          13.1,
+          7.5
+        ],
+        "runtimeRightContact": [
+          226.9,
+          7.5
+        ],
+        "repeatInterval": 912,
+        "runtimeRepeatInterval": 213.75
+      },
+      "padding": {
+        "left": 56,
+        "right": 56,
+        "top": 30,
+        "bottom": 44
+      }
+    }
+  ]
+}
