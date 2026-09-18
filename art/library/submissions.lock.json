@@ -387,6 +387,16 @@
     {
       "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
       "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-arch-span-generated-v001.jpg",
+      "sha256": "dd198a2cfddb505a14861ca3a3bb19c2d270a1be38b1aba0736de2afcb3c1c79",
+      "intendedUse": "Untouched generator output for Job 08 Ruined Cloister arch span module"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "intendedUse": "Preserved candidate export for Job 08 Ruined Cloister arch span module"
     }
   ]
 }

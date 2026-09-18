@@ -1,0 +1,70 @@
+{
+  "jobId": "08-ruined-cloister",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        960
+      ],
+      "visibleBounds": {
+        "minX": 119,
+        "maxX": 904,
+        "minY": 41,
+        "maxY": 985,
+        "width": 786,
+        "height": 945
+      },
+      "runtimeCanvas": [
+        240,
+        240
+      ],
+      "scale": 0.234375,
+      "sockets": {
+        "topPlatform": {
+          "y": 41,
+          "runtimeY": 9.6
+        },
+        "springline": {
+          "y": 530,
+          "runtimeY": 124.2
+        },
+        "leftColumn": {
+          "x": 215,
+          "runtimeX": 50.4
+        },
+        "rightColumn": {
+          "x": 808,
+          "runtimeX": 189.4
+        },
+        "groundPivot": {
+          "x": 512,
+          "y": 960,
+          "runtimeX": 120,
+          "runtimeY": 225
+        }
+      },
+      "openings": {
+        "mainArchway": {
+          "x": [
+            313,
+            699
+          ],
+          "width": 387,
+          "height": 460
+        },
+        "trefoilTracery": {
+          "center": [
+            512,
+            336
+          ],
+          "radius": 45
+        }
+      }
+    }
+  ]
+}

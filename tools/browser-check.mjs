@@ -129,5 +129,14 @@ try {
   }
   await page.screenshot({path:'tmp/pr13-lurker-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/08-ruined-cloister/v001/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btn-mode').click();
+  await page.locator('#btn-scale').click();
+  for(const id of ['#chk-pivot','#chk-sockets','#chk-openings','#chk-border']) await page.locator(id).uncheck();
+  for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
+    await page.locator('#sel-bg').selectOption(value);
+  }
+  await page.screenshot({path:'tmp/pr08-cloister-arch-preview.png',fullPage:true});
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

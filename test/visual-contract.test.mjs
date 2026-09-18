@@ -232,3 +232,41 @@ test("cistern lurker design candidate has genuine RGBA transparency, clear 32px 
   assert.ok(im.data[barIdx + 3] > 200, "Grille bar must be opaque");
   assert.ok(im.data[barIdx] < im.data[coreIdx], "Grille bar must be darker than glowing amber core");
 });
+
+test("cloister arch span candidate has genuine RGBA transparency, pierced openings, and 32px clear border", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/08-ruined-cloister/v001/submission.json", "utf8"),
+  );
+  const asset = submission.assets[0];
+  assert.equal(maxX - minX + 1, asset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, asset.visibleBounds.height);
+  // Main arch opening is genuinely transparent
+  assert.equal(im.data[(700 * 1024 + 512) * 4 + 3], 0);
+  // Trefoil tracery center is genuinely transparent
+  assert.equal(im.data[(336 * 1024 + 512) * 4 + 3], 0);
+  // Left and right pillars are solid opaque
+  assert.equal(im.data[(700 * 1024 + 200) * 4 + 3], 255);
+  assert.equal(im.data[(700 * 1024 + 800) * 4 + 3], 255);
+  // Top entablature platform surface is solid opaque
+  assert.equal(im.data[(100 * 1024 + 512) * 4 + 3], 255);
+});

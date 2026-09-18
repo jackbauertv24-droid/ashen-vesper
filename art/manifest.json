@@ -993,6 +993,27 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/cistern-lurker-v001.png"
       }
+    },
+    {
+      "id": "cloister-arch-span-v001",
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "title": "Ruined Cloister Gothic arcade arch span module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "intendedUse": "Stage 02 Ruined Cloister modular arcade architecture; runtime canvas 240x240, pivot (512, 960).",
+      "limitations": [
+        "Standalone arch span module; adjacent pier module and platform caps pending.",
+        "Decoupled from collision per LAYOUT_CONTRACT; not automatically solid."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, and 3-module colonnade repeat review.",
+        "engineIntegration": "Pending Stage 02 layout integration"
+      }
     }
   ]
 }
