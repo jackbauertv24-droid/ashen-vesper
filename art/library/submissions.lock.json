@@ -541,6 +541,34 @@
     {
       "path": "docs/reviews/tollkeeper-boss-v001.png",
       "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/source/tower-landing-generated-v001.jpg",
+      "sha256": "783288d82f222df1a939080252f5cdc27be44e4c564098d3ba497f3e7e3f7d1d"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
+      "sha256": "9e9058c0762bef779e75e6899893cfd1ac3a0ed7c73048a36010e5c07397bd45"
+    },
+    {
+      "path": "docs/reviews/tower-landing-v001.png",
+      "sha256": "ee7874e43f383eec1d4d248ad33d4cf9cf17b7de478c4035092cd353b8649d3a"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/PROMPT.txt",
+      "sha256": "f980acf3d697bab9be9fe04fdc606e3b7f84fc65aaad3ae76a84fdfed3a1066c"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/NOTES.md",
+      "sha256": "6e2aee5e8c8a072cf5aece9a6b986a1c2cb45bee847f609894a1bbf4decf1b1a"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/submission.json",
+      "sha256": "8cb5844f42c36aec508e064397ee4f289387c4812ef1d0ea1302bdbf20d40d8c"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/preview.html",
+      "sha256": "f7cbffb045b8794431ee6e829b9355251d0b50cf5b65f6e651d444f0e39b84dc"
     }
   ]
 }
