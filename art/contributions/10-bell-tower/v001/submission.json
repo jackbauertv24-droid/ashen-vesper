@@ -1,0 +1,40 @@
+{
+  "jobId": "10-bell-tower",
+  "module": "bronze-bell",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
+      "sha256": "85fbe43081604d4e1401cc5c9a5d3f508b0a779137237fe33a83a9e482c83b29",
+      "width": 1024,
+      "height": 1024,
+      "scale": 0.15625,
+      "runtimeSize": [
+        160,
+        160
+      ],
+      "hangingPivot": [
+        512,
+        64
+      ],
+      "runtimeHangingPivot": [
+        80,
+        10
+      ],
+      "visibleBounds": {
+        "minX": 165,
+        "maxX": 858,
+        "minY": 64,
+        "maxY": 924,
+        "width": 694,
+        "height": 861
+      },
+      "padding": {
+        "left": 165,
+        "right": 165,
+        "top": 64,
+        "bottom": 99
+      }
+    }
+  ]
+}
