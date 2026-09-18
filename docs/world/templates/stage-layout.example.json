@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "stageId": "02-ruined-cloister",
+  "status": "planning-only",
+  "implementation": "not-loaded-by-runtime",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 5120,
+    "h": 720
+  },
+  "referenceViewport": [
+    1280,
+    720
+  ],
+  "entry": {
+    "roomId": "cloister-entry",
+    "spawnId": "spawn-0"
+  },
+  "exit": {
+    "roomId": "cloister-court",
+    "anchor": {
+      "x": 2480,
+      "y": 600
+    },
+    "destinationStageId": "03-flooded-cistern",
+    "destinationStatus": "pending-accepted-layout"
+  },
+  "rooms": [
+    {
+      "id": "cloister-entry",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 2560,
+        "h": 720
+      },
+      "cameraBounds": {
+        "x": 0,
+        "y": 0,
+        "w": 2560,
+        "h": 720
+      },
+      "spawns": [
+        {
+          "id": "spawn-0",
+          "x": 180,
+          "y": 600,
+          "facing": 1
+        }
+      ],
+      "platforms": [
+        {
+          "id": "floor-0",
+          "x": 0,
+          "y": 600,
+          "w": 2560,
+          "h": 120
+        }
+      ],
+      "hazards": [],
+      "checkpoints": [
+        {
+          "id": "checkpoint-entry",
+          "spawnId": "spawn-0",
+          "activation": {
+            "x": 100,
+            "y": 480,
+            "w": 180,
+            "h": 120
+          }
+        }
+      ],
+      "art": [],
+      "encounters": [],
+      "interactions": [],
+      "routes": [
+        {
+          "id": "main-0",
+          "kind": "main",
+          "anchors": [
+            {
+              "id": "route-0-start",
+              "x": 180,
+              "y": 600
+            },
+            {
+              "id": "route-0-end",
+              "x": 2480,
+              "y": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloister-court",
+      "origin": {
+        "x": 2560,
+        "y": 0
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 2560,
+        "h": 720
+      },
+      "cameraBounds": {
+        "x": 0,
+        "y": 0,
+        "w": 2560,
+        "h": 720
+      },
+      "spawns": [
+        {
+          "id": "spawn-1",
+          "x": 180,
+          "y": 600,
+          "facing": 1
+        }
+      ],
+      "platforms": [
+        {
+          "id": "floor-1",
+          "x": 0,
+          "y": 600,
+          "w": 2560,
+          "h": 120
+        }
+      ],
+      "hazards": [],
+      "checkpoints": [],
+      "art": [],
+      "encounters": [],
+      "interactions": [],
+      "routes": [
+        {
+          "id": "main-1",
+          "kind": "main",
+          "anchors": [
+            {
+              "id": "route-1-start",
+              "x": 180,
+              "y": 600
+            },
+            {
+              "id": "route-1-end",
+              "x": 2480,
+              "y": 600
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "entry-court",
+      "kind": "seam",
+      "from": "cloister-entry",
+      "to": "cloister-court",
+      "exit": {
+        "x": 2560,
+        "y": 600
+      },
+      "entrance": {
+        "x": 0,
+        "y": 600
+      },
+      "reversible": true,
+      "activation": "walking across boundary",
+      "implementation": "pending"
+    }
+  ],
+  "limitations": [
+    "Two safe flat floors demonstrate format only, not the requested four-beat map.",
+    "No optional route, encounters, art or mechanisms supplied.",
+    "A runtime adapter and traversal checks are required."
+  ]
+}

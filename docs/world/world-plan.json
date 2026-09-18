@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "status": "planning-only-not-loaded-by-runtime",
+  "coordinateSystem": "stage-local units; x right, y down; anchors measured at feet/ground or named attachment socket",
+  "referenceViewport": [
+    1280,
+    720
+  ],
+  "hero": {
+    "standingArtHeight": 144,
+    "crouchedCollisionHeight": 84
+  },
+  "stages": [
+    {
+      "id": "01-pilgrim-road",
+      "name": "Pilgrim Road",
+      "priority": "P0 continuity",
+      "status": "existing-playable-baseline",
+      "planningBounds": [
+        6400,
+        720
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/01-pilgrim-road.md"
+    },
+    {
+      "id": "02-ruined-cloister",
+      "name": "Ruined Cloister",
+      "priority": "P1 next playable stage",
+      "status": "planned",
+      "planningBounds": [
+        5120,
+        720
+      ],
+      "roomBudget": 4,
+      "brief": "docs/world/stages/02-ruined-cloister.md"
+    },
+    {
+      "id": "03-flooded-cistern",
+      "name": "Flooded Cistern",
+      "priority": "P2 after mechanisms",
+      "status": "planned",
+      "planningBounds": [
+        5120,
+        720
+      ],
+      "roomBudget": 4,
+      "brief": "docs/world/stages/03-flooded-cistern.md"
+    },
+    {
+      "id": "04-ossuary-gallery",
+      "name": "Ossuary Gallery",
+      "priority": "P2 new candidate stage",
+      "status": "planned-runtime-dependencies",
+      "planningBounds": [
+        5120,
+        1440
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/04-ossuary-gallery.md"
+    },
+    {
+      "id": "05-counterweight-works",
+      "name": "Counterweight Works",
+      "priority": "P2 new candidate stage",
+      "status": "planned-runtime-dependencies",
+      "planningBounds": [
+        3840,
+        1440
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/05-counterweight-works.md"
+    },
+    {
+      "id": "06-bell-tower",
+      "name": "Bell Tower",
+      "priority": "P2 finale; boss P3",
+      "status": "planned-runtime-dependencies",
+      "planningBounds": [
+        2560,
+        2160
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/06-bell-tower.md"
+    }
+  ],
+  "connections": [
+    {
+      "id": "route-1",
+      "from": "01-pilgrim-road",
+      "to": "02-ruined-cloister",
+      "kind": "portal",
+      "placement": "destination anchor required in accepted room layout",
+      "status": "planned"
+    },
+    {
+      "id": "route-2",
+      "from": "02-ruined-cloister",
+      "to": "03-flooded-cistern",
+      "kind": "portal",
+      "placement": "destination anchor required in accepted room layout",
+      "status": "planned"
+    },
+    {
+      "id": "route-3",
+      "from": "03-flooded-cistern",
+      "to": "04-ossuary-gallery",
+      "kind": "portal",
+      "placement": "destination anchor required in accepted room layout",
+      "status": "planned"
+    },
+    {
+      "id": "route-4",
+      "from": "04-ossuary-gallery",
+      "to": "05-counterweight-works",
+      "kind": "portal",
+      "placement": "destination anchor required in accepted room layout",
+      "status": "planned"
+    },
+    {
+      "id": "route-5",
+      "from": "05-counterweight-works",
+      "to": "06-bell-tower",
+      "kind": "portal",
+      "placement": "destination anchor required in accepted room layout",
+      "status": "planned"
+    }
+  ]
+}

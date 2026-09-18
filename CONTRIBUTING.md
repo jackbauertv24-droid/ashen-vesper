@@ -17,3 +17,7 @@ The next planned map is the Ruined Cloister. Flying Bell Moth, healing vial and 
 Coding contributors can start with the [connected-room implementation prompt](docs/ROOM_TRANSITION_BRIEF.md), which defines transition, camera, checkpoint and per-room persistence evidence.
 
 All original submissions and variants must be retained. Earlier guidance about intentional removal does not permit discarding unused art: add versioned derivatives and preserve originals, including candidate or rejected outputs.
+
+## Whole-world and stage map jobs
+
+Use the [six-stage world contribution workflow](docs/world/README.md) for room graphs, original blockouts, modular environments, assembly previews and integration code. Each stage has copyable prompts, exact shared module defaults and stage-specific acceptance checks. Layouts and validation can be contributed without image generation. Start with the Cloister; later-stage features remain planned.

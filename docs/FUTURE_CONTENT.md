@@ -74,3 +74,7 @@ These are nice to have. Each is a separate PR with preserved originals, declared
 | Readable map markers | Design restrained matching vector/code-native checkpoint, locked gate, lever and room-exit symbols in limestone/amber/indigo, no embedded words or elaborate illustration. | SVG icons 32 × 32 plus 16px preview; accessible names supplied in UI, clear grayscale/state differences. Image generation is unnecessary for these simple symbols. |
 
 Do not introduce weather collision, new enemies or item rewards as an incidental part of a decoration PR. Each gameplay behavior gets its own reviewable scope.
+
+## Whole-world production
+
+The [six-stage world plan](world/README.md) connects Pilgrim Road → Ruined Cloister → Flooded Cistern → Ossuary Gallery → Counterweight Works → Bell Tower as proposed stage portals. Ossuary Gallery and Counterweight Works extend the later queue; both depend on vertical camera and proven mechanisms. Each stage brief defines blockout beats, missing modules, prompts and acceptance. Public planning data and room layouts are not loaded by the current runtime.

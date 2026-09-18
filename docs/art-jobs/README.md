@@ -84,3 +84,7 @@ Provide a preview page or short video that displays the sequence at both source 
 Character head/torso size should vary by no more than 5% across comparable poses; persistent anchors may not jump more than two source pixels. Show matching attack timing and contact in the demo. Verify on a narrow viewport as well. If the preview is only a stand-alone sheet player, mark engine integration as pending; passing existing tests does not prove the new sheet is loaded.
 
 Submit only the job's assets, metadata, previews and any narrowly needed integration. PR descriptions should distinguish retained source, accepted export and runtime integration, and list all failures honestly. Do not change combat physics to disguise mismatched artwork.
+
+## Whole-world map resources
+
+The [world contribution workflow](../world/README.md) expands environment jobs into six stage briefs with room graphs, reusable modules, copyable prompts, layout/data examples, dependencies and acceptance checks. Existing Jobs 08–10/15 keep their specialist contracts. New Ossuary Gallery and Counterweight Works are planned extensions. Choose one stage and one bounded deliverable; layouts/code need no image generation.

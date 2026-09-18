@@ -6,6 +6,8 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 **Contributors:** see the [prioritized future-content queue](docs/FUTURE_CONTENT.md) and [copyable art briefs](docs/art-jobs/README.md). Next: Ruined Cloister, Bell Moth, healing vial and lever/grate. Later: Flooded Cistern, Bell Tower, new enemies, relics and the Tollkeeper boss. These are planned additions, not current demo features.
 
+**Whole-world contributions:** [six-stage map workflow and prompts](docs/world/README.md), including room-layout contracts, reusable kits, stage dependencies and bounded PR jobs.
+
 [Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
 
 ## The Pilgrim Road
