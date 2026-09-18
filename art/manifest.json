@@ -1012,7 +1012,10 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Candidate RGBA cutout with white, black, indigo, abbey, and hero scale lineup review.",
-        "engineIntegration": "Pending boss arena"
+        "engineIntegration": "See docs/PR_18_21_REVIEW.md; arcade background and cropped cap integrated; boss/stair behavior pending."
+      },
+      "review": {
+        "runtimeStatus": "retained-candidate-needs-corrections"
       }
     },
     {
@@ -1033,7 +1036,10 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, and 3-module colonnade repeat review.",
-        "engineIntegration": "Pending Stage 02 layout integration"
+        "engineIntegration": "See docs/PR_18_21_REVIEW.md; arcade background and cropped cap integrated; boss/stair behavior pending."
+      },
+      "review": {
+        "runtimeStatus": "integrated-background-decoration"
       }
     },
     {
@@ -1054,7 +1060,10 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, arcade assembly, and socket telemetry review.",
-        "engineIntegration": "Pending Stage 02 layout integration"
+        "engineIntegration": "See docs/PR_18_21_REVIEW.md; arcade background and cropped cap integrated; boss/stair behavior pending."
+      },
+      "review": {
+        "runtimeStatus": "selected-decorative-prototype"
       }
     },
     {
@@ -1107,11 +1116,11 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, dual-facing, continuous run, and socket telemetry review in docs/reviews/stair-flight-v001.png",
-        "engineIntegration": "Pending Stage 01 layout integration"
+        "engineIntegration": "See docs/PR_18_21_REVIEW.md; arcade background and cropped cap integrated; boss/stair behavior pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "retained-candidate",
+        "runtimeStatus": "retained-candidate-needs-corrections",
         "metadataStatus": "ready-for-review",
         "scale": 0.25,
         "runtimeRun": 224,
@@ -1168,11 +1177,11 @@
       "validation": {
         "fileDecoded": true,
         "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, 3-copy repeat, and colonnade arcade assembly review in docs/reviews/cloister-platform-cap-v001.png",
-        "engineIntegration": "Pending Stage 02 layout integration"
+        "engineIntegration": "See docs/PR_18_21_REVIEW.md; arcade background and cropped cap integrated; boss/stair behavior pending."
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "retained-candidate",
+        "runtimeStatus": "integrated-prototype-floor-material",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -1212,6 +1221,96 @@
       "validation": {
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/cloister-platform-cap-v001.png"
+      }
+    },
+    {
+      "id": "tollkeeper-boss-generated-v001",
+      "path": "art/contributions/16-tollkeeper/v001/source/tollkeeper-boss-generated-v001.jpg",
+      "title": "tollkeeper boss generated v001",
+      "status": "retained-source",
+      "height": 1024,
+      "width": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "30836dcad17d04d8306aac866eabd965a28d8238c9ba18a7bc6341891f3b5e64",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
+      }
+    },
+    {
+      "id": "cloister-arch-span-generated-v001",
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-arch-span-generated-v001.jpg",
+      "title": "cloister arch span generated v001",
+      "status": "retained-source",
+      "height": 1024,
+      "width": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "dd198a2cfddb505a14861ca3a3bb19c2d270a1be38b1aba0736de2afcb3c1c79",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
+      }
+    },
+    {
+      "id": "cloister-pier-generated-v001",
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-pier-generated-v001.jpg",
+      "title": "cloister pier generated v001",
+      "status": "retained-source",
+      "height": 1024,
+      "width": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "b31f16728b2a90ca342ddb4391095a74baf561c46a21d18ba37031d7d64f8cae",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
+      }
+    },
+    {
+      "id": "stair-flight-generated-v001",
+      "path": "art/contributions/world-01-pilgrim-road/v001/source/stair-flight-generated-v001.jpg",
+      "title": "stair flight generated v001",
+      "status": "retained-source",
+      "height": 1024,
+      "width": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "8d7d53806f21d4d62e21685bc24bccf37ab710e68ce8cb41cb9eaa4f62023a7a",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
+      }
+    },
+    {
+      "id": "platform-cap-generated-v001",
+      "path": "art/contributions/world-02-ruined-cloister/v001/source/platform-cap-generated-v001.jpg",
+      "title": "platform cap generated v001",
+      "status": "retained-source",
+      "height": 768,
+      "width": 1376,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "d098ddb507835ee2a616ad61338b66ce73b1e00a09409e409084059577ff7291",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
+      }
+    },
+    {
+      "id": "tollkeeper-boss-v001",
+      "path": "docs/reviews/tollkeeper-boss-v001.png",
+      "title": "tollkeeper boss v001",
+      "status": "review-evidence",
+      "width": 1920,
+      "height": 1080,
+      "format": "png",
+      "alpha": true,
+      "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
       }
     }
   ]

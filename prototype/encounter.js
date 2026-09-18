@@ -10,6 +10,7 @@ import {
   solidHeight,
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
+import { platformCap, arcade } from "./environment-metrics.js";
 import { crouchScale, crouchAnchors } from "./character-metrics.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
@@ -274,15 +275,19 @@ function background() {
   ctx.fillStyle = fog;
   ctx.fillRect(0, 0, 1280, 720);
   ctx.save();
-  ctx.translate(-s.camera * 0.35, 0);
-  ctx.fillStyle = "#14213199";
+  ctx.translate(-s.camera * arcade.parallax, 0);
+  // Faded architecture belongs to the distant scenery, behind all actors.
+  ctx.globalAlpha = 0.25;
   for (let x = 0; x < 9000; x += 690) {
-    ctx.fillRect(x, 420, 70, 250);
-    ctx.beginPath();
-    ctx.moveTo(x - 12, 420);
-    ctx.lineTo(x + 35, 320);
-    ctx.lineTo(x + 82, 420);
-    ctx.fill();
+    for (let bay = 0; bay < 3; bay++) {
+      ctx.drawImage(
+        art.arcade,
+        x + bay * 190,
+        670 - arcade.groundY * arcade.scale,
+        1024 * arcade.scale,
+        1024 * arcade.scale,
+      );
+    }
   }
   ctx.restore();
 }
@@ -303,6 +308,21 @@ function platform(p) {
       p.y + 80,
       240,
       80,
+    );
+  }
+  const cap = platformCap.source,
+    repeat = cap.w * platformCap.scale;
+  for (let x = p.x; x < p.x + p.w; x += repeat) {
+    ctx.drawImage(
+      art.platformCap,
+      cap.x,
+      cap.y,
+      cap.w,
+      cap.h,
+      x,
+      p.y,
+      repeat,
+      cap.h * platformCap.scale,
     );
   }
   ctx.restore();
@@ -566,6 +586,8 @@ try {
       ]),
     ),
   );
+  art.platformCap = await load(platformCap.path);
+  art.arcade = await load(arcade.path);
   art.hero = keyed(art.hero, true);
   for (const k of ["air", "enemy"]) art[k] = keyed(art[k]);
   art.brazier = await load(

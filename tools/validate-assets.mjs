@@ -2,8 +2,9 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { PNG } from 'pngjs';
+import { imageDimensions } from './image-dimensions.mjs';
 const manifest=JSON.parse(fs.readFileSync('art/manifest.json'));
-for(const a of manifest.assets){const bytes=fs.readFileSync(a.path),png=PNG.sync.read(bytes);assert.equal(png.width,a.width);assert.equal(png.height,a.height);assert.equal(createHash('sha256').update(bytes).digest('hex'),a.sha256);}
+for(const a of manifest.assets){const bytes=fs.readFileSync(a.path),dimensions=imageDimensions(bytes);if(dimensions.format==='png')PNG.sync.read(bytes);assert.equal(dimensions.width,a.width);assert.equal(dimensions.height,a.height);assert.equal(createHash('sha256').update(bytes).digest('hex'),a.sha256);}
 const atlas=JSON.parse(fs.readFileSync('art/production/bellwarden/bellwarden-pilot-v001.json'));
 const png=PNG.sync.read(fs.readFileSync('art/production/bellwarden/bellwarden-pilot-v001.png'));
 assert.equal(atlas.frames.length,8);
@@ -40,6 +41,6 @@ for (const resource of submissions.resources) {
   preservedPaths.add(resource.path);
   assert.equal(createHash('sha256').update(fs.readFileSync(resource.path)).digest('hex'), resource.sha256,
     `Original submission changed: ${resource.path}. Create a versioned derivative instead.`);
-  if (resource.path.endsWith('.png')) assert.ok(manifest.assets.some(a => a.path === resource.path), `Retained image missing from catalog: ${resource.path}`);
+  if (/\.(png|jpe?g)$/i.test(resource.path)) assert.ok(manifest.assets.some(a => a.path === resource.path), `Retained image missing from catalog: ${resource.path}`);
 }
 console.log(`${preservedPaths.size} original submission resources preserved byte-for-byte. Structural checks do not certify crop, alpha or gameplay readiness.`);

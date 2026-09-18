@@ -63,3 +63,7 @@ Replace the bracket with one concrete object and copy its numeric contract into 
 - Stair control anchors do not supply every full flight, length or interaction tolerance. Moving platforms, hazard bounds, enemy spawns, item placements and safe checkpoints remain incomplete in this version.
 - Show hero-scale source-over alpha composites and tiled-module seams, plus both facings where relevant. Passing a neutral diagram render is not acceptance of art or gameplay.
 - Preserve v001; [record deviations](deviation.example.json) in v002+. Shared resource checks and existing-route regression must pass. No image generation is needed for geometry validation.
+
+## Available prototype art
+
+PR 19 arch/pier and PR 21 cap are retained. Reuse these exports for blockout/assembly work; correct measured sockets before claiming a structural kit. The demo uses arch as distant scenery and a central cap crop as floor material. No fresh generation is needed for a layout/adapter PR. See [PR 18–21 review](../../../PR_18_21_REVIEW.md).

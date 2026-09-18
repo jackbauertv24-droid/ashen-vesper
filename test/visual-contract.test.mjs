@@ -116,7 +116,11 @@ test("mechanism lever candidate has genuine RGBA transparency, 12px clear cell p
       for (let x = 0; x < 512; x++) {
         const alpha = im.data[(y * 1024 + offsetX + x) * 4 + 3];
         if (x < 12 || y < 12 || x >= 500 || y >= 500) {
-          assert.equal(alpha, 0, `Cell ${cellIdx} border violation at (${x}, ${y})`);
+          assert.equal(
+            alpha,
+            0,
+            `Cell ${cellIdx} border violation at (${x}, ${y})`,
+          );
         }
       }
     }
@@ -128,16 +132,34 @@ test("mechanism lever candidate has genuine RGBA transparency, 12px clear cell p
       const idx0 = (y * 1024 + x) * 4;
       const idx1 = (y * 1024 + 512 + x) * 4;
       for (let c = 0; c < 4; c++) {
-        assert.equal(im.data[idx0 + c], im.data[idx1 + c], `Base mismatch at (${x}, ${y}) channel ${c}`);
+        assert.equal(
+          im.data[idx0 + c],
+          im.data[idx1 + c],
+          `Base mismatch at (${x}, ${y}) channel ${c}`,
+        );
       }
     }
   }
 
   // Handle position verification: Cell 0 has inactive handle angled up (420, 150), Cell 1 has active handle angled down (450, 430)
-  assert.ok(im.data[(150 * 1024 + 420) * 4 + 3] > 200, "Cell 0 inactive handle must be elevated");
-  assert.equal(im.data[(150 * 1024 + 512 + 420) * 4 + 3], 0, "Cell 1 active handle must not be in elevated position");
-  assert.ok(im.data[(430 * 1024 + 512 + 450) * 4 + 3] > 200, "Cell 1 active handle must be lowered");
-  assert.equal(im.data[(430 * 1024 + 450) * 4 + 3], 0, "Cell 0 inactive handle must not be in lowered position");
+  assert.ok(
+    im.data[(150 * 1024 + 420) * 4 + 3] > 200,
+    "Cell 0 inactive handle must be elevated",
+  );
+  assert.equal(
+    im.data[(150 * 1024 + 512 + 420) * 4 + 3],
+    0,
+    "Cell 1 active handle must not be in elevated position",
+  );
+  assert.ok(
+    im.data[(430 * 1024 + 512 + 450) * 4 + 3] > 200,
+    "Cell 1 active handle must be lowered",
+  );
+  assert.equal(
+    im.data[(430 * 1024 + 450) * 4 + 3],
+    0,
+    "Cell 0 inactive handle must not be in lowered position",
+  );
 
   // Hinge point (256, 280) and plinth base bottom (256, 464) are solid in both cells
   assert.ok(im.data[(280 * 1024 + 256) * 4 + 3] > 200);
@@ -155,7 +177,10 @@ test("iron sexton design candidate has genuine RGBA transparency, clear 32px bor
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
 
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -173,7 +198,11 @@ test("iron sexton design candidate has genuine RGBA transparency, clear 32px bor
 
   assert.equal(minY, 76, "Hood peak height");
   assert.equal(maxY, 973, "Boot contact ground level");
-  assert.equal(maxY - minY + 1, 898, "Standing character height must equal 898px");
+  assert.equal(
+    maxY - minY + 1,
+    898,
+    "Standing character height must equal 898px",
+  );
 
   // Verify solid core (iron breastplate)
   assert.ok(im.data[(400 * 1024 + 500) * 4 + 3] > 200);
@@ -191,7 +220,10 @@ test("cistern lurker design candidate has genuine RGBA transparency, clear 32px 
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
 
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -219,18 +251,27 @@ test("cistern lurker design candidate has genuine RGBA transparency, clear 32px 
 
   // Aspect ratio confirms low crouching profile (ratio ~ 1.86)
   const ratio = width / height;
-  assert.ok(ratio > 1.8 && ratio < 1.95, `Aspect ratio ${ratio} matches low threat target`);
+  assert.ok(
+    ratio > 1.8 && ratio < 1.95,
+    `Aspect ratio ${ratio} matches low threat target`,
+  );
 
   // Reliquary amber core presence: (740, 440) shines bright amber between the grille bars
   const coreIdx = (440 * 1024 + 740) * 4;
   assert.ok(im.data[coreIdx + 3] > 200, "Core must be opaque");
   assert.ok(im.data[coreIdx] > 180, "Core must have warm amber red component");
-  assert.ok(im.data[coreIdx + 1] > 160, "Core must have warm amber green component");
+  assert.ok(
+    im.data[coreIdx + 1] > 160,
+    "Core must have warm amber green component",
+  );
 
   // Vertical iron grille bar in front of core at (730, 440)
   const barIdx = (440 * 1024 + 730) * 4;
   assert.ok(im.data[barIdx + 3] > 200, "Grille bar must be opaque");
-  assert.ok(im.data[barIdx] < im.data[coreIdx], "Grille bar must be darker than glowing amber core");
+  assert.ok(
+    im.data[barIdx] < im.data[coreIdx],
+    "Grille bar must be darker than glowing amber core",
+  );
 });
 
 test("tollkeeper boss design candidate has genuine RGBA transparency, clear 32px border, and 220-unit runtime height", () => {
@@ -241,7 +282,10 @@ test("tollkeeper boss design candidate has genuine RGBA transparency, clear 32px
   assert.equal(bytes[25], 6);
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -255,12 +299,17 @@ test("tollkeeper boss design candidate has genuine RGBA transparency, clear 32px
     }
   }
   const submission = JSON.parse(
-    fs.readFileSync("art/contributions/16-tollkeeper/v001/submission.json", "utf8"),
+    fs.readFileSync(
+      "art/contributions/16-tollkeeper/v001/submission.json",
+      "utf8",
+    ),
   );
   const asset = submission.assets[0];
   assert.equal(maxX - minX + 1, asset.visibleBounds.width);
   assert.equal(maxY - minY + 1, asset.visibleBounds.height);
-  assert.ok(Math.abs(asset.standingHeight * asset.scale - asset.runtimeHeight) < 0.1);
+  assert.ok(
+    Math.abs(asset.standingHeight * asset.scale - asset.runtimeHeight) < 0.1,
+  );
   const [acX, acY] = asset.landmarks.amberCore;
   const coreAlpha = im.data[(acY * 1024 + acX) * 4 + 3];
   assert.equal(coreAlpha, 255);
@@ -275,7 +324,10 @@ test("cloister arch span candidate has genuine RGBA transparency, pierced openin
   assert.equal(bytes[25], 6);
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -289,9 +341,14 @@ test("cloister arch span candidate has genuine RGBA transparency, pierced openin
     }
   }
   const submission = JSON.parse(
-    fs.readFileSync("art/contributions/08-ruined-cloister/v001/submission.json", "utf8"),
+    fs.readFileSync(
+      "art/contributions/08-ruined-cloister/v001/submission.json",
+      "utf8",
+    ),
   );
-  const asset = submission.assets.find(a => a.path.includes("cloister-arch-span"));
+  const asset = submission.assets.find((a) =>
+    a.path.includes("cloister-arch-span"),
+  );
   assert.equal(maxX - minX + 1, asset.visibleBounds.width);
   assert.equal(maxY - minY + 1, asset.visibleBounds.height);
   // Main arch opening is genuinely transparent
@@ -306,13 +363,17 @@ test("cloister arch span candidate has genuine RGBA transparency, pierced openin
 });
 
 test("cloister arcade pier candidate has genuine RGBA transparency, solid shaft, and 32px clear border", () => {
-  const file = "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png";
+  const file =
+    "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png";
   const bytes = fs.readFileSync(file);
   const im = PNG.sync.read(bytes);
   assert.equal(bytes[25], 6);
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -326,9 +387,14 @@ test("cloister arcade pier candidate has genuine RGBA transparency, solid shaft,
     }
   }
   const submission = JSON.parse(
-    fs.readFileSync("art/contributions/08-ruined-cloister/v001/submission.json", "utf8"),
+    fs.readFileSync(
+      "art/contributions/08-ruined-cloister/v001/submission.json",
+      "utf8",
+    ),
   );
-  const pierAsset = submission.assets.find(a => a.path.includes("cloister-pier"));
+  const pierAsset = submission.assets.find((a) =>
+    a.path.includes("cloister-pier"),
+  );
   assert.equal(maxX - minX + 1, pierAsset.visibleBounds.width);
   assert.equal(maxY - minY + 1, pierAsset.visibleBounds.height);
   // Center stone shaft is solid opaque
@@ -342,7 +408,6 @@ test("cloister arcade pier candidate has genuine RGBA transparency, solid shaft,
   assert.equal(im.data[(600 * 1024 + 900) * 4 + 3], 0);
 });
 
-
 test("World 01 Abbey limestone stair flight candidate satisfies visual and geometry contract", () => {
   const bytes = fs.readFileSync(
     "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
@@ -352,7 +417,10 @@ test("World 01 Abbey limestone stair flight candidate satisfies visual and geome
   assert.equal(im.width, 1024);
   assert.equal(im.height, 1024);
 
-  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
   for (let y = 0; y < 1024; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -377,19 +445,35 @@ test("World 01 Abbey limestone stair flight candidate satisfies visual and geome
   // Nominal 224 unit run at 0.25 scale (896px = 224 units)
   const width = maxX - minX + 1;
   assert.equal(width, 896, "Width must be 896px");
-  assert.equal(width * 0.25, 224, "Horizontal run at 0.25 scale must equal 224 units");
+  assert.equal(
+    width * 0.25,
+    224,
+    "Horizontal run at 0.25 scale must equal 224 units",
+  );
 
   // Rise calculation: top tread y=394, bottom tread y=899 -> 505px = 126.25 units
   const treadRise = 899 - minY;
-  assert.equal(treadRise * 0.25, 126.25, "Tread rise at 0.25 scale must equal 126.25 units");
+  assert.equal(
+    treadRise * 0.25,
+    126.25,
+    "Tread rise at 0.25 scale must equal 126.25 units",
+  );
 
   // Solid stone verification across treads
-  for (const [sx, sy] of [[120, 930], [300, 800], [500, 680], [700, 550], [900, 420]]) {
+  for (const [sx, sy] of [
+    [120, 930],
+    [300, 800],
+    [500, 680],
+    [700, 550],
+    [900, 420],
+  ]) {
     const idx = (sy * 1024 + sx) * 4;
-    assert.ok(im.data[idx + 3] > 240, `Stone step at (${sx}, ${sy}) must be solid opaque`);
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Stone step at (${sx}, ${sy}) must be solid opaque`,
+    );
   }
 });
-
 
 test("World 02 Ruined Cloister platform cap candidate satisfies visual and geometry contract", () => {
   const bytes = fs.readFileSync(
@@ -400,7 +484,10 @@ test("World 02 Ruined Cloister platform cap candidate satisfies visual and geome
   assert.equal(im.width, 1024);
   assert.equal(im.height, 256);
 
-  let minX = 1024, maxX = 0, minY = 256, maxY = 0;
+  let minX = 1024,
+    maxX = 0,
+    minY = 256,
+    maxY = 0;
   for (let y = 0; y < 256; y++) {
     for (let x = 0; x < 1024; x++) {
       const alpha = im.data[(y * 1024 + x) * 4 + 3];
@@ -425,16 +512,43 @@ test("World 02 Ruined Cloister platform cap candidate satisfies visual and geome
   // Span width 896px -> 210 runtime units at 240/1024 uniform scale
   const width = maxX - minX + 1;
   assert.equal(width, 896, "Width must be 896px");
-  assert.equal(width * (240 / 1024), 210, "Horizontal span at 240/1024 scale must equal 210 units");
+  assert.equal(
+    width * (240 / 1024),
+    210,
+    "Horizontal span at 240/1024 scale must equal 210 units",
+  );
 
   // Sockets at (64, 32) and (960, 32)
   const repeatInterval = 960 - 64;
   assert.equal(repeatInterval, 896, "Repeat interval must equal 896px");
 
   // Solid stone verification across walking surface and masonry beam
-  for (const [sx, sy] of [[200, 60], [400, 60], [512, 60], [600, 60], [800, 60], [512, 140]]) {
+  for (const [sx, sy] of [
+    [200, 60],
+    [400, 60],
+    [512, 60],
+    [600, 60],
+    [800, 60],
+    [512, 140],
+  ]) {
     const idx = (sy * 1024 + sx) * 4;
-    assert.ok(im.data[idx + 3] > 240, `Stone slab at (${sx}, ${sy}) must be solid opaque`);
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Stone slab at (${sx}, ${sy}) must be solid opaque`,
+    );
   }
 });
 
+test("runtime floor slice stays inside the opaque cap top and leaves collision height independent", async () => {
+  const { platformCap } = await import("../prototype/environment-metrics.js");
+  const im = PNG.sync.read(fs.readFileSync(platformCap.path)),
+    r = platformCap.source;
+  assert.equal(r.w * platformCap.scale, 150);
+  assert.ok(r.x >= 0 && r.x + r.w <= im.width && r.y + r.h <= im.height);
+  for (let x = r.x; x < r.x + r.w; x++)
+    assert.equal(
+      im.data[((r.y + 2) * im.width + x) * 4 + 3],
+      255,
+      "Repeat crop must not contain a transparent bevel in the top surface",
+    );
+});

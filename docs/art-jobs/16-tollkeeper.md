@@ -19,3 +19,7 @@ First behavior proposal: HP 12, one damage per slam contact, visible 1.2s warnin
 ## Acceptance
 
 View design beside real-scale hero and pilgrim, in grayscale and white/black/blue/abbey composites. Weapons and harness must not crop, shift or change material between poses. One 1280-wide arena must provide a clear escape route and safe checkpoint. Integration tests warning/miss/contact, one hit per sword swing, recovery vulnerability, boss death unlock, retry resets and no camera hiding attack tells. A design candidate closes no boss-gameplay task. Submit sound, pulse or death effects as separate future jobs.
+
+## Latest contribution review
+
+PR 18 candidate is retained. Two-handed pose and true220-unit runtime preview require correction before motion selection.

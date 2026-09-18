@@ -21,6 +21,22 @@
     {
       "number": 17,
       "commit": "193e664"
+    },
+    {
+      "number": 18,
+      "commit": "1b3bc36"
+    },
+    {
+      "number": 19,
+      "commit": "5ebc5de"
+    },
+    {
+      "number": 20,
+      "commit": "35a43ea"
+    },
+    {
+      "number": 21,
+      "commit": "6ea8da3"
     }
   ],
   "resources": [
@@ -489,6 +505,42 @@
       "path": "docs/reviews/cloister-platform-cap-v001.png",
       "sha256": "da74f0e7dfa7b01c7dd52ee2afecb87ad2ada2d169dd7384fd25c3f733e656a6",
       "bytes": 554274
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/NOTES.md",
+      "sha256": "c7bcc6df26d7a7cbe24da650ad3aeb089698039e516594b3b52e9701b2b7298c"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/PROMPT.txt",
+      "sha256": "a0ce223a16ee2b8dfd446157437b25f8caf5544ef965f44ac6f752f22d53d40c"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/preview.html",
+      "sha256": "163c7bbabee6abe5dc588fe9cd08921ec2511c95d8112684fc50ce7fe8f24e53"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/submission.json",
+      "sha256": "73e00b72e42f22a4a31f024d8c7f67f3a7f2beb071618c210a066c6dcef39e39"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/NOTES.md",
+      "sha256": "4066374ceadeef462aeaa487e44ef2e13662d7c49cd1a5a72f6a7f96f92a739b"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/PROMPT.txt",
+      "sha256": "2d951d354f0d78bf57c3f187e25f2434f393e6237854ad49a34556fd93627710"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/preview.html",
+      "sha256": "118231445a1367cebe2647d37d0e502812b2a6a54d5b6f6dd3600e60670d4e43"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/submission.json",
+      "sha256": "15189cac23012479ca6ef6374265cddb97b24066262680fd25628938a9f2c199"
+    },
+    {
+      "path": "docs/reviews/tollkeeper-boss-v001.png",
+      "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
     }
   ]
 }

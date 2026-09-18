@@ -25,3 +25,7 @@ Modular asset prompt; use separately for each chosen piece:
 ## Acceptance
 
 Preview assembled kit over existing sky with hero/guard at their actual runtime sizes. Grayscale floor edges, complete transparent openings, no matte veil. Show entrance, optional upper route, moth space, lever/grate sightline and exit. Traverse with current jump/crouch physics and both camera modes; narrower viewport and checkpoint return must remain readable. A map-art PR may stop at a validated blockout/kit but must label room transition/enemy/lever integration pending. Shared preservation and browser/resource checks apply.
+
+## Latest contribution review
+
+PR 19 arch is integrated as distant scenery; pier is a decorative prototype. Ground/contact and shared socket claims require corrections before structural assembly. PR 21 cap supplies prototype floor material, using a runtime central crop.

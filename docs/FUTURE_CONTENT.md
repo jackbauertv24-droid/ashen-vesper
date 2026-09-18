@@ -80,3 +80,7 @@ Do not introduce weather collision, new enemies or item rewards as an incidental
 The [six-stage world plan](world/README.md) connects Pilgrim Road → Ruined Cloister → Flooded Cistern → Ossuary Gallery → Counterweight Works → Bell Tower as proposed stage portals. Ossuary Gallery and Counterweight Works extend the later queue; both depend on vertical camera and proven mechanisms. Each stage brief defines blockout beats, missing modules, prompts and acceptance. Public planning data and room layouts are not loaded by the current runtime.
 
 **Baseline-layout track:** [six stage examples](world/examples/README.md) now define 30 room arrangements and 27 matching joins. These larger layouts replace earlier freeform envelopes when doing baseline work. Written themes drive independently created HD art; baseline geometry stays fixed until a versioned deviation is recorded. Camera/stairs, candidate collision, safe spawns and dynamic hazards are not yet integrated.
+
+## Latest contribution review
+
+PRs 18–21 are retained and reviewed. Arcade arch and cropped cap now appear in Pilgrim Road. Stair rise/socket correction and two-handed Tollkeeper reference remain follow-ups; no stage transition/stair runner/boss has been integrated.

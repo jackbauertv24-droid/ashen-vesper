@@ -127,4 +127,8 @@ Use the [copyable PR body](templates/PR_BODY.md) to report the concrete delivera
 - Run `npm test` and `npm run validate:assets` for submissions; `npm run test:browser` when gallery/preview/study changes; `npm run test:encounter` for gameplay changes and required regression checks. New controls/behavior need meaningful focused tests and actual input evidence. Passing the old encounter does not prove a new map is integrated.
 - PR body includes delivered files, reuse versus newly generated assets, model/attempt count per item, exact known cost or “unknown,” checks/failures, acceptance status and remaining dependencies. Unknown cost is not zero. No new generation is needed for blockout, validation or transition code.
 
-**Start now:** Stage02 baseline room graph/blockout; one Cloister arch/pier; separated grate; selected moth motion; vial inventory/use implementation; missing lever attempt preservation. These together can complete a coherent next encounter before later-stage art expands.
+**Start now:** Stage02 baseline room graph/blockout; reuse retained Cloister arch/pier with corrected sockets; separated grate; selected moth motion; vial inventory/use implementation; missing lever attempt preservation. These together can complete a coherent next encounter before later-stage art expands.
+
+## Latest contribution review
+
+PRs 18–21: arcade arch is now distant demo scenery and a cropped cap is prototype floor material. Stair candidate has141.5 socket rise rather than224; structural arch/cap sockets do not match. See [review and contributor follow-ups](../PR_18_21_REVIEW.md) before extending the kit.
