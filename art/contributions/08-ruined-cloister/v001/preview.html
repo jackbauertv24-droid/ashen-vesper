@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Job 08 — Ruined Cloister Arch Span Review</title>
+  <title>Job 08 — Ruined Cloister Arcade Kit Review</title>
   <style>
     :root {
       --bg: #0d1219;
@@ -95,13 +95,13 @@
       border-radius: 8px;
       padding: 20px;
     }
-    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+    .quad-sheet img { width: 100%; border-radius: 4px; border: 1px solid var(--border); margin-bottom: 16px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Job 08 / Stage 02 — Ruined Cloister Arch Span Verification</h1>
-    <p>Stage 02 architectural module: 1024 × 1024 native RGBA cutout, 240 × 240 runtime canvas, ground pivot (512, 960).</p>
+    <h1>Job 08 / Stage 02 — Ruined Cloister Arcade Kit Verification</h1>
+    <p>Stage 02 architectural kit: Arch Span & Arcade Pier modules (1024 × 1024 native RGBA, 240 × 240 runtime canvas, ground pivot 512, 960).</p>
   </header>
 
   <div class="layout">
@@ -111,7 +111,11 @@
       </div>
 
       <div class="controls">
-        <button id="btn-mode">View: Single Module</button>
+        <select id="sel-module">
+          <option value="arch">Module: Gothic Arch Span</option>
+          <option value="pier">Module: Gothic Arcade Pier</option>
+          <option value="arcade">Assembly: Colonnade Arcade (Pier + Arch)</option>
+        </select>
         <button id="btn-scale">Scale: Source (0.5×)</button>
         <select id="sel-bg">
           <option value="bg-dark">Background: Dark (#0b0d13)</option>
@@ -124,65 +128,108 @@
 
     <div class="sidebar">
       <h2>Architectural Telemetry</h2>
-      <div class="stat-row"><span class="stat-label">Module:</span><span>Gothic Arch Span</span></div>
-      <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
-      <div class="stat-row"><span class="stat-label">Ground Pivot:</span><span>(512, 960)</span></div>
-      <div class="stat-row"><span class="stat-label">Runtime Canvas:</span><span>240 × 240 units</span></div>
-      <div class="stat-row"><span class="stat-label">Main Opening:</span><span>387 px wide (Alpha 0)</span></div>
-      <div class="stat-row"><span class="stat-label">Trefoil Opening:</span><span>(512, 336) (Alpha 0)</span></div>
-      <div class="stat-row"><span class="stat-label">Platform Top:</span><span>y = 41 (Flat Frieze)</span></div>
-      <div class="stat-row"><span class="stat-label">Springline:</span><span>y = 530 (Capitals)</span></div>
-      <div class="stat-row"><span class="stat-label">Safety Margins:</span><span style="color:#4ade80;">≥ 38px (Clear Alpha 0)</span></div>
+      <div id="telemetry-stats">
+        <!-- populated dynamically -->
+      </div>
 
       <h2 style="margin-top: 16px;">Visual Overlays</h2>
       <div class="checkbox-group">
         <label><input type="checkbox" id="chk-pivot" checked> Ground Pivot (512, 960)</label>
-        <label><input type="checkbox" id="chk-sockets" checked> Sockets (Platform Top & Springline)</label>
-        <label><input type="checkbox" id="chk-openings" checked> Openings Span Overlay</label>
+        <label><input type="checkbox" id="chk-sockets" checked> Sockets (Platform / Abacus / Springline)</label>
         <label><input type="checkbox" id="chk-border" checked> 32px Clear Border</label>
       </div>
     </div>
   </div>
 
   <div class="quad-sheet">
-    <h2 style="margin: 0 0 12px; font-size: 18px; color: var(--gold);">Compositing Acceptance Review (White, Black, Indigo, Grayscale, Colonnade Assembly & Sockets)</h2>
+    <h2 style="margin: 0 0 12px; font-size: 18px; color: var(--gold);">1. Arcade Pier Acceptance Review</h2>
+    <img src="../../../../docs/reviews/cloister-pier-v001.png" alt="Cloister Pier Review">
+
+    <h2 style="margin: 20px 0 12px; font-size: 18px; color: var(--gold);">2. Arch Span Acceptance Review</h2>
     <img src="../../../../docs/reviews/cloister-arch-span-v001.png" alt="Cloister Arch Span Review">
   </div>
 
   <script type="module">
-    const img = new Image();
-    img.src = 'exports/cloister-arch-span-v001.png';
+    const archImg = new Image();
+    archImg.src = 'exports/cloister-arch-span-v001.png';
+
+    const pierImg = new Image();
+    pierImg.src = 'exports/cloister-pier-v001.png';
 
     const canvas = document.getElementById('view');
     const ctx = canvas.getContext('2d');
     const viewport = document.getElementById('viewport');
 
-    let mode = 'single';
+    let activeModule = 'arch';
     let isRuntime = false;
 
-    const btnMode = document.getElementById('btn-mode');
+    const selModule = document.getElementById('sel-module');
     const btnScale = document.getElementById('btn-scale');
     const selBg = document.getElementById('sel-bg');
     const chkPivot = document.getElementById('chk-pivot');
     const chkSockets = document.getElementById('chk-sockets');
-    const chkOpenings = document.getElementById('chk-openings');
     const chkBorder = document.getElementById('chk-border');
+    const telemetryStats = document.getElementById('telemetry-stats');
 
-    img.onload = () => {
-      draw();
+    let loadedCount = 0;
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= 2) {
+        updateTelemetry();
+        draw();
+      }
     };
+    archImg.onload = checkLoaded;
+    pierImg.onload = checkLoaded;
+
+    function updateTelemetry() {
+      if (activeModule === 'arch') {
+        telemetryStats.innerHTML = `
+          <div class="stat-row"><span class="stat-label">Module:</span><span>Gothic Arch Span</span></div>
+          <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
+          <div class="stat-row"><span class="stat-label">Ground Pivot:</span><span>(512, 960)</span></div>
+          <div class="stat-row"><span class="stat-label">Runtime Canvas:</span><span>240 × 240 units</span></div>
+          <div class="stat-row"><span class="stat-label">Main Opening:</span><span>387 px wide (Alpha 0)</span></div>
+          <div class="stat-row"><span class="stat-label">Trefoil Opening:</span><span>(512, 336) (Alpha 0)</span></div>
+          <div class="stat-row"><span class="stat-label">Platform Top:</span><span>y = 41 (Flat Frieze)</span></div>
+          <div class="stat-row"><span class="stat-label">Springline:</span><span>y = 530 (Capitals)</span></div>
+          <div class="stat-row"><span class="stat-label">Safety Margins:</span><span style="color:#4ade80;">≥ 38px (Clear Alpha 0)</span></div>
+        `;
+      } else if (activeModule === 'pier') {
+        telemetryStats.innerHTML = `
+          <div class="stat-row"><span class="stat-label">Module:</span><span>Gothic Arcade Pier</span></div>
+          <div class="stat-row"><span class="stat-label">Dimensions:</span><span>1024 × 1024 RGBA</span></div>
+          <div class="stat-row"><span class="stat-label">Ground Pivot:</span><span>(512, 960)</span></div>
+          <div class="stat-row"><span class="stat-label">Runtime Canvas:</span><span>240 × 240 units</span></div>
+          <div class="stat-row"><span class="stat-label">Top Contact:</span><span>y = 44 (Impost)</span></div>
+          <div class="stat-row"><span class="stat-label">Abacus Socket:</span><span>y = 341 (w = 299)</span></div>
+          <div class="stat-row"><span class="stat-label">Shaft Width:</span><span>202 px (centered)</span></div>
+          <div class="stat-row"><span class="stat-label">Base Footing:</span><span>y = 980</span></div>
+          <div class="stat-row"><span class="stat-label">Safety Margins:</span><span style="color:#4ade80;">≥ 43px (Clear Alpha 0)</span></div>
+        `;
+      } else {
+        telemetryStats.innerHTML = `
+          <div class="stat-row"><span class="stat-label">Assembly:</span><span>Colonnade Arcade</span></div>
+          <div class="stat-row"><span class="stat-label">Composition:</span><span>Pier + Arch Span + Pier</span></div>
+          <div class="stat-row"><span class="stat-label">Socket Match:</span><span>Ground y = 960</span></div>
+          <div class="stat-row"><span class="stat-label">Frieze Top:</span><span>y = 41 / 44</span></div>
+          <div class="stat-row"><span class="stat-label">Player Scale:</span><span>Hero 144u / 120u box</span></div>
+        `;
+      }
+    }
 
     function draw() {
       ctx.clearRect(0, 0, 512, 512);
 
-      if (mode === 'single') {
+      if (activeModule === 'arch' || activeModule === 'pier') {
+        const curImg = activeModule === 'arch' ? archImg : pierImg;
         const scale = isRuntime ? (240 / 1024) * 1.5 : 0.5;
         const dw = 1024 * scale;
         const dh = 1024 * scale;
         const dx = (512 - dw) / 2;
         const dy = (512 - dh) / 2;
 
-        ctx.drawImage(img, dx, dy, dw, dh);
+        ctx.drawImage(curImg, dx, dy, dw, dh);
 
         if (chkBorder.checked) {
           ctx.strokeStyle = 'rgba(239, 68, 68, 0.6)';
@@ -204,88 +251,108 @@
         }
 
         if (chkSockets.checked) {
-          const ty = dy + 41 * scale;
-          ctx.strokeStyle = '#38bdf8';
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(dx + 119 * scale, ty);
-          ctx.lineTo(dx + 904 * scale, ty);
-          ctx.stroke();
-          ctx.fillStyle = '#38bdf8';
-          ctx.font = '11px sans-serif';
-          ctx.fillText('Platform Top', dx + 125 * scale, ty - 5);
+          if (activeModule === 'arch') {
+            const ty = dy + 41 * scale;
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(dx + 119 * scale, ty);
+            ctx.lineTo(dx + 904 * scale, ty);
+            ctx.stroke();
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = '11px sans-serif';
+            ctx.fillText('Platform Top', dx + 125 * scale, ty - 5);
 
-          const sy = dy + 530 * scale;
-          ctx.strokeStyle = '#f59e0b';
-          ctx.setLineDash([3, 3]);
-          ctx.beginPath();
-          ctx.moveTo(dx + 119 * scale, sy);
-          ctx.lineTo(dx + 904 * scale, sy);
-          ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.fillStyle = '#f59e0b';
-          ctx.fillText('Springline', dx + 125 * scale, sy - 5);
-        }
+            const sy = dy + 530 * scale;
+            ctx.strokeStyle = '#f59e0b';
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(dx + 119 * scale, sy);
+            ctx.lineTo(dx + 904 * scale, sy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillText('Springline', dx + 125 * scale, sy - 5);
+          } else {
+            const ty = dy + 44 * scale;
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(dx + 362 * scale, ty);
+            ctx.lineTo(dx + 661 * scale, ty);
+            ctx.stroke();
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = '11px sans-serif';
+            ctx.fillText('Top Contact y=44', dx + 670 * scale, ty + 4);
 
-        if (chkOpenings.checked) {
-          const ox0 = dx + 313 * scale;
-          const ox1 = dx + 699 * scale;
-          const oy = dy + 700 * scale;
-          ctx.strokeStyle = '#a855f7';
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(ox0, oy);
-          ctx.lineTo(ox1, oy);
-          ctx.stroke();
-          ctx.fillStyle = '#a855f7';
-          ctx.font = '11px sans-serif';
-          ctx.fillText('Opening: 387px', ox0 + 10, oy - 6);
-
-          const tfx = dx + 512 * scale;
-          const tfy = dy + 336 * scale;
-          ctx.strokeStyle = '#e0a030';
-          ctx.beginPath();
-          ctx.arc(tfx, tfy, 6, 0, Math.PI * 2);
-          ctx.stroke();
+            const ay = dy + 341 * scale;
+            ctx.strokeStyle = '#f59e0b';
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(dx + 362 * scale, ay);
+            ctx.lineTo(dx + 660 * scale, ay);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillText('Abacus y=341', dx + 670 * scale, ay + 4);
+          }
         }
       } else {
-        // Colonnade repeat mode
-        const scale = 0.28;
-        const dw = 1024 * scale;
-        const dh = 1024 * scale;
-        const repeat = 786 * scale - 2;
+        // Colonnade arcade assembly mode
+        const scale = 0.32;
         const groundY = 460;
-        const startX = 20;
+        const centerX = 256;
 
         // Ground line
         ctx.strokeStyle = '#334155';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(10, groundY);
-        ctx.lineTo(502, groundY);
+        ctx.moveTo(20, groundY);
+        ctx.lineTo(492, groundY);
         ctx.stroke();
 
-        for (let i = 0; i < 2; i++) {
-          const cx = startX + i * repeat;
-          ctx.drawImage(img, cx, groundY - 960 * scale, dw, dh);
-        }
+        const archW = 1024 * scale;
+        const archH = 1024 * scale;
+        const archPivotX = 512 * scale;
+        const archPivotY = 960 * scale;
+
+        // Draw Arch Span in center
+        ctx.drawImage(archImg, centerX - archPivotX, groundY - archPivotY, archW, archH);
+
+        // Draw flanking Piers
+        const pierW = 1024 * scale;
+        const pierH = 1024 * scale;
+        const pierPivotX = 512 * scale;
+        const pierPivotY = 960 * scale;
+
+        ctx.drawImage(pierImg, centerX - pierPivotX - 100, groundY - pierPivotY, pierW, pierH);
+        ctx.drawImage(pierImg, centerX - pierPivotX + 100, groundY - pierPivotY, pierW, pierH);
+
+        // Draw Hero standing reference
+        const heroHeight = 144 * scale * (1024 / 240) * 0.25;
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.fillRect(40, groundY - heroHeight, 20, heroHeight);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.strokeRect(40, groundY - heroHeight, 20, heroHeight);
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = '10px monospace';
+        ctx.fillText('Hero 144u', 30, groundY - heroHeight - 4);
 
         if (chkPivot.checked) {
           ctx.strokeStyle = '#22c55e';
           ctx.lineWidth = 2;
-          for (let i = 0; i < 2; i++) {
-            const px = startX + i * repeat + 512 * scale;
+          [-100, 0, 100].forEach(offset => {
             ctx.beginPath();
-            ctx.arc(px, groundY, 4, 0, Math.PI * 2);
+            ctx.arc(centerX + offset, groundY, 4, 0, Math.PI * 2);
             ctx.stroke();
-          }
+          });
         }
       }
     }
 
-    btnMode.addEventListener('click', () => {
-      mode = mode === 'single' ? 'colonnade' : 'single';
-      btnMode.textContent = mode === 'single' ? 'View: Single Module' : 'View: 2-Arch Colonnade';
+    selModule.addEventListener('change', (e) => {
+      activeModule = e.target.value;
+      updateTelemetry();
       draw();
     });
 
@@ -299,7 +366,7 @@
       viewport.className = 'viewport ' + e.target.value;
     });
 
-    [chkPivot, chkSockets, chkOpenings, chkBorder].forEach(chk => {
+    [chkPivot, chkSockets, chkBorder].forEach(chk => {
       chk.addEventListener('change', draw);
     });
   </script>

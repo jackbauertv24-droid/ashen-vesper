@@ -65,6 +65,62 @@
           "radius": 45
         }
       }
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png",
+      "sha256": "4569ced2b7b2bd64240d7abe4d0b987da7619e9d5ffd9782a2fd26a763def2d6",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        960
+      ],
+      "visibleBounds": {
+        "minX": 362,
+        "maxX": 661,
+        "minY": 44,
+        "maxY": 980,
+        "width": 300,
+        "height": 937
+      },
+      "runtimeCanvas": [
+        240,
+        240
+      ],
+      "scale": 0.234375,
+      "sockets": {
+        "topContact": {
+          "y": 44,
+          "runtimeY": 10.3
+        },
+        "abacus": {
+          "y": 341,
+          "runtimeY": 79.9,
+          "span": [
+            362,
+            660
+          ],
+          "width": 299
+        },
+        "shaft": {
+          "span": [
+            411,
+            612
+          ],
+          "width": 202,
+          "centerX": 511.5
+        },
+        "baseFooting": {
+          "y": 980,
+          "runtimeY": 229.7
+        },
+        "groundPivot": {
+          "x": 512,
+          "y": 960,
+          "runtimeX": 120,
+          "runtimeY": 225
+        }
+      }
     }
   ]
 }
