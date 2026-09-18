@@ -2,6 +2,8 @@
 
 Ashen Vesper is an original Gothic action-platformer inspired by classic side-scrolling adventures. Help build a connected world from **room layouts, reusable environment modules, separate moving props and tested encounters**. All stages below are planning targets except the existing Pilgrim Road. A concept image or stitched panorama does not complete a stage.
 
+**Layout baseline:** start with the [six concrete stage examples](examples/README.md), [neutral scrolling preview](examples/v001/preview.html) and per-stage JSON/instructions. Preserve supplied geometry first; invent the HD artwork from written themes, then record layout changes in v002. These examples supersede earlier freeform envelopes for baseline work.
+
 Start by choosing **one stage and one deliverable**. You can contribute useful layouts, preview tools, integration code or asset cleanup without generating any images. Keep generation attempts focused on missing production pieces.
 
 ## World route and stage jobs
@@ -19,14 +21,14 @@ These arrows are proposed stage portals. They do not claim continuous geographic
 
 | Stage / copyable prompts | Planning bounds | First useful contribution | Dependencies |
 | --- | --- | --- | --- |
-| [01 Pilgrim Road](stages/01-pilgrim-road.md) | Existing 6400×720 | Document existing room graph or one causeway cap | Preserve current gameplay |
-| [02 Ruined Cloister](stages/02-ruined-cloister.md) | 5120×720 | Four-beat blockout; one arch OR pier | Room transition; moth/vial/lever behavior |
-| [03 Flooded Cistern](stages/03-flooded-cistern.md) | 5120×720 | Dry-route/valve blockout; one damp cap | Valves, lift, Lurker motion/contact |
-| [04 Ossuary Gallery](stages/04-ossuary-gallery.md) | 5120×1440 envelope | Two-band room graph; one niche wall | Vertical camera; Sexton motion/contact |
-| [05 Counterweight Works](stages/05-counterweight-works.md) | 3840×1440 envelope | Lift-path blockout; one separate deck | Platform carrying and safe reversals |
-| [06 Bell Tower](stages/06-bell-tower.md) | 2560×2160 envelope | Ascending route/arena blockout; one landing | Vertical camera/lifts; boss later |
+| [01 Pilgrim Road](stages/01-pilgrim-road.md) | Baseline13920×1360; demo6400×720 | Document existing room graph or one causeway cap | Preserve current gameplay |
+| [02 Ruined Cloister](stages/02-ruined-cloister.md) | 8192×2640 baseline | Six-room blockout; one arch OR pier | Room transition; moth/vial/lever behavior |
+| [03 Flooded Cistern](stages/03-flooded-cistern.md) | 14336×2000 baseline | Dry-route/valve blockout; one damp cap | Valves, lift, Lurker motion/contact |
+| [04 Ossuary Gallery](stages/04-ossuary-gallery.md) | 16012×1168 baseline | Three-room room graph; one niche wall | Vertical camera; Sexton motion/contact |
+| [05 Counterweight Works](stages/05-counterweight-works.md) | 9216×2640 baseline | Lift-path blockout; one separate deck | Platform carrying and safe reversals |
+| [06 Bell Tower](stages/06-bell-tower.md) | 11944×2000 baseline | Ascending route/arena blockout; one landing | Vertical camera/lifts; boss later |
 
-[world-plan.json](world-plan.json) records IDs, planned bounds, room budgets and portal order. Room budgets are approximately 3–6 functional rooms per stage, not a requirement to make one huge PNG per room. Room boundaries follow safe transition, camera and encounter purposes. This plan is independent of the runtime's current fixed-level constants.
+[world-plan.json](world-plan.json) records IDs, planned bounds, room budgets and portal order. The baseline has 3–6 functional rooms per stage, not a requirement to make one huge PNG per room. Room boundaries follow safe transition, camera and encounter purposes. This plan is independent of the runtime's current fixed-level constants.
 
 Build order differs from route order: finish current animation/gate continuity; connect the Cloister; prove lever/grate, vial and moth; prove Sexton/lift; then Cistern and later multi-band stages. Contributors may prepare later layouts/asset candidates now, labelling their dependencies. See the [future queue](../FUTURE_CONTENT.md).
 
@@ -64,7 +66,7 @@ See [the catalog](../../art/manifest.json) for alpha/status/limitations and [the
 ## Production sequence for each stage
 
 1. **Inventory:** reuse catalogued masonry, sky, gate, brazier, ember and selected references. List each missing piece with intended placement, layer and runtime size. Selected vial, moth, Sexton and Lurker references do not yet supply their future gameplay. The retained lever has missing-attempt preservation follow-up; see [PRs 15–17](../PR_15_17_REVIEW.md).
-2. **Layout:** produce original room graph and blockout using the [layout contract](LAYOUT_CONTRACT.md). Name entry/exit/checkpoint anchors, solid geometry, encounter spaces, mechanism links and camera bounds. Validate travel before polishing backgrounds.
+2. **Layout:** produce a blockout from the supplied baseline room graph using the [layout contract](LAYOUT_CONTRACT.md). Name entry/exit/checkpoint anchors, solid geometry, encounter spaces, mechanism links and camera bounds. Validate travel before polishing backgrounds.
 3. **Art direction:** use retained project references first. If a concept is useful, produce one stage mood reference with its intended production uses recorded. It is optional, never collision data and never automatically tileable.
 4. **Small kit:** generate/export one needed module. Test it at actual hero scale and assembled placement. Reuse that piece across the stage before commissioning another near-duplicate. Distinctive room identity can come from lighting/background/props while floors keep coherent materials.
 5. **Layer assembly:** submit a source/runtime scrolling preview with normal source-over compositing, grayscale, collision overlay and alpha tests. Separate background architecture, solid-aligned stone, props, moving objects and foreground.
@@ -125,4 +127,4 @@ Use the [copyable PR body](templates/PR_BODY.md) to report the concrete delivera
 - Run `npm test` and `npm run validate:assets` for submissions; `npm run test:browser` when gallery/preview/study changes; `npm run test:encounter` for gameplay changes and required regression checks. New controls/behavior need meaningful focused tests and actual input evidence. Passing the old encounter does not prove a new map is integrated.
 - PR body includes delivered files, reuse versus newly generated assets, model/attempt count per item, exact known cost or “unknown,” checks/failures, acceptance status and remaining dependencies. Unknown cost is not zero. No new generation is needed for blockout, validation or transition code.
 
-**Start now:** Stage02 room graph/blockout; one Cloister arch/pier; separated grate; selected moth motion; vial inventory/use implementation; missing lever attempt preservation. These together can complete a coherent next encounter before later-stage art expands.
+**Start now:** Stage02 baseline room graph/blockout; one Cloister arch/pier; separated grate; selected moth motion; vial inventory/use implementation; missing lever attempt preservation. These together can complete a coherent next encounter before later-stage art expands.

@@ -1,5 +1,7 @@
 # Stage 05 — Counterweight Works
 
+**Baseline-layout work:** use the [measured geometry example](../examples/v001/05-counterweight-works-INSTRUCTIONS.md) as the starting point. The dimensions/beats below are an earlier freeform redesign sketch; they do not override the baseline.
+
 **P2 new candidate stage. Status: planned-runtime-dependencies.** This brief is a target, not a finished map. Follow the [world contribution workflow](../README.md) and [layout contract](../LAYOUT_CONTRACT.md).
 
 ## Layout and experience

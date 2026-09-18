@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "stageId": "02-ruined-cloister",
+  "baseVersion": "v001",
+  "targetVersion": "v002",
+  "status": "proposal-not-applied",
+  "changes": [
+    {
+      "kind": "art-only",
+      "roomId": "02-A",
+      "reason": "Add original cloister ornament while preserving route geometry.",
+      "geometryChanged": false,
+      "description": "New background panels follow the written theme."
+    }
+  ],
+  "requiredForGeometryChanges": [
+    "Object ID and exact before/after coordinates or connection anchors",
+    "Reason: safety, measured correction, new encounter or intentional design",
+    "Affected connections, camera, checkpoint and optional return paths",
+    "Actual input traversal evidence and regression results"
+  ]
+}

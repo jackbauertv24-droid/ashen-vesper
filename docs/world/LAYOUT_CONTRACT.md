@@ -2,6 +2,8 @@
 
 Version 1 is a **proposed contributor interchange format**. The current encounter does not load it. A coding PR must implement and validate an adapter before claiming runtime support. JSON examples are planning data; do not silently plug them into the current fixed level.
 
+The [six-stage baseline examples](examples/README.md) are a separate geometry-example format with `solids/topEdges/stairGuides`, intentionally incomplete spawn/behavior data and measured correspondence anchors. They are not immediately loadable room records. Convert them to accepted runtime records through a reviewed adapter; derive feet spawns separately. The earlier freeform gap/step recommendations below do not authorize changing their geometry silently.
+
 ## Coordinates and geometry
 
 - Stage-local world units: x right, y down; reference viewport 1280×720. Stage `bounds` starts at (0,0). Room `origin` translates room-local data into the stage. Negative local coordinates require an explicit reviewed exception.

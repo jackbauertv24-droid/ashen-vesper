@@ -1,0 +1,1198 @@
+{
+  "schemaVersion": 1,
+  "stageId": "04-ossuary-gallery",
+  "name": "Ossuary Gallery",
+  "status": "layout-example-not-runtime-ready",
+  "coordinateSystem": "room-local x right/y down; origin translates to stage; 32-unit geometry grid, exceptions for measured connection planes",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 16012,
+    "h": 1168
+  },
+  "referenceViewport": [
+    1280,
+    720
+  ],
+  "comparisonHeroHeight": 144,
+  "geometryCell": 32,
+  "frameMargin": 40,
+  "rooms": [
+    {
+      "id": "04-A",
+      "label": "Room A",
+      "origin": {
+        "x": 0,
+        "y": 488
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 5964,
+        "h": 640
+      },
+      "solids": [
+        {
+          "id": "04-A-solid-1",
+          "x": 3200,
+          "y": 0,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-2",
+          "x": 3840,
+          "y": 0,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-3",
+          "x": 3264,
+          "y": 32,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-4",
+          "x": 3904,
+          "y": 32,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-5",
+          "x": 3200,
+          "y": 64,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-6",
+          "x": 3840,
+          "y": 64,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-7",
+          "x": 5888,
+          "y": 64,
+          "w": 76,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-8",
+          "x": 3200,
+          "y": 96,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-9",
+          "x": 3296,
+          "y": 96,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-10",
+          "x": 3840,
+          "y": 96,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-11",
+          "x": 3936,
+          "y": 96,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-12",
+          "x": 2688,
+          "y": 128,
+          "w": 256,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-13",
+          "x": 3328,
+          "y": 128,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-14",
+          "x": 3712,
+          "y": 128,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-15",
+          "x": 3968,
+          "y": 128,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-16",
+          "x": 4224,
+          "y": 128,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-17",
+          "x": 3392,
+          "y": 160,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-18",
+          "x": 3776,
+          "y": 160,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-19",
+          "x": 4032,
+          "y": 160,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-20",
+          "x": 4288,
+          "y": 160,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-21",
+          "x": 3328,
+          "y": 192,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-22",
+          "x": 3712,
+          "y": 192,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-23",
+          "x": 3968,
+          "y": 192,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-24",
+          "x": 4224,
+          "y": 192,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-25",
+          "x": 3328,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-26",
+          "x": 3424,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-27",
+          "x": 3712,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-28",
+          "x": 3808,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-29",
+          "x": 3968,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-30",
+          "x": 4064,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-31",
+          "x": 4224,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-32",
+          "x": 4320,
+          "y": 224,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-33",
+          "x": 2560,
+          "y": 256,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-34",
+          "x": 3456,
+          "y": 256,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-35",
+          "x": 3584,
+          "y": 256,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-36",
+          "x": 4096,
+          "y": 256,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-37",
+          "x": 3520,
+          "y": 288,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-38",
+          "x": 3648,
+          "y": 288,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-39",
+          "x": 4160,
+          "y": 288,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-40",
+          "x": 3456,
+          "y": 320,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-41",
+          "x": 3584,
+          "y": 320,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-42",
+          "x": 4096,
+          "y": 320,
+          "w": 96,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-43",
+          "x": 5888,
+          "y": 320,
+          "w": 76,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-44",
+          "x": 3456,
+          "y": 352,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-45",
+          "x": 3552,
+          "y": 352,
+          "w": 64,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-46",
+          "x": 3680,
+          "y": 352,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-47",
+          "x": 4096,
+          "y": 352,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-48",
+          "x": 4192,
+          "y": 352,
+          "w": 32,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-49",
+          "x": 0,
+          "y": 384,
+          "w": 640,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-50",
+          "x": 768,
+          "y": 384,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-51",
+          "x": 1536,
+          "y": 384,
+          "w": 640,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-52",
+          "x": 2304,
+          "y": 384,
+          "w": 256,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-53",
+          "x": 2944,
+          "y": 384,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-54",
+          "x": 3840,
+          "y": 384,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-55",
+          "x": 5120,
+          "y": 384,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-56",
+          "x": 5376,
+          "y": 384,
+          "w": 128,
+          "h": 32,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-57",
+          "x": 5632,
+          "y": 448,
+          "w": 256,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-A-solid-58",
+          "x": 5632,
+          "y": 512,
+          "w": 332,
+          "h": 32,
+          "status": "candidate-static-collision"
+        }
+      ],
+      "topEdges": [
+        {
+          "id": "04-A-top-1",
+          "x": 5888,
+          "y": 64,
+          "w": 76,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-2",
+          "x": 2688,
+          "y": 128,
+          "w": 256,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-3",
+          "x": 3328,
+          "y": 128,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-4",
+          "x": 3712,
+          "y": 128,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-5",
+          "x": 3968,
+          "y": 128,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-6",
+          "x": 4224,
+          "y": 128,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-7",
+          "x": 2560,
+          "y": 256,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-8",
+          "x": 3456,
+          "y": 256,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-9",
+          "x": 3584,
+          "y": 256,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-10",
+          "x": 4096,
+          "y": 256,
+          "w": 32,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-11",
+          "x": 5888,
+          "y": 320,
+          "w": 76,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-12",
+          "x": 0,
+          "y": 384,
+          "w": 640,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-13",
+          "x": 768,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-14",
+          "x": 1536,
+          "y": 384,
+          "w": 640,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-15",
+          "x": 2304,
+          "y": 384,
+          "w": 256,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-16",
+          "x": 2944,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-17",
+          "x": 3840,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-18",
+          "x": 5120,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-19",
+          "x": 5376,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-20",
+          "x": 5632,
+          "y": 448,
+          "w": 256,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-A-top-21",
+          "x": 5888,
+          "y": 512,
+          "w": 76,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        }
+      ],
+      "stairRegions": [
+        {
+          "x": 3232,
+          "y": 0,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3872,
+          "y": 0,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3200,
+          "y": 32,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3840,
+          "y": 32,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3296,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 3936,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 3360,
+          "y": 128,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3744,
+          "y": 128,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 4000,
+          "y": 128,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 4256,
+          "y": 128,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3328,
+          "y": 160,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3712,
+          "y": 160,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3968,
+          "y": 160,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 4224,
+          "y": 160,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3424,
+          "y": 192,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 3808,
+          "y": 192,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 4064,
+          "y": 192,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 4320,
+          "y": 192,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 3488,
+          "y": 256,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3616,
+          "y": 256,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 4128,
+          "y": 256,
+          "w": 96,
+          "h": 32
+        },
+        {
+          "x": 3456,
+          "y": 288,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3584,
+          "y": 288,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 4096,
+          "y": 288,
+          "w": 64,
+          "h": 32
+        },
+        {
+          "x": 3552,
+          "y": 320,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 3680,
+          "y": 320,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "x": 4192,
+          "y": 320,
+          "w": 32,
+          "h": 32
+        }
+      ],
+      "stairGuides": [],
+      "unknownAreas": [],
+      "spawns": [],
+      "checkpoints": [],
+      "hazards": [],
+      "movingPlatforms": [],
+      "encounters": [],
+      "art": [],
+      "implementation": "planning-only",
+      "limitations": [
+        "Collision class is derived, not gameplay-verified for this room.",
+        "Empty hazard/moving-platform/spawn lists mean not supplied, not proven absent.",
+        "Stair guides and connection anchors are not player feet or guaranteed safe spawns."
+      ]
+    },
+    {
+      "id": "04-B",
+      "label": "Room B",
+      "origin": {
+        "x": 5772,
+        "y": 40
+      },
+      "bounds": {
+        "x": 192,
+        "y": 0,
+        "w": 5952,
+        "h": 640
+      },
+      "solids": [
+        {
+          "id": "04-B-solid-1",
+          "x": 6080,
+          "y": 0,
+          "w": 64,
+          "h": 320,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-B-solid-2",
+          "x": 6112,
+          "y": 320,
+          "w": 32,
+          "h": 192,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-B-solid-3",
+          "x": 192,
+          "y": 512,
+          "w": 5952,
+          "h": 64,
+          "status": "candidate-static-collision"
+        }
+      ],
+      "topEdges": [
+        {
+          "id": "04-B-top-1",
+          "x": 192,
+          "y": 512,
+          "w": 5920,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        }
+      ],
+      "stairRegions": [],
+      "stairGuides": [],
+      "unknownAreas": [],
+      "spawns": [],
+      "checkpoints": [],
+      "hazards": [],
+      "movingPlatforms": [],
+      "encounters": [],
+      "art": [],
+      "implementation": "planning-only",
+      "limitations": [
+        "Collision class is derived, not gameplay-verified for this room.",
+        "Empty hazard/moving-platform/spawn lists mean not supplied, not proven absent.",
+        "Stair guides and connection anchors are not player feet or guaranteed safe spawns."
+      ]
+    },
+    {
+      "id": "04-C",
+      "label": "Room C",
+      "origin": {
+        "x": 11916,
+        "y": 40
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 4096,
+        "h": 640
+      },
+      "solids": [
+        {
+          "id": "04-C-solid-1",
+          "x": 0,
+          "y": 128,
+          "w": 1024,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-2",
+          "x": 1152,
+          "y": 128,
+          "w": 1792,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-3",
+          "x": 1408,
+          "y": 192,
+          "w": 128,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-4",
+          "x": 3968,
+          "y": 320,
+          "w": 128,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-5",
+          "x": 1216,
+          "y": 384,
+          "w": 1408,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-6",
+          "x": 2944,
+          "y": 384,
+          "w": 128,
+          "h": 128,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-7",
+          "x": 1152,
+          "y": 448,
+          "w": 128,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-8",
+          "x": 2624,
+          "y": 448,
+          "w": 64,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-9",
+          "x": 3200,
+          "y": 448,
+          "w": 128,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-10",
+          "x": 3712,
+          "y": 448,
+          "w": 128,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-11",
+          "x": 0,
+          "y": 512,
+          "w": 1152,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-12",
+          "x": 2688,
+          "y": 512,
+          "w": 384,
+          "h": 64,
+          "status": "candidate-static-collision"
+        },
+        {
+          "id": "04-C-solid-13",
+          "x": 3072,
+          "y": 576,
+          "w": 1024,
+          "h": 64,
+          "status": "candidate-static-collision"
+        }
+      ],
+      "topEdges": [
+        {
+          "id": "04-C-top-1",
+          "x": 0,
+          "y": 128,
+          "w": 1024,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-2",
+          "x": 1152,
+          "y": 128,
+          "w": 1792,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-3",
+          "x": 3968,
+          "y": 320,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-4",
+          "x": 1216,
+          "y": 384,
+          "w": 1408,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-5",
+          "x": 2944,
+          "y": 384,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-6",
+          "x": 1152,
+          "y": 448,
+          "w": 64,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-7",
+          "x": 2624,
+          "y": 448,
+          "w": 64,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-8",
+          "x": 3200,
+          "y": 448,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-9",
+          "x": 3712,
+          "y": 448,
+          "w": 128,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-10",
+          "x": 0,
+          "y": 512,
+          "w": 1152,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-11",
+          "x": 2688,
+          "y": 512,
+          "w": 256,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        },
+        {
+          "id": "04-C-top-12",
+          "x": 3072,
+          "y": 576,
+          "w": 1024,
+          "status": "candidate-top-edge-not-verified-player-contact"
+        }
+      ],
+      "stairRegions": [],
+      "stairGuides": [],
+      "unknownAreas": [],
+      "spawns": [],
+      "checkpoints": [],
+      "hazards": [],
+      "movingPlatforms": [],
+      "encounters": [],
+      "art": [],
+      "implementation": "planning-only",
+      "limitations": [
+        "Collision class is derived, not gameplay-verified for this room.",
+        "Empty hazard/moving-platform/spawn lists mean not supplied, not proven absent.",
+        "Stair guides and connection anchors are not player feet or guaranteed safe spawns."
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "04-join-1",
+      "kind": "portal",
+      "feature": "platform-scene",
+      "from": "04-A",
+      "to": "04-B",
+      "exit": {
+        "x": 5964,
+        "y": 64
+      },
+      "entrance": {
+        "x": 192,
+        "y": 512
+      },
+      "placementEquation": "from.origin + exit = to.origin + entrance",
+      "status": "measured-layout-anchors-runtime-pending",
+      "reversible": "return must be verified; only supplied directed joins are established"
+    },
+    {
+      "id": "04-join-2",
+      "kind": "seam",
+      "feature": "doorway",
+      "from": "04-B",
+      "to": "04-C",
+      "exit": {
+        "x": 6144,
+        "y": 512
+      },
+      "entrance": {
+        "x": 0,
+        "y": 512
+      },
+      "placementEquation": "from.origin + exit = to.origin + entrance",
+      "status": "measured-layout-anchors-runtime-pending",
+      "reversible": "return must be verified; only supplied directed joins are established"
+    }
+  ],
+  "sharedSpaces": [],
+  "stagePortals": [
+    {
+      "kind": "stage-portal",
+      "fromStage": "03-flooded-cistern",
+      "toStage": "04-ossuary-gallery",
+      "fromRoom": "03-E",
+      "toRoom": "04-A",
+      "exitGuide": {
+        "x": 5672,
+        "y": 576
+      },
+      "arrivalGuide": {
+        "x": 320,
+        "y": -192
+      },
+      "status": "guide-only-safe-foot-spawn-required",
+      "arrivalGuideWithinDisplayedRoom": false,
+      "warning": "Arrival guide lies outside displayed room bounds; player feet transform and safe supported spawn are required before integration."
+    },
+    {
+      "kind": "stage-portal",
+      "fromStage": "04-ossuary-gallery",
+      "toStage": "05-counterweight-works",
+      "fromRoom": "04-C",
+      "toRoom": "05-A",
+      "exitGuide": {
+        "x": 3584,
+        "y": 576
+      },
+      "arrivalGuide": {
+        "x": 192,
+        "y": 512
+      },
+      "status": "guide-only-safe-foot-spawn-required",
+      "arrivalGuideWithinDisplayedRoom": true
+    }
+  ],
+  "adaptations": [],
+  "unresolved": [
+    "Safe feet spawns/checkpoints and player-to-surface offset must be measured.",
+    "Stair path lengths/traversal, dynamic platforms and hazard bounds are incomplete.",
+    "Encounter/pickup positions are not included.",
+    "Unknown areas remain unassigned; do not treat as safe air.",
+    "Current movement/camera must be verified against these larger layouts; do not move floors silently."
+  ]
+}

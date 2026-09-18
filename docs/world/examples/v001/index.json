@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "status": "layout-examples",
+  "stages": [
+    {
+      "stageId": "01-pilgrim-road",
+      "name": "Pilgrim Road",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 13920,
+        "h": 1360
+      },
+      "rooms": 5,
+      "joins": 5,
+      "solidRectangles": 311,
+      "topEdges": 30,
+      "stairGuides": 22,
+      "unknownRectangles": 0
+    },
+    {
+      "stageId": "02-ruined-cloister",
+      "name": "Ruined Cloister",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 8192,
+        "h": 2640
+      },
+      "rooms": 6,
+      "joins": 5,
+      "solidRectangles": 666,
+      "topEdges": 290,
+      "stairGuides": 10,
+      "unknownRectangles": 1
+    },
+    {
+      "stageId": "03-flooded-cistern",
+      "name": "Flooded Cistern",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 14336,
+        "h": 2000
+      },
+      "rooms": 5,
+      "joins": 4,
+      "solidRectangles": 62,
+      "topEdges": 46,
+      "stairGuides": 12,
+      "unknownRectangles": 0
+    },
+    {
+      "stageId": "04-ossuary-gallery",
+      "name": "Ossuary Gallery",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 16012,
+        "h": 1168
+      },
+      "rooms": 3,
+      "joins": 2,
+      "solidRectangles": 74,
+      "topEdges": 34,
+      "stairGuides": 0,
+      "unknownRectangles": 0
+    },
+    {
+      "stageId": "05-counterweight-works",
+      "name": "Counterweight Works",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 9216,
+        "h": 2640
+      },
+      "rooms": 6,
+      "joins": 5,
+      "solidRectangles": 88,
+      "topEdges": 64,
+      "stairGuides": 30,
+      "unknownRectangles": 0
+    },
+    {
+      "stageId": "06-bell-tower",
+      "name": "Bell Tower",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 11944,
+        "h": 2000
+      },
+      "rooms": 5,
+      "joins": 6,
+      "solidRectangles": 174,
+      "topEdges": 84,
+      "stairGuides": 21,
+      "unknownRectangles": 0
+    }
+  ]
+}

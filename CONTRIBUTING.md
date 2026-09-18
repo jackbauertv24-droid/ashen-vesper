@@ -21,3 +21,5 @@ All original submissions and variants must be retained. Earlier guidance about i
 ## Whole-world and stage map jobs
 
 Use the [six-stage world contribution workflow](docs/world/README.md) for room graphs, original blockouts, modular environments, assembly previews and integration code. Each stage has copyable prompts, exact shared module defaults and stage-specific acceptance checks. Layouts and validation can be contributed without image generation. Start with the Cloister; later-stage features remain planned.
+
+For baseline-layout work, use [the six-stage geometry examples](docs/world/examples/README.md). Keep supplied room placement/connections first, create original HD modules from written themes, then record intentional layout changes in v002. No source scenery is part of the brief; neutral diagrams contain geometry only. Empty hazard/spawn data means unverified, not absent.

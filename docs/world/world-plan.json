@@ -17,11 +17,17 @@
       "priority": "P0 continuity",
       "status": "existing-playable-baseline",
       "planningBounds": [
+        13920,
+        1360
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/01-pilgrim-road.md",
+      "freeformPlanningBounds": [
         6400,
         720
       ],
-      "roomBudget": 5,
-      "brief": "docs/world/stages/01-pilgrim-road.md"
+      "layoutExample": "docs/world/examples/v001/01-pilgrim-road.json",
+      "layoutInstructions": "docs/world/examples/v001/01-pilgrim-road-INSTRUCTIONS.md"
     },
     {
       "id": "02-ruined-cloister",
@@ -29,11 +35,17 @@
       "priority": "P1 next playable stage",
       "status": "planned",
       "planningBounds": [
+        8192,
+        2640
+      ],
+      "roomBudget": 6,
+      "brief": "docs/world/stages/02-ruined-cloister.md",
+      "freeformPlanningBounds": [
         5120,
         720
       ],
-      "roomBudget": 4,
-      "brief": "docs/world/stages/02-ruined-cloister.md"
+      "layoutExample": "docs/world/examples/v001/02-ruined-cloister.json",
+      "layoutInstructions": "docs/world/examples/v001/02-ruined-cloister-INSTRUCTIONS.md"
     },
     {
       "id": "03-flooded-cistern",
@@ -41,11 +53,17 @@
       "priority": "P2 after mechanisms",
       "status": "planned",
       "planningBounds": [
+        14336,
+        2000
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/03-flooded-cistern.md",
+      "freeformPlanningBounds": [
         5120,
         720
       ],
-      "roomBudget": 4,
-      "brief": "docs/world/stages/03-flooded-cistern.md"
+      "layoutExample": "docs/world/examples/v001/03-flooded-cistern.json",
+      "layoutInstructions": "docs/world/examples/v001/03-flooded-cistern-INSTRUCTIONS.md"
     },
     {
       "id": "04-ossuary-gallery",
@@ -53,11 +71,17 @@
       "priority": "P2 new candidate stage",
       "status": "planned-runtime-dependencies",
       "planningBounds": [
+        16012,
+        1168
+      ],
+      "roomBudget": 3,
+      "brief": "docs/world/stages/04-ossuary-gallery.md",
+      "freeformPlanningBounds": [
         5120,
         1440
       ],
-      "roomBudget": 5,
-      "brief": "docs/world/stages/04-ossuary-gallery.md"
+      "layoutExample": "docs/world/examples/v001/04-ossuary-gallery.json",
+      "layoutInstructions": "docs/world/examples/v001/04-ossuary-gallery-INSTRUCTIONS.md"
     },
     {
       "id": "05-counterweight-works",
@@ -65,11 +89,17 @@
       "priority": "P2 new candidate stage",
       "status": "planned-runtime-dependencies",
       "planningBounds": [
+        9216,
+        2640
+      ],
+      "roomBudget": 6,
+      "brief": "docs/world/stages/05-counterweight-works.md",
+      "freeformPlanningBounds": [
         3840,
         1440
       ],
-      "roomBudget": 5,
-      "brief": "docs/world/stages/05-counterweight-works.md"
+      "layoutExample": "docs/world/examples/v001/05-counterweight-works.json",
+      "layoutInstructions": "docs/world/examples/v001/05-counterweight-works-INSTRUCTIONS.md"
     },
     {
       "id": "06-bell-tower",
@@ -77,11 +107,17 @@
       "priority": "P2 finale; boss P3",
       "status": "planned-runtime-dependencies",
       "planningBounds": [
+        11944,
+        2000
+      ],
+      "roomBudget": 5,
+      "brief": "docs/world/stages/06-bell-tower.md",
+      "freeformPlanningBounds": [
         2560,
         2160
       ],
-      "roomBudget": 5,
-      "brief": "docs/world/stages/06-bell-tower.md"
+      "layoutExample": "docs/world/examples/v001/06-bell-tower.json",
+      "layoutInstructions": "docs/world/examples/v001/06-bell-tower-INSTRUCTIONS.md"
     }
   ],
   "connections": [
@@ -125,5 +161,6 @@
       "placement": "destination anchor required in accepted room layout",
       "status": "planned"
     }
-  ]
+  ],
+  "layoutMode": "baseline-layout-first; versioned deviations"
 }

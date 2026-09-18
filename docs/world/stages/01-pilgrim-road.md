@@ -1,5 +1,7 @@
 # Stage 01 — Pilgrim Road
 
+**Baseline-layout work:** use the [measured geometry example](../examples/v001/01-pilgrim-road-INSTRUCTIONS.md) as the starting point. The dimensions/beats below are an earlier freeform redesign sketch; they do not override the baseline.
+
 **P0 continuity. Status: existing-playable-baseline.** This brief is a target, not a finished map. Follow the [world contribution workflow](../README.md) and [layout contract](../LAYOUT_CONTRACT.md).
 
 ## Layout and experience
