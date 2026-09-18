@@ -552,3 +552,58 @@ test("runtime floor slice stays inside the opaque cap top and leaves collision h
       "Repeat crop must not contain a transparent bevel in the top surface",
     );
 });
+
+test("World 04 Ossuary Gallery burial niche panel candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 16 || y < 16 || x >= 1008 || y >= 1008) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 71px margins on left/right, top margin at y=23, bottom margin at y=1000
+  assert.equal(minX, 71, "Left margin must be 71px");
+  assert.equal(maxX, 952, "Right margin must be 952px (inclusive)");
+  assert.equal(minY, 23, "Top edge must begin at y=23");
+  assert.equal(maxY, 1000, "Bottom plinth edge must be at y=1000");
+
+  // Span width 882px
+  const width = maxX - minX + 1;
+  assert.equal(width, 882, "Width must be 882px");
+
+  // Solid limestone masonry and sarcophagus plinth verification
+  for (const [sx, sy] of [
+    [200, 960],
+    [512, 960],
+    [800, 960],
+    [512, 100],
+    [512, 800],
+  ]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Material at (${sx}, ${sy}) must be solid opaque`,
+    );
+  }
+});
+

@@ -1312,6 +1312,97 @@
       "validation": {
         "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
       }
+    },
+    {
+      "id": "niche-panel-generated-v001",
+      "path": "art/contributions/world-04-ossuary-gallery/v001/source/niche-panel-generated-v001.jpg",
+      "title": "niche-panel-generated-v001",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "e46299ba82d5f44c716303388d7866b480c631d3ac65db2a5c862d4050480a6d",
+      "intendedUse": "Raw untouched Imagen 3 generation source for World 04 Ossuary Gallery burial niche wall panel module candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/niche-panel-v001.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/world-04-ossuary-gallery/v001/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "niche-panel-v001",
+      "path": "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
+      "title": "World 04 Ossuary Gallery burial niche wall panel module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "9c2961c1e81dac1943af3a0db1a7f537abbeb85a98c8aa343138120045fa2360",
+      "intendedUse": "Stage 04 Ossuary Gallery burial niche wall panel; 240x240 runtime canvas at scale 240/1024, ground pivot (512, 960).",
+      "limitations": [
+        "Candidate architectural wall panel; mid-ground decorative layer behind player traversal plane.",
+        "Does not provide floor collision; requires standard stage ground support."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, ossuary indigo, grayscale, gallery wall assembly, and 1:1 gameplay scale review in docs/reviews/ossuary-niche-panel-v001.png",
+        "engineIntegration": "Candidate asset; stage layout and room graph integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          240
+        ],
+        "groundPivot": [
+          512,
+          960
+        ],
+        "measuredVisibleBounds": {
+          "minX": 71,
+          "maxX": 952,
+          "minY": 23,
+          "maxY": 1000
+        }
+      }
+    },
+    {
+      "id": "ossuary-niche-panel-review-v001",
+      "path": "docs/reviews/ossuary-niche-panel-v001.png",
+      "title": "ossuary-niche-panel-review-v001",
+      "status": "candidate",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": true,
+      "sha256": "343d18aadb1ab4f663b8f7cfb7ab0fc3da3322942d4e71a0b21d22b51e42a59b",
+      "intendedUse": "Six-panel review sheet demonstrating transparent cutout, contrast backdrops, grayscale tonal values, gallery wall assembly, and 1:1 gameplay scale.",
+      "limitations": [
+        "Review evidence only."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Comprehensive review composite in docs/reviews/ossuary-niche-panel-v001.png",
+        "engineIntegration": "Review document only; not loaded by game engine."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "review-evidence",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
