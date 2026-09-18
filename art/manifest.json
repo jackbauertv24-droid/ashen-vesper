@@ -1312,6 +1312,84 @@
       "validation": {
         "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
       }
+    },
+    {
+      "id": "lift-deck-generated-v001",
+      "path": "art/contributions/world-05-counterweight-works/v001/source/lift-deck-generated-v001.jpg",
+      "title": "Counterweight Works Stone-and-Iron Lift Deck Raw Generator Source",
+      "status": "retained-source",
+      "height": 768,
+      "width": 1376,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "837c28397485750b712d75be149ab6113d447a51df1a63c13b4504c2e05f007b",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/world/stages/05-counterweight-works.md"
+      }
+    },
+    {
+      "id": "lift-deck-v001",
+      "path": "art/contributions/world-05-counterweight-works/v001/exports/lift-deck-v001.png",
+      "title": "World 05 Counterweight Works stone-and-iron lift deck moving platform module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "6bba3bea92b2eb248fcf0aa6334ce8d394d92dc1ad669a412d6f38d44b4d1263",
+      "intendedUse": "Stage 05 Counterweight Works and Job 15 moving elevator lift deck; 240x60 runtime canvas at scale 240/1024, top contact y=32, suspension sockets (72, 32) & (952, 32).",
+      "limitations": [
+        "Candidate visual moving platform cutout; vertical shaft travel path, lift endpoints, and carry physics managed by stage machinery logic."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, shaft travel simulation, and hero lineup review in docs/reviews/counterweight-lift-deck-v001.png",
+        "engineIntegration": "Pending Stage 05 layout and moving-platform integration"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "topContactY": 32,
+        "measuredVisibleBounds": {
+          "minX": 64,
+          "maxX": 959,
+          "minY": 26,
+          "maxY": 210
+        },
+        "sockets": {
+          "leftSuspension": [
+            72,
+            32
+          ],
+          "rightSuspension": [
+            952,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "id": "counterweight-lift-deck-review-v001",
+      "path": "docs/reviews/counterweight-lift-deck-v001.png",
+      "title": "Contributor World 05 lift deck platform compositing and shaft travel evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "a43558d4458d94cc9d6aa6b4189c5a854767020dcbb53ac6914055bbec1d6121",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/counterweight-lift-deck-v001.png"
+      }
     }
   ]
 }

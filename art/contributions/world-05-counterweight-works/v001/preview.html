@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 05 / Job 15 — Counterweight Works Lift Deck Review</title>
+  <style>
+    :root {
+      --bg: #0b1118;
+      --panel: #131c27;
+      --border: #263548;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+      --blue: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1240px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport-container {
+      position: relative;
+      border: 1px solid #334155;
+      background: #080e18;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      height: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport-container.bg-dark { background: #080e18; }
+    .viewport-container.bg-white { background: #ffffff; }
+    .viewport-container.bg-blue { background: #0a1424; }
+    .viewport-container.bg-abbey {
+      background-color: #0d1a29;
+      background-image: url("../../../concepts/abbey-gate-concept-v001.png");
+      background-size: cover;
+      background-position: center;
+    }
+    canvas {
+      display: block;
+    }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover, select:hover { background: #334155; }
+    button.active-action {
+      background: #b45309;
+      border-color: #f59e0b;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .stat-value { font-family: monospace; }
+    .checkbox-group {
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-candidate { background: #78350f; color: #fde68a; }
+    .review-gallery {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .review-gallery h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .review-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 05 / Job 15 — Counterweight Works Lift Deck Platform</h1>
+    <p>Stage 05 First Bounded Art Module &bull; 1024 × 256 RGBA Export &bull; Runtime 240 × 60 &bull; Top Contact y=32 &bull; <span class="badge badge-candidate">Candidate</span></p>
+  </header>
+
+  <div class="layout">
+    <section class="main-stage">
+      <div id="viewportContainer" class="viewport-container bg-dark">
+        <canvas id="viewport" width="800" height="540"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="toggleTravelBtn" class="active-action">Pause Lift Movement [Space]</button>
+        <button id="modeShaftBtn">Mode: Shaft Travel</button>
+        <button id="modeSingleBtn">Mode: Isolated HD</button>
+        <button id="modeRuntimeBtn">Mode: Runtime 1:1</button>
+
+        <select id="bgSelect">
+          <option value="bg-dark">Background: Dark Slate</option>
+          <option value="bg-white">Background: Pure White</option>
+          <option value="bg-blue">Background: Shaft Indigo</option>
+          <option value="bg-abbey">Background: Abbey Concept</option>
+        </select>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h2>Technical Contract</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span> <span class="stat-value">lift-deck-v001.png</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span> <span class="stat-value">1024 × 256 px</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span> <span class="stat-value">240 × 60 units</span></div>
+      <div class="stat-row"><span class="stat-label">Uniform Scale:</span> <span class="stat-value">0.234375 (240/1024)</span></div>
+      <div class="stat-row"><span class="stat-label">Top Contact:</span> <span class="stat-value">source y = 32</span></div>
+      <div class="stat-row"><span class="stat-label">Left Shackle:</span> <span class="stat-value">(72, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Right Shackle:</span> <span class="stat-value">(952, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Safe Margins:</span> <span class="stat-value">&ge; 12px (act 64/45px)</span></div>
+      <div class="stat-row"><span class="stat-label">Border Violations:</span> <span class="stat-value" style="color: var(--green);">0</span></div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="showSockets" checked> Show Suspension Sockets</label>
+        <label><input type="checkbox" id="showBounds" checked> Show Bounds &amp; Margins</label>
+        <label><input type="checkbox" id="showHero" checked> Show Grounded Hero (144u)</label>
+        <label><input type="checkbox" id="showChains" checked> Show Suspension Chains</label>
+      </div>
+
+      <h2>Mechanical Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Travel Status:</span> <span id="statusDisplay" class="stat-value" style="color: var(--accent);">Ascending</span></div>
+      <div class="stat-row"><span class="stat-label">Lift Elevation:</span> <span id="elevDisplay" class="stat-value">0.0 units</span></div>
+      <div class="stat-row"><span class="stat-label">Carried Actor:</span> <span class="stat-value" style="color: var(--green);">Bellwarden (Grounded)</span></div>
+      <div class="stat-row"><span class="stat-label">Stage Context:</span> <span class="stat-value">05 Counterweight Works</span></div>
+    </aside>
+  </div>
+
+  <section class="review-gallery">
+    <h2>Preserved Multi-Panel Review Composite</h2>
+    <p style="margin-bottom: 12px;">Multi-panel verification across dark/light contrast, grayscale values, vertical shaft travel, and hero scale lineup:</p>
+    <img src="../../../../docs/reviews/counterweight-lift-deck-v001.png" alt="Counterweight Lift Deck Review Composite">
+  </section>
+
+  <script>
+    const canvas = document.getElementById("viewport");
+    const ctx = canvas.getContext("2d");
+    const container = document.getElementById("viewportContainer");
+
+    const toggleTravelBtn = document.getElementById("toggleTravelBtn");
+    const modeShaftBtn = document.getElementById("modeShaftBtn");
+    const modeSingleBtn = document.getElementById("modeSingleBtn");
+    const modeRuntimeBtn = document.getElementById("modeRuntimeBtn");
+    const bgSelect = document.getElementById("bgSelect");
+
+    const showSocketsCb = document.getElementById("showSockets");
+    const showBoundsCb = document.getElementById("showBounds");
+    const showHeroCb = document.getElementById("showHero");
+    const showChainsCb = document.getElementById("showChains");
+
+    const statusDisplay = document.getElementById("statusDisplay");
+    const elevDisplay = document.getElementById("elevDisplay");
+
+    const deckImg = new Image();
+    deckImg.src = "exports/lift-deck-v001.png";
+
+    let currentMode = "shaft";
+    let isMoving = true;
+    let liftProgress = 0.5; // 0.0 to 1.0
+    let liftDir = 1;
+
+    function setMode(mode, btn) {
+      currentMode = mode;
+      [modeShaftBtn, modeSingleBtn, modeRuntimeBtn].forEach(b => b.className = "");
+      btn.className = "active-action";
+      render();
+    }
+
+    modeShaftBtn.addEventListener("click", () => setMode("shaft", modeShaftBtn));
+    modeSingleBtn.addEventListener("click", () => setMode("single", modeSingleBtn));
+    modeRuntimeBtn.addEventListener("click", () => setMode("runtime", modeRuntimeBtn));
+
+    function toggleTravel() {
+      isMoving = !isMoving;
+      toggleTravelBtn.textContent = isMoving ? "Pause Lift Movement [Space]" : "Resume Lift Movement [Space]";
+      toggleTravelBtn.className = isMoving ? "active-action" : "";
+      if (isMoving) requestAnimationFrame(render);
+    }
+
+    toggleTravelBtn.addEventListener("click", toggleTravel);
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        toggleTravel();
+      }
+    });
+
+    bgSelect.addEventListener("change", (e) => {
+      container.className = "viewport-container " + e.target.value;
+    });
+
+    showSocketsCb.addEventListener("change", render);
+    showBoundsCb.addEventListener("change", render);
+    showHeroCb.addEventListener("change", render);
+    showChainsCb.addEventListener("change", render);
+
+    deckImg.onload = render;
+
+    function drawHero(ctx, x, groundY, scale = 1.0) {
+      const w = 48 * scale;
+      const h = 144 * scale;
+      const topY = groundY - h;
+
+      ctx.save();
+      ctx.fillStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(x - w / 2, topY, w, h);
+      ctx.strokeRect(x - w / 2, topY, w, h);
+
+      ctx.beginPath();
+      ctx.arc(x, topY + 22 * scale, 14 * scale, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = `${Math.max(9, 11 * scale)}px monospace`;
+      ctx.textAlign = "center";
+      ctx.fillText("Hero (144u)", x, topY - 6);
+      ctx.restore();
+    }
+
+    function render() {
+      if (isMoving && currentMode === "shaft") {
+        liftProgress += liftDir * 0.008;
+        if (liftProgress >= 1.0) {
+          liftProgress = 1.0;
+          liftDir = -1;
+        } else if (liftProgress <= 0.0) {
+          liftProgress = 0.0;
+          liftDir = 1;
+        }
+        statusDisplay.textContent = liftDir > 0 ? "Ascending ↑" : "Descending ↓";
+        elevDisplay.textContent = (liftProgress * 180).toFixed(1) + " units";
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!deckImg.complete || deckImg.naturalWidth === 0) return;
+
+      if (currentMode === "shaft") {
+        // Vertical Shaft Travel View
+        const shaftTopY = 40;
+        const shaftBotY = 480;
+        const travelRange = shaftBotY - shaftTopY - 100;
+        const currentDeckY = shaftBotY - (liftProgress * travelRange) - 80;
+
+        const scale = 0.55;
+        const dw = 1024 * scale;
+        const dh = 256 * scale;
+        const dx = (canvas.width - dw) / 2;
+
+        // Shaft Walls
+        ctx.fillStyle = "#1e293b";
+        ctx.fillRect(dx - 30, 0, 24, canvas.height);
+        ctx.fillRect(dx + dw + 6, 0, 24, canvas.height);
+        ctx.strokeStyle = "#475569";
+        ctx.beginPath();
+        ctx.moveTo(dx - 6, 0); ctx.lineTo(dx - 6, canvas.height);
+        ctx.moveTo(dx + dw + 6, 0); ctx.lineTo(dx + dw + 6, canvas.height);
+        ctx.stroke();
+
+        // Chains
+        if (showChainsCb.checked) {
+          ctx.strokeStyle = "#94a3b8";
+          ctx.lineWidth = 3;
+          const leftChainX = dx + 72 * scale;
+          const rightChainX = dx + 952 * scale;
+          const chainAttachY = currentDeckY + 32 * scale;
+
+          ctx.beginPath();
+          ctx.moveTo(leftChainX, 0); ctx.lineTo(leftChainX, chainAttachY);
+          ctx.moveTo(rightChainX, 0); ctx.lineTo(rightChainX, chainAttachY);
+          ctx.stroke();
+        }
+
+        // Lift Deck
+        ctx.drawImage(deckImg, dx, currentDeckY, dw, dh);
+
+        // Hero carried on deck
+        if (showHeroCb.checked) {
+          const heroGroundY = currentDeckY + 32 * scale;
+          drawHero(ctx, dx + dw / 2, heroGroundY, scale * 1.3);
+        }
+
+        // Sockets
+        if (showSocketsCb.checked) {
+          const s1x = dx + 72 * scale;
+          const s2x = dx + 952 * scale;
+          const sy = currentDeckY + 32 * scale;
+
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath(); ctx.arc(s1x, sy, 4, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(s2x, sy, 4, 0, Math.PI * 2); ctx.fill();
+
+          ctx.fillText("Left Shackle (72, 32)", s1x - 40, sy - 8);
+          ctx.fillText("Right Shackle (952, 32)", s2x - 60, sy - 8);
+        }
+
+      } else if (currentMode === "single") {
+        // Single HD 1024x256 view
+        const scale = 0.72;
+        const dw = 1024 * scale;
+        const dh = 256 * scale;
+        const dx = (canvas.width - dw) / 2;
+        const dy = 200;
+
+        ctx.drawImage(deckImg, dx, dy, dw, dh);
+
+        if (showBoundsCb.checked) {
+          ctx.strokeStyle = "#475569";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(dx, dy, dw, dh);
+
+          ctx.strokeStyle = "#4ade80";
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(dx + 64 * scale, dy + 26 * scale, 896 * scale, 184 * scale);
+          ctx.fillStyle = "#4ade80";
+          ctx.font = "11px monospace";
+          ctx.fillText("Visible Bounds: 896 × 185 px", dx + 64 * scale, dy + 26 * scale - 6);
+        }
+
+        if (showSocketsCb.checked) {
+          const s1x = dx + 72 * scale;
+          const s2x = dx + 952 * scale;
+          const sy = dy + 32 * scale;
+
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath(); ctx.arc(s1x, sy, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(s2x, sy, 5, 0, Math.PI * 2); ctx.fill();
+
+          ctx.fillText("Left Shackle (72, 32)", s1x - 30, sy - 8);
+          ctx.fillText("Right Shackle (952, 32)", s2x - 80, sy - 8);
+
+          ctx.strokeStyle = "rgba(245, 158, 11, 0.7)";
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(s1x, sy); ctx.lineTo(s2x, sy); ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        if (showHeroCb.checked) {
+          drawHero(ctx, dx + 450 * scale, dy + 32 * scale, scale * (144 / 256));
+        }
+
+      } else if (currentMode === "runtime") {
+        // Runtime 1:1 Pixel scale (240x60)
+        const rw = 240;
+        const rh = 60;
+        const cx = (canvas.width - rw) / 2;
+        const cy = 260;
+
+        ctx.drawImage(deckImg, 0, 0, 1024, 256, cx, cy, rw, rh);
+
+        ctx.strokeStyle = "#f59e0b";
+        ctx.setLineDash([2, 2]);
+        ctx.beginPath(); ctx.moveTo(cx, cy + 7.5); ctx.lineTo(cx + rw, cy + 7.5); ctx.stroke();
+        ctx.setLineDash([]);
+
+        if (showHeroCb.checked) {
+          drawHero(ctx, cx + 80, cy + 7.5, 1.0);
+        }
+
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "11px monospace";
+        ctx.fillText("1:1 Pixel-Accurate Runtime Scale (240 × 60)", cx + 10, cy - 20);
+      }
+
+      if (isMoving && currentMode === "shaft") {
+        requestAnimationFrame(render);
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
