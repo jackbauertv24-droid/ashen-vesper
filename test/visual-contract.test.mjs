@@ -552,3 +552,56 @@ test("runtime floor slice stays inside the opaque cap top and leaves collision h
       "Repeat crop must not contain a transparent bevel in the top surface",
     );
 });
+
+test("ruined cloister portcullis grate candidate has genuine RGBA transparency, 12px safe padding, sill contact, and opening alpha", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be PNG Color Type 6 (True RGBA)");
+  assert.equal(im.width, 1024, "Width must be 1024");
+  assert.equal(im.height, 1280, "Height must be 1280");
+
+  let minX = 1024, maxX = 0, minY = 1280, maxY = 0;
+  for (let y = 0; y < 1280; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 12 || y < 12 || x >= 1012 || y >= 1268) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 10) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  assert.equal(minX, 88, "Left margin must be 88px");
+  assert.equal(maxX, 935, "Right margin must be 935px");
+  assert.equal(minY, 64, "Top hoist shackles must be at y=64");
+  assert.equal(maxY, 1215, "Bottom spear tips must reach sill ground line at y=1215");
+
+  const width = maxX - minX + 1;
+  const height = maxY - minY + 1;
+  assert.equal(width, 848, "Visible width must be 848px");
+  assert.equal(height, 1152, "Visible height must be 1152px");
+
+  // Center alignment with pivot x=512 within 1px
+  const centerX = (minX + maxX) / 2;
+  assert.ok(Math.abs(centerX - 511.5) < 1.0, `Center X ${centerX} must align with pivot 512`);
+
+  // Verify true alpha transparency through rectangular lattice interior openings
+  // Each lattice cell is ~70px wide, spaced every 100px: centers at x=260, 360, 560, 660 at y=300, 400, 700, 850
+  assert.equal(im.data[(300 * 1024 + 260) * 4 + 3], 0, "Lattice opening at (260, 300) must be completely transparent");
+  assert.equal(im.data[(400 * 1024 + 360) * 4 + 3], 0, "Lattice opening at (360, 400) must be completely transparent");
+  assert.equal(im.data[(700 * 1024 + 560) * 4 + 3], 0, "Lattice opening at (560, 700) must be completely transparent");
+  assert.equal(im.data[(850 * 1024 + 660) * 4 + 3], 0, "Lattice opening at (660, 850) must be completely transparent");
+
+  // Verify solid wrought-iron crossbars, pickets, and spear tip opacity
+  assert.ok(im.data[(64 * 1024 + 512) * 4 + 3] > 200, "Top hoist bar at (512, 64) must be solid iron");
+  assert.ok(im.data[(500 * 1024 + 512) * 4 + 3] > 200, "Horizontal crossbar at (512, 500) must be solid iron");
+  assert.ok(im.data[(1215 * 1024 + 612) * 4 + 3] > 200, "Spear tip at sill contact (612, 1215) must be solid iron");
+  assert.ok(im.data[(1210 * 1024 + 512) * 4 + 3] > 200, "Center spear at (512, 1210) must be solid iron");
+});

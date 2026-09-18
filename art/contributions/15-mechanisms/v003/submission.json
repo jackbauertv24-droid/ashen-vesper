@@ -1,0 +1,82 @@
+{
+  "jobId": "15-mechanisms",
+  "status": "candidate",
+  "mechanism": "grate",
+  "version": "v003",
+  "stage": "02-ruined-cloister",
+  "stageLocation": "Machinery room exit",
+  "assets": [
+    {
+      "path": "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
+      "sha256": "dd143330e1f424adcbf6d2e6e8525c24b9010abc00ca51aecbd8b3116e4d027a",
+      "width": 1024,
+      "height": 1280,
+      "referenceHeight": 1280,
+      "displayHeight": 160,
+      "runtimeCell": [
+        128,
+        160
+      ],
+      "scale": 0.125,
+      "pivot": [
+        512,
+        1216
+      ],
+      "runtimePivot": [
+        64,
+        152
+      ],
+      "bounds": {
+        "minX": 88,
+        "maxX": 935,
+        "minY": 64,
+        "maxY": 1215
+      },
+      "runtimeBounds": {
+        "minX": 11,
+        "maxX": 116.875,
+        "minY": 8,
+        "maxY": 151.875
+      },
+      "geometry": {
+        "groundPivot": [
+          512,
+          1216
+        ],
+        "topHoistAttachment": [
+          512,
+          64
+        ],
+        "openingsActualAlpha": true,
+        "paddingPixelsRequired": 12,
+        "actualMargins": {
+          "left": 88,
+          "right": 88,
+          "top": 64,
+          "bottom": 64
+        },
+        "borderViolations": 0
+      },
+      "interaction": {
+        "connectedLeverAsset": "art/contributions/15-mechanisms/v001/exports/lever-v001.png",
+        "raiseDistance": 120,
+        "raiseDurationSeconds": 1.2,
+        "activationRetained": true,
+        "collisionMode": "solid_when_closed_passable_when_open"
+      }
+    }
+  ],
+  "source": {
+    "path": "art/contributions/15-mechanisms/v003/source/grate-generated-v001.jpg",
+    "sha256": "dfccda25e733278910a1e8e333a9ac6fc250109269912528060fdf74a9654103",
+    "generator": "DeepMind Agent Image Generation (imagen-3.0-generate-002)",
+    "width": 896,
+    "height": 1200
+  },
+  "review": {
+    "path": "docs/reviews/abbey-grate-v001.png",
+    "sha256": "8181ab0cf8e24a68c659bef043b1a77db372dcfa591c31625ecc6528e3fa9135",
+    "width": 1440,
+    "height": 1040
+  }
+}

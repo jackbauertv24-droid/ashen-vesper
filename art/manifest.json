@@ -1312,6 +1312,82 @@
       "validation": {
         "engineIntegration": "Retained; see docs/PR_18_21_REVIEW.md"
       }
+    },
+    {
+      "id": "grate-generated-v001",
+      "path": "art/contributions/15-mechanisms/v003/source/grate-generated-v001.jpg",
+      "title": "Ruined Cloister Portcullis Grate Raw Generator Source",
+      "status": "retained-source",
+      "height": 1200,
+      "width": 896,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "dfccda25e733278910a1e8e333a9ac6fc250109269912528060fdf74a9654103",
+      "intendedUse": "Preserved contributor resource; gameplay acceptance documented separately.",
+      "validation": {
+        "engineIntegration": "Retained; see docs/world/stages/02-ruined-cloister.md"
+      }
+    },
+    {
+      "id": "grate-v001",
+      "path": "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
+      "title": "Ruined Cloister Portcullis Grate Mechanism Cutout",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1280,
+      "format": "png",
+      "alpha": true,
+      "sha256": "dd143330e1f424adcbf6d2e6e8525c24b9010abc00ca51aecbd8b3116e4d027a",
+      "intendedUse": "Interactive portcullis gate mechanism candidate for Stage 02 Ruined Cloister machinery room exit conforming to Job 15 contract; runtime 128x160 at scale 0.125, shared sill pivot (512, 1216), genuine alpha openings, and 120u raise clearance linked to Abbey Lever.",
+      "limitations": [
+        "Candidate mechanism cutout; level collision and linkage handled by stage machinery logic."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved visual review evidence in docs/reviews/abbey-grate-v001.png",
+        "engineIntegration": "Ready for maintainer Stage 02 machinery room exit integration; preview in art/contributions/15-mechanisms/v003/preview.html."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.125,
+        "runtimeCell": [
+          128,
+          160
+        ],
+        "sillPivot": [
+          512,
+          1216
+        ],
+        "topHoist": [
+          512,
+          64
+        ],
+        "measuredVisibleBounds": {
+          "minX": 88,
+          "maxX": 935,
+          "minY": 64,
+          "maxY": 1215
+        },
+        "borderViolations": 0
+      }
+    },
+    {
+      "id": "abbey-grate-review-v001",
+      "path": "docs/reviews/abbey-grate-v001.png",
+      "title": "Contributor Ruined Cloister Portcullis Grate Compositing and Linkage Evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "8181ab0cf8e24a68c659bef043b1a77db372dcfa591c31625ecc6528e3fa9135",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/abbey-grate-v001.png"
+      }
     }
   ]
 }
