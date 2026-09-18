@@ -390,3 +390,51 @@ test("World 01 Abbey limestone stair flight candidate satisfies visual and geome
   }
 });
 
+
+test("World 02 Ruined Cloister platform cap candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 256);
+
+  let minX = 1024, maxX = 0, minY = 256, maxY = 0;
+  for (let y = 0; y < 256; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 16 || x >= 992 || y >= 240) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 64px margins on left/right, top margin at y=32, bottom margin >= 40px
+  assert.equal(minX, 64, "Left margin must be 64px");
+  assert.equal(maxX, 959, "Right margin must be 959px (inclusive)");
+  assert.equal(minY, 32, "Top walkable surface must be at y=32");
+  assert.equal(maxY, 214, "Bottom of masonry beam must be at y=214");
+
+  // Span width 896px -> 210 runtime units at 240/1024 uniform scale
+  const width = maxX - minX + 1;
+  assert.equal(width, 896, "Width must be 896px");
+  assert.equal(width * (240 / 1024), 210, "Horizontal span at 240/1024 scale must equal 210 units");
+
+  // Sockets at (64, 32) and (960, 32)
+  const repeatInterval = 960 - 64;
+  assert.equal(repeatInterval, 896, "Repeat interval must equal 896px");
+
+  // Solid stone verification across walking surface and masonry beam
+  for (const [sx, sy] of [[200, 60], [400, 60], [512, 60], [600, 60], [800, 60], [512, 140]]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(im.data[idx + 3] > 240, `Stone slab at (${sx}, ${sy}) must be solid opaque`);
+  }
+});
+

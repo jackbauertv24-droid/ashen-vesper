@@ -1,0 +1,23 @@
+# Generation Prompts: World 02 Ruined Cloister — Walkable Platform / Landing Cap Module (v001)
+
+Model: Google Imagen 3 (via Antigravity generate_image)
+Aspect Ratio: 16:9 (1376x768)
+Tool: generate_image
+Date: 2026-09-18
+Target: World 02 (02-ruined-cloister) / Baseline walkable floor and arcade landing cap module
+
+## Prompt (Attempt 1 - Selected)
+Orthographic 2D side-scrolling video game asset: an ancient Gothic ruined abbey limestone walkable platform slab and landing cap module, side view horizontal architectural cross-section. Pure solid black background #000000, completely isolated architectural element. Weathered carved pale limestone block, flat perfectly horizontal top walking surface, chiselled stone moulding on the fascia edge, solid ashlar masonry underside, subtle cracks, fine moss and stone dust. Cool blue-gray moonlight highlights, warm muted stone tones. Pure side profile, perfectly flat horizontal top edge, zero 3D perspective distortion, zero ground shadow, zero floor shadow plane, no characters, no railings, no background scenery, no frame, no borders, clean cut silhouettes against black.
+
+## Negative Constraints Applied
+- No 3D perspective distortion or ground tilt
+- No floor shadow plane or ground cast shadow
+- No characters, railings, or props
+- No background scenery, sky, or room frames
+- Pure solid black background (#000000) for exact keyed cutout
+
+## Reference Pack Attachments
+- art/concepts/abbey-gate-concept-v001.png (abbey limestone palette, moonlight lighting)
+- art/production/abbey/masonry-module-v001.png (ashlar stone block scale and wear)
+- docs/world/README.md (walkable platform cap specification: 1024x256 RGBA, 240x60 canvas, top source y=32, sockets explicit)
+- docs/world/stages/02-ruined-cloister.md (Ruined Cloister asset queue: platform cap)

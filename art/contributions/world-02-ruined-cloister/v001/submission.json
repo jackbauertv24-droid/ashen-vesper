@@ -1,0 +1,54 @@
+{
+  "stageId": "02-ruined-cloister",
+  "module": "platform-cap",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
+      "sha256": "61628b86a94b85b0b775883d6e5b45479774856c0a0add2fff5a94f9d1c401bc",
+      "width": 1024,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        240,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 64,
+        "maxX": 959,
+        "minY": 32,
+        "maxY": 214,
+        "width": 896,
+        "height": 183
+      },
+      "sockets": {
+        "leftContact": [
+          64,
+          32
+        ],
+        "rightContact": [
+          960,
+          32
+        ],
+        "runtimeLeftContact": [
+          15,
+          7.5
+        ],
+        "runtimeRightContact": [
+          225,
+          7.5
+        ],
+        "repeatInterval": 896,
+        "runtimeRepeatInterval": 210
+      },
+      "padding": {
+        "left": 64,
+        "right": 64,
+        "top": 32,
+        "bottom": 41
+      }
+    }
+  ]
+}
