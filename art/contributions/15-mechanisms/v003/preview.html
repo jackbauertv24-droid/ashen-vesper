@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job 15 — Ruined Cloister Portcullis Grate Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+      --blue: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1240px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport-container {
+      position: relative;
+      border: 1px solid #475569;
+      background: #0b0d13;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport-container.bg-dark { background: #0b0d13; }
+    .viewport-container.bg-white { background: #ffffff; }
+    .viewport-container.bg-blue { background: #141624; }
+    .viewport-container.bg-abbey {
+      background-color: #142130;
+      background-image: url("../../../concepts/abbey-gate-concept-v001.png");
+      background-size: cover;
+      background-position: center;
+    }
+    canvas {
+      display: block;
+      image-rendering: auto;
+    }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover, select:hover { background: #334155; }
+    button.active-action {
+      background: #b45309;
+      border-color: #f59e0b;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .stat-value { font-family: monospace; }
+    .checkbox-group {
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-success { background: #064e3b; color: #6ee7b7; }
+    .badge-candidate { background: #78350f; color: #fde68a; }
+    .review-gallery {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .review-gallery h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .review-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 15 — Ruined Cloister Portcullis Grate Mechanism</h1>
+    <p>Stage 02 Machinery Room Exit — 1024 × 1280 RGBA Export &bull; Runtime 128 × 160 &bull; Sill Pivot (512, 1216) &bull; <span class="badge badge-candidate">Candidate</span></p>
+  </header>
+
+  <div class="layout">
+    <section class="main-stage">
+      <div id="viewportContainer" class="viewport-container bg-dark">
+        <canvas id="viewport" width="800" height="600"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="toggleStateBtn" class="active-action">Pull Lever [E] (Closed &rarr; Open)</button>
+        <button id="resetStateBtn">Reset [R]</button>
+
+        <select id="viewMode">
+          <option value="linkage">Mode: Mechanism Linkage (Lever + Grate)</option>
+          <option value="isolated">Mode: Isolated Grate (Full HD 1024x1280)</option>
+          <option value="runtime">Mode: Runtime Scale (1:1 with Hero)</option>
+        </select>
+
+        <select id="bgSelect">
+          <option value="bg-dark">Background: Dark Slate</option>
+          <option value="bg-white">Background: Pure White</option>
+          <option value="bg-blue">Background: Deep Indigo</option>
+          <option value="bg-abbey">Background: Abbey Scene</option>
+        </select>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h2>Technical Contract</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span> <span class="stat-value">grate-v001.png</span></div>
+      <div class="stat-row"><span class="stat-label">Source Resolution:</span> <span class="stat-value">1024 × 1280 px</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span> <span class="stat-value">128 × 160 units</span></div>
+      <div class="stat-row"><span class="stat-label">Scale Factor:</span> <span class="stat-value">0.125 (128/1024)</span></div>
+      <div class="stat-row"><span class="stat-label">Sill Ground Pivot:</span> <span class="stat-value">(512, 1216)</span></div>
+      <div class="stat-row"><span class="stat-label">Hoist Attachment:</span> <span class="stat-value">(512, 64)</span></div>
+      <div class="stat-row"><span class="stat-label">Lattice Openings:</span> <span class="stat-value">Genuine Alpha</span></div>
+      <div class="stat-row"><span class="stat-label">Safe Margins:</span> <span class="stat-value">&ge; 12px (act 64/88px)</span></div>
+      <div class="stat-row"><span class="stat-label">Border Violations:</span> <span class="stat-value" style="color: var(--green);">0</span></div>
+      <div class="stat-row"><span class="stat-label">Lift Distance:</span> <span class="stat-value">120 units</span></div>
+      <div class="stat-row"><span class="stat-label">Lever Linkage:</span> <span class="stat-value">Job 15 (v001)</span></div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="showSockets" checked> Show Sockets &amp; Pivots</label>
+        <label><input type="checkbox" id="showBounds" checked> Show Bounds &amp; Margins</label>
+        <label><input type="checkbox" id="showHero" checked> Show Hero Lineup (144u)</label>
+        <label><input type="checkbox" id="showArch" checked> Show Cloister Archways</label>
+      </div>
+
+      <h2>State &amp; Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Grate State:</span> <span id="stateDisplay" class="stat-value" style="color: var(--accent);">Closed (0u)</span></div>
+      <div class="stat-row"><span class="stat-label">Passable:</span> <span id="passableDisplay" class="stat-value" style="color: #ef4444;">No (Blocked)</span></div>
+      <div class="stat-row"><span class="stat-label">Lever Stance:</span> <span id="leverDisplay" class="stat-value">Inactive (0°)</span></div>
+      <div class="stat-row"><span class="stat-label">Spear Tip Clearance:</span> <span id="clearanceDisplay" class="stat-value">0 units</span></div>
+    </aside>
+  </div>
+
+  <section class="review-gallery">
+    <h2>Preserved Multi-Panel Review Composite</h2>
+    <p style="margin-bottom: 12px;">High-resolution validation across dark/light contrast, grayscale values, lever linkage, and hero scale lineup:</p>
+    <img src="../../../../docs/reviews/abbey-grate-v001.png" alt="Abbey Grate Review Composite">
+  </section>
+
+  <script>
+    const canvas = document.getElementById("viewport");
+    const ctx = canvas.getContext("2d");
+    const container = document.getElementById("viewportContainer");
+    const toggleStateBtn = document.getElementById("toggleStateBtn");
+    const resetStateBtn = document.getElementById("resetStateBtn");
+    const viewModeSelect = document.getElementById("viewMode");
+    const bgSelect = document.getElementById("bgSelect");
+
+    const showSocketsCb = document.getElementById("showSockets");
+    const showBoundsCb = document.getElementById("showBounds");
+    const showHeroCb = document.getElementById("showHero");
+    const showArchCb = document.getElementById("showArch");
+
+    const stateDisplay = document.getElementById("stateDisplay");
+    const passableDisplay = document.getElementById("passableDisplay");
+    const leverDisplay = document.getElementById("leverDisplay");
+    const clearanceDisplay = document.getElementById("clearanceDisplay");
+
+    // Load assets
+    const grateImg = new Image();
+    grateImg.src = "exports/grate-v001.png";
+
+    const leverImg = new Image();
+    leverImg.src = "../v001/exports/lever-v001.png";
+
+    const archImg = new Image();
+    archImg.src = "../../../production/abbey/abbey-gate-portal-v001.png";
+
+    let assetsLoaded = 0;
+    function checkLoaded() {
+      assetsLoaded++;
+      requestAnimationFrame(render);
+    }
+    grateImg.onload = checkLoaded;
+    leverImg.onload = checkLoaded;
+    archImg.onload = checkLoaded;
+
+    // State
+    let isOpen = false;
+    let liftProgress = 0.0; // 0.0 = closed, 1.0 = open
+    let isAnimating = false;
+    let animDirection = 1;
+
+    function triggerToggle() {
+      isOpen = !isOpen;
+      animDirection = isOpen ? 1 : -1;
+      isAnimating = true;
+      toggleStateBtn.textContent = isOpen ? "Lower Lever [E] (Open → Closed)" : "Pull Lever [E] (Closed → Open)";
+      toggleStateBtn.className = isOpen ? "" : "active-action";
+    }
+
+    function resetToggle() {
+      isOpen = false;
+      liftProgress = 0.0;
+      isAnimating = false;
+      toggleStateBtn.textContent = "Pull Lever [E] (Closed → Open)";
+      toggleStateBtn.className = "active-action";
+      updateTelemetry();
+      render();
+    }
+
+    toggleStateBtn.addEventListener("click", triggerToggle);
+    resetStateBtn.addEventListener("click", resetToggle);
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "e" || e.key === "E") {
+        triggerToggle();
+      } else if (e.key === "r" || e.key === "R") {
+        resetToggle();
+      }
+    });
+
+    viewModeSelect.addEventListener("change", () => requestAnimationFrame(render));
+    bgSelect.addEventListener("change", (e) => {
+      container.className = "viewport-container " + e.target.value;
+    });
+
+    showSocketsCb.addEventListener("change", () => requestAnimationFrame(render));
+    showBoundsCb.addEventListener("change", () => requestAnimationFrame(render));
+    showHeroCb.addEventListener("change", () => requestAnimationFrame(render));
+    showArchCb.addEventListener("change", () => requestAnimationFrame(render));
+
+    function updateTelemetry() {
+      const liftUnits = (liftProgress * 120).toFixed(1);
+      stateDisplay.textContent = liftProgress >= 0.99 ? "Fully Open (-120u)" : (liftProgress <= 0.01 ? "Closed (0u)" : `Rising (${liftUnits}u)`);
+      stateDisplay.style.color = liftProgress >= 0.99 ? "var(--green)" : "var(--accent)";
+      
+      const passable = liftProgress >= 0.85;
+      passableDisplay.textContent = passable ? "Yes (Walkable Passage)" : "No (Solid Barrier)";
+      passableDisplay.style.color = passable ? "var(--green)" : "#ef4444";
+
+      leverDisplay.textContent = liftProgress > 0.5 ? "Active (+76°)" : "Inactive (0°)";
+      clearanceDisplay.textContent = `${liftUnits} units`;
+    }
+
+    function drawHeroSilhouette(ctx, x, groundY) {
+      // Hero (Bellwarden) standard 144u height
+      const w = 48;
+      const h = 144;
+      const topY = groundY - h;
+
+      ctx.save();
+      ctx.fillStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 1.5;
+
+      // Body box
+      ctx.fillRect(x - w / 2, topY, w, h);
+      ctx.strokeRect(x - w / 2, topY, w, h);
+
+      // Head silhouette circle
+      ctx.beginPath();
+      ctx.arc(x, topY + 22, 14, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
+      ctx.fill();
+      ctx.stroke();
+
+      // Label
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = "10px monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("Hero (144u)", x, topY - 6);
+      ctx.restore();
+    }
+
+    function render(time) {
+      if (isAnimating) {
+        liftProgress += animDirection * 0.035;
+        if (liftProgress >= 1.0) {
+          liftProgress = 1.0;
+          isAnimating = false;
+        } else if (liftProgress <= 0.0) {
+          liftProgress = 0.0;
+          isAnimating = false;
+        }
+        updateTelemetry();
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const mode = viewModeSelect.value;
+      const groundY = 480;
+
+      if (mode === "linkage") {
+        // Linkage mode: stone ground, arch surround, grate and lever
+        // Ground sill
+        ctx.fillStyle = "#222a38";
+        ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+        ctx.strokeStyle = "#475569";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, groundY);
+        ctx.lineTo(canvas.width, groundY);
+        ctx.stroke();
+
+        // Optional arch surround
+        const grateX = 420;
+        const archWidth = 360;
+        const archHeight = 440;
+        if (showArchCb.checked && archImg.complete && archImg.naturalWidth > 0) {
+          ctx.drawImage(archImg, grateX - archWidth / 2, groundY - archHeight, archWidth, archHeight);
+        }
+
+        // Grate position
+        // Runtime size: 128 x 160 units. In this display canvas, let 1 unit = 2.5 px.
+        const unitScale = 2.5;
+        const grateW = 128 * unitScale; // 320 px
+        const grateH = 160 * unitScale; // 400 px
+        const maxLiftPx = 120 * unitScale; // 300 px
+        const currentLiftPx = liftProgress * maxLiftPx;
+        const grateRenderY = groundY - grateH - currentLiftPx + (8 * unitScale); // spear tips at groundY when lift=0
+
+        // Draw Grate
+        if (grateImg.complete && grateImg.naturalWidth > 0) {
+          ctx.drawImage(grateImg, grateX - grateW / 2, grateRenderY, grateW, grateH);
+        }
+
+        // Draw Hoist Chain connecting to ceiling
+        ctx.strokeStyle = "#64748b";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(grateX, grateRenderY + (8 * unitScale));
+        ctx.lineTo(grateX, 0);
+        ctx.stroke();
+
+        // Draw Lever
+        const leverX = 140;
+        const leverW = 64 * unitScale; // 160 px
+        const leverH = 64 * unitScale; // 160 px
+        const leverFrame = liftProgress > 0.5 ? 1 : 0; // 0=inactive, 1=active
+        if (leverImg.complete && leverImg.naturalWidth > 0) {
+          // Source cell is 512x512, 2 frames
+          ctx.drawImage(leverImg, leverFrame * 512, 0, 512, 512, leverX - leverW / 2, groundY - leverH + (6 * unitScale), leverW, leverH);
+        }
+
+        // Mechanical link indicator
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = liftProgress > 0.5 ? "#4ade80" : "#64748b";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(leverX + 30, groundY - 20);
+        ctx.lineTo(grateX - grateW / 2, groundY - 20);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Hero lineup
+        if (showHeroCb.checked) {
+          drawHeroSilhouette(ctx, 250, groundY);
+        }
+
+        // Sockets & Annotations
+        if (showSocketsCb.checked) {
+          // Sill pivot
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath();
+          ctx.arc(grateX, groundY, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#f59e0b";
+          ctx.font = "11px monospace";
+          ctx.fillText("Sill Pivot (64, 152)", grateX + 8, groundY - 8);
+
+          // Hoist socket
+          const hoistY = grateRenderY + (8 * unitScale);
+          ctx.fillStyle = "#38bdf8";
+          ctx.beginPath();
+          ctx.arc(grateX, hoistY, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText("Hoist Socket (64, 8)", grateX + 8, hoistY - 8);
+        }
+
+        if (showBoundsCb.checked) {
+          ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(grateX - grateW / 2, grateRenderY, grateW, grateH);
+          ctx.fillStyle = "#94a3b8";
+          ctx.font = "10px monospace";
+          ctx.fillText("128x160 canvas bounds", grateX - grateW / 2, grateRenderY - 4);
+        }
+
+      } else if (mode === "isolated") {
+        // Isolated HD 1024x1280 view
+        const scale = 0.42;
+        const dw = 1024 * scale;
+        const dh = 1280 * scale;
+        const dx = (canvas.width - dw) / 2;
+        const dy = (canvas.height - dh) / 2;
+
+        if (grateImg.complete && grateImg.naturalWidth > 0) {
+          ctx.drawImage(grateImg, dx, dy, dw, dh);
+        }
+
+        if (showBoundsCb.checked) {
+          // Canvas border
+          ctx.strokeStyle = "#475569";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(dx, dy, dw, dh);
+
+          // Safe margin lines (12px brief requirement)
+          const m12 = 12 * scale;
+          ctx.strokeStyle = "rgba(245, 158, 11, 0.5)";
+          ctx.setLineDash([3, 3]);
+          ctx.strokeRect(dx + m12, dy + m12, dw - 2 * m12, dh - 2 * m12);
+          ctx.setLineDash([]);
+
+          // Actual bounds (88..935, 64..1215)
+          const bx = dx + 88 * scale;
+          const by = dy + 64 * scale;
+          const bw = (935 - 88 + 1) * scale;
+          const bh = (1215 - 64 + 1) * scale;
+          ctx.strokeStyle = "#4ade80";
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(bx, by, bw, bh);
+          ctx.fillStyle = "#4ade80";
+          ctx.font = "11px monospace";
+          ctx.fillText("Visible Bounds: 848 × 1152 px", bx, by - 6);
+        }
+
+        if (showSocketsCb.checked) {
+          const pivotX = dx + 512 * scale;
+          const pivotY = dy + 1216 * scale;
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath();
+          ctx.arc(pivotX, pivotY, 6, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText("Sill Pivot (512, 1216)", pivotX + 10, pivotY - 6);
+
+          const hoistX = dx + 512 * scale;
+          const hoistY = dy + 64 * scale;
+          ctx.fillStyle = "#38bdf8";
+          ctx.beginPath();
+          ctx.arc(hoistX, hoistY, 6, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillText("Top Hoist (512, 64)", hoistX + 10, hoistY + 14);
+        }
+
+      } else if (mode === "runtime") {
+        // Runtime 1:1 scale: 128 x 160 px on screen
+        const rw = 128;
+        const rh = 160;
+        const cx = canvas.width / 2;
+        const cy = 400;
+
+        ctx.fillStyle = "#1e293b";
+        ctx.fillRect(0, cy, canvas.width, canvas.height - cy);
+        ctx.strokeStyle = "#475569";
+        ctx.beginPath();
+        ctx.moveTo(0, cy);
+        ctx.lineTo(canvas.width, cy);
+        ctx.stroke();
+
+        const liftPx = liftProgress * 120;
+        const renderY = cy - rh - liftPx + 8;
+
+        if (grateImg.complete && grateImg.naturalWidth > 0) {
+          ctx.drawImage(grateImg, cx - rw / 2, renderY, rw, rh);
+        }
+
+        if (showHeroCb.checked) {
+          // Bellwarden hero 1:1 runtime size is 144px height
+          drawHeroSilhouette(ctx, cx - 120, cy);
+        }
+
+        // Lever 1:1 runtime (64x64)
+        if (leverImg.complete && leverImg.naturalWidth > 0) {
+          const frame = liftProgress > 0.5 ? 1 : 0;
+          ctx.drawImage(leverImg, frame * 512, 0, 512, 512, cx - 220, cy - 64 + 6, 64, 64);
+        }
+
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "12px monospace";
+        ctx.fillText("1:1 Pixel-Accurate Runtime Scale (128 × 160)", cx - 140, 120);
+      }
+
+      if (isAnimating) {
+        requestAnimationFrame(render);
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>

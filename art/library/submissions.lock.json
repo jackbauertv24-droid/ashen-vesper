@@ -541,6 +541,34 @@
     {
       "path": "docs/reviews/tollkeeper-boss-v001.png",
       "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/source/grate-generated-v001.jpg",
+      "sha256": "dfccda25e733278910a1e8e333a9ac6fc250109269912528060fdf74a9654103"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
+      "sha256": "dd143330e1f424adcbf6d2e6e8525c24b9010abc00ca51aecbd8b3116e4d027a"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/PROMPT.txt",
+      "sha256": "a19588d6f39f29eee8410ee65f88721679225ab171d000d1956102b99b4af11e"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/NOTES.md",
+      "sha256": "47f046d86262c710d8fda2065b4b9d722421d5513c556afd172dc15f5be4ccca"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/submission.json",
+      "sha256": "1fc3e060ed11305bb17e9dfcdceee5715629d2f6046b3975753fcf996425e1a5"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/preview.html",
+      "sha256": "be3153b4f8a15dc3cd2455b615acbc70e2b06416ec9e275e533d1ad995512df0"
+    },
+    {
+      "path": "docs/reviews/abbey-grate-v001.png",
+      "sha256": "8181ab0cf8e24a68c659bef043b1a77db372dcfa591c31625ecc6528e3fa9135"
     }
   ]
 }
