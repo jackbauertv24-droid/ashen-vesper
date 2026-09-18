@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 01 — Abbey Limestone Stair Flight Module Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+      overflow: hidden;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #141624; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:hover, select:hover { background: #334155; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .quad-sheet img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 01: Pilgrim Road — Abbey Limestone Stair Flight (v001)</h1>
+    <p>Contract compliance review: 1024×1024 RGBA, 224 runtime unit run, 126.25 rise, sockets (64, 960) &amp; (960, 394), dual facing &amp; continuous chaining.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div class="viewport bg-dark" id="viewport">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Mode: Single Flight</button>
+        <button id="btn-flip">Facing: Ascend Right</button>
+        <button id="btn-scale">Scale: Reference (0.5×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#141624)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Module Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>stair-flight-v001.png</span></div>
+      <div class="stat-row"><span class="stat-label">Source Canvas:</span><span>1024 × 1024 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Canvas:</span><span>256 × 256 (Scale 0.25)</span></div>
+      <div class="stat-row"><span class="stat-label">Horizontal Run:</span><span>896 px &rarr; 224 units</span></div>
+      <div class="stat-row"><span class="stat-label">Vertical Rise:</span><span>505 px &rarr; 126.25 units</span></div>
+      <div class="stat-row"><span class="stat-label">Step Treads:</span><span>11 Carved Limestone</span></div>
+      <div class="stat-row"><span class="stat-label">Bottom Socket:</span><span>(64, 960) &rarr; (16, 240)</span></div>
+      <div class="stat-row"><span class="stat-label">Top Socket:</span><span>(960, 394) &rarr; (240, 98.5)</span></div>
+      <div class="stat-row"><span class="stat-label">Clear Margins:</span><span style="color:var(--green);">&ge; 64px (0 violations)</span></div>
+      <div class="stat-row"><span class="stat-label">Acceptance:</span><span>Candidate (World 01)</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-sockets" checked> Contact Sockets</label>
+        <label><input type="checkbox" id="chk-bounds" checked> Visible Silhouette Bounds</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Bellwarden Hero (144u)</label>
+        <label><input type="checkbox" id="chk-grid"> 32-Unit World Grid</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px; color: var(--accent);">Multi-Panel Compositing Review (White, Black, Indigo, Grayscale, Continuous Stacking, Telemetry)</h2>
+    <img src="../../../../docs/reviews/stair-flight-v001.png" alt="Stair Flight Review Composite">
+  </div>
+
+  <script type="module">
+    const stairImg = new Image();
+    stairImg.src = 'exports/stair-flight-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let modeIndex = 0; // 0: Single, 1: Dual Facing, 2: Joined Run
+    const modes = ['Single Flight', 'Dual Facing', 'Joined Run'];
+    let facing = 1; // 1: Ascend Right, -1: Ascend Left
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnFlip = document.getElementById('btn-flip');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkSockets = document.getElementById('chk-sockets');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkHero = document.getElementById('chk-hero');
+    const chkGrid = document.getElementById('chk-grid');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    stairImg.onload = () => draw();
+    heroImg.onload = () => draw();
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+      if (!stairImg.complete) return;
+      prepareHero();
+
+      const scale = isRuntime ? 0.25 : 0.5;
+
+      if (chkGrid.checked) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 1;
+        const gridStep = 32 * scale * 4; // grid units
+        for (let x = 0; x <= 512; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke();
+        }
+        for (let y = 0; y <= 512; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(512, y); ctx.stroke();
+        }
+      }
+
+      if (modeIndex === 0) {
+        // Single Flight
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(512, 0);
+          ctx.scale(-1, 1);
+        }
+        if (isRuntime) {
+          // Centered at runtime scale
+          ctx.drawImage(stairImg, 0, 0, 1024, 1024, 128, 128, 256, 256);
+          drawAnnotations(128, 128, 0.25);
+        } else {
+          // Reference scale 0.5x
+          ctx.drawImage(stairImg, 0, 0, 1024, 1024, 0, 0, 512, 512);
+          drawAnnotations(0, 0, 0.5);
+        }
+        ctx.restore();
+
+        if (chkHero.checked && heroPrepared) {
+          drawHeroAtPositions(isRuntime ? 0.25 : 0.5, isRuntime ? 128 : 0, isRuntime ? 128 : 0, facing);
+        }
+      } else if (modeIndex === 1) {
+        // Dual Facing (side-by-side or ascending opposite)
+        const subScale = 0.25;
+        // Left: Ascend right
+        ctx.drawImage(stairImg, 0, 0, 1024, 1024, 0, 128, 256, 256);
+        // Right: Ascend left (flipped)
+        ctx.save();
+        ctx.translate(512, 0);
+        ctx.scale(-1, 1);
+        ctx.drawImage(stairImg, 0, 0, 1024, 1024, 0, 128, 256, 256);
+        ctx.restore();
+
+        // Overlay annotations
+        if (chkSockets.checked) {
+          drawSocketCircle(64 * subScale, 128 + 960 * subScale, '#10b981');
+          drawSocketCircle(960 * subScale, 128 + 394 * subScale, '#f59e0b');
+          drawSocketCircle(512 - 64 * subScale, 128 + 960 * subScale, '#10b981');
+          drawSocketCircle(512 - 960 * subScale, 128 + 394 * subScale, '#f59e0b');
+        }
+        if (chkHero.checked && heroPrepared) {
+          drawHeroInstance(64 * subScale, 128 + 960 * subScale, 1);
+          drawHeroInstance(512 - 64 * subScale, 128 + 960 * subScale, -1);
+        }
+      } else if (modeIndex === 2) {
+        // Joined Run (two stacked flights forming continuous staircase)
+        // Flight 1: bottom-left
+        // Flight 2: shifted by (960-64)*0.25 = 224px, and up by (960-394)*0.25 = 141.5px
+        const subScale = 0.25;
+        const dx = (960 - 64) * subScale;
+        const dy = (960 - 394) * subScale;
+        const originX = 16;
+        const originY = 240;
+
+        ctx.drawImage(stairImg, 0, 0, 1024, 1024, originX, originY, 256, 256);
+        ctx.drawImage(stairImg, 0, 0, 1024, 1024, originX + dx, originY - dy, 256, 256);
+
+        if (chkSockets.checked) {
+          // Bottom of flight 1
+          drawSocketCircle(originX + 64 * subScale, originY + 960 * subScale, '#10b981');
+          // Junction between flight 1 top and flight 2 bottom
+          drawSocketCircle(originX + 960 * subScale, originY + 394 * subScale, '#38bdf8');
+          // Top of flight 2
+          drawSocketCircle(originX + dx + 960 * subScale, originY - dy + 394 * subScale, '#f59e0b');
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHeroInstance(originX + 64 * subScale, originY + 960 * subScale, 1);
+          drawHeroInstance(originX + dx + 960 * subScale, originY - dy + 394 * subScale, 1);
+        }
+      }
+    }
+
+    function drawSocketCircle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    function drawAnnotations(ox, oy, s) {
+      if (chkSockets.checked) {
+        drawSocketCircle(ox + 64 * s, oy + 960 * s, '#10b981');
+        drawSocketCircle(ox + 960 * s, oy + 394 * s, '#f59e0b');
+      }
+
+      if (chkBounds.checked) {
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(ox + 64 * s, oy + 394 * s, 896 * s, 566 * s);
+        ctx.setLineDash([]);
+      }
+    }
+
+    function drawHeroAtPositions(s, ox, oy, f) {
+      if (!heroPrepared) return;
+      // Hero feet at bottom socket
+      const bx = f === 1 ? ox + 64 * s : ox + 512 - 64 * s;
+      const by = oy + 960 * s;
+      drawHeroInstance(bx, by, f);
+
+      // Hero feet at top socket
+      const tx = f === 1 ? ox + 960 * s : ox + 512 - 960 * s;
+      const ty = oy + 394 * s;
+      drawHeroInstance(tx, ty, f);
+    }
+
+    function drawHeroInstance(feetX, feetY, f) {
+      // Idle frame: x:80, y:5, width:260, height:433, pivotX:96, pivotY:427
+      // Display height: 144 units (runtime scale 144/418)
+      const heroScale = 144 / 418;
+      const fw = 260, fh = 433, px = 96, py = 427;
+      const renderW = fw * heroScale;
+      const renderH = fh * heroScale;
+
+      ctx.save();
+      ctx.translate(feetX, feetY);
+      if (f === -1) ctx.scale(-1, 1);
+      ctx.drawImage(heroCanvas, 80, 5, fw, fh, -px * heroScale, -py * heroScale, renderW, renderH);
+      ctx.restore();
+    }
+
+    btnMode.onclick = () => {
+      modeIndex = (modeIndex + 1) % modes.length;
+      btnMode.textContent = `Mode: ${modes[modeIndex]}`;
+      draw();
+    };
+
+    btnFlip.onclick = () => {
+      facing *= -1;
+      btnFlip.textContent = `Facing: ${facing === 1 ? 'Ascend Right' : 'Ascend Left'}`;
+      draw();
+    };
+
+    btnScale.onclick = () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = `Scale: ${isRuntime ? 'Runtime (0.25×)' : 'Reference (0.5×)'}`;
+      draw();
+    };
+
+    selBg.onchange = () => {
+      viewport.className = `viewport ${selBg.value}`;
+    };
+
+    for (const chk of [chkSockets, chkBounds, chkHero, chkGrid]) {
+      chk.onchange = () => draw();
+    }
+  </script>
+</body>
+</html>

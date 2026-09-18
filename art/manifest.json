@@ -1088,6 +1088,67 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/cloister-pier-v001.png"
       }
+    },
+    {
+      "id": "stair-flight-v001",
+      "path": "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
+      "title": "World 01 Abbey limestone stair flight module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "453180ef8fdf91c1daed14dcee7cc208272a79579975f76317d2f195ed507ccb",
+      "intendedUse": "Stage 01 Pilgrim Road multi-band stair flight module; 224 runtime unit run, 126.25 rise, sockets (64, 960) & (960, 394).",
+      "limitations": [
+        "Candidate visual stair traversal module; level collision and slope handling managed by stage stair guides.",
+        "Integrator must match verified flight endpoints across multi-stage room graphs."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, dual-facing, continuous run, and socket telemetry review in docs/reviews/stair-flight-v001.png",
+        "engineIntegration": "Pending Stage 01 layout integration"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "retained-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.25,
+        "runtimeRun": 224,
+        "runtimeRise": 126.25,
+        "measuredVisibleBounds": {
+          "minX": 64,
+          "maxX": 959,
+          "minY": 394,
+          "maxY": 959
+        },
+        "sockets": {
+          "bottomContact": [
+            64,
+            960
+          ],
+          "topContact": [
+            960,
+            394
+          ]
+        }
+      }
+    },
+    {
+      "id": "stair-flight-review-v001",
+      "path": "docs/reviews/stair-flight-v001.png",
+      "title": "Contributor World 01 stair flight compositing and continuous run evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "91e6d02560c8279eb8d99145190fd4b078dd7986a3dfc079aecf3df291a2f9d6",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/stair-flight-v001.png"
+      }
     }
   ]
 }

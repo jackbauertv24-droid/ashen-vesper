@@ -427,6 +427,37 @@
       "path": "docs/reviews/cloister-arch-span-v001.png",
       "sha256": "35da35066798612b3aaf86543788d1a872e18f08872bf6e50805b296582d2f54",
       "bytes": 1611394
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/source/stair-flight-generated-v001.jpg",
+      "sha256": "8d7d53806f21d4d62e21685bc24bccf37ab710e68ce8cb41cb9eaa4f62023a7a",
+      "bytes": 410711
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
+      "sha256": "453180ef8fdf91c1daed14dcee7cc208272a79579975f76317d2f195ed507ccb",
+      "bytes": 466817
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/PROMPT.txt",
+      "sha256": "85451fc9dd88e8892f0e00bd741b39c10c348d78e09fd9b98480d5bd4c1578e5"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/NOTES.md",
+      "sha256": "c99e47d3a9a8cd7d4c04d0ec99b138e8da9729ab83049d73ab5c8fab8da4b645"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/submission.json",
+      "sha256": "05cfe52a540d3f20d707d0a8acb38996b22717b4c784829cc22127fadf606ea0"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/preview.html",
+      "sha256": "e06c9b68fd5f7ac0e3350df11c7c77a977c93c55e60cc8a6ffe724839d46abb0"
+    },
+    {
+      "path": "docs/reviews/stair-flight-v001.png",
+      "sha256": "91e6d02560c8279eb8d99145190fd4b078dd7986a3dfc079aecf3df291a2f9d6",
+      "bytes": 398052
     }
   ]
 }

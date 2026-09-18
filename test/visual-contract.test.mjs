@@ -342,3 +342,51 @@ test("cloister arcade pier candidate has genuine RGBA transparency, solid shaft,
   assert.equal(im.data[(600 * 1024 + 900) * 4 + 3], 0);
 });
 
+
+test("World 01 Abbey limestone stair flight candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 64px margins on left, right, bottom; 394px top margin
+  assert.equal(minX, 64, "Left margin must be 64px");
+  assert.equal(maxX, 959, "Right margin must be 959px (inclusive)");
+  assert.equal(minY, 394, "Top tread must be at y=394");
+  assert.equal(maxY, 959, "Bottom footing must be at y=959");
+
+  // Nominal 224 unit run at 0.25 scale (896px = 224 units)
+  const width = maxX - minX + 1;
+  assert.equal(width, 896, "Width must be 896px");
+  assert.equal(width * 0.25, 224, "Horizontal run at 0.25 scale must equal 224 units");
+
+  // Rise calculation: top tread y=394, bottom tread y=899 -> 505px = 126.25 units
+  const treadRise = 899 - minY;
+  assert.equal(treadRise * 0.25, 126.25, "Tread rise at 0.25 scale must equal 126.25 units");
+
+  // Solid stone verification across treads
+  for (const [sx, sy] of [[120, 930], [300, 800], [500, 680], [700, 550], [900, 420]]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(im.data[idx + 3] > 240, `Stone step at (${sx}, ${sy}) must be solid opaque`);
+  }
+});
+
