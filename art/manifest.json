@@ -993,6 +993,70 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/cistern-lurker-v001.png"
       }
+    },
+    {
+      "id": "platform-cap-v001",
+      "path": "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
+      "title": "World 02 Ruined Cloister walkable platform and landing cap module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "61628b86a94b85b0b775883d6e5b45479774856c0a0add2fff5a94f9d1c401bc",
+      "intendedUse": "Stage 02 Ruined Cloister walkable platform and landing cap; 240x60 runtime canvas at scale 240/1024, painted top y=32, sockets (64, 32) & (960, 32).",
+      "limitations": [
+        "Candidate visual platform module; level collision and walkable solid handling managed by stage geometry.",
+        "Requires pier capital support underneath for open colonnade assemblies."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, 3-copy repeat, and colonnade arcade assembly review in docs/reviews/cloister-platform-cap-v001.png",
+        "engineIntegration": "Pending Stage 02 layout integration"
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "retained-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "paintedTopY": 32,
+        "measuredVisibleBounds": {
+          "minX": 64,
+          "maxX": 959,
+          "minY": 32,
+          "maxY": 214
+        },
+        "sockets": {
+          "leftContact": [
+            64,
+            32
+          ],
+          "rightContact": [
+            960,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "id": "cloister-platform-cap-review-v001",
+      "path": "docs/reviews/cloister-platform-cap-v001.png",
+      "title": "Contributor World 02 platform cap compositing and colonnade assembly evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "da74f0e7dfa7b01c7dd52ee2afecb87ad2ada2d169dd7384fd25c3f733e656a6",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/cloister-platform-cap-v001.png"
+      }
     }
   ]
 }

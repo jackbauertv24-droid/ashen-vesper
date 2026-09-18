@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 02 — Ruined Cloister Walkable Platform Cap Review</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+      overflow: hidden;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #141624; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:hover, select:hover { background: #334155; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .quad-sheet img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 02: Ruined Cloister — Walkable Platform / Landing Cap (v001)</h1>
+    <p>Contract compliance review: 1024×256 RGBA, runtime 240×60 (scale 240/1024), top source y=32, sockets (64, 32) &amp; (960, 32), 3-copy repeat &amp; arcade assembly.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div class="viewport bg-dark" id="viewport">
+        <canvas id="view" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Mode: Single Cap</button>
+        <button id="btn-scale">Scale: Reference (0.5×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cold Indigo (#141624)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Module Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span><span>platform-cap-v001.png</span></div>
+      <div class="stat-row"><span class="stat-label">Source Canvas:</span><span>1024 × 256 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Canvas:</span><span>240 × 60 (Scale 240/1024)</span></div>
+      <div class="stat-row"><span class="stat-label">Top Walkable Y:</span><span>y = 32 (y = 7.5 runtime)</span></div>
+      <div class="stat-row"><span class="stat-label">Span Bounds:</span><span>x = 64..959 (896px)</span></div>
+      <div class="stat-row"><span class="stat-label">Height Bounds:</span><span>y = 32..214 (183px)</span></div>
+      <div class="stat-row"><span class="stat-label">Left Socket:</span><span>(64, 32) &rarr; (15, 7.5)</span></div>
+      <div class="stat-row"><span class="stat-label">Right Socket:</span><span>(960, 32) &rarr; (225, 7.5)</span></div>
+      <div class="stat-row"><span class="stat-label">Repeat Interval:</span><span>896px &rarr; 210 units</span></div>
+      <div class="stat-row"><span class="stat-label">Outer Margins:</span><span style="color:var(--green);">&ge; 32px (0 violations)</span></div>
+      <div class="stat-row"><span class="stat-label">Acceptance:</span><span>Candidate (World 02)</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-sockets" checked> Contact Sockets</label>
+        <label><input type="checkbox" id="chk-bounds" checked> Visible Silhouette Bounds</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Bellwarden Hero (144u)</label>
+        <label><input type="checkbox" id="chk-grid"> 32-Unit World Grid</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px; color: var(--accent);">Multi-Panel Compositing Review (White, Black, Indigo, Grayscale, 3-Copy Run, Arcade Assembly)</h2>
+    <img src="../../../../docs/reviews/cloister-platform-cap-v001.png" alt="Platform Cap Review Composite">
+  </div>
+
+  <script type="module">
+    const capImg = new Image();
+    capImg.src = 'exports/platform-cap-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let modeIndex = 0; // 0: Single Cap, 1: Three-Copy Run, 2: Runtime Colonnade
+    const modes = ['Single Cap', 'Three-Copy Run', 'Colonnade Arcade'];
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkSockets = document.getElementById('chk-sockets');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkHero = document.getElementById('chk-hero');
+    const chkGrid = document.getElementById('chk-grid');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    capImg.onload = () => draw();
+    heroImg.onload = () => draw();
+
+    function draw() {
+      ctx.clearRect(0, 0, 512, 512);
+      if (!capImg.complete) return;
+      prepareHero();
+
+      if (chkGrid.checked) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= 512; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke();
+        }
+        for (let y = 0; y <= 512; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(512, y); ctx.stroke();
+        }
+      }
+
+      if (modeIndex === 0) {
+        // Single Cap
+        const s = isRuntime ? (240 / 1024) : 0.5;
+        const dw = 1024 * s;
+        const dh = 256 * s;
+        const ox = (512 - dw) / 2;
+        const oy = 256 - dh / 2;
+
+        ctx.drawImage(capImg, 0, 0, 1024, 256, ox, oy, dw, dh);
+
+        if (chkSockets.checked) {
+          drawSocketCircle(ox + 64 * s, oy + 32 * s, '#10b981');
+          drawSocketCircle(ox + 960 * s, oy + 32 * s, '#f59e0b');
+        }
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(ox + 64 * s, oy + 32 * s, 896 * s, 183 * s);
+          ctx.setLineDash([]);
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + 512 * s, oy + 32 * s, s);
+        }
+      } else if (modeIndex === 1) {
+        // Three-Copy Run
+        // Repeat interval: 896px. 3 copies = 3 * 896 = 2688px.
+        // Scale to fit 512px width: s = 480 / 2688 ~ 0.178
+        const s = (512 - 32) / (3 * 896);
+        const ox = 16 - 64 * s;
+        const oy = 240;
+
+        for (let copy = 0; copy < 3; copy++) {
+          ctx.drawImage(capImg, 0, 0, 1024, 256, ox + copy * 896 * s, oy, 1024 * s, 256 * s);
+        }
+
+        if (chkSockets.checked) {
+          for (let copy = 0; copy < 3; copy++) {
+            drawSocketCircle(ox + (copy * 896 + 64) * s, oy + 32 * s, '#10b981');
+            drawSocketCircle(ox + (copy * 896 + 960) * s, oy + 32 * s, '#f59e0b');
+          }
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + (1.5 * 896 + 64) * s, oy + 32 * s, s);
+        }
+      } else if (modeIndex === 2) {
+        // Colonnade Arcade Assembly preview
+        // Two consecutive caps forming a 2-bay upper floor
+        const s = (512 - 32) / (2 * 896);
+        const ox = 16 - 64 * s;
+        const oy = 200;
+
+        for (let copy = 0; copy < 2; copy++) {
+          ctx.drawImage(capImg, 0, 0, 1024, 256, ox + copy * 896 * s, oy, 1024 * s, 256 * s);
+        }
+
+        if (chkSockets.checked) {
+          drawSocketCircle(ox + 64 * s, oy + 32 * s, '#10b981');
+          drawSocketCircle(ox + 960 * s, oy + 32 * s, '#38bdf8');
+          drawSocketCircle(ox + (896 + 960) * s, oy + 32 * s, '#f59e0b');
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + (896 + 64) * s, oy + 32 * s, s);
+        }
+      }
+    }
+
+    function drawSocketCircle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function drawHero(feetX, feetY, canvasScale) {
+      // Nominal standing height: 144 runtime units (scale 240/1024 ~ 0.234)
+      const heroH = 144 * (1024 / 240) * canvasScale;
+      const heroScale = heroH / 418;
+      const fw = 260, fh = 433, px = 96, py = 427;
+
+      ctx.save();
+      ctx.translate(feetX, feetY);
+      ctx.drawImage(heroCanvas, 80, 5, fw, fh, -px * heroScale, -py * heroScale, fw * heroScale, fh * heroScale);
+      ctx.restore();
+    }
+
+    btnMode.onclick = () => {
+      modeIndex = (modeIndex + 1) % modes.length;
+      btnMode.textContent = `Mode: ${modes[modeIndex]}`;
+      draw();
+    };
+
+    btnScale.onclick = () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = `Scale: ${isRuntime ? 'Runtime (240/1024)' : 'Reference (0.5×)'}`;
+      draw();
+    };
+
+    selBg.onchange = () => {
+      viewport.className = `viewport ${selBg.value}`;
+    };
+
+    for (const chk of [chkSockets, chkBounds, chkHero, chkGrid]) {
+      chk.onchange = () => draw();
+    }
+  </script>
+</body>
+</html>

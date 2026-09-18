@@ -387,6 +387,37 @@
     {
       "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
       "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/source/platform-cap-generated-v001.jpg",
+      "sha256": "d098ddb507835ee2a616ad61338b66ce73b1e00a09409e409084059577ff7291",
+      "bytes": 405633
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
+      "sha256": "61628b86a94b85b0b775883d6e5b45479774856c0a0add2fff5a94f9d1c401bc",
+      "bytes": 328178
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/PROMPT.txt",
+      "sha256": "10e9a781d5fe002fa0b305851c741d0a49b9867bdbeac6d7da7de1e39254c0c8"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/NOTES.md",
+      "sha256": "1abd9be075dd960d5e13756281d41c3f9f55cafd67b8e84e2054f88c9e252197"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/submission.json",
+      "sha256": "1ae0a354c43c48b18863a71ec0575418c94609871295216949513fbfb8031cb1"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/preview.html",
+      "sha256": "167d8ad943fa767aa0743644fb605df5e7116bbc46082562c642a6b6f1f32906"
+    },
+    {
+      "path": "docs/reviews/cloister-platform-cap-v001.png",
+      "sha256": "da74f0e7dfa7b01c7dd52ee2afecb87ad2ada2d169dd7384fd25c3f733e656a6",
+      "bytes": 554274
     }
   ]
 }
