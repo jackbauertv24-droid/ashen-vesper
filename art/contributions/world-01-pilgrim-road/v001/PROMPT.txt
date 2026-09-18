@@ -1,0 +1,22 @@
+# Generation Prompts: World 01 Pilgrim Road — Abbey Limestone Stair Flight Module (v001)
+
+Model: Google Imagen 3 (via Antigravity generate_image)
+Aspect Ratio: 1:1 (1024x1024)
+Tool: generate_image
+Date: 2026-09-18
+Target: World 01 (01-pilgrim-road) / Baseline multi-stage stair traversal module
+
+## Prompt (Attempt 1 - Selected)
+Orthographic 2D side-scrolling video game asset: an ancient Gothic ruined abbey limestone stair flight module ascending from bottom-left to top-right. Pure solid black background #000000, completely isolated architectural element, side view profile. Weathered carved pale limestone block steps, stone treads and vertical risers, solid stone stringer foundation underneath. Realistic worn stone masonry, chisel marks, subtle cracks, fine moss and dust, cool blue-gray moonlight highlights, warm muted tones. Pure side profile, zero 3D perspective distortion, zero ground shadow, zero floor shadow plane, no characters, no railings, no background scenery, no frame, no borders, clean cut silhouettes against black.
+
+## Negative Constraints Applied
+- No perspective stairs / 3D skew
+- No ground-shadow plane / floor plane
+- No characters or props
+- No railings / balustrades (pure stone flight)
+- Pure solid black background (#000000) for exact keyed cutout
+
+## Reference Pack Attachments
+- art/concepts/abbey-gate-concept-v001.png (abbey limestone palette, moonlight lighting)
+- art/production/abbey/masonry-module-v001.png (ashlar stone block scale and wear)
+- docs/world/examples/v001/01-pilgrim-road-INSTRUCTIONS.md (stair kit specification, 224 unit run, 256x256 @ 0.25 scale)
