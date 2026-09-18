@@ -1,0 +1,53 @@
+{
+  "jobId": "16-tollkeeper",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
+      "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        420,
+        972
+      ],
+      "visibleBounds": {
+        "minX": 112,
+        "maxX": 757,
+        "minY": 51,
+        "maxY": 972,
+        "width": 646,
+        "height": 922
+      },
+      "standingHeight": 921,
+      "runtimeHeight": 220,
+      "scale": 0.23887,
+      "landmarks": {
+        "bellCrownTop": [
+          484,
+          51
+        ],
+        "amberCore": [
+          505,
+          351
+        ],
+        "staffGrip": [
+          641,
+          393
+        ],
+        "clapperHead": [
+          637,
+          61
+        ],
+        "clapperBase": [
+          525,
+          942
+        ],
+        "groundPivot": [
+          420,
+          972
+        ]
+      }
+    }
+  ]
+}

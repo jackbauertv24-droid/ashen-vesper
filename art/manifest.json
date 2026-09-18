@@ -993,6 +993,27 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/cistern-lurker-v001.png"
       }
+    },
+    {
+      "id": "tollkeeper-design-v001",
+      "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
+      "title": "Tollkeeper boss design reference candidate",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
+      "intendedUse": "Design reference for Job 16 Tollkeeper boss; nominal runtime height 220 units, pivot (420, 972).",
+      "limitations": [
+        "Static design cutout only; six-stage slam animation sequence pending.",
+        "Combat physics, HP, and boss arena collision pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, abbey, and hero scale lineup review.",
+        "engineIntegration": "Pending boss arena"
+      }
     }
   ]
 }

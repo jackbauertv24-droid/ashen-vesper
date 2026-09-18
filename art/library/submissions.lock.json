@@ -387,6 +387,16 @@
     {
       "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
       "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/source/tollkeeper-boss-generated-v001.jpg",
+      "sha256": "30836dcad17d04d8306aac866eabd965a28d8238c9ba18a7bc6341891f3b5e64",
+      "intendedUse": "Untouched generator output for Job 16 Tollkeeper boss design reference"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
+      "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
+      "intendedUse": "Preserved candidate export for Job 16 Tollkeeper boss design reference"
     }
   ]
 }
