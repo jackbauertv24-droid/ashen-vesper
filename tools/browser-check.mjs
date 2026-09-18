@@ -169,5 +169,17 @@ try {
   }
   await page.screenshot({path:'tmp/world02-platform-cap-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/world-03-flooded-cistern/v001/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#modeThreeBtn').click();
+  await page.locator('#modeSceneBtn').click();
+  await page.locator('#modeRuntimeBtn').click();
+  await page.locator('#modeSingleBtn').click();
+  for(const id of ['#showSockets','#showBounds','#showHero','#showLurker']) await page.locator(id).uncheck();
+  for(const value of await page.locator('#bgSelect option').evaluateAll(options=>options.map(o=>o.value))) {
+    await page.locator('#bgSelect').selectOption(value);
+  }
+  await page.screenshot({path:'tmp/world03-damp-platform-cap-preview.png',fullPage:true});
+
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}
