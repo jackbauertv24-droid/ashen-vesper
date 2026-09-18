@@ -266,3 +266,79 @@ test("tollkeeper boss design candidate has genuine RGBA transparency, clear 32px
   assert.equal(coreAlpha, 255);
   assert.equal(im.data[(500 * 1024 + 480) * 4 + 3], 255);
 });
+
+test("cloister arch span candidate has genuine RGBA transparency, pierced openings, and 32px clear border", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/08-ruined-cloister/v001/submission.json", "utf8"),
+  );
+  const asset = submission.assets.find(a => a.path.includes("cloister-arch-span"));
+  assert.equal(maxX - minX + 1, asset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, asset.visibleBounds.height);
+  // Main arch opening is genuinely transparent
+  assert.equal(im.data[(700 * 1024 + 512) * 4 + 3], 0);
+  // Trefoil tracery center is genuinely transparent
+  assert.equal(im.data[(336 * 1024 + 512) * 4 + 3], 0);
+  // Left and right pillars are solid opaque
+  assert.equal(im.data[(700 * 1024 + 200) * 4 + 3], 255);
+  assert.equal(im.data[(700 * 1024 + 800) * 4 + 3], 255);
+  // Top entablature platform surface is solid opaque
+  assert.equal(im.data[(100 * 1024 + 512) * 4 + 3], 255);
+});
+
+test("cloister arcade pier candidate has genuine RGBA transparency, solid shaft, and 32px clear border", () => {
+  const file = "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) assert.equal(alpha, 0);
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/08-ruined-cloister/v001/submission.json", "utf8"),
+  );
+  const pierAsset = submission.assets.find(a => a.path.includes("cloister-pier"));
+  assert.equal(maxX - minX + 1, pierAsset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, pierAsset.visibleBounds.height);
+  // Center stone shaft is solid opaque
+  assert.equal(im.data[(600 * 1024 + 512) * 4 + 3], 255);
+  // Capital abacus center is solid opaque
+  assert.equal(im.data[(341 * 1024 + 512) * 4 + 3], 255);
+  // Base plinth center is solid opaque
+  assert.equal(im.data[(960 * 1024 + 512) * 4 + 3], 255);
+  // Flanking margins outside pier are genuinely transparent
+  assert.equal(im.data[(600 * 1024 + 100) * 4 + 3], 0);
+  assert.equal(im.data[(600 * 1024 + 900) * 4 + 3], 0);
+});
+

@@ -397,6 +397,36 @@
       "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
       "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
       "intendedUse": "Preserved candidate export for Job 16 Tollkeeper boss design reference"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-arch-span-generated-v001.jpg",
+      "sha256": "dd198a2cfddb505a14861ca3a3bb19c2d270a1be38b1aba0736de2afcb3c1c79",
+      "intendedUse": "Untouched generator output for Job 08 Ruined Cloister arch span module"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "intendedUse": "Preserved candidate export for Job 08 Ruined Cloister arch span module"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-pier-generated-v001.jpg",
+      "sha256": "b31f16728b2a90ca342ddb4391095a74baf561c46a21d18ba37031d7d64f8cae",
+      "bytes": 577419
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png",
+      "sha256": "4569ced2b7b2bd64240d7abe4d0b987da7619e9d5ffd9782a2fd26a763def2d6",
+      "bytes": 467063
+    },
+    {
+      "path": "docs/reviews/cloister-pier-v001.png",
+      "sha256": "31afee209632c66845b164a7c256539397ef140c9ecb6e7c5025f5c953c175ef",
+      "bytes": 508080
+    },
+    {
+      "path": "docs/reviews/cloister-arch-span-v001.png",
+      "sha256": "35da35066798612b3aaf86543788d1a872e18f08872bf6e50805b296582d2f54",
+      "bytes": 1611394
     }
   ]
 }

@@ -1014,6 +1014,80 @@
         "visualReview": "Candidate RGBA cutout with white, black, indigo, abbey, and hero scale lineup review.",
         "engineIntegration": "Pending boss arena"
       }
+    },
+    {
+      "id": "cloister-arch-span-v001",
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "title": "Ruined Cloister Gothic arcade arch span module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "intendedUse": "Stage 02 Ruined Cloister modular arcade architecture; runtime canvas 240x240, pivot (512, 960).",
+      "limitations": [
+        "Standalone arch span module; adjacent pier module and platform caps pending.",
+        "Decoupled from collision per LAYOUT_CONTRACT; not automatically solid."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, and 3-module colonnade repeat review.",
+        "engineIntegration": "Pending Stage 02 layout integration"
+      }
+    },
+    {
+      "id": "cloister-pier-v001",
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png",
+      "title": "Ruined Cloister Gothic arcade pier module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "4569ced2b7b2bd64240d7abe4d0b987da7619e9d5ffd9782a2fd26a763def2d6",
+      "intendedUse": "Stage 02 Ruined Cloister modular arcade pier / column; runtime canvas 240x240, pivot (512, 960).",
+      "limitations": [
+        "Candidate standalone arcade pier module; paired with arch span module for colonnade assemblies.",
+        "Decoupled from collision per LAYOUT_CONTRACT; not automatically solid."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, indigo, grayscale, arcade assembly, and socket telemetry review.",
+        "engineIntegration": "Pending Stage 02 layout integration"
+      }
+    },
+    {
+      "id": "cloister-arch-span-review-v001",
+      "path": "docs/reviews/cloister-arch-span-v001.png",
+      "title": "Contributor Ruined Cloister arch span compositing and colonnade repeat evidence",
+      "status": "review-evidence",
+      "width": 1920,
+      "height": 1080,
+      "format": "png",
+      "alpha": false,
+      "sha256": "35da35066798612b3aaf86543788d1a872e18f08872bf6e50805b296582d2f54",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/cloister-arch-span-v001.png"
+      }
+    },
+    {
+      "id": "cloister-pier-review-v001",
+      "path": "docs/reviews/cloister-pier-v001.png",
+      "title": "Contributor Ruined Cloister arcade pier compositing and assembly evidence",
+      "status": "review-evidence",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": false,
+      "sha256": "31afee209632c66845b164a7c256539397ef140c9ecb6e7c5025f5c953c175ef",
+      "intendedUse": "Preserved visual review evidence.",
+      "validation": {
+        "fileDecoded": true,
+        "engineIntegration": "Review evidence; see docs/reviews/cloister-pier-v001.png"
+      }
     }
   ]
 }
