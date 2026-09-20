@@ -1113,6 +1113,34 @@
     {
       "path": "docs/reviews/cistern-damp-platform-seamless-v002.png",
       "sha256": "cdb80b40799b33112ebcf510cba13ad30669cf573cf2cdb673ca958f27a4723a"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/exports/iron-sexton-motion-v003.png",
+      "sha256": "42d11b5d7514f31eb08a882b2edbf436408af28f43dd0ab5b3582a51a65287d7"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/NOTES.md",
+      "sha256": "8787ad6da860b01e4ef9c8eb317d74c4be36c03992a291edbda925ff84e6a527"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/preview.html",
+      "sha256": "baae7533f1b61e19ce1eef59683c27eaba8aa20a7473ce54607a911f6bbf74bf"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/PROMPT.txt",
+      "sha256": "e48a3ddd37741b99282d4604033215838a30bc1a8ffe44126f5f6ebafe28fd90"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/source/iron-sexton-motion-generated-v002.jpg",
+      "sha256": "13ebc6dd86bddbc8ecead8ed3a808f46cbd9bcdb6df510e833447c1ebdc868ef"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v005/submission.json",
+      "sha256": "c3823691190b6ebcabd03e0e443d271c8199e08bccf9b29e2e73d63daf9fefe4"
+    },
+    {
+      "path": "docs/reviews/iron-sexton-motion-v003.png",
+      "sha256": "f451a7b68ad0b36753529ffb4dcaef25440887fb196f68481d25963466e2f6dc"
     }
   ]
 }

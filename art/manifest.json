@@ -3046,6 +3046,95 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "iron-sexton-motion-generated-v003",
+      "path": "art/contributions/12-iron-sexton/v005/source/iron-sexton-motion-generated-v002.jpg",
+      "title": "iron-sexton-motion-generated-v003",
+      "status": "candidate",
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "13ebc6dd86bddbc8ecead8ed3a808f46cbd9bcdb6df510e833447c1ebdc868ef",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 12 Iron Sexton 8-pose motion sheet hurt shovel restoration (v005).",
+      "limitations": [
+        "Uncropped 4x2 generation grid; see exports/iron-sexton-motion-v003.png for game-ready 2048x1024 RGBA sheet."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/12-iron-sexton/v005/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "iron-sexton-motion-v003",
+      "path": "art/contributions/12-iron-sexton/v005/exports/iron-sexton-motion-v003.png",
+      "title": "Job 12 Iron Sexton 8-pose motion sheet candidate (v005)",
+      "status": "candidate",
+      "width": 2048,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "42d11b5d7514f31eb08a882b2edbf436408af28f43dd0ab5b3582a51a65287d7",
+      "intendedUse": "Job 12 Iron Sexton 8-pose animation sheet; 2048x1024 sheet with 4x2 512px cells, runtime height 160 units at scale 0.4, ground anchor (208, 464). Restored hurt shovel, zero disconnected fragments, distinct walk steps.",
+      "limitations": [
+        "Candidate heavy enemy motion sheet; state-machine and shovel cleave combat AI integration pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA sheet with white, black, indigo, grayscale, detail proofs and runtime lineup in docs/reviews/iron-sexton-motion-v003.png",
+        "engineIntegration": "Candidate asset; Ruined Cloister heavy combat integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-motion-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.4,
+        "runtimeHeight": 160,
+        "sheetGrid": [
+          4,
+          2
+        ],
+        "cellSize": [
+          512,
+          512
+        ],
+        "groundAnchor": [
+          208,
+          464
+        ]
+      }
+    },
+    {
+      "id": "iron-sexton-motion-review-v003",
+      "path": "docs/reviews/iron-sexton-motion-v003.png",
+      "title": "iron-sexton-motion-review-v003",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": false,
+      "sha256": "f451a7b68ad0b36753529ffb4dcaef25440887fb196f68481d25963466e2f6dc",
+      "intendedUse": "Multi-panel review composite certifying restored hurt shovel, 0 detached fragments, distinct walk cadence, safety margins, and runtime lineup for Job 12 Iron Sexton v005.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with 4 background panels, continuity detail proof, and Bellwarden hero lineup.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
