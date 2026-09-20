@@ -488,11 +488,15 @@ for (const [name, M] of stages) {
 
 // ---------- Part H: a prop is drawn the size of the thing you can hit ----------
 
-test("contract: the censer is drawn the size of its strike box", () => {
+test("contract: the censer is not drawn larger than its strike box", () => {
   // encounter-sim gives each brazier a 48x62 strike box from b.y-48 to b.y+14.
   // The art was once drawn at 96x103, twice the box, so the bell the player
   // saw was not the bell the player could hit — and it towered over a hero
   // only 144 units tall.
+  // Art must not EXCEED the interactive box. Sitting inside it is fine and
+  // makes the prop marginally easier to strike than it looks; filling it
+  // exactly is not required, and demanding that once grew this bell by a
+  // fifth.
   const box = { w: 48, h: 62, top: -48, bottom: 14 };
   const bellH = censer.draw * (censer.bellBottom - censer.bellTop);
   const bellW = censer.draw * censer.bellWidth;
@@ -500,16 +504,16 @@ test("contract: the censer is drawn the size of its strike box", () => {
   const bellBottom = censer.top + censer.draw * censer.bellBottom;
 
   assert.ok(
-    Math.abs(bellH - box.h) <= 6,
-    `bell is ${bellH.toFixed(0)} units tall against a ${box.h}-unit strike box`,
+    bellH <= box.h + 2,
+    `bell is ${bellH.toFixed(0)} units tall, taller than its ${box.h}-unit strike box`,
   );
   assert.ok(
-    bellW <= box.w * 1.3,
-    `bell is ${bellW.toFixed(0)} units wide against a ${box.w}-unit strike box`,
+    bellW <= box.w + 2,
+    `bell is ${bellW.toFixed(0)} units wide, wider than its ${box.w}-unit strike box`,
   );
   assert.ok(
-    Math.abs(bellTop - box.top) <= 6 && Math.abs(bellBottom - box.bottom) <= 6,
-    `bell spans ${bellTop.toFixed(0)}..${bellBottom.toFixed(0)}, box spans ${box.top}..${box.bottom}`,
+    bellTop >= box.top - 2 && bellBottom <= box.bottom + 2,
+    `bell spans ${bellTop.toFixed(0)}..${bellBottom.toFixed(0)}, outside the box ${box.top}..${box.bottom}`,
   );
   assert.ok(
     censer.draw < 144,

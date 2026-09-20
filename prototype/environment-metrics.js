@@ -8,14 +8,24 @@ export const platformCap = {
   height: 60,
   lift: 7.5,
 };
-// The hanging censer. Its strike box in encounter-sim is 48x62 units, so the
-// painted bell is sized to sit inside that rather than dwarf it. Drawing the
-// whole asset shows its own mount and chains; bellTop/bellBottom/bellWidth are
-// where the bell sits within that box, measured from the art.
+// The hanging censer, at the size it has always been on screen.
+//
+// The original drew the whole 1254x1254 asset into an 84x100 box, giving a
+// bell 40x51 units spanning -41..+10. Two changes broke that: showing the
+// asset's own chains scaled everything to 96x103, and then "fixing" it to
+// match the 48x62 strike box left it at 57x62 — still a fifth taller and
+// half again as wide as it had ever been.
+//
+// The rule is that painted art must not EXCEED the box the player can hit,
+// not that it must fill it. A prop slightly smaller than its box is a little
+// easier to strike than it looks, which is fine. So the bell is back to its
+// original 51-unit height and position; the only difference from the very
+// first version is that the square asset is no longer squashed 16%
+// horizontally, which is why it is 48 wide rather than 40.
 export const censer = {
   path: "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
-  draw: 120,
-  top: -102,
+  draw: 100,
+  top: -86,
   bellTop: 561 / 1254,
   bellBottom: 1205 / 1254,
   bellWidth: 600 / 1254,
@@ -23,7 +33,10 @@ export const censer = {
 
 // The consecration ember, as a falling pickup and as the lit sanctuary.
 // The art is mostly transparent padding: only 365x554 of 1024x1024 is opaque.
-export const ember = { draw: 64, opaque: { w: 365 / 1024, h: 554 / 1024 } };
+// Back to its original 54 as well: the bump to 64 was judged against the
+// oversized bell. At 54 the visible ember is 19x29, which is 57% of the
+// bell's height — the proportion it always had.
+export const ember = { draw: 54, opaque: { w: 365 / 1024, h: 554 / 1024 } };
 
 export const arcade = {
   path: "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
