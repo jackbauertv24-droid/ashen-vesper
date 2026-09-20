@@ -40,6 +40,12 @@ low-ceiling guard, and no collision epsilons. Every one of those is a
 difference a player can feel, and none of them failed a test, because the two
 stages were measured against different bars.
 
+The same rule applies to drawing. Sprite preparation lives once in
+`prototype/render.js`; a stage renderer may own its scenery, not its own copy
+of the shared helpers. The duplicated versions had already drifted — the
+Cloister keyed magenta edges without pulling red and blue back toward green,
+so the hero outline rendered slightly differently in the two stages.
+
 `test/runtime-contract.test.mjs` now runs the same assertions against every
 registered stage. **Register a new stage in its `stages` array in the same PR
 that adds it.** A stage that re-implements movement fails there instead of

@@ -2,13 +2,13 @@ import{LEVEL,platforms}from"./cloister-sim.js";
 import * as run from"./run.js";
 import{pilgrimFrames,pilgrimScale,pilgrimPose}from"./pilgrim-poses.js";
 import{crouchScale,crouchAnchors}from"./character-metrics.js";
+import{keyed,silhouette}from"./render.js";
 const canvas=document.querySelector("#game"),ctx=canvas.getContext("2d"),$=q=>document.querySelector(q);
 const W=run.enter("cloister");
 let s=run.roomState(W),running=false,art={},atlas,last=0,acc=0,padPrevious={};const held=new Set,pulse={};
 const keys={KeyA:"left",ArrowLeft:"left",KeyD:"right",ArrowRight:"right",Space:"jump",KeyW:"jump",ArrowUp:"jump",KeyS:"crouch",ArrowDown:"crouch",KeyJ:"attack",KeyX:"attack",KeyE:"interact"};
 const load=path=>new Promise((ok,no)=>{const i=new Image;i.onload=()=>ok(i);i.onerror=()=>no(Error(path));i.src=path});
-function keyed(im,magenta=false,checker=false){const c=document.createElement("canvas"),g=c.getContext("2d",{willReadFrequently:true});c.width=im.width;c.height=im.height;g.drawImage(im,0,0);const d=g.getImageData(0,0,c.width,c.height),a=d.data;if(magenta){for(let i=0;i<a.length;i+=4){const e=Math.min(a[i],a[i+2])-a[i+1];if(e>80)a[i+3]=0;else if(e>20)a[i+3]=255*(80-e)/60;}}else{const base=[a[0],a[1],a[2]],seen=new Uint8Array(c.width*c.height),queue=new Int32Array(seen.length);let head=0,tail=0;const add=n=>{if(n<0||n>=seen.length||seen[n])return;seen[n]=1;const i=n*4,dist=(a[i]-base[0])**2+(a[i+1]-base[1])**2+(a[i+2]-base[2])**2,neutral=Math.max(a[i],a[i+1],a[i+2])-Math.min(a[i],a[i+1],a[i+2]);if(checker?neutral<18&&a[i]>85:dist<=64)queue[tail++]=n};for(let x=0;x<c.width;x++){add(x);add((c.height-1)*c.width+x)}for(let y=0;y<c.height;y++){add(y*c.width);add(y*c.width+c.width-1)}while(head<tail){const n=queue[head++];a[n*4+3]=0;if(n%c.width)add(n-1);if(n%c.width<c.width-1)add(n+1);add(n-c.width);add(n+c.width)}}g.putImageData(d,0,0);return c}
-function silhouette(sheet,outline){const c=document.createElement("canvas");c.width=sheet.width;c.height=sheet.height;const g=c.getContext("2d");g.beginPath();outline.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.clip();g.drawImage(sheet,0,0);return c}
+
 function start(){running=true;$("#start-overlay").classList.add("hidden");canvas.focus()}function reset(){s=run.restart(W,"cloister");held.clear();start()}$("#enter").onclick=start;$("#reset").onclick=reset;
 addEventListener("keydown",e=>{if(document.activeElement!==canvas)return;const a=keys[e.code];if(a){e.preventDefault();held.add(a);if(!e.repeat&&!['left','right','crouch'].includes(a))pulse[a]=true}});addEventListener("keyup",e=>held.delete(keys[e.code]));addEventListener("blur",()=>held.clear());
 for(const b of document.querySelectorAll("[data-control]")){b.onpointerdown=e=>{e.preventDefault();start();const a=b.dataset.control;held.add(a);if(!['left','right','crouch'].includes(a))pulse[a]=true;b.setPointerCapture(e.pointerId)};for(const n of["pointerup","pointercancel","lostpointercapture"])b.addEventListener(n,()=>held.delete(b.dataset.control))}
