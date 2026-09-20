@@ -60,24 +60,28 @@ export const platforms = [
   { x: 2440, y: 610, w: 160 },
   { x: 2660, y: 610, w: 740 },
 
-  // The low way.
-  { x: 1960, y: 1120, w: 540 },
+  // The low way. Held high enough over the basin that a standing body can
+  // walk underneath it: a platform 95 above the floor with a 150-deep body
+  // leaves no headroom and jams the player against it.
+  { x: 1960, y: 1080, w: 540 },
 
   // The basin. Wide on purpose: it is the floor of the stage, not a trap.
-  // The basin runs the full width. It is the floor of the chamber, and a
-  // player who drops should land on it, not fall through an unmarked hole
-  // into water that is not drawn. The drown check below is kept as a floor
-  // of last resort; the hazard returns when there is a water surface to
-  // show, which is requested in docs/WANTED_ASSETS.md.
-  { x: 0, y: 1360, w: 4600 },
+  // The basin is the floor of the chamber. A player who drops lands on it
+  // rather than falling through an unmarked hole into water that is not
+  // drawn. The drown check below stays as a floor of last resort; the
+  // hazard returns when there is a water surface to show it.
+  { x: 0, y: 1360, w: 3000, h: 340 },
 
-  // Climbing out of the flood, three worked steps.
-  { x: 3020, y: 1265, w: 140 },
-  { x: 3220, y: 1170, w: 140 },
-  { x: 3420, y: 1075, w: 140 },
+  // The way out is a solid stair cut into the far end of the basin, not
+  // ledges floating above it. Floating ledges 95 units up left no headroom
+  // to walk under and sealed a pocket of basin behind them that nothing
+  // could climb out of.
+  { x: 3000, y: 1265, w: 180, h: 435 },
+  { x: 3180, y: 1170, w: 180, h: 530 },
+  { x: 3360, y: 1075, w: 180, h: 625 },
 
   // The valve chamber, where both ways meet, and the way out.
-  { x: 3480, y: 980, w: 1120 },
+  { x: 3540, y: 980, w: 1060, h: 720 },
 ];
 
 /** Falling below this drowns you. There is no swimming in this stage. */
@@ -274,7 +278,13 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
   if (s.grounded && Math.abs(s.vx) > 1) s.walk += dt;
   else s.walk = 0;
 
-  if (input.interact && Math.abs(s.x - LEVEL.lever) < 90 && !s.leverOn) {
+  const inValveChamber = s.y < 1050;
+  if (
+    input.interact &&
+    inValveChamber &&
+    Math.abs(s.x - LEVEL.lever) < 90 &&
+    !s.leverOn
+  ) {
     s.leverOn = true;
     s.events.push("gate");
     message(s, "The sluice valve turns. The grate beyond lifts.");
@@ -292,7 +302,7 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
 
   stepEnemy(s, dt, options);
 
-  if (s.x > LEVEL.finish && !s.complete) {
+  if (s.x > LEVEL.finish && inValveChamber && !s.complete) {
     s.complete = true;
     message(s, "Cistern route complete — the Ossuary lies beyond.");
     s.noticeTime = 999;

@@ -8,7 +8,8 @@ import {
   VIAL,
   platforms,
 } from "../prototype/cistern-sim.js";
-import { reachableFrom } from "../prototype/reachability.js";
+import { reachableFrom, cannotReach } from "../prototype/reachability.js";
+import { BODY } from "../prototype/physics.js";
 
 const tick = (s, input = {}, n = 1, o = {}) => {
   for (let i = 0; i < n; i++) step(s, input, 1 / 60, o);
@@ -170,7 +171,7 @@ test("falling off the route costs progress, not a life", () => {
   for (const p of platforms) {
     for (const dir of [-1, 1]) {
       const s = create();
-      s.x = dir > 0 ? p.x + p.w - 6 : p.x + 6;
+      s.x = dir > 0 ? p.x + p.w - 20 : p.x + 20;
       s.y = p.y;
       s.grounded = true;
       s.leverOn = true; // the gate is not what this is testing
@@ -190,4 +191,37 @@ test("falling off the route costs progress, not a life", () => {
     [],
     "nothing on the route may kill a player for walking off an edge while the water is undrawn",
   );
+});
+
+test("there is no hole in the cistern you cannot climb out of", () => {
+  // Reachability forward from the spawn is not enough. Dropping is free and
+  // climbing is not, so a stage can be entirely reachable and still contain
+  // a pocket the player is sealed into. The first version of the stair was
+  // three ledges floating 95 units above the basin: they left no headroom
+  // to walk under and closed off the basin behind them.
+  const valve = platforms.findIndex((p) => p.y === 980);
+  assert.ok(valve >= 0, "the valve chamber exists");
+  const stuck = cannotReach(platforms, valve);
+  assert.deepEqual(
+    stuck.map((s) => `y=${s.p.y} x=${s.p.x}`),
+    [],
+    "every surface must be able to get back to the valve chamber",
+  );
+});
+
+test("a standing body fits under everything that overhangs the basin", () => {
+  // A platform with a 150-deep body hung 95 above the floor is a wall, not
+  // a ledge, and the player jams against it with no way through.
+  const basin = platforms.find((p) => p.y === 1360);
+  for (const p of platforms) {
+    if (p === basin) continue;
+    const underside = p.y + (p.h ?? 150);
+    const overlapsBasin = p.x < basin.x + basin.w && p.x + p.w > basin.x;
+    if (!overlapsBasin || underside >= basin.y) continue;
+    const headroom = basin.y - underside;
+    assert.ok(
+      headroom >= BODY.standing,
+      `y=${p.y} x=${p.x} leaves ${headroom} units of headroom over the basin; a standing body needs ${BODY.standing}`,
+    );
+  }
 });

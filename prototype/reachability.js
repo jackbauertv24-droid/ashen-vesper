@@ -58,3 +58,32 @@ export function reachableFrom(platforms, spawn) {
       .filter(({ i }) => !reached.has(i)),
   };
 }
+
+/**
+ * Which platforms cannot get back to `target`.
+ *
+ * Reachability forward from the spawn is not enough: dropping is free and
+ * climbing is not, so a stage can be fully reachable and still contain a
+ * hole the player cannot climb out of. This walks the graph backwards.
+ */
+export function cannotReach(platforms, targetIndex) {
+  const reverse = platforms.map(() => []);
+  platforms.forEach((from, i) =>
+    platforms.forEach((to, j) => {
+      if (i !== j && canReach(from, to)) reverse[j].push(i);
+    }),
+  );
+  const canGetThere = new Set([targetIndex]);
+  const queue = [targetIndex];
+  while (queue.length) {
+    const j = queue.shift();
+    for (const i of reverse[j])
+      if (!canGetThere.has(i)) {
+        canGetThere.add(i);
+        queue.push(i);
+      }
+  }
+  return platforms
+    .map((p, i) => ({ p, i }))
+    .filter(({ i }) => !canGetThere.has(i));
+}

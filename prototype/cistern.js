@@ -85,6 +85,23 @@ $("#reset").onclick = reset;
 // route threading between them. The piers are structure, so they sit in the
 // world plane rather than parallaxing — a column that slides against the
 // floor it stands on stops reading as a column.
+// The chamber has walls. Leaving them black read as an unfinished game
+// rather than as darkness, and a flat or graded fill would be worse. This
+// is the same masonry the platforms are built from, tiled across the back
+// of the chamber and held well down in tone so the playable surfaces still
+// read first. It is a real material at a real distance, not a backdrop
+// standing in for one.
+const WALL = { tile: 320, alpha: 0.3, parallax: 0.86 };
+function backWall() {
+  ctx.save();
+  ctx.globalAlpha = WALL.alpha;
+  const t = WALL.tile;
+  for (let x = -t; x < LEVEL.width + t; x += t)
+    for (let y = -t; y < LEVEL.height + t; y += t)
+      ctx.drawImage(art.stone, x, y, t, t * 0.66);
+  ctx.restore();
+}
+
 const PIER = { spacing: 836, size: 1076, baseAt: BASIN_FLOOR, footInSheet: 987 / 1024 };
 function colonnade() {
   const y = PIER.baseAt - PIER.size * PIER.footInSheet;
@@ -154,6 +171,13 @@ function draw() {
   if (!hero) return;
 
 
+
+  // The back wall sits behind everything and moves a little slower, so the
+  // chamber has depth without the columns sliding against their own floor.
+  ctx.save();
+  ctx.translate(-s.camera * WALL.parallax, -s.cameraY * WALL.parallax);
+  backWall();
+  ctx.restore();
 
   ctx.save();
   ctx.translate(-s.camera, -s.cameraY);
