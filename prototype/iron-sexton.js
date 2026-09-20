@@ -2,6 +2,9 @@
 //
 // The sheet is a 4x2 grid of 512px cells sharing one ground anchor, so a pose
 // is a cell index and the runtime never needs per-frame pivots.
+/** World units covered per step pose while walking. */
+export const STRIDE = 32;
+
 /** Seconds a defeated Sexton stays on screen, fading, before it is gone. */
 export const DEATH_FADE = 0.5;
 
@@ -68,9 +71,10 @@ export function sextonFrame(e, time = 0) {
       return "recover";
     case "windup":
       return e.timer > 0.45 ? "brace" : "windup";
-    case "approach":
-      return Math.floor(time / 0.25) % 2 ? "stepB" : "stepA";
     default:
-      return "idle";
+      // Any mode that is covering ground walks; one stride per STRIDE units
+      // so a slow patrol does not step as fast as a charge.
+      if (!e.moving) return "idle";
+      return Math.floor((e.walk ?? 0) / STRIDE) % 2 ? "stepB" : "stepA";
   }
 }

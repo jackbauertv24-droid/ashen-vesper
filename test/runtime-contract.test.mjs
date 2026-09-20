@@ -235,10 +235,20 @@ test("contract: every enemy mode maps to a real Iron Sexton pose", () => {
       assert.ok(col >= 0 && col < 4 && row >= 0 && row < 2, `${pose} outside the grid`);
     }
   }
-  // the walk alternates rather than sticking on one foot
-  const a = sextonFrame({ mode: "approach", timer: 0 }, 0);
-  const b = sextonFrame({ mode: "approach", timer: 0 }, 0.3);
-  assert.notEqual(a, b, "approach must alternate its step poses");
+  // A mode that covers ground must never hold a standing pose. Patrol drifts
+  // as well as approach, and keying poses to the mode left the Sexton sliding
+  // back and forth in the idle frame.
+  for (const mode of ["patrol", "approach"]) {
+    assert.equal(
+      sextonFrame({ mode, timer: 0, moving: false, walk: 0 }),
+      "idle",
+      `${mode} should stand still when it is not moving`,
+    );
+    const walking = sextonFrame({ mode, timer: 0, moving: true, walk: 0 });
+    assert.notEqual(walking, "idle", `${mode} must not slide in a standing pose`);
+    const later = sextonFrame({ mode, timer: 0, moving: true, walk: 40 });
+    assert.notEqual(walking, later, `${mode} must alternate its step poses`);
+  }
   // every recorded offset names a pose that exists
   for (const name of Object.keys(offsets))
     assert.ok(frames[name], `offset recorded for unknown pose ${name}`);
@@ -270,4 +280,22 @@ test("contract: a walking enemy stops at a ledge instead of crossing the gap", (
     );
   }
   assert.ok(s.enemy.x > 800, "it should still have advanced toward the ledge");
+});
+
+test("contract: at stage start an idle enemy never slides in a standing pose", () => {
+  // Exactly the opening of Stage 02: the player has not moved yet, and the
+  // Sexton is drifting on patrol well outside its approach range.
+  const s = cloister.create();
+  let slid = 0, drifted = 0;
+  for (let i = 0; i < 1200; i++) {
+    const before = s.enemy.x;
+    cloister.step(s, {}, 1 / 60, {});
+    const moved = Math.abs(s.enemy.x - before);
+    if (moved > 0.05) {
+      drifted++;
+      if (sextonFrame(s.enemy, s.time) === "idle") slid++;
+    }
+  }
+  assert.ok(drifted > 100, `the patrol should actually move, got ${drifted} frames`);
+  assert.equal(slid, 0, `enemy slid in a standing pose on ${slid} of ${drifted} moving frames`);
 });

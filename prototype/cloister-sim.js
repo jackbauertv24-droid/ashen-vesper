@@ -50,6 +50,8 @@ export function create() {
     deaths: 0,
     enemy: {
       deadFor: 0,
+      walk: 0,
+      moving: false,
       x: 760,
       y: 600,
       hp: 3,
@@ -105,6 +107,7 @@ function stepEnemy(s, dt, options) {
     return;
   }
   const previous = e.timer;
+  const wasAt = e.x;
   e.timer = Math.max(0, e.timer - dt);
   const box = hitbox(s);
   if (
@@ -158,9 +161,20 @@ function stepEnemy(s, dt, options) {
     } else {
       e.mode = "patrol";
       const drift = e.home + Math.sin(s.time * 0.5) * 45;
-      if (groundAt(drift, e.y, platforms)) e.x = drift;
+      if (groundAt(drift, e.y, platforms)) {
+        // On patrol it watches its route, not the player, so it does not
+        // stride backwards. It turns to face the player once it engages.
+        if (Math.abs(drift - e.x) > 0.01) e.facing = drift > e.x ? 1 : -1;
+        e.x = drift;
+      }
     }
   }
+  // Drive the walk cycle from distance actually covered, not from the mode.
+  // Patrol drifts as well as approach, so keying poses to the mode left the
+  // Sexton sliding back and forth in a standing pose.
+  const moved = Math.abs(e.x - wasAt);
+  e.moving = moved > 0.01;
+  e.walk += moved;
 }
 
 export function step(s, input = {}, dt = 1 / 60, options = {}) {

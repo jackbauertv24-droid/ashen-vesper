@@ -287,7 +287,11 @@ export function step(s, input, dt, options = {}) {
       } else {
         e.mode = "patrol";
         const drift = e.home + Math.sin(s.time * 0.5 + e.home) * 45;
-        if (groundAt(drift, e.y, platforms)) e.x = drift;
+        if (groundAt(drift, e.y, platforms)) {
+          // Face the route while patrolling; turn to the player on approach.
+          if (Math.abs(drift - e.x) > 0.01) e.facing = drift > e.x ? 1 : -1;
+          e.x = drift;
+        }
       }
       for (const p of platforms) {
         if (e.y <= p.y || e.y - 130 >= p.y + solidHeight(p)) continue;
