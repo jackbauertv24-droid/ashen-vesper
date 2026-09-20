@@ -2434,6 +2434,201 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "cistern-platform-strip-generated-v001",
+      "path": "art/contributions/world-03-flooded-cistern/v002/source/cistern-platform-strip-generated-v001.jpg",
+      "title": "cistern-platform-strip-generated-v001",
+      "status": "candidate",
+      "width": 1264,
+      "height": 848,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "4f830911e4433348af00616fa4e07c5ea40e01b760d377d2dd42ea9f4f37d96f",
+      "intendedUse": "Raw untouched Imagen 3 generation source for World 03 Flooded Cistern seamless platform strip candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/damp-platform-cap-center-v002.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/world-03-flooded-cistern/v002/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "cistern-cap-corbel-generated-v001",
+      "path": "art/contributions/world-03-flooded-cistern/v002/source/cistern-cap-corbel-generated-v001.jpg",
+      "title": "cistern-cap-corbel-generated-v001",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "560d38fcab140f2ee9314d75f0bc0d5d9a1dd772686dd58d70de7dbe9bac7ead",
+      "intendedUse": "Raw untouched Imagen 3 generation source for World 03 Flooded Cistern decorative platform end cap corbel candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/damp-platform-cap-end-left-v002.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/world-03-flooded-cistern/v002/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "damp-platform-cap-center-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-center-v002.png",
+      "title": "World 03 Flooded Cistern seamless platform center strip (v002)",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "ed2bc3ce7f3195f245330984416b588da876d707fcc13ddf829eaaafff4bfdde",
+      "intendedUse": "World 03 Flooded Cistern seamless walkable platform center strip; 240x60 runtime canvas at scale 240/1024, planar walking surface at y=32 (rt: 7.5), repeat interval 1024 (rt: 240). Resolves PR 23 review with zero-delta horizontal repeat.",
+      "limitations": [
+        "Candidate walkable runway module; water hazard collision and stage layout assembly pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with zero-delta horizontal repeat (col 0 == col 1023), planar top surface, and multi-background review in docs/reviews/cistern-damp-platform-seamless-v002.png",
+        "engineIntegration": "Candidate asset; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-module",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "groundPivot": [
+          0,
+          32
+        ],
+        "measuredVisibleBounds": {
+          "minX": 0,
+          "maxX": 1023,
+          "minY": 32,
+          "maxY": 214
+        }
+      }
+    },
+    {
+      "id": "damp-platform-cap-end-left-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-left-v002.png",
+      "title": "World 03 Flooded Cistern platform decorative left end cap (v002)",
+      "status": "candidate",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "7dd07076fef8fb46162ee41400d115bf17b74144eb420135367df1bdbb552aa8",
+      "intendedUse": "World 03 Flooded Cistern decorative left end cap; 60x60 runtime canvas at scale 240/1024, planar walking surface at y=32 (rt: 7.5), carved corbel overhang in x=65..255. Interlocks with center strip with zero-delta junction.",
+      "limitations": [
+        "Candidate terminal end module; water hazard assembly pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with >=32px outer margin clearance, right socket matching center strip column 0 with delta=0.",
+        "engineIntegration": "Candidate asset; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-module",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          60,
+          60
+        ],
+        "groundPivot": [
+          65,
+          32
+        ],
+        "measuredVisibleBounds": {
+          "minX": 65,
+          "maxX": 255,
+          "minY": 32,
+          "maxY": 214
+        }
+      }
+    },
+    {
+      "id": "damp-platform-cap-end-right-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-right-v002.png",
+      "title": "World 03 Flooded Cistern platform decorative right end cap (v002)",
+      "status": "candidate",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "964c236a3b0933a5322fe506849813c7fc17398692270ccf40f8ee720cdb8031",
+      "intendedUse": "World 03 Flooded Cistern decorative right end cap; 60x60 runtime canvas at scale 240/1024, planar walking surface at y=32 (rt: 7.5), carved corbel overhang in x=0..190. Interlocks with center strip with zero-delta junction.",
+      "limitations": [
+        "Candidate terminal end module; water hazard assembly pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with >=32px outer margin clearance, left socket matching center strip column 1023 with delta=0.",
+        "engineIntegration": "Candidate asset; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-module",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          60,
+          60
+        ],
+        "groundPivot": [
+          190,
+          32
+        ],
+        "measuredVisibleBounds": {
+          "minX": 0,
+          "maxX": 190,
+          "minY": 32,
+          "maxY": 214
+        }
+      }
+    },
+    {
+      "id": "cistern-damp-platform-seamless-review-v002",
+      "path": "docs/reviews/cistern-damp-platform-seamless-v002.png",
+      "title": "cistern-damp-platform-seamless-review-v002",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": false,
+      "sha256": "cdb80b40799b33112ebcf510cba13ad30669cf573cf2cdb673ca958f27a4723a",
+      "intendedUse": "Multi-panel review composite for World 03 Flooded Cistern seamless damp platform kit candidate.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with 3-copy seam proofs over multiple backgrounds, 32x difference amplification, complete platform assembly, and in-situ Flooded Cistern runway chamber composition.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
