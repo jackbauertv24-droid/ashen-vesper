@@ -669,3 +669,57 @@ test("World 03 Flooded Cistern damp platform cap candidate satisfies visual and 
     );
   }
 });
+
+test("World 05 Counterweight Works lift deck candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-05-counterweight-works/v001/exports/lift-deck-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 256);
+
+  let minX = 1024,
+    maxX = 0,
+    minY = 256,
+    maxY = 0;
+  for (let y = 0; y < 256; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 12 || y < 12 || x >= 1012 || y >= 244) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  assert.equal(minX, 64, "Left margin must be 64px");
+  assert.equal(maxX, 959, "Right margin must be 959px (inclusive)");
+  assert.equal(minY, 26, "Top of suspension shackles must be at y=26");
+  assert.equal(maxY, 210, "Bottom of underside truss must be at y=210");
+
+  const width = maxX - minX + 1;
+  assert.equal(width, 896, "Width must be 896px");
+  assert.equal(
+    width * (240 / 1024),
+    210,
+    "Horizontal span at 240/1024 scale must equal 210 units",
+  );
+
+  // Top contact stone surface verified at y=32 across central standing plane
+  for (const sx of [200, 300, 400, 512, 600, 700, 800]) {
+    const idx = (32 * 1024 + sx) * 4;
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Stone deck top at (${sx}, 32) must be solid opaque`,
+    );
+  }
+
+  // Underside truss solid support
+  assert.ok(im.data[(120 * 1024 + 512) * 4 + 3] > 240, "Central truss beam at (512, 120) must be solid");
+});

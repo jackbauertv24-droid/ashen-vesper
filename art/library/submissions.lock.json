@@ -597,6 +597,34 @@
     {
       "path": "docs/reviews/cistern-damp-cap-v001.png",
       "sha256": "2d5381941a7aa9b5a1ab91f6bcf14c0d59747920e0cb7918264d4d3834aa9e77"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/source/lift-deck-generated-v001.jpg",
+      "sha256": "837c28397485750b712d75be149ab6113d447a51df1a63c13b4504c2e05f007b"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/exports/lift-deck-v001.png",
+      "sha256": "6bba3bea92b2eb248fcf0aa6334ce8d394d92dc1ad669a412d6f38d44b4d1263"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/PROMPT.txt",
+      "sha256": "dc862a5e08d12dd09a8cf530402218ab9ec70721ce07774e37d620431481dae2"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/NOTES.md",
+      "sha256": "04c4c16077bc971153ec0855a4a71c7ad980f623668df5018574a5a0a0ff9882"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/submission.json",
+      "sha256": "137848795557249a6351123aa26c3a30fee9848400e61224b6bb60e19b68cb98"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/preview.html",
+      "sha256": "5e7d053712de28975b4e1586970066cd6bf467692d26717f7b9cd41f63b19ba7"
+    },
+    {
+      "path": "docs/reviews/counterweight-lift-deck-v001.png",
+      "sha256": "a43558d4458d94cc9d6aa6b4189c5a854767020dcbb53ac6914055bbec1d6121"
     }
   ]
 }
