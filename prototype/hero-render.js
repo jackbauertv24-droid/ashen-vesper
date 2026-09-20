@@ -16,6 +16,33 @@ export const HERO_SHEETS = {
 };
 
 const GROUND_SCALE = 144 / 418;
+
+/**
+ * Job 01 damage reactions. Unlike the pilot and airborne sheets this one is
+ * a clean RGBA cutout needing no colour keying, and it is drawn facing left
+ * where the others face right, so it mirrors against them.
+ */
+export const DAMAGE = {
+  path: "art/contributions/01-bellwarden-damage/v001/exports/bellwarden-damage-v001.png",
+  cell: 512,
+  anchor: [256, 464],
+  sheetFacing: -1,
+  frames: { hurt: [0, 0], stagger: [1, 0], collapse: [0, 1], death: [1, 1] },
+};
+
+/** How long the player stays down before respawning. */
+export const DEATH_TIME = 1.6;
+/** How long the recoil pose holds after a non-fatal hit. */
+export const HURT_TIME = 0.35;
+
+/** Which damage pose a state is showing, or null when upright. */
+export function damagePose(s) {
+  if (s.dying > 0) {
+    const elapsed = DEATH_TIME - s.dying;
+    return elapsed < 0.4 ? "stagger" : elapsed < 0.9 ? "collapse" : "death";
+  }
+  return s.hurtFor > 0 ? "hurt" : null;
+}
 const AIR_SCALE = 144 / 510;
 
 // Ascent, apex and fall, cut from the airborne sheet.
@@ -47,10 +74,11 @@ const CROUCH_OUTLINES = [
 
 /** `load` is the page's image loader: (path) => Promise<HTMLImageElement>. */
 export async function loadHero(load) {
-  const [pilot, air, crouchSource] = await Promise.all([
+  const [pilot, air, crouchSource, damage] = await Promise.all([
     load(HERO_SHEETS.pilot),
     load(HERO_SHEETS.air),
     load(HERO_SHEETS.crouch),
+    load(DAMAGE.path),
   ]);
   const atlas = await fetch(HERO_SHEETS.atlas).then((r) => r.json());
   const crouch = keyed(crouchSource, false, true);
@@ -58,6 +86,7 @@ export async function loadHero(load) {
     crouch.getContext("2d").drawImage(silhouette(crouchSource, blade), 0, 0);
   return {
     atlas,
+    damage,
     sheet: keyed(pilot, true),
     air: keyed(air),
     crouchFrames: CROUCH_OUTLINES.map((o) => silhouette(crouch, o)),
@@ -66,6 +95,20 @@ export async function loadHero(load) {
 
 /** Draw the hero for a simulation state at its world position. */
 export function drawHero(ctx, s, h) {
+  const down = damagePose(s);
+  if (down) {
+    const [col, row] = DAMAGE.frames[down];
+    const C = DAMAGE.cell;
+    const S = GROUND_SCALE;
+    ctx.save();
+    ctx.translate(s.x, s.y);
+    ctx.scale(s.facing * DAMAGE.sheetFacing, 1);
+    if (s.dying > 0 && s.dying < 0.3) ctx.globalAlpha = s.dying / 0.3;
+    ctx.drawImage(h.damage, col * C, row * C, C, C,
+      -DAMAGE.anchor[0] * S, -DAMAGE.anchor[1] * S, C * S, C * S);
+    ctx.restore();
+    return;
+  }
   let frame = h.atlas.frames[0];
   let sheet = h.sheet;
   let scale = GROUND_SCALE;

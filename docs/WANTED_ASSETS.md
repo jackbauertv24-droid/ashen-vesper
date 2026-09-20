@@ -96,15 +96,12 @@ seamlessly plus left and right end caps.
 
 ## Wanted now, in order
 
-### 1. Bellwarden hurt and death — the biggest hole
+### 1. Bellwarden hurt and death — **delivered**
 
-The player has **no damage reaction at all.** The hero atlas has eight
-frames: idle, four walk, three attack. A hit is shown by flickering the
-current pose to 40% alpha. Five health points, invulnerability frames,
-death and respawn all exist in the simulation with nothing behind them.
-
-Two poses, same sheet conventions as `bellwarden-pilot-v001`: a short recoil
-and a collapse. Same grid, same ground anchor, 144-unit runtime height.
+Closed by PR41. Four poses — hurt, stagger, collapse, death — integrated
+across all three stages. A hit now holds a recoil pose, and a fatal hit
+plays out over 1.6 seconds before the respawn. See
+[the review](PR_41_REVIEW.md).
 
 ### 2. Ruined Cloister backdrop
 

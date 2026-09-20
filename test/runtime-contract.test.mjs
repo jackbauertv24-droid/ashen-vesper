@@ -18,6 +18,7 @@ import fs from "node:fs";
 import { PNG } from "pngjs";
 import { platformCap } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
+import { DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
 import * as road from "../prototype/encounter-sim.js";
 import * as cloister from "../prototype/cloister-sim.js";
 import * as cistern from "../prototype/cistern-sim.js";
@@ -348,4 +349,41 @@ test("contract: filled rectangles are UI or debug only, never world objects", ()
       `${file}.js creates ${gradients} gradients; one full-screen wash is allowed and anything else must be an art asset`,
     );
   }
+});
+
+// ---------- Part F: going down is a sequence, not a teleport ----------
+
+for (const [name, M] of stages) {
+  test(`${name}: a fatal hit plays out before the respawn`, () => {
+    const s = M.create();
+    s.x = 400;
+    s.dying = DEATH_TIME;
+    const where = s.x;
+
+    // The stage holds still while the player is down.
+    for (let i = 0; i < 40; i++) M.step(s, { right: true }, 1 / 60, {});
+    assert.equal(s.x, where, "the player must not be driveable while down");
+    assert.ok(s.dying > 0, "still going down");
+    assert.ok(damagePose(s), "a damage pose is showing");
+
+    // And the pose progresses rather than holding one frame.
+    const early = damagePose(s);
+    for (let i = 0; i < 60; i++) M.step(s, {}, 1 / 60, {});
+    assert.notEqual(damagePose(s), early, "the sequence advances");
+
+    // Then, and only then, the respawn.
+    for (let i = 0; i < 120; i++) M.step(s, {}, 1 / 60, {});
+    assert.equal(s.dying, 0);
+    assert.equal(s.hp, 5, "respawned at full health");
+    assert.equal(s.deaths, 1);
+    assert.equal(damagePose(s), null, "upright again");
+  });
+}
+
+test("contract: a non-fatal hit shows the recoil pose, then clears", () => {
+  const s = cloister.create();
+  s.hurtFor = HURT_TIME;
+  assert.equal(damagePose(s), "hurt");
+  for (let i = 0; i < 30; i++) cloister.step(s, {}, 1 / 60, {});
+  assert.equal(damagePose(s), null, "the recoil is brief");
 });

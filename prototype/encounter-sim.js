@@ -11,6 +11,7 @@ import {
   stepVertical,
   groundAt,
 } from "./physics.js";
+import { DEATH_TIME, HURT_TIME } from "./hero-render.js";
 export { BODY, MOVE, bodyBox, hitbox, overlaps, solidHeight };
 export const VIEW = { width: 1280, height: 720 };
 export const LEVEL = { width: 6400, height: 720, gate: 5700, checkpoint: 6020 };
@@ -94,6 +95,8 @@ export function create() {
     noticeTime: 7,
     events: [],
     hitstop: 0,
+    dying: 0,
+    hurtFor: 0,
     walk: 0,
   };
 }
@@ -152,6 +155,8 @@ export function respawn(s) {
   s.invulnerable = 1;
   s.grounded = true;
   s.camera = Math.max(0, Math.min(5120, s.x - 500));
+  s.dying = 0;
+  s.hurtFor = 0;
   s.deaths++;
   s.events.push("death");
   message(
@@ -173,13 +178,21 @@ function damage(s) {
   s.hp--;
   s.invulnerable = 1.1;
   s.events.push("hurt");
+  s.hurtFor = HURT_TIME;
   message(s, "Hit! Step out of the staff’s reach during its windup.");
-  if (s.hp <= 0) respawn(s);
+  if (s.hp <= 0) s.dying = DEATH_TIME;
 }
 export function step(s, input, dt, options = {}) {
   const frame = beginFrame(s, dt);
   if (frame.frozen) return;
   dt = frame.dt;
+  s.hurtFor = Math.max(0, s.hurtFor - dt);
+  if (s.dying > 0) {
+    // The player is down; the stage waits rather than teleporting them back.
+    s.dying = Math.max(0, s.dying - dt);
+    if (s.dying === 0) respawn(s);
+    return;
+  }
   const ctx = stepHorizontal(s, input, dt, platforms, {
     ...options,
     levelWidth: LEVEL.width,

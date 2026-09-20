@@ -11,6 +11,7 @@ import {
   stepVertical,
   groundAt,
 } from "./physics.js";
+import { DEATH_TIME, HURT_TIME } from "./hero-render.js";
 
 export const VIEW = { width: 1280, height: 720 };
 export const LEVEL = { width: 4200, height: 720, gate: 2740, lever: 2300 };
@@ -42,6 +43,8 @@ export function create() {
     hp: 5,
     invulnerable: 0,
     hitstop: 0,
+    dying: 0,
+    hurtFor: 0,
     camera: 0,
     time: 0,
     leverOn: false,
@@ -82,6 +85,8 @@ export function respawn(s) {
   s.crouching = false;
   s.attackCrouched = false;
   s.invulnerable = 1;
+  s.dying = 0;
+  s.hurtFor = 0;
   s.deaths++;
   s.events.push("death");
   message(
@@ -95,8 +100,9 @@ function damage(s) {
   s.hp--;
   s.invulnerable = 1.1;
   s.events.push("hurt");
+  s.hurtFor = HURT_TIME;
   message(s, "The Sexton struck. Watch its windup and step away.");
-  if (s.hp <= 0) respawn(s);
+  if (s.hp <= 0) s.dying = DEATH_TIME;
 }
 
 function stepEnemy(s, dt, options) {
@@ -181,6 +187,13 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
   const frame = beginFrame(s, dt);
   if (frame.frozen) return;
   dt = frame.dt;
+  s.hurtFor = Math.max(0, s.hurtFor - dt);
+  if (s.dying > 0) {
+    // The player is down; the stage waits rather than teleporting them back.
+    s.dying = Math.max(0, s.dying - dt);
+    if (s.dying === 0) respawn(s);
+    return;
+  }
 
   const ctx = stepHorizontal(s, input, dt, platforms, {
     ...options,

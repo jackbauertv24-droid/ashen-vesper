@@ -9,13 +9,14 @@ import {
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 import { platformCap, arcade } from "./environment-metrics.js";
-import { crouchScale, crouchAnchors } from "./character-metrics.js";
 import * as run from "./run.js";
 import { DEATH_FADE } from "./iron-sexton.js";
+import { loadHero, drawHero } from "./hero-render.js";
 import { keyed, silhouette } from "./render.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
 const W = run.enter("road");
+let heroArt = null;
 let s = run.roomState(W),
   running = false,
   art,
@@ -259,63 +260,7 @@ function platform(p) {
   ctx.lineTo(p.x + p.w, p.y);
   ctx.stroke();
 }
-function hero() {
-  const air = !s.grounded;
-  let f = atlas.frames[0],
-    sheet = art.hero,
-    scale = 144 / 418;
-  if (s.attack > 0)
-    f = atlas.frames[s.attack > 0.28 ? 5 : s.attack > 0.1 ? 6 : 7];
-  else if (air) {
-    const frames = [
-      { x: 40, y: 20, width: 415, height: 680, pivotX: 240, pivotY: 644 },
-      { x: 475, y: 130, width: 420, height: 390, pivotX: 245, pivotY: 354 },
-      { x: 910, y: 130, width: 400, height: 580, pivotX: 235, pivotY: 542 },
-    ];
-    f = frames[s.vy < -140 ? 0 : s.vy > 140 ? 2 : 1];
-    sheet = art.air;
-    scale = 144 / 510;
-  } else if (Math.abs(s.vx) > 0)
-    f = atlas.frames[1 + (Math.floor(s.walk / 0.115) % 4)];
-  ctx.save();
-  ctx.translate(s.x, s.y);
-  ctx.scale(s.facing, 1);
-  if (s.invulnerable > 0 && Math.floor(s.time * 15) % 2) ctx.globalAlpha = 0.4;
-  if (s.crouching) {
-    const index =
-      s.attack > 0
-        ? s.attack > 0.28
-          ? 3
-          : s.attack > 0.12
-            ? 4
-            : 5
-        : Math.abs(s.vx) > 0
-          ? 1 + (Math.floor(s.walk / 0.18) % 2)
-          : 0;
-    const [x, y] = crouchAnchors[index];
-    ctx.drawImage(
-      art.crouchFrames[index],
-      -x * crouchScale,
-      -y * crouchScale,
-      1536 * crouchScale,
-      1024 * crouchScale,
-    );
-    ctx.restore();
-    return;
-  }
-  ctx.drawImage(
-    sheet,
-    f.x,
-    f.y,
-    f.width,
-    f.height,
-    -f.pivotX * scale,
-    -f.pivotY * scale,
-    f.width * scale,
-    f.height * scale,
-  );
-  ctx.restore();
-}
+
 function enemy(e) {
   const dying = e.hp <= 0;
   const fade = dying ? 1 - (e.deadFor ?? 0) / DEATH_FADE : 1;
@@ -360,6 +305,7 @@ function enemy(e) {
   ctx.fillRect(e.x - 22, e.y - 150, (44 * e.hp) / 3, 4);
 }
 function draw() {
+  if (!heroArt) return;
   if (!art) return;
   background();
   ctx.save();
@@ -434,7 +380,7 @@ function draw() {
   ctx.fill();
   text("SANCTUARY", cx - 48, 520);
   for (const e of s.enemies) enemy(e);
-  hero();
+  drawHero(ctx, s, heroArt);
   const signs = [
     [180, "I · THE OUTER COURT"],
     [1120, "II · THE BROKEN CAUSEWAY"],
@@ -496,14 +442,9 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 try {
-  const r = await fetch("art/production/bellwarden/bellwarden-pilot-v001.json");
-  if (!r.ok) throw Error("Atlas unavailable");
-  atlas = await r.json();
   const paths = {
     sky: "abbey/skyline-distant-v001",
     stone: "abbey/masonry-module-v001",
-    hero: "bellwarden/bellwarden-pilot-v001",
-    air: "bellwarden/bellwarden-airborne-v001",
     portal: "abbey/abbey-gate-portal-v001",
     enemy: "enemies/hollow-pilgrim-motion-v001",
   };
@@ -518,8 +459,9 @@ try {
   art.platformCap = await load(platformCap.path);
   art.grate = await load("art/contributions/15-mechanisms/v003/exports/grate-v001.png");
   art.arcade = await load(arcade.path);
-  art.hero = keyed(art.hero, true);
-  for (const k of ["air", "enemy"]) art[k] = keyed(art[k]);
+  art.enemy = keyed(art.enemy);
+  heroArt = await loadHero(load);
+  atlas = heroArt.atlas;
   art.brazier = await load(
     "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
   );
@@ -532,86 +474,6 @@ try {
       silhouette(art.enemy, frame.outline),
     ]),
   );
-  const crouchSource = await load(
-    "art/contributions/01-bellwarden-crouch/v001/source/crouch-generated-v001.png",
-  );
-  const crouch = keyed(crouchSource, false, true);
-  // Protect the neutral steel blades from the neutral checkerboard key.
-  for (const blade of [
-    [
-      [266, 362],
-      [480, 417],
-      [268, 376],
-    ],
-    [
-      [814, 337],
-      [1019, 383],
-      [814, 350],
-    ],
-    [
-      [1370, 342],
-      [1518, 409],
-      [1367, 356],
-    ],
-    [
-      [163, 768],
-      [404, 818],
-      [160, 781],
-    ],
-    [
-      [972, 725],
-      [1188, 732],
-      [972, 741],
-    ],
-    [
-      [1374, 796],
-      [1508, 763],
-      [1380, 809],
-    ],
-  ])
-    crouch.getContext("2d").drawImage(silhouette(crouchSource, blade), 0, 0);
-  art.crouchFrames = [
-    [
-      [0, 110],
-      [505, 110],
-      [505, 480],
-      [0, 480],
-    ],
-    [
-      [525, 110],
-      [1020, 110],
-      [1020, 480],
-      [525, 480],
-    ],
-    [
-      [1045, 110],
-      [1536, 110],
-      [1536, 480],
-      [1045, 480],
-    ],
-    [
-      [0, 610],
-      [510, 610],
-      [510, 980],
-      [0, 980],
-    ],
-    [
-      [515, 610],
-      [1200, 610],
-      [1200, 750],
-      [980, 750],
-      [980, 980],
-      [515, 980],
-    ],
-    [
-      [1070, 840],
-      [1200, 700],
-      [1200, 610],
-      [1536, 610],
-      [1536, 980],
-      [1070, 980],
-    ],
-  ].map((outline) => silhouette(crouch, outline));
   $("#enter").disabled = false;
   $("#enter").textContent = "Enter the pilgrim road";
   window.encounter = { snapshot: () => structuredClone(s), ready: true };
