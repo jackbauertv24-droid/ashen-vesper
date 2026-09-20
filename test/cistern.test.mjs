@@ -157,11 +157,15 @@ test("the route can be completed without drowning", () => {
 });
 
 test("falling off the route costs progress, not a life", () => {
-  // A vertical stage invites the player to drop. The first draft of this map
-  // had ten lethal edges, the very first being the entry ledge: walk right
-  // without jumping and you drowned. Falls now land in the basin, which is
-  // where the Lurker is and a long climb from the valve. Only the basin's
-  // own two ends are open water.
+  // A vertical stage invites the player to drop. The first draft had ten
+  // lethal edges, the very first being the entry ledge: walk right without
+  // jumping and you drowned. The second draft still drowned you at the two
+  // ends of the basin — which would be fair if the water were drawn, and it
+  // is not, so it was an invisible instant death.
+  //
+  // The basin now spans the chamber and every fall lands on it. Falling
+  // costs the climb back up, which is a real cost, and the player can see
+  // every surface involved.
   const lethal = [];
   for (const p of platforms) {
     for (const dir of [-1, 1]) {
@@ -181,10 +185,9 @@ test("falling off the route costs progress, not a life", () => {
       }
     }
   }
-  const basin = platforms.find((p) => p.y === 1360);
   assert.deepEqual(
     lethal.sort(),
-    [`y=${basin.y} left`, `y=${basin.y} right`],
-    "only the ends of the flooded basin may drown you",
+    [],
+    "nothing on the route may kill a player for walking off an edge while the water is undrawn",
   );
 });

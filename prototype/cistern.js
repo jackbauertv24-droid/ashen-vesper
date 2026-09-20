@@ -9,6 +9,8 @@ import { drawPortcullis } from "./portcullis.js";
 
 /** The floor of the valve chamber, where the lever and gate stand. */
 const VALVE_FLOOR = 980;
+/** The basin floor the whole chamber stands on. */
+const BASIN_FLOOR = 1360;
 
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
@@ -78,6 +80,18 @@ function reset() { s = run.restart(W, "cistern"); held.clear(); start(); }
 $("#enter").onclick = start;
 $("#reset").onclick = reset;
 
+// The cistern is one vaulted chamber: a row of piers standing on the basin
+// floor, their wide capitals meeting overhead to carry the vault, with the
+// route threading between them. The piers are structure, so they sit in the
+// world plane rather than parallaxing — a column that slides against the
+// floor it stands on stops reading as a column.
+const PIER = { spacing: 836, size: 1076, baseAt: BASIN_FLOOR, footInSheet: 987 / 1024 };
+function colonnade() {
+  const y = PIER.baseAt - PIER.size * PIER.footInSheet;
+  for (let x = -300; x < LEVEL.width + 300; x += PIER.spacing)
+    ctx.drawImage(art.pier, x, y, PIER.size, PIER.size);
+}
+
 function platform(p) {
   const h = solidHeight(p);
   ctx.save();
@@ -139,16 +153,11 @@ function draw() {
   ctx.fillRect(0, 0, 1280, 720);
   if (!hero) return;
 
-  // Vault piers run the depth of the cistern, not along one line.
-  ctx.save();
-  ctx.translate(-s.camera * 0.3, -s.cameraY * 0.3);
-  for (let x = -200; x < LEVEL.width; x += 460)
-    for (let y = 60; y < LEVEL.height; y += 560)
-      ctx.drawImage(art.pier, x, y, 240, 560);
-  ctx.restore();
+
 
   ctx.save();
   ctx.translate(-s.camera, -s.cameraY);
+  colonnade();
   // The channels are left as open dark water. They had a canvas gradient
   // with a sine-wave stroke for ripples, which read as cheap shading rather
   // than a flooded cistern. A painted water surface is requested in

@@ -64,7 +64,12 @@ export const platforms = [
   { x: 1960, y: 1120, w: 540 },
 
   // The basin. Wide on purpose: it is the floor of the stage, not a trap.
-  { x: 600, y: 1360, w: 3160 },
+  // The basin runs the full width. It is the floor of the chamber, and a
+  // player who drops should land on it, not fall through an unmarked hole
+  // into water that is not drawn. The drown check below is kept as a floor
+  // of last resort; the hazard returns when there is a water surface to
+  // show, which is requested in docs/WANTED_ASSETS.md.
+  { x: 0, y: 1360, w: 4600 },
 
   // Climbing out of the flood, three worked steps.
   { x: 3020, y: 1265, w: 140 },
