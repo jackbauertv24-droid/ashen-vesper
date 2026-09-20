@@ -154,6 +154,19 @@ export function stepVertical(s, ctx, dt, platforms) {
   }
 }
 
+/**
+ * The platform whose top supports a point, or null when it is over a gap.
+ * Actors that walk without gravity use this so they stop at a ledge instead
+ * of striding out over a hole.
+ */
+export function groundAt(x, y, platforms, tolerance = 2) {
+  return (
+    platforms.find(
+      (p) => x >= p.x && x <= p.x + p.w && Math.abs(p.y - y) <= tolerance,
+    ) ?? null
+  );
+}
+
 /** Shared per-frame preamble: clamp dt, clear events, advance timers. */
 export function beginFrame(s, dt) {
   dt = clampDt(dt);

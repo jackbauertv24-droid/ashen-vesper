@@ -11,6 +11,7 @@ import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 import { platformCap, arcade } from "./environment-metrics.js";
 import { crouchScale, crouchAnchors } from "./character-metrics.js";
 import * as run from "./run.js";
+import { DEATH_FADE } from "./iron-sexton.js";
 import { keyed, silhouette } from "./render.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
@@ -316,17 +317,23 @@ function hero() {
   ctx.restore();
 }
 function enemy(e) {
-  if (e.hp <= 0) {
+  const dying = e.hp <= 0;
+  const fade = dying ? 1 - (e.deadFor ?? 0) / DEATH_FADE : 1;
+  if (dying) {
+    // Remains stay; the body itself sinks and fades rather than popping out.
     ctx.fillStyle = "#9b998244";
     ctx.fillRect(e.x - 30, e.y - 4, 60, 4);
-    return;
+    if (fade <= 0) return;
   }
   ctx.save();
-  ctx.translate(e.x, e.y);
+  ctx.translate(e.x, dying ? e.y + (1 - fade) * 10 : e.y);
+  // The Hollow Pilgrim sheet has only idle, shuffle, windup and strike — no
+  // hurt or death pose — so a falling guard fades out in whatever pose it
+  // holds. A real death pose is requested in docs/WANTED_ASSETS.md.
   const pose = pilgrimPose(e),
     frame = pilgrimFrames[pose];
   ctx.scale(e.facing * frame.facing, 1);
-  if (e.mode === "hurt") ctx.globalAlpha = 0.5;
+  ctx.globalAlpha = dying ? fade : e.mode === "hurt" ? 0.5 : 1;
   ctx.drawImage(
     art.enemyFrames[pose],
     -frame.pivot[0] * pilgrimScale,
@@ -335,6 +342,7 @@ function enemy(e) {
     768 * pilgrimScale,
   );
   ctx.restore();
+  if (dying) return;
   if (e.mode === "windup") {
     text("!", e.x - 5, e.y - 172, "#ffcc77", 28);
     ctx.strokeStyle = "#ecb464";
@@ -365,12 +373,15 @@ function draw() {
     ctx.strokeStyle = "#67747c";
     ctx.beginPath();
     ctx.moveTo(b.x, b.y - 165);
-    ctx.lineTo(b.x, b.y - 75);
+    // A struck censer leaves its chain hanging short and empty. The previous
+    // remnant was a filled 24x4 bar, which read as a floating health bar.
+    ctx.lineTo(b.x, b.y - (s.broken[i] ? 122 : 75));
     ctx.stroke();
     if (!s.broken[i]) ctx.drawImage(art.brazier, b.x - 42, b.y - 86, 84, 100);
     else {
-      ctx.fillStyle = "#b89767";
-      ctx.fillRect(b.x - 12, b.y - 70, 24, 4);
+      ctx.beginPath();
+      ctx.arc(b.x, b.y - 116, 6, Math.PI * 0.15, Math.PI * 0.85, true);
+      ctx.stroke();
     }
   });
   for (const d of s.drops) {

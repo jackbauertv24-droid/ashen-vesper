@@ -9,6 +9,7 @@ import {
   overlaps,
   stepHorizontal,
   stepVertical,
+  groundAt,
 } from "./physics.js";
 
 export const VIEW = { width: 1280, height: 720 };
@@ -48,6 +49,7 @@ export function create() {
     complete: false,
     deaths: 0,
     enemy: {
+      deadFor: 0,
       x: 760,
       y: 600,
       hp: 3,
@@ -97,7 +99,11 @@ function damage(s) {
 
 function stepEnemy(s, dt, options) {
   const e = s.enemy;
-  if (e.hp <= 0) return;
+  if (e.hp <= 0) {
+    // Keep counting after death so the renderer can play it out.
+    e.deadFor += dt;
+    return;
+  }
   const previous = e.timer;
   e.timer = Math.max(0, e.timer - dt);
   const box = hitbox(s);
@@ -143,13 +149,16 @@ function stepEnemy(s, dt, options) {
       e.timer = 0.8;
     } else if (Math.abs(distance) < 430) {
       e.mode = "approach";
-      e.x = Math.max(
+      const next = Math.max(
         e.home - 250,
         Math.min(e.home + 250, e.x + e.facing * 78 * dt),
       );
+      // Do not stride out over a hole; stop at the ledge.
+      if (groundAt(next, e.y, platforms)) e.x = next;
     } else {
       e.mode = "patrol";
-      e.x = e.home + Math.sin(s.time * 0.5) * 45;
+      const drift = e.home + Math.sin(s.time * 0.5) * 45;
+      if (groundAt(drift, e.y, platforms)) e.x = drift;
     }
   }
 }

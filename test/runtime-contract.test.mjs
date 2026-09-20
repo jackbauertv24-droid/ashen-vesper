@@ -10,6 +10,7 @@ import {
   BODY,
   MOVE,
   standBlocked,
+  groundAt,
   stepHorizontal,
   stepVertical,
 } from "../prototype/physics.js";
@@ -244,4 +245,29 @@ test("contract: every enemy mode maps to a real Iron Sexton pose", () => {
   assert.equal(cell, 512);
   assert.ok(anchor[0] > 0 && anchor[1] > 0);
   assert.ok(scale > 0.4 && scale < 0.5, `unexpected runtime scale ${scale}`);
+});
+
+test("contract: a walking enemy stops at a ledge instead of crossing the gap", () => {
+  const solid = [
+    { x: 0, y: 600, w: 900 },
+    { x: 1010, y: 600, w: 1050 },
+  ];
+  assert.ok(groundAt(500, 600, solid), "solid ground is found");
+  assert.equal(groundAt(950, 600, solid), null, "a gap has no ground");
+  assert.equal(groundAt(500, 400, solid), null, "ground far below does not count");
+
+  // Lure the Cloister enemy toward the hole at 900..1010 and hold it there.
+  const s = cloister.create();
+  // Just across the gap and inside the 430-unit approach range, so the enemy
+  // actively walks right toward the hole at 900..1010.
+  s.x = 1150;
+  for (let i = 0; i < 900; i++) {
+    cloister.step(s, {}, 1 / 60, {});
+    s.x = 1150;
+    assert.ok(
+      groundAt(s.enemy.x, s.enemy.y, cloister.platforms),
+      `enemy walked out over the gap at x=${s.enemy.x.toFixed(1)}`,
+    );
+  }
+  assert.ok(s.enemy.x > 800, "it should still have advanced toward the ledge");
 });

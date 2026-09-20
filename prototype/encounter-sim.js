@@ -9,6 +9,7 @@ import {
   solidHeight,
   stepHorizontal,
   stepVertical,
+  groundAt,
 } from "./physics.js";
 export { BODY, MOVE, bodyBox, hitbox, overlaps, solidHeight };
 export const VIEW = { width: 1280, height: 720 };
@@ -52,6 +53,7 @@ export function create() {
     drops: [],
     enemies: [
       {
+        deadFor: 0,
         x: 2050,
         home: 2050,
         y: 600,
@@ -62,6 +64,7 @@ export function create() {
         lastHit: -1,
       },
       {
+        deadFor: 0,
         x: 3560,
         home: 3560,
         y: 600,
@@ -71,6 +74,7 @@ export function create() {
         facing: -1,
       },
       {
+        deadFor: 0,
         x: 5300,
         home: 5300,
         y: 600,
@@ -223,7 +227,11 @@ export function step(s, input, dt, options = {}) {
   }
   s.drops = s.drops.filter((d) => !d.taken);
   for (const e of s.enemies) {
-    if (e.hp <= 0) continue;
+    if (e.hp <= 0) {
+      // Keep counting after death so the renderer can play it out.
+      e.deadFor = (e.deadFor ?? 0) + dt;
+      continue;
+    }
     const oldEnemyX = e.x;
     const previousTimer = e.timer;
     e.timer = Math.max(0, e.timer - dt);
@@ -270,13 +278,16 @@ export function step(s, input, dt, options = {}) {
         e.timer = 0.8;
       } else if (Math.abs(distance) < 430) {
         e.mode = "approach";
-        e.x = Math.max(
+        const next = Math.max(
           e.home - 300,
           Math.min(e.home + 260, e.x + e.facing * 78 * dt),
         );
+        // Do not stride out over a hole; stop at the ledge.
+        if (groundAt(next, e.y, platforms)) e.x = next;
       } else {
         e.mode = "patrol";
-        e.x = e.home + Math.sin(s.time * 0.5 + e.home) * 45;
+        const drift = e.home + Math.sin(s.time * 0.5 + e.home) * 45;
+        if (groundAt(drift, e.y, platforms)) e.x = drift;
       }
       for (const p of platforms) {
         if (e.y <= p.y || e.y - 130 >= p.y + solidHeight(p)) continue;

@@ -2,6 +2,9 @@
 //
 // The sheet is a 4x2 grid of 512px cells sharing one ground anchor, so a pose
 // is a cell index and the runtime never needs per-frame pivots.
+/** Seconds a defeated Sexton stays on screen, fading, before it is gone. */
+export const DEATH_FADE = 0.5;
+
 export const IRON_SEXTON = {
   path: "art/contributions/12-iron-sexton/v005/exports/iron-sexton-motion-v003.png",
   cell: 512,

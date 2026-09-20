@@ -92,8 +92,20 @@ parallax layer reading as enclosed interior, not open sky, covering a
 ### 3. Depth for the two enemies that are actually in the game
 
 The Hollow Pilgrim (Pilgrim Road) and the Iron Sexton (Ruined Cloister) are
-the only enemies a player meets. Neither has a **death** pose; both simply
-stop being drawn. The Sexton sheet is otherwise complete.
+the only enemies a player meets, and both are short of poses.
+
+| | poses | missing |
+| --- | --- | --- |
+| Hollow Pilgrim | **4** — idle, shuffle, windup, strike | **hurt and death** |
+| Iron Sexton | 8 — idle, two steps, brace, windup, contact, recover, hurt | **death** |
+
+The Pilgrim is the thinner of the two and the one a player meets first,
+three times over. It has no reaction to being struck at all: the runtime
+shows a hit by drawing its idle pose at half alpha, and a defeated guard
+now fades out still standing, because there is no pose to fall into.
+
+Both need a death pose. The Pilgrim also needs a hurt pose. Same sheet
+conventions, same anchor, same runtime height as each existing sheet.
 
 ### 4. A second Pilgrim Road enemy
 
