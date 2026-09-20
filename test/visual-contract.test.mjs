@@ -946,3 +946,101 @@ test("Job 09 Flooded Cistern vault pier candidate satisfies visual and geometry 
   assert.equal(pierAsset.pivot[1], 960);
 });
 
+test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual, geometry, and zero-delta seam contract", () => {
+  const centerBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
+  );
+  const center = PNG.sync.read(centerBytes);
+  assert.equal(centerBytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(center.width, 1024);
+  assert.equal(center.height, 256);
+
+  // Check mathematical seamlessness across repeating seam boundary:
+  // Column 0 must exactly equal Column 1023 across all 256 vertical scanlines
+  let maxSeamDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const idx0 = (y * 1024 + 0) * 4;
+    const idxLast = (y * 1024 + 1023) * 4;
+    for (let c = 0; c < 4; c++) {
+      const delta = Math.abs(center.data[idx0 + c] - center.data[idxLast + c]);
+      if (delta > maxSeamDelta) maxSeamDelta = delta;
+    }
+  }
+  assert.equal(maxSeamDelta, 0, "Seam repeat delta must be exactly 0 across all channels (R, G, B, A)");
+
+  // Top surface must be planar at y=32 and top clearance border (y < 16) must be transparent
+  for (let y = 0; y < 16; y++) {
+    for (let x = 0; x < 1024; x++) {
+      assert.equal(center.data[(y * 1024 + x) * 4 + 3], 0, `Top margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Top walking contact surface must be solid opaque across entire width at y=32
+  for (let x = 0; x < 1024; x++) {
+    assert.ok(
+      center.data[(32 * 1024 + x) * 4 + 3] > 240,
+      `Top contact surface at x=${x} must be solid opaque`,
+    );
+  }
+
+  // Left end cap verification
+  const leftBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
+  );
+  const leftEnd = PNG.sync.read(leftBytes);
+  assert.equal(leftBytes[25], 6, "Left end must be Color Type 6 (RGBA)");
+  assert.equal(leftEnd.width, 256);
+  assert.equal(leftEnd.height, 256);
+
+  // Left end outer clearance border: x < 32 must be transparent
+  for (let y = 0; y < 256; y++) {
+    for (let x = 0; x < 32; x++) {
+      assert.equal(leftEnd.data[(y * 256 + x) * 4 + 3], 0, `Left end outer margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Left end column 255 must match center column 0
+  let leftToCenterDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const iL = (y * 256 + 255) * 4;
+    const iC = (y * 1024 + 0) * 4;
+    for (let c = 0; c < 4; c++) {
+      leftToCenterDelta = Math.max(leftToCenterDelta, Math.abs(leftEnd.data[iL + c] - center.data[iC + c]));
+    }
+  }
+  assert.equal(leftToCenterDelta, 0, "Left end to center strip junction delta must be 0");
+
+  // Right end cap verification
+  const rightBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
+  );
+  const rightEnd = PNG.sync.read(rightBytes);
+  assert.equal(rightBytes[25], 6, "Right end must be Color Type 6 (RGBA)");
+  assert.equal(rightEnd.width, 256);
+  assert.equal(rightEnd.height, 256);
+
+  // Right end outer clearance border: x >= 224 must be transparent
+  for (let y = 0; y < 256; y++) {
+    for (let x = 224; x < 256; x++) {
+      assert.equal(rightEnd.data[(y * 256 + x) * 4 + 3], 0, `Right end outer margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Center column 1023 must match right end column 0
+  let centerToRightDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const iC = (y * 1024 + 1023) * 4;
+    const iR = (y * 256 + 0) * 4;
+    for (let c = 0; c < 4; c++) {
+      centerToRightDelta = Math.max(centerToRightDelta, Math.abs(center.data[iC + c] - rightEnd.data[iR + c]));
+    }
+  }
+  assert.equal(centerToRightDelta, 0, "Center strip to right end junction delta must be 0");
+
+  // Review composite verification
+  const reviewBytes = fs.readFileSync("docs/reviews/platform-cap-seamless-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+

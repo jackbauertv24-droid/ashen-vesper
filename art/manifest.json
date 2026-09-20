@@ -1914,6 +1914,158 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "platform-cap-center-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
+      "title": "World 02 Ruined Cloister seamless platform center strip",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "defc94087e00370c8cddd700e07d429ad2b1128d703a0b020d996bbafb98861a",
+      "intendedUse": "Stage 02 Ruined Cloister horizontally seamless walkable platform center strip; 240x60 runtime canvas at scale 240/1024, flat top y=32, measured seam delta Δ=0.",
+      "limitations": [
+        "Repeatable center strip only; decorative terminal corbel end caps are separate exports."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Lossless 3-copy repeat proofs across white, black, cloister indigo, grayscale, and amplified seam difference in docs/reviews/platform-cap-seamless-v002.png",
+        "engineIntegration": "Ready for integration into cloister prototype floors per M1.6."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate-floor-material",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "paintedTopY": 32,
+        "runtimeTopY": 7.5,
+        "seamDelta": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "platform-cap-end-left-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
+      "title": "World 02 Ruined Cloister platform decorative left end cap",
+      "status": "candidate",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "537e941fd5c56db9e5c53523d60bd56a38df61f8280973bfe62155a487b0ce1b",
+      "intendedUse": "Decorative left corbel bracket terminal for Ruined Cloister walkable platform; connects flush to center strip with Δ=0.",
+      "limitations": [
+        "Left terminal bracket only; use with platform-cap-center-v002."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Verified in complete assembly proof in docs/reviews/platform-cap-seamless-v002.png",
+        "engineIntegration": "Ready for platform boundary placement per M1.6."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate-terminal-bracket",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          60,
+          60
+        ],
+        "paintedTopY": 32,
+        "runtimeTopY": 7.5
+      }
+    },
+    {
+      "id": "platform-cap-end-right-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
+      "title": "World 02 Ruined Cloister platform decorative right end cap",
+      "status": "candidate",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "c9543af5aae4ce77f89fbe0958488988225ceb065f1354edc222a1b58fdd7ea2",
+      "intendedUse": "Decorative right corbel bracket terminal for Ruined Cloister walkable platform; connects flush to center strip with Δ=0.",
+      "limitations": [
+        "Right terminal bracket only; use with platform-cap-center-v002."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Verified in complete assembly proof in docs/reviews/platform-cap-seamless-v002.png",
+        "engineIntegration": "Ready for platform boundary placement per M1.6."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate-terminal-bracket",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          60,
+          60
+        ],
+        "paintedTopY": 32,
+        "runtimeTopY": 7.5
+      }
+    },
+    {
+      "id": "cloister-platform-strip-generated-v001",
+      "path": "art/contributions/world-02-ruined-cloister/v002/source/cloister-platform-strip-generated-v001.jpg",
+      "title": "cloister platform strip generated v001",
+      "status": "retained-source",
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "792c3687254a0421113f7f2b6a250ddc3f53c29137554d4f61b5b96c5948ef83",
+      "intendedUse": "Raw generator output for seamless Ruined Cloister platform strip.",
+      "limitations": [
+        "Raw unmasked generator source; use processed exports in runtime."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Source image generated via Google Imagen 3 with uniform lighting and ashlar masonry courses.",
+        "engineIntegration": "Retained source; not integrated directly."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "platform-cap-seamless-v002",
+      "path": "docs/reviews/platform-cap-seamless-v002.png",
+      "title": "platform-cap-seamless-v002",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": true,
+      "sha256": "c54d6fb69969237225c86f786a5724dbfc3ddcec08e04d442b869302b939e6f2",
+      "intendedUse": "Multi-panel review composite certifying 3-copy seamless repeat proofs on white, black, cloister indigo, grayscale, assembly, and amplified edge difference.",
+      "limitations": [
+        "Documentation and verification composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Lossless proofs verifying zero edge difference and uniform value across repeat seams.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

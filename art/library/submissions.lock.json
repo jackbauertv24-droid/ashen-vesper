@@ -765,6 +765,42 @@
     {
       "path": "docs/reviews/cistern-vault-pier-v001.png",
       "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
+      "sha256": "defc94087e00370c8cddd700e07d429ad2b1128d703a0b020d996bbafb98861a"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
+      "sha256": "537e941fd5c56db9e5c53523d60bd56a38df61f8280973bfe62155a487b0ce1b"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
+      "sha256": "c9543af5aae4ce77f89fbe0958488988225ceb065f1354edc222a1b58fdd7ea2"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/NOTES.md",
+      "sha256": "7f40f85481334fbfab0cf7c8ea942fbd24616a15a77995d145a98230037130e2"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/preview.html",
+      "sha256": "ac746fe018ad5c8f7c5d4b4a7b59f3feac81a4a780f3e8c3e494b4c050a3a7af"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/PROMPT.txt",
+      "sha256": "231bfaad1f8c71ff2ce0b7999e52ba961063cf4fe22de93f8b28da201ef19266"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/source/cloister-platform-strip-generated-v001.jpg",
+      "sha256": "792c3687254a0421113f7f2b6a250ddc3f53c29137554d4f61b5b96c5948ef83"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v002/submission.json",
+      "sha256": "8e00926ffbdf18660dabaa49a4a3c915ebce7d45b534769bf97b5c5aac644cd8"
+    },
+    {
+      "path": "docs/reviews/platform-cap-seamless-v002.png",
+      "sha256": "c54d6fb69969237225c86f786a5724dbfc3ddcec08e04d442b869302b939e6f2"
     }
   ]
 }
