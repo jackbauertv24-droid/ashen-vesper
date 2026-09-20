@@ -10,8 +10,18 @@ const server = spawn(process.execPath, ["tools/serve.mjs"], {
 let browser;
 try {
   await new Promise((r, j) => {
-    server.stdout.once("data", r);
-    server.once("error", j);
+    const timer = setTimeout(
+      () => j(new Error(`server did not start on ${baseURL}`)),
+      15000,
+    );
+    server.stdout.once("data", () => {
+      clearTimeout(timer);
+      r();
+    });
+    server.once("error", (err) => {
+      clearTimeout(timer);
+      j(err);
+    });
   });
   browser = await chromium.launch();
   const page = await browser.newPage({

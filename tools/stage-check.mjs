@@ -50,7 +50,22 @@ function warmthBuckets(png, y, buckets = 16, skip = () => false) {
   return out;
 }
 
-await new Promise((r) => setTimeout(r, 1200));
+// Poll for readiness rather than guessing at a sleep: a slow or already
+// occupied port must fail loudly here, not as a mystery timeout later.
+await (async () => {
+  const deadline = Date.now() + 15000;
+  for (;;) {
+    try {
+      const res = await fetch(baseURL, { signal: AbortSignal.timeout(1000) });
+      if (res.ok) return;
+    } catch {
+      /* not up yet */
+    }
+    if (Date.now() > deadline)
+      throw new Error(`server did not become ready on ${baseURL}`);
+    await new Promise((r) => setTimeout(r, 100));
+  }
+})();
 const browser = await chromium.launch();
 let checked = 0;
 
