@@ -254,5 +254,11 @@ try {
   await page.locator('#btn-mode-sheet').click();
   await page.screenshot({path:'tmp/job11-bell-moth-motion-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/12-iron-sexton/v003/preview.html');
+  await page.waitForFunction(() => window.ironSextonReady === true);
+  await page.locator('button[data-mode="anim-attack"]').click();
+  await page.locator('button[data-bg="bg-indigo"]').click();
+  await page.screenshot({path:'tmp/job12-iron-sexton-motion-preview.png',fullPage:true});
+
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

@@ -821,6 +821,34 @@
     {
       "path": "docs/reviews/bell-moth-motion-v001.png",
       "sha256": "5b1bc9d4dea342449dd16430ba5dff3a3b69aa84b9e342cd56045a34fafdedb8"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/exports/iron-sexton-motion-v001.png",
+      "sha256": "d0e294b0d02baf60010572c9ec5678740143f314ddeba115eba8f83b5df04a34"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/NOTES.md",
+      "sha256": "e337d20b6c427f0b230db5e9932d5a97734000eb6e584f8fb11abcfe5d754655"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/preview.html",
+      "sha256": "3de9abbd59ecade755122f3d66032ea6cc01e3e917d13ac9d03a562ccaf66430"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/PROMPT.txt",
+      "sha256": "0e94692df1516e81bf653d60195de049847d329871d50aaedd6925148542059c"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/source/iron-sexton-motion-generated-v001.jpg",
+      "sha256": "e7b67cb74c7770b4f225f3619a691d53e229b39e865b86472f87aef6453db90f"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v003/submission.json",
+      "sha256": "2bff2a6ca56a1482c909258e35bb300acfeee55aa140160e536cd730d8af90ad"
+    },
+    {
+      "path": "docs/reviews/iron-sexton-motion-v001.png",
+      "sha256": "bc3c767cd4f6cd36334d7259237c65f93c628b3898f294225dd0baf2f4eb35e5"
     }
   ]
 }

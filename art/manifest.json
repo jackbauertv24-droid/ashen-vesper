@@ -2101,6 +2101,95 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "iron-sexton-motion-generated-v001",
+      "path": "art/contributions/12-iron-sexton/v003/source/iron-sexton-motion-generated-v001.jpg",
+      "title": "iron-sexton-motion-generated-v001",
+      "status": "candidate",
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "e7b67cb74c7770b4f225f3619a691d53e229b39e865b86472f87aef6453db90f",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 12 Iron Sexton 8-pose motion sheet candidate.",
+      "limitations": [
+        "Uncropped 4x2 generation grid; see exports/iron-sexton-motion-v001.png for game-ready 2048x1024 RGBA sheet."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/12-iron-sexton/v003/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "iron-sexton-motion-v001",
+      "path": "art/contributions/12-iron-sexton/v003/exports/iron-sexton-motion-v001.png",
+      "title": "Job 12 Iron Sexton 8-pose motion sheet candidate",
+      "status": "candidate",
+      "width": 2048,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "d0e294b0d02baf60010572c9ec5678740143f314ddeba115eba8f83b5df04a34",
+      "intendedUse": "Job 12 Iron Sexton 8-pose animation sheet; 2048x1024 sheet with 4x2 512px cells, runtime height 160 units at scale 0.4, ground anchor (208, 464).",
+      "limitations": [
+        "Candidate heavy enemy motion sheet; state-machine and shovel cleave combat AI integration pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA sheet with checkerboard, white, black, indigo, stone, and in-situ combat lineup in docs/reviews/iron-sexton-motion-v001.png",
+        "engineIntegration": "Candidate asset; Ruined Cloister heavy combat integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.4,
+        "runtimeHeight": 160,
+        "sheetGrid": [
+          4,
+          2
+        ],
+        "cellSize": [
+          512,
+          512
+        ],
+        "groundAnchor": [
+          208,
+          464
+        ]
+      }
+    },
+    {
+      "id": "iron-sexton-motion-review-v001",
+      "path": "docs/reviews/iron-sexton-motion-v001.png",
+      "title": "iron-sexton-motion-review-v001",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1200,
+      "format": "png",
+      "alpha": true,
+      "sha256": "bc3c767cd4f6cd36334d7259237c65f93c628b3898f294225dd0baf2f4eb35e5",
+      "intendedUse": "Multi-panel review composite for Job 12 Iron Sexton 8-pose motion sheet candidate.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with 4x2 grid, white, black, indigo, stone, and in-situ combat lineup with hero.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
