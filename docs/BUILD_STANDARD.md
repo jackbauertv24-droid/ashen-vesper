@@ -67,6 +67,24 @@ not in the loop.
 - **Assert the contract, not the current value.** `MOVE.run`, not `235`.
 - **A new mechanic needs a test at the tier that would catch it breaking.**
 
+## No game object is a coloured box
+
+A flat filled rectangle may be UI chrome, a debug overlay or a full-screen
+wash. It may never stand in for a prop, an actor, a platform body or any
+other object the player reads as part of the world.
+
+This is enforced, not just advised: `test/runtime-contract.test.mjs` scans
+the renderers and fails on any `fillRect` colour outside a short allowlist,
+each entry carrying its reason. Placeholders of this kind are invisible to
+structural tests — a rectangle always renders correctly — and they are the
+cheapest possible tell that something is unfinished. Four shipped this way
+before the rule existed: a struck censer's remnant, a defeated guard's
+remains, the Cloister's platform bodies, and the Road's foreground posts.
+
+When the right asset does not exist, reuse one that fits, leave the object
+out, and record the gap in [wanted assets](WANTED_ASSETS.md). Shipping a
+coloured rectangle is not one of the options.
+
 ## Art
 
 The preservation rules are unchanged and still right: every original,

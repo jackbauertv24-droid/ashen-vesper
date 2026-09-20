@@ -299,3 +299,38 @@ test("contract: at stage start an idle enemy never slides in a standing pose", (
   assert.ok(drifted > 100, `the patrol should actually move, got ${drifted} frames`);
   assert.equal(slid, 0, `enemy slid in a standing pose on ${slid} of ${drifted} moving frames`);
 });
+
+// ---------- Part E: no game object is a coloured box ----------
+
+test("contract: filled rectangles are UI or debug only, never world objects", () => {
+  // A flat rectangle may be UI chrome, a debug overlay, or a full-screen
+  // wash. It may never stand in for a prop, an actor or a platform. Each
+  // entry is a deliberate exception with a reason; an unlisted colour means
+  // something in the world is being drawn as a box again.
+  const allowed = {
+    "#292333": "Pilgrim Road enemy health bar backing (UI)",
+    "#392832": "Ruined Cloister enemy health bar backing (UI)",
+    "#d0a079": "enemy health bar fill (UI)",
+    "#ffa95a66": "attack hitbox, only behind the guide toggle (debug)",
+    "#0b131b": "Stage 02 background clear, pending a painted backdrop",
+  };
+  for (const file of ["encounter", "cloister"]) {
+    const src = fs.readFileSync(
+      new URL(`../prototype/${file}.js`, import.meta.url),
+      "utf8",
+    );
+    for (const m of src.matchAll(/ctx\.fillRect\(/g)) {
+      // the nearest preceding fillStyle assignment governs this rectangle
+      const before = src.slice(0, m.index);
+      const k = before.lastIndexOf("fillStyle");
+      assert.ok(k >= 0, `${file}.js: fillRect with no fillStyle before it`);
+      const decl = before.slice(k, k + 80);
+      const literal = decl.match(/fillStyle\s*=\s*"([^"]+)"/);
+      if (!literal) continue; // a gradient or pattern, not a flat colour
+      assert.ok(
+        allowed[literal[1]],
+        `${file}.js fills a rectangle with ${literal[1]}, which is not a permitted UI or debug colour. Game objects must use an art asset.`,
+      );
+    }
+  }
+});

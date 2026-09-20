@@ -119,7 +119,21 @@ Two pickups exist in the whole game: the consecration ember and the healing
 vial. No relics, no keys, no throwables. A small set that shares one cutout
 convention would be worth more than another architectural module.
 
-### 6. Iron Sexton v006 hurt cell — optional
+### 6. Two cutouts to replace removed placeholders
+
+Both of these were flat rectangles and have been deleted rather than left
+in, so the game is currently missing the detail entirely.
+
+- **Foreground parallax railing.** The Pilgrim Road drew dark boxes as
+  foreground posts. The library does have a Gothic parapet balustrade
+  (`art/production/abbey/abbey-balustrade-railing-v001.png`) but it is
+  painted on an opaque background, so its quatrefoil and arch openings
+  cannot be keyed out and it renders as a solid block. Wanted: the same
+  railing as a true RGBA cutout with the openings transparent.
+- **Fallen-enemy remains.** A defeated guard left a grey bar on the floor.
+  Wanted: a small rubble, dust or scorch decal that a body can fade into.
+
+### 7. Iron Sexton v006 hurt cell — optional
 
 Low priority. Re-author `hurt` on the same anchor as the other seven cells
 so the runtime's recorded -59px correction can be deleted. Nothing is broken

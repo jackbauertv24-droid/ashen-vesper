@@ -319,12 +319,9 @@ function hero() {
 function enemy(e) {
   const dying = e.hp <= 0;
   const fade = dying ? 1 - (e.deadFor ?? 0) / DEATH_FADE : 1;
-  if (dying) {
-    // Remains stay; the body itself sinks and fades rather than popping out.
-    ctx.fillStyle = "#9b998244";
-    ctx.fillRect(e.x - 30, e.y - 4, 60, 4);
-    if (fade <= 0) return;
-  }
+  // No remains marker: a flat bar on the floor is not a game object. When a
+  // rubble or scorch decal exists it belongs here. See docs/WANTED_ASSETS.md.
+  if (dying && fade <= 0) return;
   ctx.save();
   ctx.translate(e.x, dying ? e.y + (1 - fade) * 10 : e.y);
   // The Hollow Pilgrim sheet has only idle, shuffle, windup and strike — no
@@ -463,15 +460,11 @@ function draw() {
     }
   }
   ctx.restore();
-  // Foreground markers scroll faster than the action plane for depth.
-  ctx.save();
-  ctx.translate(-s.camera * 1.08, 0);
-  ctx.fillStyle = "#050b1399";
-  for (let x = 200; x < 7600; x += 930) {
-    ctx.fillRect(x, 675, 18, 45);
-    ctx.fillRect(x - 12, 687, 42, 8);
-  }
-  ctx.restore();
+  // Foreground parallax posts used to be dark filled rectangles. A flat box is
+  // not a game object, and the one balustrade asset in the library is painted
+  // on an opaque background, so its openings cannot be keyed out for use as a
+  // foreground overlay. An alpha cutout is requested in docs/WANTED_ASSETS.md;
+  // until it exists this layer stays empty rather than shipping boxes.
   $("#health").textContent = "♥".repeat(s.hp) + "♡".repeat(5 - s.hp);
   $("#embers").textContent = s.embers;
   $("#progress").value = (s.x / LEVEL.width) * 100;
