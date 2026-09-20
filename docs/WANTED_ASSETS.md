@@ -69,6 +69,31 @@ is finished when it has its minimum set below, on one sheet, on one anchor.
 | Repeating floor or wall | centre strip that tiles seamlessly, plus left and right end caps |
 | Backdrop | one wide parallax layer per stage |
 
+## Which dormant stage could be built today
+
+Measured against what a stage actually needs: a floor that tiles, something
+behind the action, an enemy with a motion sheet, and one interaction. Body
+masonry, the lever, the grate and the healing vial are reusable, so a stage
+does not need its own.
+
+| Stage | Floor | Scenery | Enemy with motion | Verdict |
+| --- | --- | --- | --- | --- |
+| 03 Flooded Cistern | damp centre strip + both end caps | unlit vault pier, hanging lantern | Lurker, 6 poses | **buildable with no new art** |
+| 06 Bell Tower | landing only | none | Tollkeeper 6 poses, Bell Moth 6 poses | actors ready, no environment, and needs the vertical camera |
+| 04 Ossuary Gallery | none | one niche wall panel | none | not close |
+| 05 Counterweight Works | lift deck only | none | none | not close, and the lift runner is uncoded |
+
+**Stage 03 is the one to build.** Its floor strip already clears the tiling
+contract — seam delta 0.0, lighting drift 2.6 against a limit of 8 — and its
+Lurker sheet is the cleanest motion submission received: six cells, every one
+a single contiguous component, ground anchor steady within a pixel. It is
+better anchored than the Iron Sexton sheet that is already in the game. Its
+only real gap is a backdrop, which Stage 02 lacks as well.
+
+The cheapest art that would unlock the other two ground-level stages is one
+floor kit each, in the pattern now proven twice: a centre strip that tiles
+seamlessly plus left and right end caps.
+
 ## Wanted now, in order
 
 ### 1. Bellwarden hurt and death — the biggest hole
