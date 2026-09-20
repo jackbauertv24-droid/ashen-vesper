@@ -1263,3 +1263,105 @@ test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual,
   assert.equal(reviewPng.height, 1260);
 });
 
+test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy visual and geometry contract", () => {
+  // 1. Unlit Vault Pier
+  const pierBytes = fs.readFileSync(
+    "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
+  );
+  const pier = PNG.sync.read(pierBytes);
+  assert.equal(pierBytes[25], 6, "Pier must be Color Type 6 (RGBA)");
+  assert.equal(pier.width, 1024);
+  assert.equal(pier.height, 1024);
+
+  let pMinX = 1024, pMaxX = 0, pMinY = 1024, pMaxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = pier.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Pier perimeter violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < pMinX) pMinX = x;
+        if (x > pMaxX) pMaxX = x;
+        if (y < pMinY) pMinY = y;
+        if (y > pMaxY) pMaxY = y;
+      }
+    }
+  }
+
+  assert.equal(pMinX, 114, "Pier minX must be 114px");
+  assert.equal(pMaxX, 909, "Pier maxX must be 909px");
+  assert.equal(pMinY, 36, "Pier minY must be 36px");
+  assert.equal(pMaxY, 987, "Pier maxY must be 987px");
+  assert.equal(pMaxX - pMinX + 1, 796, "Pier width must be 796px");
+  assert.equal(pMaxY - pMinY + 1, 952, "Pier height must be 952px");
+
+  // Solid masonry column verification
+  for (const [sx, sy] of [
+    [512, 200],
+    [512, 300],
+    [512, 512],
+    [512, 700],
+    [512, 900],
+    [400, 512],
+    [600, 512],
+  ]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(pier.data[idx + 3] > 240, `Pier material at (${sx}, ${sy}) must be solid opaque`);
+  }
+
+
+  // 2. Hanging Lantern Prop
+  const lanternBytes = fs.readFileSync(
+    "art/contributions/09-flooded-cistern/v002/exports/cistern-hanging-lantern-v002.png",
+  );
+  const lantern = PNG.sync.read(lanternBytes);
+  assert.equal(lanternBytes[25], 6, "Lantern must be Color Type 6 (RGBA)");
+  assert.equal(lantern.width, 1024);
+  assert.equal(lantern.height, 1024);
+
+  let lMinX = 1024, lMaxX = 0, lMinY = 1024, lMaxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = lantern.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Lantern perimeter violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < lMinX) lMinX = x;
+        if (x > lMaxX) lMaxX = x;
+        if (y < lMinY) lMinY = y;
+        if (y > lMaxY) lMaxY = y;
+      }
+    }
+  }
+
+  assert.equal(lMinX, 275, "Lantern minX must be 275px");
+  assert.equal(lMaxX, 750, "Lantern maxX must be 750px");
+  assert.equal(lMinY, 32, "Lantern minY must be 32px");
+  assert.equal(lMaxY, 991, "Lantern maxY must be 991px");
+  assert.equal(lMaxX - lMinX + 1, 476, "Lantern width must be 476px");
+  assert.equal(lMaxY - lMinY + 1, 960, "Lantern height must be 960px");
+
+  // Lantern glowing amber core at center (512, 512)
+  const cIdx = (512 * 1024 + 512) * 4;
+  assert.ok(lantern.data[cIdx + 3] > 240, "Lantern flame core must be opaque");
+  assert.ok(lantern.data[cIdx] > lantern.data[cIdx + 2], "Lantern flame core must have warm amber tone (R > B)");
+
+  // Pierced suspension chain transparency: verify hollow space around chain
+  let hollowPixels = 0;
+  for (let y = 50; y < 300; y++) {
+    for (let x = 350; x < 480; x++) {
+      if (lantern.data[(y * 1024 + x) * 4 + 3] === 0) hollowPixels++;
+    }
+  }
+  assert.ok(hollowPixels > 10000, "Lantern suspension chain must have genuine pierced transparency");
+
+  // 3. Review composite verification
+  const reviewBytes = fs.readFileSync("docs/reviews/cistern-vault-pier-unlit-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+
+

@@ -251,6 +251,17 @@ try {
   await page.locator('#btn-toggle-overlay').click();
   await page.screenshot({path:'tmp/job09-cistern-vault-pier-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/09-flooded-cistern/v002/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btn-mode-lantern').click();
+  await page.locator('#btn-mode-combined').click();
+  await page.locator('#btn-mode-pier').click();
+  await page.locator('#btn-scale-full').click();
+  await page.locator('#btn-scale-rt').click();
+  await page.locator('#btn-toggle-overlay').click();
+  await page.screenshot({path:'tmp/job09-cistern-vault-pier-v002-preview.png',fullPage:true});
+
+
   await page.goto('http://127.0.0.1:4174/art/contributions/16-tollkeeper/v002/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#btn-scale-full').click();

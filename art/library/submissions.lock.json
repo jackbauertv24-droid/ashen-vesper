@@ -933,6 +933,42 @@
     {
       "path": "docs/reviews/platform-cap-seamless-v002.png",
       "sha256": "c54d6fb69969237225c86f786a5724dbfc3ddcec08e04d442b869302b939e6f2"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
+      "sha256": "734f892f7256f1e7c512e0be18fc25c58739e822d2b67ad905edf1edf5fc96b5"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-hanging-lantern-v002.png",
+      "sha256": "736587817c93d14cbbf74e2a62987a4b5e0f513fdd90029da1ac3c418edcd917"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/source/cistern-vault-pier-unlit-generated-v002.jpg",
+      "sha256": "8cef607a3d4a1896e4c21a7702c18143eb7271528250ab18799799822d68b206"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/source/cistern-hanging-lantern-generated-v002.jpg",
+      "sha256": "2144b150ac8da1cba4655a7b77bafce2ef1e31b83d519c794f9a76d1644968d0"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/NOTES.md",
+      "sha256": "dc2b155b44bcee9093fb74a95e24d827def2e7a8c450f24a259096d1f49f6162"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/preview.html",
+      "sha256": "523405e853178d04b06e8626eb3e5c1100b8bba70a4ab56cfc0e909154321432"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/PROMPT.txt",
+      "sha256": "6d7ee7fa42813819d6f16543d67cbc2f060cabc81ac4b95622942919b1a58c8a"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v002/submission.json",
+      "sha256": "32f97487e8b7dc5bc040b792e5977d54286f62deb39562e9615fa00850baf94b"
+    },
+    {
+      "path": "docs/reviews/cistern-vault-pier-unlit-v002.png",
+      "sha256": "cb9882b2df1d77f92eef38f15cddb755b4d2848c8a8acd7d6a9036fb72bf538a"
     }
   ]
 }

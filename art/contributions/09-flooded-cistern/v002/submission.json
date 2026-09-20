@@ -1,0 +1,107 @@
+{
+  "jobId": "09-flooded-cistern",
+  "version": "v002",
+  "status": "candidate",
+  "assets": [
+    {
+      "id": "cistern-vault-pier-unlit-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
+      "sha256": "734f892f7256f1e7c512e0be18fc25c58739e822d2b67ad905edf1edf5fc96b5",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        987
+      ],
+      "visibleBounds": {
+        "minX": 114,
+        "maxX": 909,
+        "minY": 36,
+        "maxY": 987,
+        "width": 796,
+        "height": 952
+      },
+      "runtimeCanvas": [
+        240,
+        240
+      ],
+      "scale": 0.234375,
+      "sockets": {
+        "topContact": {
+          "y": 36,
+          "runtimeY": 8.4
+        },
+        "springCapital": {
+          "y": 192,
+          "runtimeY": 45,
+          "span": [
+            114,
+            909
+          ]
+        },
+        "shaft": {
+          "span": [
+            352,
+            671
+          ],
+          "width": 320,
+          "centerX": 512
+        },
+        "baseFooting": {
+          "y": 987,
+          "runtimeY": 231.3
+        },
+        "groundPivot": {
+          "x": 512,
+          "y": 987,
+          "runtimeX": 120,
+          "runtimeY": 231.3
+        }
+      }
+    },
+    {
+      "id": "cistern-hanging-lantern-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-hanging-lantern-v002.png",
+      "sha256": "736587817c93d14cbbf74e2a62987a4b5e0f513fdd90029da1ac3c418edcd917",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        32
+      ],
+      "visibleBounds": {
+        "minX": 275,
+        "maxX": 750,
+        "minY": 32,
+        "maxY": 991,
+        "width": 476,
+        "height": 960
+      },
+      "runtimeCanvas": [
+        120,
+        120
+      ],
+      "scale": 0.1171875,
+      "sockets": {
+        "chainTop": {
+          "x": 512,
+          "y": 32,
+          "runtimeX": 60,
+          "runtimeY": 3.75
+        },
+        "lightCenter": {
+          "x": 512,
+          "y": 512,
+          "runtimeX": 60,
+          "runtimeY": 60
+        },
+        "finialBottom": {
+          "x": 512,
+          "y": 991,
+          "runtimeX": 60,
+          "runtimeY": 116.1
+        }
+      }
+    }
+  ]
+}
