@@ -1,0 +1,54 @@
+{
+  "jobId": "16-tollkeeper",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/16-tollkeeper/v002/exports/tollkeeper-twohanded-v002.png",
+      "sha256": "dfc3d200106a508492d23c15b4ccee795061a0c5f230adaab1872b76f5cef536",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        960
+      ],
+      "visibleBounds": {
+        "minX": 134,
+        "maxX": 889,
+        "minY": 50,
+        "maxY": 959,
+        "width": 756,
+        "height": 910
+      },
+      "standingHeight": 910,
+      "runtimeHeight": 220,
+      "scale": 0.241758,
+      "pose": "two-handed-combat-ready",
+      "landmarks": {
+        "amberCore": [
+          470,
+          341
+        ],
+        "headApex": [
+          550,
+          50
+        ],
+        "clapperHead": [
+          800,
+          240
+        ],
+        "forwardHand": [
+          665,
+          375
+        ],
+        "rearHand": [
+          395,
+          555
+        ],
+        "groundFooting": [
+          512,
+          959
+        ]
+      }
+    }
+  ]
+}

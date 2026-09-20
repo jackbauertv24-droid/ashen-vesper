@@ -946,3 +946,62 @@ test("Job 09 Flooded Cistern vault pier candidate satisfies visual and geometry 
   assert.equal(pierAsset.pivot[1], 960);
 });
 
+test("Job 16 Tollkeeper corrected two-handed boss candidate satisfies visual and geometry contract", () => {
+  const file = "art/contributions/16-tollkeeper/v002/exports/tollkeeper-twohanded-v002.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Outer 32px safety border must be completely transparent at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/16-tollkeeper/v002/submission.json", "utf8")
+  );
+  const tkAsset = submission.assets[0];
+  assert.ok(tkAsset, "Asset must be declared in submission.json");
+  assert.equal(maxX - minX + 1, tkAsset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, tkAsset.visibleBounds.height);
+  assert.equal(minX, tkAsset.visibleBounds.minX);
+  assert.equal(maxX, tkAsset.visibleBounds.maxX);
+  assert.equal(minY, tkAsset.visibleBounds.minY);
+  assert.equal(maxY, tkAsset.visibleBounds.maxY);
+
+  // Stature and combat scale verification: nominal runtime height 220 units
+  assert.ok(
+    Math.abs(tkAsset.standingHeight * tkAsset.scale - tkAsset.runtimeHeight) < 0.1,
+    "Standing height scaled must match nominal runtime height of 220 units"
+  );
+  assert.equal(tkAsset.runtimeHeight, 220);
+
+  // Amber reliquary core landmark opacity
+  const [acX, acY] = tkAsset.landmarks.amberCore;
+  assert.equal(im.data[(acY * 1024 + acX) * 4 + 3], 255, "Amber core landmark must be solid opaque");
+
+  // Solid torso, head, and clapper head
+  assert.equal(im.data[(600 * 1024 + 450) * 4 + 3], 255, "Torso must be solid opaque");
+  assert.equal(im.data[(150 * 1024 + 550) * 4 + 3], 255, "Head must be solid opaque");
+  assert.equal(im.data[(240 * 1024 + 800) * 4 + 3], 255, "Clapper head must be solid opaque");
+
+  // Ground pivot alignment
+  assert.equal(tkAsset.pivot[0], 512);
+  assert.equal(tkAsset.pivot[1], 960);
+});
+
+

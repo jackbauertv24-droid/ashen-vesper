@@ -232,5 +232,12 @@ try {
   await page.locator('#btn-toggle-overlay').click();
   await page.screenshot({path:'tmp/job09-cistern-vault-pier-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/16-tollkeeper/v002/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btn-scale-full').click();
+  await page.locator('#btn-scale-rt').click();
+  await page.locator('#btn-toggle-overlay').click();
+  await page.screenshot({path:'tmp/job16-tollkeeper-v002-preview.png',fullPage:true});
+
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}
