@@ -35,31 +35,38 @@ export const LEVEL = {
   finish: 4480,
 };
 
-// A descent, a fork, and a climb back out.
+// A descent, a fork, and a climb back out, over a basin that catches you.
 //
-// Jump envelope: the hero clears 114 units of height and 165 of distance, so
-// every climb here is 90-95 and every gap 120 or less. Drops are free, which
-// is why the way down is quick and the way back up is worked for.
+// The first version had ten lethal edges, including the very first one: walk
+// right off the entry ledge and you drowned. A vertical stage invites the
+// player to drop, so a fall has to cost progress rather than a life. The
+// flooded basin now runs under almost the whole stage — fall anywhere on the
+// route and you land in it, with the Lurker, and have to climb back out.
+// Only the two ends of the basin itself are open water.
+//
+// Jump envelope: 114 units of rise and 165 of reach, so every climb here is
+// 90-95 and every gap 120 or less.
 export const platforms = [
-  // Descent from the sluice, top left.
-  { x: 0, y: 420, w: 760 },
-  { x: 880, y: 420, w: 400 },
-  { x: 1180, y: 640, w: 440 },
+  // Descent from the sluice, top left. One continuous entry ledge: the old
+  // gap here was a death pit dressed as a descent.
+  { x: 0, y: 420, w: 1280 },
+  { x: 1180, y: 640, w: 520 },
   { x: 1520, y: 880, w: 520 },
 
-  // The fork is at the foot of the descent. Left and down is the flooded
-  // floor: shorter, and the Lurker lives there. Right and up is the gallery:
-  // longer, safer, and it passes the vial.
+  // The fork. Up and right is the gallery: longer, safer, and it passes the
+  // vial. Down and left is the flooded basin: shorter, and occupied.
   { x: 2000, y: 790, w: 160 },
   { x: 2220, y: 700, w: 160 },
   { x: 2440, y: 610, w: 160 },
   { x: 2660, y: 610, w: 740 },
 
-  // The low way: down to the water floor.
+  // The low way.
   { x: 1960, y: 1120, w: 540 },
-  { x: 2440, y: 1360, w: 640 },
 
-  // Climbing back out of the flood, three worked steps.
+  // The basin. Wide on purpose: it is the floor of the stage, not a trap.
+  { x: 600, y: 1360, w: 3160 },
+
+  // Climbing out of the flood, three worked steps.
   { x: 3020, y: 1265, w: 140 },
   { x: 3220, y: 1170, w: 140 },
   { x: 3420, y: 1075, w: 140 },

@@ -155,3 +155,36 @@ test("the route can be completed without drowning", () => {
   assert.equal(s.complete, true, "the route must be completable");
   assert.equal(s.drownings, 0, `no drownings on the main route, got ${s.drownings}`);
 });
+
+test("falling off the route costs progress, not a life", () => {
+  // A vertical stage invites the player to drop. The first draft of this map
+  // had ten lethal edges, the very first being the entry ledge: walk right
+  // without jumping and you drowned. Falls now land in the basin, which is
+  // where the Lurker is and a long climb from the valve. Only the basin's
+  // own two ends are open water.
+  const lethal = [];
+  for (const p of platforms) {
+    for (const dir of [-1, 1]) {
+      const s = create();
+      s.x = dir > 0 ? p.x + p.w - 6 : p.x + 6;
+      s.y = p.y;
+      s.grounded = true;
+      s.leverOn = true; // the gate is not what this is testing
+      const before = s.deaths;
+      for (let i = 0; i < 420; i++) {
+        step(s, dir > 0 ? { right: true } : { left: true }, 1 / 60, {});
+        if (s.deaths > before) {
+          lethal.push(`y=${p.y} ${dir > 0 ? "right" : "left"}`);
+          break;
+        }
+        if (s.grounded && Math.abs(s.y - p.y) > 4) break;
+      }
+    }
+  }
+  const basin = platforms.find((p) => p.y === 1360);
+  assert.deepEqual(
+    lethal.sort(),
+    [`y=${basin.y} left`, `y=${basin.y} right`],
+    "only the ends of the flooded basin may drown you",
+  );
+});
