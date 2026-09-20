@@ -19,6 +19,7 @@ import { PNG } from "pngjs";
 import { platformCap } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
 import { DAMAGE, DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
+import { LOOK, VIEW, trackCamera } from "../prototype/camera.js";
 import * as road from "../prototype/encounter-sim.js";
 import * as cloister from "../prototype/cloister-sim.js";
 import * as cistern from "../prototype/cistern-sim.js";
@@ -432,3 +433,55 @@ test("contract: hand-drawn strokes and arcs are accounted for", () => {
     }
   }
 });
+
+// ---------- Part G: one camera, two axes ----------
+
+test("contract: the camera lead eases rather than snapping when you turn", () => {
+  const s = { x: 1000, y: 600, facing: 1, look: LOOK.lead, camera: 0, cameraY: 0 };
+  const level = { width: 6400, height: 720 };
+  trackCamera(s, level, 1 / 60, {});
+  s.facing = -1;
+  trackCamera(s, level, 1 / 60, {});
+  assert.ok(
+    s.look > 0,
+    `turning must swing the lead gradually, not jump to ${s.look}`,
+  );
+  for (let i = 0; i < 240; i++) trackCamera(s, level, 1 / 60, {});
+  assert.ok(s.look < -LOOK.lead * 0.9, "and it does arrive");
+});
+
+test("contract: the camera stays inside the stage on both axes", () => {
+  const level = { width: 4000, height: 3000 };
+  for (const [x, y] of [[-500, -500], [99999, 99999], [2000, 1500]]) {
+    const s = { x, y, facing: 1, look: 0, camera: 0, cameraY: 0 };
+    for (let i = 0; i < 400; i++) trackCamera(s, level, 1 / 60, {});
+    assert.ok(s.camera >= 0 && s.camera <= level.width - VIEW.width,
+      `camera x ${s.camera} outside 0..${level.width - VIEW.width}`);
+    assert.ok(s.cameraY >= 0 && s.cameraY <= level.height - VIEW.height,
+      `camera y ${s.cameraY} outside 0..${level.height - VIEW.height}`);
+  }
+});
+
+test("contract: vertical tracking is inert on a stage that fits one screen", () => {
+  const s = { x: 500, y: 600, facing: 1, look: 0, camera: 0, cameraY: 0 };
+  for (let i = 0; i < 200; i++) trackCamera(s, { width: 4000, height: 720 }, 1 / 60, {});
+  assert.equal(s.cameraY, 0, "a short stage never scrolls vertically");
+});
+
+test("contract: vertical tracking follows the player on a tall stage", () => {
+  const level = { width: 4000, height: 2600 };
+  const s = { x: 500, y: 2200, facing: 1, look: 0, camera: 0, cameraY: 0 };
+  for (let i = 0; i < 300; i++) trackCamera(s, level, 1 / 60, {});
+  assert.ok(s.cameraY > 600, `deep in the stage the view follows down, got ${s.cameraY}`);
+  s.y = 200;
+  for (let i = 0; i < 300; i++) trackCamera(s, level, 1 / 60, {});
+  assert.ok(s.cameraY < 200, `and back up, got ${s.cameraY}`);
+});
+
+for (const [name, M] of stages) {
+  test(`${name}: does not scroll vertically, being one screen tall`, () => {
+    const s = M.create();
+    for (let i = 0; i < 200; i++) M.step(s, { right: true }, 1 / 60, {});
+    assert.equal(s.cameraY, 0);
+  });
+}

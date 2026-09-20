@@ -209,7 +209,7 @@ function background() {
   ctx.fillStyle = fog;
   ctx.fillRect(0, 0, 1280, 720);
   ctx.save();
-  ctx.translate(-s.camera * arcade.parallax, 0);
+  ctx.translate(-s.camera * arcade.parallax, -s.cameraY * arcade.parallax);
   // Faded architecture belongs to the distant scenery, behind all actors.
   ctx.globalAlpha = 0.25;
   for (let x = 0; x < 9000; x += 690) {
@@ -305,7 +305,7 @@ function draw() {
   if (!art) return;
   background();
   ctx.save();
-  ctx.translate(-s.camera, 0);
+  ctx.translate(-s.camera, -s.cameraY);
   for (const p of platforms)
     if (p.x + p.w > s.camera && p.x < s.camera + 1280) platform(p);
   braziers.forEach((b, i) => {

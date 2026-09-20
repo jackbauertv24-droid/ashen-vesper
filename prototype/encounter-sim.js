@@ -11,6 +11,7 @@ import {
   stepVertical,
   groundAt,
 } from "./physics.js";
+import { trackCamera } from "./camera.js";
 import { DEATH_TIME, HURT_TIME } from "./hero-render.js";
 export { BODY, MOVE, bodyBox, hitbox, overlaps, solidHeight };
 export const VIEW = { width: 1280, height: 720 };
@@ -90,6 +91,7 @@ export function create() {
     complete: false,
     deaths: 0,
     camera: 0,
+    cameraY: 0,
     look: 70,
     notice: "Break a hanging brazier with J. Collect its ember.",
     noticeTime: 7,
@@ -342,15 +344,5 @@ export function step(s, input, dt, options = {}) {
     message(s, "Sanctuary reached. Checkpoint lit — encounter complete!");
     s.noticeTime = 999;
   }
-  const lookTarget = s.facing * 85;
-  s.look += (lookTarget - s.look) * Math.min(1, dt * 3);
-  const focus = s.x + s.look,
-    screen = focus - s.camera;
-  let target = s.camera;
-  if (screen > 740) target = focus - 740;
-  if (screen < 430) target = focus - 430;
-  target = Math.max(0, Math.min(LEVEL.width - VIEW.width, target));
-  s.camera +=
-    (target - s.camera) *
-    Math.min(1, dt * (options.camera === "tight" ? 12 : 5));
+  trackCamera(s, LEVEL, dt, options);
 }

@@ -11,6 +11,7 @@ import {
   stepVertical,
   groundAt,
 } from "./physics.js";
+import { trackCamera } from "./camera.js";
 import { DEATH_TIME, HURT_TIME } from "./hero-render.js";
 
 export const VIEW = { width: 1280, height: 720 };
@@ -46,6 +47,8 @@ export function create() {
     dying: 0,
     hurtFor: 0,
     camera: 0,
+    cameraY: 0,
+    look: 85,
     time: 0,
     leverOn: false,
     vialTaken: false,
@@ -230,13 +233,5 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
     s.noticeTime = 999;
   }
 
-  const focus = s.x + s.facing * 80;
-  const screen = focus - s.camera;
-  let target = s.camera;
-  if (screen > 760) target = focus - 760;
-  if (screen < 420) target = focus - 420;
-  target = Math.max(0, Math.min(LEVEL.width - VIEW.width, target));
-  s.camera +=
-    (target - s.camera) *
-    Math.min(1, dt * (options.camera === "tight" ? 12 : 5));
+  trackCamera(s, LEVEL, dt, options);
 }

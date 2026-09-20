@@ -137,13 +137,13 @@ function draw() {
   if (!hero) return;
 
   ctx.save();
-  ctx.translate(-s.camera * 0.3, 0);
+  ctx.translate(-s.camera * 0.3, -s.cameraY * 0.3);
   for (let x = -200; x < LEVEL.width; x += 460)
     ctx.drawImage(art.pier, x, 40, 240, 590);
   ctx.restore();
 
   ctx.save();
-  ctx.translate(-s.camera, 0);
+  ctx.translate(-s.camera, -s.cameraY);
   // The channels are left as open dark water. They had a canvas gradient
   // with a sine-wave stroke for ripples, which read as cheap shading rather
   // than a flooded cistern. A painted water surface is requested in
