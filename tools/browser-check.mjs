@@ -271,6 +271,12 @@ try {
   await page.locator('button[data-bg="bg-indigo"]').click();
   await page.screenshot({path:'tmp/job12-iron-sexton-motion-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/12-iron-sexton/v004/preview.html');
+  await page.waitForFunction(() => window.ironSextonReady === true);
+  await page.locator('button[data-mode="anim-attack"]').click();
+  await page.locator('button[data-bg="bg-indigo"]').click();
+  await page.screenshot({path:'tmp/job12-iron-sexton-motion-v004-preview.png',fullPage:true});
+
   await page.goto('http://127.0.0.1:4174/art/contributions/13-cistern-lurker/v003/preview.html');
   await page.waitForFunction(() => window.cisternLurkerReady === true);
   await page.locator('button[data-mode="anim-ambush"]').click();

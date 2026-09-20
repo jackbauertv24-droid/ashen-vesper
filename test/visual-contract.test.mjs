@@ -1107,6 +1107,106 @@ test("Job 12 Iron Sexton 8-pose motion sheet candidate satisfies visual and geom
   assert.equal(sheet.groundAnchor[1], 464);
 });
 
+test("Job 12 Iron Sexton 8-pose motion sheet cleanup (v004) satisfies visual, geometry, and mesh contiguity contract", () => {
+  const file = "art/contributions/12-iron-sexton/v004/exports/iron-sexton-motion-v002.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 2048);
+  assert.equal(im.height, 1024);
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/12-iron-sexton/v004/submission.json", "utf8")
+  );
+  const sheet = submission.sheet;
+  assert.equal(sheet.cols, 4);
+  assert.equal(sheet.rows, 2);
+  assert.equal(sheet.cellWidth, 512);
+  assert.equal(sheet.cellHeight, 512);
+  assert.equal(sheet.frames.length, 8);
+
+  // Verify each of the 8 cells has >= 25px clear border padding (exceeding 12px requirement)
+  for (const f of sheet.frames) {
+    const ox = f.col * 512;
+    const oy = f.row * 512;
+    for (let y = oy; y < oy + 512; y++) {
+      for (let x = ox; x < ox + 512; x++) {
+        const relX = x - ox;
+        const relY = y - oy;
+        if (relX < 25 || relY < 25 || relX >= 512 - 25 || relY >= 512 - 25) {
+          const alpha = im.data[(y * 2048 + x) * 4 + 3];
+          assert.equal(alpha, 0, `Cell ${f.name} outer 25px padding must be transparent at rel (${relX}, ${relY})`);
+        }
+      }
+    }
+
+    // Verify solid torso opacity inside character body core
+    const cx = Math.round((f.localBounds.minX + f.localBounds.maxX) / 2);
+    const cy = Math.round((f.localBounds.minY + f.localBounds.maxY) / 2);
+    let hasOpaqueCore = false;
+    for (let dy = -15; dy <= 15; dy += 5) {
+      for (let dx = -15; dx <= 15; dx += 5) {
+        if (im.data[((oy + cy + dy) * 2048 + (ox + cx + dx)) * 4 + 3] > 200) {
+          hasOpaqueCore = true;
+          break;
+        }
+      }
+      if (hasOpaqueCore) break;
+    }
+    assert.ok(hasOpaqueCore, `Cell ${f.name} body core must be opaque`);
+
+    // Verify mesh contiguity: zero detached floating components in any cell (resolves maintainer issue)
+    const visited = new Uint8Array(512 * 512);
+    let componentCount = 0;
+    for (let cy = 0; cy < 512; cy++) {
+      for (let cx = 0; cx < 512; cx++) {
+        const pIdx = cy * 512 + cx;
+        const a = im.data[((oy + cy) * 2048 + (ox + cx)) * 4 + 3];
+        if (a > 20 && !visited[pIdx]) {
+          componentCount++;
+          // Flood fill
+          const queue = [pIdx];
+          visited[pIdx] = 1;
+          let head = 0;
+          while (head < queue.length) {
+            const curr = queue[head++];
+            const qy = Math.floor(curr / 512);
+            const qx = curr % 512;
+            for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+              const nx = qx + dx;
+              const ny = qy + dy;
+              if (nx >= 0 && nx < 512 && ny >= 0 && ny < 512) {
+                const nIdx = ny * 512 + nx;
+                if (!visited[nIdx] && im.data[((oy + ny) * 2048 + (ox + nx)) * 4 + 3] > 20) {
+                  visited[nIdx] = 1;
+                  queue.push(nIdx);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    assert.equal(componentCount, 1, `Cell ${f.name} must have exactly 1 connected component (0 detached fragments)`);
+  }
+
+  // Verify outer 32px perimeter of the 2048x1024 sheet has 0 alpha
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 2048; x++) {
+      if (x < 32 || x >= 2048 - 32 || y < 32 || y >= 1024 - 32) {
+        assert.equal(im.data[(y * 2048 + x) * 4 + 3], 0, `Outer 32px perimeter must be zero alpha at (${x}, ${y})`);
+      }
+    }
+  }
+
+  // Runtime scale and height
+  assert.equal(sheet.scale, 0.4);
+  assert.equal(sheet.runtimeHeight, 160);
+  assert.equal(sheet.groundAnchor[0], 208);
+  assert.equal(sheet.groundAnchor[1], 464);
+});
+
 test("Job 13 Cistern Lurker 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
   const file = "art/contributions/13-cistern-lurker/v003/exports/cistern-lurker-motion-v001.png";
   const bytes = fs.readFileSync(file);

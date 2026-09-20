@@ -1,0 +1,212 @@
+{
+  "jobId": "12-iron-sexton",
+  "version": "v004",
+  "status": "candidate",
+  "role": "heavy-enemy-motion-sheet",
+  "sheet": {
+    "path": "art/contributions/12-iron-sexton/v004/exports/iron-sexton-motion-v002.png",
+    "sha256": "c67cb4fa643b5ab8dd7c84204a50c76ab3580b3d98cf40118cc0a1b40453642f",
+    "width": 2048,
+    "height": 1024,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "cols": 4,
+    "rows": 2,
+    "groundAnchor": [
+      208,
+      464
+    ],
+    "standingSourceHeight": 363,
+    "runtimeHeight": 160,
+    "scale": 0.4,
+    "minCellMargin": 25,
+    "outer32pxViolations": 0,
+    "disconnectedFragments": 0,
+    "tuningTargets": {
+      "hp": 4,
+      "damage": 1,
+      "speed": 45,
+      "warningDuration": 0.9,
+      "cleaveDuration": 0.3,
+      "recoveryDuration": 1.1
+    },
+    "frames": [
+      {
+        "name": "idle",
+        "col": 0,
+        "row": 0,
+        "duration": 0.6,
+        "localBounds": {
+          "minX": 87,
+          "maxX": 457,
+          "minY": 103,
+          "maxY": 465,
+          "width": 371,
+          "height": 363
+        },
+        "shovelTip": [
+          457,
+          245
+        ],
+        "shovelButt": [
+          87,
+          324
+        ]
+      },
+      {
+        "name": "step-a",
+        "col": 1,
+        "row": 0,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 92,
+          "maxX": 462,
+          "minY": 106,
+          "maxY": 462,
+          "width": 371,
+          "height": 357
+        },
+        "shovelTip": [
+          462,
+          246
+        ],
+        "shovelButt": [
+          92,
+          325
+        ]
+      },
+      {
+        "name": "step-b",
+        "col": 2,
+        "row": 0,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 90,
+          "maxX": 457,
+          "minY": 105,
+          "maxY": 465,
+          "width": 368,
+          "height": 361
+        },
+        "shovelTip": [
+          457,
+          246
+        ],
+        "shovelButt": [
+          90,
+          325
+        ]
+      },
+      {
+        "name": "brace",
+        "col": 3,
+        "row": 0,
+        "duration": 0.3,
+        "localBounds": {
+          "minX": 96,
+          "maxX": 466,
+          "minY": 165,
+          "maxY": 462,
+          "width": 371,
+          "height": 298
+        },
+        "shovelTip": [
+          466,
+          310
+        ],
+        "shovelButt": [
+          96,
+          338
+        ]
+      },
+      {
+        "name": "windup",
+        "col": 0,
+        "row": 1,
+        "duration": 0.9,
+        "localBounds": {
+          "minX": 36,
+          "maxX": 379,
+          "minY": 25,
+          "maxY": 466,
+          "width": 344,
+          "height": 442
+        },
+        "shovelTip": [
+          36,
+          35
+        ],
+        "shovelButt": [
+          379,
+          360
+        ]
+      },
+      {
+        "name": "contact",
+        "col": 1,
+        "row": 1,
+        "duration": 0.3,
+        "localBounds": {
+          "minX": 121,
+          "maxX": 468,
+          "minY": 131,
+          "maxY": 462,
+          "width": 348,
+          "height": 332
+        },
+        "shovelTip": [
+          468,
+          440
+        ],
+        "shovelButt": [
+          121,
+          161
+        ]
+      },
+      {
+        "name": "recover",
+        "col": 2,
+        "row": 1,
+        "duration": 1.1,
+        "localBounds": {
+          "minX": 85,
+          "maxX": 444,
+          "minY": 118,
+          "maxY": 465,
+          "width": 360,
+          "height": 348
+        },
+        "shovelTip": [
+          444,
+          442
+        ],
+        "shovelButt": [
+          85,
+          164
+        ]
+      },
+      {
+        "name": "hurt",
+        "col": 3,
+        "row": 1,
+        "duration": 0.4,
+        "localBounds": {
+          "minX": 102,
+          "maxX": 364,
+          "minY": 95,
+          "maxY": 465,
+          "width": 263,
+          "height": 371
+        },
+        "shovelTip": [
+          364,
+          260
+        ],
+        "shovelButt": [
+          102,
+          335
+        ]
+      }
+    ]
+  }
+}
