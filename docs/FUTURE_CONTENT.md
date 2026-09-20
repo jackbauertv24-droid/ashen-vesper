@@ -84,3 +84,7 @@ The [six-stage world plan](world/README.md) connects Pilgrim Road → Ruined Clo
 ## Latest contribution review
 
 PRs 18–21 are retained and reviewed. Arcade arch and cropped cap now appear in Pilgrim Road. Stair rise/socket correction and two-handed Tollkeeper reference remain follow-ups; no stage transition/stair runner/boss has been integrated.
+
+## Current execution queue
+
+Use [Next milestones and bounded contributor tasks](NEXT_MILESTONES.md) as the current implementation order. PRs22–28 added the grate and later-stage modules; [maintainer review](PR_22_28_REVIEW.md) records selection and correction needs. The grate now visualizes the existing Road gate. New image generation should pause for Cloister transition/blockout, grate behavior, vial behavior and lift-runner code.

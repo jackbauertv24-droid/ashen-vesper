@@ -90,3 +90,7 @@ Submit only the job's assets, metadata, previews and any narrowly needed integra
 The [world contribution workflow](../world/README.md) expands environment jobs into six stage briefs with room graphs, reusable modules, copyable prompts, layout/data examples, dependencies and acceptance checks. Existing Jobs 08–10/15 keep their specialist contracts. New Ossuary Gallery and Counterweight Works are planned extensions. Choose one stage and one bounded deliverable; layouts/code need no image generation.
 
 **Map baseline jobs:** [all six stage layouts](../world/examples/README.md) now have semantic geometry JSON, neutral diagrams and copyable per-stage instructions. Start from the geometry and written theme; preserve v001 and record intentional deviations in v002. Runtime collision, stair paths and dynamic objects remain verification tasks.
+
+## Current task order after PRs22–28
+
+See [next milestones](../NEXT_MILESTONES.md) and [PR22–28 review](../PR_22_28_REVIEW.md). Prefer code/blockout work now: connected Cloister, lever/grate behavior, vial behavior, then selected-reference motion. Later modules are preserved; do not generate replacements before their runtime dependency exists.

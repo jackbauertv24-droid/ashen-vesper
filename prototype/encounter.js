@@ -490,8 +490,7 @@ function draw() {
   ctx.drawImage(art.portal, 34, 95, 830, 1020, LEVEL.gate - 110, 280, 260, 320);
   ctx.restore();
   if (!s.gateOpen) {
-    ctx.fillStyle = "#c9a56b80";
-    ctx.fillRect(LEVEL.gate - 4, 435, 8, 165);
+    ctx.drawImage(art.grate, LEVEL.gate - 64, 448, 128, 160);
     text("E · 1 EMBER", LEVEL.gate - 45, 262);
   } else text("PATH OPEN", LEVEL.gate - 42, 262, "#a3d7bd");
   const cx = LEVEL.checkpoint + 30;
@@ -587,6 +586,7 @@ try {
     ),
   );
   art.platformCap = await load(platformCap.path);
+  art.grate = await load("art/contributions/15-mechanisms/v003/exports/grate-v001.png");
   art.arcade = await load(arcade.path);
   art.hero = keyed(art.hero, true);
   for (const k of ["air", "enemy"]) art[k] = keyed(art[k]);

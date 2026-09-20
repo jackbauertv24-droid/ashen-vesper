@@ -1349,7 +1349,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "integrated-existing-gate-visual",
         "metadataStatus": "ready-for-review",
         "scale": 0.125,
         "runtimeCell": [
@@ -1426,7 +1426,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "retained-candidate",
+        "runtimeStatus": "retained-candidate-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -1504,7 +1504,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-candidate-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -1593,7 +1593,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-candidate-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -1691,7 +1691,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-candidate-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -1781,7 +1781,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-prototype-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.15625,
         "runtimeSize": [
@@ -1871,7 +1871,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-prototype-module",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
