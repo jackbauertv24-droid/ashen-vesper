@@ -5,6 +5,7 @@ import { loadHero, drawHero } from "./hero-render.js";
 import { platformCap } from "./environment-metrics.js";
 import { solidHeight } from "./physics.js";
 import * as run from "./run.js";
+import { drawPortcullis } from "./portcullis.js";
 
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
@@ -152,7 +153,7 @@ function draw() {
     ctx.drawImage(art.lantern, x, 196, 74, 74);
   ctx.drawImage(art.lever, s.leverOn ? 512 : 0, 0, 512, 512,
     LEVEL.lever - 56, 600 - 102, 112, 112);
-  ctx.drawImage(art.grate, LEVEL.gate - 65, s.leverOn ? 275 : 438, 130, 162);
+  drawPortcullis(ctx,{x:LEVEL.gate,floorY:600,open:s.leverOn,grate:art.grate,stone:art.stone})
   if (!s.vialTaken)
     ctx.drawImage(art.vial, VIAL.x - 32, 520 + Math.sin(s.time * 3) * 5, 64, 64);
   enemy();
