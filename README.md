@@ -6,6 +6,8 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 **Contributors:** start with the [current milestones](docs/NEXT_MILESTONES.md), then see [wanted assets](docs/WANTED_ASSETS.md), the [prioritized future-content queue](docs/FUTURE_CONTENT.md) and [copyable art briefs](docs/art-jobs/README.md). Next: Ruined Cloister, Bell Moth, healing vial and lever/grate. Later: Flooded Cistern, Bell Tower, new enemies, relics and the Tollkeeper boss. These are planned additions, not current demo features.
 
+**Maintainers:** [open findings and ideas](docs/HANDOFF.md) — what is known to be wrong, what was deliberately left alone, and what to do first on picking the project back up.
+
 **Map design:** [why the stages feel alike and what is planned](docs/MAP_DESIGN.md).
 
 **Whole-world contributions:** [six-stage map workflow and prompts](docs/world/README.md), including room-layout contracts, reusable kits, stage dependencies and bounded PR jobs.
