@@ -88,3 +88,5 @@ PRs 18–21 are retained and reviewed. Arcade arch and cropped cap now appear in
 ## Current execution queue
 
 Use [Next milestones and bounded contributor tasks](NEXT_MILESTONES.md) as the current implementation order. PRs22–28 added the grate and later-stage modules; [maintainer review](PR_22_28_REVIEW.md) records selection and correction needs. The grate now visualizes the existing Road gate. New image generation should pause for Cloister transition/blockout, grate behavior, vial behavior and lift-runner code.
+
+The [standalone Ruined Cloister integration stage](../cloister.html) now demonstrates the retained Cloister kit, scrolling, platform collision, a healing pickup, combat target and lever-controlled grate. The connection to Pilgrim Road and persistent cross-stage state remain the next runtime task.

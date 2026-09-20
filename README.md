@@ -10,7 +10,7 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 **Stage layout baselines:** [six map examples and contributor instructions](docs/world/examples/README.md) · [neutral scrolling diagrams](docs/world/examples/v001/preview.html). Geometry is supplied separately from written HD art direction; new stages remain planning-only.
 
-[Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
+[Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Play Stage 02: Ruined Cloister](https://jackbauertv24-droid.github.io/ashen-vesper/cloister.html) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
 
 ## The Pilgrim Road
 

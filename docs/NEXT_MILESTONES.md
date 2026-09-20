@@ -2,10 +2,26 @@
 
 This queue follows the accepted assets and verified runtime. **Do code/blockout dependencies before further image generation.** Each task is one PR; use existing preservation, preview and test rules.
 
+## Definition of a playable stage demonstration
+
+Every stage milestone must ship with a discoverable link from the main demo, a scrolling route longer than one viewport, collision and camera bounds, at least one environmental interaction, one enemy or hazard interaction, a checkpoint or explicit end marker, restart behavior, and keyboard/touch/gamepad verification. Place retained assets at measured runtime scale and label placeholders honestly. A stage is not complete because its map or art preview exists.
+
+## Current inventory and missing work
+
+| Area | Available now | Still missing |
+| --- | --- | --- |
+| Ruined Cloister | Playable four-beat scrolling integration demo; arch, pier, cap, lever, grate and vial | Pilgrim Road transition, persistent room state, return path, authored enemy motion, final room-graph adaptation, gamepad browser route |
+| Flooded Cistern | Damp cap and selected pier | Playable layout, water hazard, valve behavior, separated lantern, enemy motion and transition |
+| Ossuary Gallery | Selected niche panel | Playable layout, lettering cleanup, doors/hazards and encounter placement |
+| Counterweight Works | Selected lift deck | Lift runner, shaft layout, chains/counterweights, crush/reversal rules and transition |
+| Bell Tower | Selected landing and bell | Vertical camera, playable layout, hanging support, bell interaction/audio and boss |
+
+The standalone [Ruined Cloister demo](../cloister.html) is the first asset-integration stage. It proves scrolling, platform collision, a collectible, a lever-controlled grate and a combat target. It is deliberately separate until M1.1 connects stage state and transitions safely.
+
 ## Milestone 1 — Ruined Cloister becomes playable
 
-1. **M1.1 Connected-room runtime (code, P0):** implement the existing room-transition brief, persistent room state, safe spawn and camera reset using rectangles/current art. Acceptance: Road completion → Cloister blockout → return; checkpoint/death/restart; keyboard/touch/gamepad; no duplicate pickups.
-2. **M1.2 Cloister blockout (layout/code, P0):** adapt Stage02 baseline JSON into four encounter beats without changing source v001 silently. Record deviations. Verify main route, optional return, narrow viewport and both camera modes.
+1. **M1.1 Connected-room runtime (code, P0):** connect the current standalone Cloister demo to Pilgrim Road, then implement persistent room state, safe spawn and camera reset. Acceptance: Road completion → Cloister → return; checkpoint/death/restart; keyboard/touch/gamepad; no duplicate pickups.
+2. **M1.2 Cloister blockout (layout/code, P0, first playable version shipped):** adapt the current four-beat integration route to the Stage02 baseline JSON without changing source v001 silently. Record deviations. Verify main route, optional return, narrow viewport and both camera modes.
 3. **M1.3 Grate/lever interaction (code, P0):** reuse retained lever and integrated grate. Proximity E/B action, debounce, visible connection, grate collision follows its position, state persists across death. Provide closed/open/mid-travel tests; no invisible blocker.
 4. **M1.4 Healing vial (code, P1):** reuse selected vial. Carry at most one; use action restores2 up to5; full-health use does not waste it; persistence/restart and touch/gamepad binding visible.
 5. **M1.5 Bell Moth motion and AI (art then code, P1):** reuse selected reference; produce the documented motion sheet, then telegraphed swoop/two-hit behavior. No new design reference.
