@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 06 — Bell Tower Timber Landing Platform Review</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: #141b26;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; color: var(--accent); }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 512px;
+      height: 512px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+      overflow: hidden;
+    }
+    .viewport.bg-dark { background-color: #0b0f17; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #090c14; }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:hover, select:hover { background: #334155; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .stat-val { font-family: monospace; color: #38bdf8; font-weight: 500; }
+    .review-embed {
+      margin-top: 24px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .review-embed img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 06: Bell Tower — Timber Landing Platform Module (v001)</h1>
+    <p>Contract preview: 1024×256 RGBA source cutout, 240×60 runtime display, top surface at y=32, stone corbel brackets.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="view" class="viewport bg-dark">
+        <canvas id="cv" width="512" height="512"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btnBgDark">Dark</button>
+        <button id="btnBgWhite">White</button>
+        <button id="btnBgMidnight">Cold Midnight</button>
+        <button id="btnToggleGuides">Toggle Guides</button>
+        <button id="btnToggleHero">Toggle Hero</button>
+        <select id="modeSelect">
+          <option value="single">Single Landing (1024×256)</option>
+          <option value="climb">Ascending Shaft Climb (2 Landings)</option>
+          <option value="runtime">1:1 Gameplay Scale (240×60)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Module Metrics</h2>
+      <div class="stat-row"><span class="stat-label">Canvas:</span><span class="stat-val">1024 × 256 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span><span class="stat-val">240 × 60</span></div>
+      <div class="stat-row"><span class="stat-label">Contact Top Y:</span><span class="stat-val">32 (runtime 7.5)</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Bounds:</span><span class="stat-val">x=56..967 (w=912)</span></div>
+      <div class="stat-row"><span class="stat-label">Vertical Bounds:</span><span class="stat-val">y=30..211 (h=182)</span></div>
+      <div class="stat-row"><span class="stat-label">Left Socket:</span><span class="stat-val">(56, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Right Socket:</span><span class="stat-val">(968, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Clear Margins:</span><span class="stat-val">L:56 R:56 T:30 B:44</span></div>
+      <div class="stat-row"><span class="stat-label">Border Violations:</span><span class="stat-val" style="color:var(--green)">0</span></div>
+      <div class="stat-row"><span class="stat-label">Status:</span><span class="stat-val" style="color:var(--accent)">candidate</span></div>
+    </div>
+  </div>
+
+  <div class="review-embed">
+    <h2>Review Composite</h2>
+    <img src="../../../../docs/reviews/tower-landing-v001.png" alt="World 06 Tower Landing Review Composite">
+  </div>
+
+  <script>
+    const cv = document.getElementById('cv');
+    const ctx = cv.getContext('2d');
+    const view = document.getElementById('view');
+
+    let showGuides = true;
+    let showHero = true;
+    let currentMode = 'single';
+
+    const landingImg = new Image();
+    landingImg.src = 'exports/tower-landing-v001.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    let heroLoaded = false;
+    let heroCanvas = null;
+
+    heroImg.onload = () => {
+      heroCanvas = document.createElement('canvas');
+      heroCanvas.width = heroImg.width; heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const hp = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < hp.data.length; i += 4) {
+        const r = hp.data[i], g = hp.data[i+1], b = hp.data[i+2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) hp.data[i+3] = 0;
+        else if (excess > 20) hp.data[i+3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(hp, 0, 0);
+      heroLoaded = true;
+      render();
+    };
+
+    landingImg.onload = () => {
+      render();
+    };
+
+    function drawHero(x, feetY, heroHeightPx) {
+      if (!heroLoaded || !heroCanvas || !showHero) return;
+      const scaleFactor = heroHeightPx / 418;
+      const heroW = 260 * scaleFactor;
+      const heroH = 433 * scaleFactor;
+      ctx.drawImage(
+        heroCanvas,
+        80, 5, 260, 433,
+        x - 96 * scaleFactor, feetY - 427 * scaleFactor,
+        heroW, heroH
+      );
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, 512, 512);
+
+      if (currentMode === 'single') {
+        const s = 480 / 1024;
+        const dw = 1024 * s;
+        const dh = 256 * s;
+        const dx = (512 - dw) / 2;
+        const dy = (512 - dh) / 2;
+
+        ctx.drawImage(landingImg, 0, 0, 1024, 256, dx, dy, dw, dh);
+
+        if (showGuides) {
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(dx, dy + 32 * s);
+          ctx.lineTo(dx + dw, dy + 32 * s);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.arc(dx + 56 * s, dy + 32 * s, 4, 0, Math.PI * 2);
+          ctx.arc(dx + 968 * s, dy + 32 * s, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        drawHero(dx + dw / 2, dy + 32 * s, 144 * (s / 0.25));
+      } else if (currentMode === 'climb') {
+        const s = 0.38;
+        const dw = 1024 * s;
+        const dh = 256 * s;
+
+        // Upper landing
+        const uX = 100, uY = 80;
+        ctx.drawImage(landingImg, 0, 0, 1024, 256, uX, uY, dw, dh);
+        drawHero(uX + 180, uY + 32 * s, 144 * (s / 0.25));
+
+        // Lower landing
+        const lX = 20, lY = 280;
+        ctx.drawImage(landingImg, 0, 0, 1024, 256, lX, lY, dw, dh);
+        drawHero(lX + 180, lY + 32 * s, 144 * (s / 0.25));
+
+        if (showGuides) {
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 3]);
+          ctx.beginPath();
+          ctx.moveTo(uX, uY + 32 * s);
+          ctx.lineTo(uX + dw, uY + 32 * s);
+          ctx.moveTo(lX, lY + 32 * s);
+          ctx.lineTo(lX + dw, lY + 32 * s);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+      } else if (currentMode === 'runtime') {
+        const rw = 240;
+        const rh = 60;
+        const rx = (512 - rw) / 2;
+        const ry = 260;
+
+        ctx.drawImage(landingImg, 0, 0, 1024, 256, rx, ry, rw, rh);
+        const contactY = ry + (32 * 60 / 256);
+        drawHero(rx + 120, contactY, 144);
+
+        if (showGuides) {
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(rx, contactY, rw, 16);
+        }
+      }
+    }
+
+    document.getElementById('btnBgDark').onclick = () => { view.className = 'viewport bg-dark'; };
+    document.getElementById('btnBgWhite').onclick = () => { view.className = 'viewport bg-white'; };
+    document.getElementById('btnBgMidnight').onclick = () => { view.className = 'viewport bg-blue'; };
+    document.getElementById('btnToggleGuides').onclick = () => { showGuides = !showGuides; render(); };
+    document.getElementById('btnToggleHero').onclick = () => { showHero = !showHero; render(); };
+    document.getElementById('modeSelect').onchange = (e) => { currentMode = e.target.value; render(); };
+  </script>
+</body>
+</html>

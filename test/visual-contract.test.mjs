@@ -723,3 +723,58 @@ test("World 05 Counterweight Works lift deck candidate satisfies visual and geom
   // Underside truss solid support
   assert.ok(im.data[(120 * 1024 + 512) * 4 + 3] > 240, "Central truss beam at (512, 120) must be solid");
 });
+
+test("World 06 Bell Tower timber landing candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 256);
+
+  let minX = 1024,
+    maxX = 0,
+    minY = 256,
+    maxY = 0;
+  for (let y = 0; y < 256; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 16 || y < 16 || x >= 1008 || y >= 240) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 56px margins on left/right, top margin at y=30, bottom margin >= 40px
+  assert.equal(minX, 56, "Left margin must be 56px");
+  assert.equal(maxX, 967, "Right margin must be 967px (inclusive)");
+  assert.equal(minY, 30, "Top edge must begin at y=30");
+  assert.equal(maxY, 211, "Bottom of corbel brackets must be at y=211");
+
+  // Span width 912px
+  const width = maxX - minX + 1;
+  assert.equal(width, 912, "Width must be 912px");
+
+  // Solid oak timber and stone corbel verification
+  for (const [sx, sy] of [
+    [200, 60],
+    [512, 60],
+    [800, 60],
+    [210, 150],
+    [810, 150],
+  ]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Material at (${sx}, ${sy}) must be solid opaque`,
+    );
+  }
+});
+

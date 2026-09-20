@@ -1545,6 +1545,104 @@
         "fileDecoded": true,
         "engineIntegration": "Review evidence; see docs/reviews/counterweight-lift-deck-v001.png"
       }
+    },
+    {
+      "id": "tower-landing-generated-v001",
+      "path": "art/contributions/world-06-bell-tower/v001/source/tower-landing-generated-v001.jpg",
+      "title": "tower-landing-generated-v001",
+      "status": "candidate",
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "783288d82f222df1a939080252f5cdc27be44e4c564098d3ba497f3e7e3f7d1d",
+      "intendedUse": "Raw untouched Imagen 3 generation source for World 06 Bell Tower landing platform module candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/tower-landing-v001.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/world-06-bell-tower/v001/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "tower-landing-v001",
+      "path": "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
+      "title": "World 06 Bell Tower timber landing platform module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 256,
+      "format": "png",
+      "alpha": true,
+      "sha256": "9e9058c0762bef779e75e6899893cfd1ac3a0ed7c73048a36010e5c07397bd45",
+      "intendedUse": "Stage 06 Bell Tower walkable landing platform; 240x60 runtime canvas at scale 240/1024, painted top y=32, sockets (56, 32) & (968, 32).",
+      "limitations": [
+        "Candidate visual platform module; level collision and vertical shaft landing logic managed by stage geometry.",
+        "Requires wall mounting or support corbels underneath for vertical tower shaft climbs."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, cold midnight, grayscale, ascending climb, and 1:1 gameplay scale review in docs/reviews/tower-landing-v001.png",
+        "engineIntegration": "Candidate asset; stage layout and vertical camera dependencies pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          60
+        ],
+        "paintedTopY": 32,
+        "measuredVisibleBounds": {
+          "minX": 56,
+          "maxX": 967,
+          "minY": 30,
+          "maxY": 211
+        },
+        "sockets": {
+          "leftContact": [
+            56,
+            32
+          ],
+          "rightContact": [
+            968,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "id": "tower-landing-review-v001",
+      "path": "docs/reviews/tower-landing-v001.png",
+      "title": "tower-landing-review-v001",
+      "status": "candidate",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": true,
+      "sha256": "ee7874e43f383eec1d4d248ad33d4cf9cf17b7de478c4035092cd353b8649d3a",
+      "intendedUse": "Six-panel review sheet demonstrating transparent cutout, contrast backdrops, grayscale tonal values, vertical shaft climb, and 1:1 gameplay scale.",
+      "limitations": [
+        "Review evidence only."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Comprehensive review composite in docs/reviews/tower-landing-v001.png",
+        "engineIntegration": "Review document only; not loaded by game engine."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "review-evidence",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
