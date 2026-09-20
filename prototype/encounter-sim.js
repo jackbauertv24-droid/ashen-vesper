@@ -240,7 +240,7 @@ export function step(s, input, dt, options = {}) {
       message(s, "Ember collected. One ember opens the final gate.");
     }
   }
-  s.drops = s.drops.filter((d) => !d.taken);
+  s.drops = s.drops.filter((d) => !d.taken && d.y <= MOVE.killPlane);
   for (const e of s.enemies) {
     if (e.hp <= 0) {
       // Keep counting after death so the renderer can play it out.
