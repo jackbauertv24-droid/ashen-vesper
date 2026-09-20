@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job 09 — Flooded Cistern Unlit Vault Pier & Modular Lantern (v002)</title>
+  <style>
+    :root {
+      --bg: #090d14;
+      --card: #111827;
+      --border: #334155;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --amber: #f59e0b;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 22px;
+      color: var(--amber);
+      margin: 0 0 6px 0;
+    }
+    p {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .btn:hover {
+      border-color: var(--accent);
+    }
+    .btn.active {
+      background: #1e293b;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .viewport {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: auto;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport.bg-checker {
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0f172a;
+    }
+    .viewport.bg-black { background: #000000; }
+    .viewport.bg-white { background: #ffffff; }
+    .viewport.bg-cistern { background: #070d14; }
+    canvas {
+      display: block;
+      margin: auto;
+    }
+    .info-bar {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .info-card h3 {
+      margin: 0 0 4px 0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .info-card p {
+      font-size: 13px;
+      color: var(--text);
+      font-family: monospace;
+    }
+    .review-embed {
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .review-embed img {
+      max-width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 09: Flooded Cistern — Unlit Vault Pier & Modular Lantern (v002)</h1>
+    <p>Versioned clean derivative directly resolving PR 28 review — Unlit Masonry Column + Modular Hanging Lantern Prop</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn active" id="btn-mode-pier" onclick="setMode('pier')">Unlit Pier</button>
+    <button class="btn" id="btn-mode-lantern" onclick="setMode('lantern')">Hanging Lantern</button>
+    <button class="btn" id="btn-mode-combined" onclick="setMode('combined')">Colonnade Scene</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn active" onclick="setBg('bg-cistern')">Cistern Indigo</button>
+    <button class="btn" onclick="setBg('bg-checker')">Checkerboard</button>
+    <button class="btn" onclick="setBg('bg-black')">Black</button>
+    <button class="btn" onclick="setBg('bg-white')">White</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn active" id="btn-scale-half" onclick="setScale(0.5)">50% View</button>
+    <button class="btn" id="btn-scale-full" onclick="setScale(1.0)">100% Native</button>
+    <button class="btn" id="btn-scale-rt" onclick="setScale(0.234375)">Runtime (240×240)</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn" id="btn-toggle-overlay" onclick="toggleOverlay()">Bounds & Sockets Overlay</button>
+  </div>
+
+  <div class="viewport bg-cistern" id="vp">
+    <canvas id="viewCanvas" width="1024" height="1024"></canvas>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-card">
+      <h3>Unlit Pier Visible Bounds</h3>
+      <p>[114, 36] to [909, 987] (796 × 952 px)</p>
+    </div>
+    <div class="info-card">
+      <h3>Lantern Visible Bounds</h3>
+      <p>[275, 32] to [750, 991] (476 × 960 px)</p>
+    </div>
+    <div class="info-card">
+      <h3>Clear Safety Margins</h3>
+      <p>Pier: L:114 R:114 T:36 B:36 | Lantern: L:275 R:273 T:32 B:32 (>=32px)</p>
+    </div>
+    <div class="info-card">
+      <h3>PR 28 Review Resolution</h3>
+      <p>0 baked lamps on pier; modular lantern avoids duplicate light</p>
+    </div>
+  </div>
+
+  <div class="review-embed">
+    <h3 style="color: var(--amber); margin-bottom: 8px;">Preserved Review Evidence Composite</h3>
+    <img src="../../../../docs/reviews/cistern-vault-pier-unlit-v002.png" alt="Cistern Vault Pier v002 Review Composite">
+  </div>
+
+  <script>
+    const canvas = document.getElementById('viewCanvas');
+    const ctx = canvas.getContext('2d');
+    let showOverlay = true;
+    let currentScale = 0.5;
+    let currentMode = 'pier'; // 'pier' | 'lantern' | 'combined'
+
+    const imgPier = new Image();
+    imgPier.src = 'exports/cistern-vault-pier-unlit-v002.png';
+    const imgLantern = new Image();
+    imgLantern.src = 'exports/cistern-hanging-lantern-v002.png';
+
+    let loadedCount = 0;
+    function onLoad() {
+      loadedCount++;
+      if (loadedCount >= 2) render();
+    }
+    imgPier.onload = onLoad;
+    imgLantern.onload = onLoad;
+
+    function render() {
+      if (loadedCount < 2) return;
+
+      if (currentMode === 'pier') {
+        const w = Math.round(1024 * currentScale);
+        const h = Math.round(1024 * currentScale);
+        canvas.width = w;
+        canvas.height = h;
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(imgPier, 0, 0, w, h);
+
+        if (showOverlay) {
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = Math.max(1, Math.round(currentScale * 2));
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(
+            Math.round(114 * currentScale),
+            Math.round(36 * currentScale),
+            Math.round(796 * currentScale),
+            Math.round(952 * currentScale)
+          );
+          ctx.setLineDash([]);
+
+          // Shaft span
+          ctx.strokeStyle = '#94a3b8';
+          ctx.strokeRect(
+            Math.round(352 * currentScale),
+            Math.round(36 * currentScale),
+            Math.round(320 * currentScale),
+            Math.round(952 * currentScale)
+          );
+
+          // Ground pivot: [512, 987]
+          const gpx = Math.round(512 * currentScale);
+          const gpy = Math.round(987 * currentScale);
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(gpx, gpy, 6, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(gpx - 10, gpy); ctx.lineTo(gpx + 10, gpy);
+          ctx.moveTo(gpx, gpy - 10); ctx.lineTo(gpx, gpy + 10);
+          ctx.stroke();
+        }
+      } else if (currentMode === 'lantern') {
+        const w = Math.round(1024 * currentScale);
+        const h = Math.round(1024 * currentScale);
+        canvas.width = w;
+        canvas.height = h;
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(imgLantern, 0, 0, w, h);
+
+        if (showOverlay) {
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = Math.max(1, Math.round(currentScale * 2));
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(
+            Math.round(275 * currentScale),
+            Math.round(32 * currentScale),
+            Math.round(476 * currentScale),
+            Math.round(960 * currentScale)
+          );
+          ctx.setLineDash([]);
+
+          // Ceiling suspension link [512, 32]
+          const lpx = Math.round(512 * currentScale);
+          const lpy = Math.round(32 * currentScale);
+          ctx.strokeStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.arc(lpx, lpy, 6, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Light center [512, 512]
+          const cpx = Math.round(512 * currentScale);
+          const cpy = Math.round(512 * currentScale);
+          ctx.strokeStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(cpx, cpy, 10, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      } else if (currentMode === 'combined') {
+        const w = 1200;
+        const h = 600;
+        canvas.width = w;
+        canvas.height = h;
+        ctx.clearRect(0, 0, w, h);
+
+        // Subterranean background
+        ctx.fillStyle = '#0a0f18';
+        ctx.fillRect(0, 0, w, h);
+
+        // Floor
+        ctx.fillStyle = '#161f2e';
+        ctx.fillRect(0, h - 50, w, 50);
+
+        // Colonnade piers
+        const pierScale = 0.45;
+        const pw = Math.round(796 * pierScale);
+        const ph = Math.round(952 * pierScale);
+        const py = h - 50 - ph;
+
+        ctx.drawImage(imgPier, 114, 36, 796, 952, 100, py, pw, ph);
+        ctx.drawImage(imgPier, 114, 36, 796, 952, 700, py, pw, ph);
+
+        // Hanging lantern between piers
+        const lScale = 0.22;
+        const lw = Math.round(476 * lScale);
+        const lh = Math.round(960 * lScale);
+        const lx = 550;
+        const ly = 30;
+
+        // Warm radial glow
+        const glow = ctx.createRadialGradient(lx + lw/2, ly + lh * 0.53, 5, lx + lw/2, ly + lh * 0.53, 100);
+        glow.addColorStop(0, 'rgba(245, 158, 11, 0.4)');
+        glow.addColorStop(1, 'rgba(245, 158, 11, 0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(lx + lw/2, ly + lh * 0.53, 100, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.drawImage(imgLantern, 275, 32, 476, 960, lx, ly, lw, lh);
+      }
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('btn-mode-pier').classList.toggle('active', mode === 'pier');
+      document.getElementById('btn-mode-lantern').classList.toggle('active', mode === 'lantern');
+      document.getElementById('btn-mode-combined').classList.toggle('active', mode === 'combined');
+      render();
+    }
+
+    function setBg(cls) {
+      const vp = document.getElementById('vp');
+      vp.className = 'viewport ' + cls;
+      document.querySelectorAll('.controls .btn').forEach(b => {
+        if (b.textContent.includes('Cistern') || b.textContent.includes('Checker') || b.textContent.includes('Black') || b.textContent.includes('White')) {
+          b.classList.toggle('active', b.getAttribute('onclick').includes(cls));
+        }
+      });
+    }
+
+    function setScale(s) {
+      currentScale = s;
+      document.getElementById('btn-scale-half').classList.toggle('active', s === 0.5);
+      document.getElementById('btn-scale-full').classList.toggle('active', s === 1.0);
+      document.getElementById('btn-scale-rt').classList.toggle('active', s === 0.234375);
+      render();
+    }
+
+    function toggleOverlay() {
+      showOverlay = !showOverlay;
+      document.getElementById('btn-toggle-overlay').classList.toggle('active', showOverlay);
+      render();
+    }
+  </script>
+</body>
+</html>

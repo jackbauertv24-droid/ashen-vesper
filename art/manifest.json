@@ -2696,6 +2696,161 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "cistern-vault-pier-unlit-generated-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/source/cistern-vault-pier-unlit-generated-v002.jpg",
+      "title": "cistern-vault-pier-unlit-generated-v002",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "8cef607a3d4a1896e4c21a7702c18143eb7271528250ab18799799822d68b206",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 09 Flooded Cistern unlit vault pier derivative candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/cistern-vault-pier-unlit-v002.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/09-flooded-cistern/v002/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "cistern-vault-pier-unlit-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
+      "title": "Job 09 Flooded Cistern unlit vault pier module (v002)",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "734f892f7256f1e7c512e0be18fc25c58739e822d2b67ad905edf1edf5fc96b5",
+      "intendedUse": "Job 09 Flooded Cistern unlit vault pier; 240x240 runtime canvas at scale 240/1024, ground pivot (512, 987). Resolves PR 28 review with 0 baked lamps.",
+      "limitations": [
+        "Candidate architectural module; vault springline connection and colonnade assembly pending stage layout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with unlit masonry shaft, top spring capital, base plinth, and in-situ colonnade review in docs/reviews/cistern-vault-pier-unlit-v002.png",
+        "engineIntegration": "Candidate asset; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-module",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          240
+        ],
+        "groundPivot": [
+          512,
+          987
+        ],
+        "measuredVisibleBounds": {
+          "minX": 114,
+          "maxX": 909,
+          "minY": 36,
+          "maxY": 987
+        }
+      }
+    },
+    {
+      "id": "cistern-hanging-lantern-generated-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/source/cistern-hanging-lantern-generated-v002.jpg",
+      "title": "cistern-hanging-lantern-generated-v002",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "2144b150ac8da1cba4655a7b77bafce2ef1e31b83d519c794f9a76d1644968d0",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 09 Flooded Cistern modular hanging lantern prop candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/cistern-hanging-lantern-v002.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/09-flooded-cistern/v002/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "cistern-hanging-lantern-v002",
+      "path": "art/contributions/09-flooded-cistern/v002/exports/cistern-hanging-lantern-v002.png",
+      "title": "Job 09 Flooded Cistern hanging iron lantern prop (v002)",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "736587817c93d14cbbf74e2a62987a4b5e0f513fdd90029da1ac3c418edcd917",
+      "intendedUse": "Job 09 Flooded Cistern hanging iron lantern; modular ceiling suspension prop with glowing amber flame core, ceiling socket (512, 32).",
+      "limitations": [
+        "Candidate lighting prop; ceiling anchor connection pending stage layout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with pierced chain transparency, warm amber flame core, and in-situ colonnade review in docs/reviews/cistern-vault-pier-unlit-v002.png",
+        "engineIntegration": "Candidate prop; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-prototype-module",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.1171875,
+        "runtimeSize": [
+          120,
+          120
+        ],
+        "groundPivot": [
+          512,
+          32
+        ],
+        "measuredVisibleBounds": {
+          "minX": 275,
+          "maxX": 750,
+          "minY": 32,
+          "maxY": 991
+        }
+      }
+    },
+    {
+      "id": "cistern-vault-pier-unlit-review-v002",
+      "path": "docs/reviews/cistern-vault-pier-unlit-v002.png",
+      "title": "cistern-vault-pier-unlit-review-v002",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": false,
+      "sha256": "cb9882b2df1d77f92eef38f15cddb755b4d2848c8a8acd7d6a9036fb72bf538a",
+      "intendedUse": "Multi-panel review composite for Job 09 Flooded Cistern unlit vault pier and modular lantern candidates.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with isolated unlit pier, isolated lantern, design rationale, alpha defringing swatches, and in-situ subterranean colonnade scene.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
