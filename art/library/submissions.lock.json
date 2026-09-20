@@ -933,6 +933,34 @@
     {
       "path": "docs/reviews/platform-cap-seamless-v002.png",
       "sha256": "c54d6fb69969237225c86f786a5724dbfc3ddcec08e04d442b869302b939e6f2"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/exports/niche-panel-v002.png",
+      "sha256": "35689b97b001d030e4c2f86d85bb8ff824de91b272e0f83f7a81898afe49202c"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/NOTES.md",
+      "sha256": "852a126d2ce0bafe6144c5671d375f27affcd0dad45c83ea49ffc9a99109e433"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/preview.html",
+      "sha256": "c4fd818d6cc885645097d0249ab61034441e5250a27f859f56346a128ad8c482"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/PROMPT.txt",
+      "sha256": "480e3b72cff2508e62c01d3132c2020ebaeb0d760f3925ae8821e4c41054342e"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/source/niche-panel-generated-v002.jpg",
+      "sha256": "781dd093a9cec442a20829323f5365cc1d8b13476b67dfec285b052e2787fe55"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v002/submission.json",
+      "sha256": "d6a0e3112973a0c4ab83d365970284db8d229126cc4a0fe43e6d1b782b88e86e"
+    },
+    {
+      "path": "docs/reviews/ossuary-niche-panel-v002.png",
+      "sha256": "cb356d30ab45c897f4ca280b462909e6e6e13fa084cdab6dcb2cf45f43d32ce0"
     }
   ]
 }

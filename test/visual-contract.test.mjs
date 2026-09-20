@@ -1263,3 +1263,66 @@ test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual,
   assert.equal(reviewPng.height, 1260);
 });
 
+test("World 04 Ossuary Gallery burial niche panel clean derivative (v002) satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/world-04-ossuary-gallery/v002/exports/niche-panel-v002.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Outer 32px perimeter violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 58px margins on left/right, top margin at y=83, bottom margin at y=940
+  assert.equal(minX, 58, "Left margin must be 58px");
+  assert.equal(maxX, 965, "Right margin must be 965px (inclusive)");
+  assert.equal(minY, 83, "Top edge must begin at y=83");
+  assert.equal(maxY, 940, "Bottom plinth edge must be at y=940");
+
+  const width = maxX - minX + 1;
+  const height = maxY - minY + 1;
+  assert.equal(width, 908, "Width must be 908px");
+  assert.equal(height, 858, "Height must be 858px");
+
+  // Solid masonry and interior tablet plinth verification
+  for (const [sx, sy] of [
+    [512, 512],
+    [512, 800],
+    [300, 500],
+    [700, 500],
+    [512, 200],
+    [512, 900],
+  ]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Material at (${sx}, ${sy}) must be solid opaque`,
+    );
+  }
+
+  // Review composite verification
+  const reviewBytes = fs.readFileSync("docs/reviews/ossuary-niche-panel-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+
+
