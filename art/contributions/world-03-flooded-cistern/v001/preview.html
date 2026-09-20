@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 03 — Flooded Cistern Walkable Damp Platform Cap Review</title>
+  <style>
+    :root {
+      --bg: #0b1118;
+      --panel: #131c27;
+      --border: #263548;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1240px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport-container {
+      position: relative;
+      border: 1px solid #334155;
+      background: #070d14;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport-container.bg-dark { background: #070d14; }
+    .viewport-container.bg-white { background: #ffffff; }
+    .viewport-container.bg-blue { background: #0a1926; }
+    .viewport-container.bg-abbey {
+      background-color: #0d1a29;
+      background-image: url("../../../concepts/abbey-gate-concept-v001.png");
+      background-size: cover;
+      background-position: center;
+    }
+    canvas {
+      display: block;
+    }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover, select:hover { background: #334155; }
+    button.active-action {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .stat-value { font-family: monospace; }
+    .checkbox-group {
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-candidate { background: #78350f; color: #fde68a; }
+    .review-gallery {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .review-gallery h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .review-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 03 — Flooded Cistern Walkable Damp Platform Cap</h1>
+    <p>Stage 03 First Bounded Art Module &bull; 1024 × 256 RGBA Export &bull; Runtime 240 × 60 &bull; Sockets (64, 32) &amp; (960, 32) &bull; <span class="badge badge-candidate">Candidate</span></p>
+  </header>
+
+  <div class="layout">
+    <section class="main-stage">
+      <div id="viewportContainer" class="viewport-container bg-dark">
+        <canvas id="viewport" width="800" height="520"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="modeSingleBtn" class="active-action">Single Cap (HD)</button>
+        <button id="modeThreeBtn">3-Copy Continuous Run</button>
+        <button id="modeSceneBtn">Cistern Vault Scene</button>
+        <button id="modeRuntimeBtn">Runtime 1:1 Scale</button>
+
+        <select id="bgSelect">
+          <option value="bg-dark">Background: Dark Slate</option>
+          <option value="bg-white">Background: Pure White</option>
+          <option value="bg-blue">Background: Cistern Cyan-Indigo</option>
+          <option value="bg-abbey">Background: Abbey Concept</option>
+        </select>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h2>Technical Contract</h2>
+      <div class="stat-row"><span class="stat-label">Asset:</span> <span class="stat-value">damp-platform-cap-v001.png</span></div>
+      <div class="stat-row"><span class="stat-label">Dimensions:</span> <span class="stat-value">1024 × 256 px</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Size:</span> <span class="stat-value">240 × 60 units</span></div>
+      <div class="stat-row"><span class="stat-label">Uniform Scale:</span> <span class="stat-value">0.234375 (240/1024)</span></div>
+      <div class="stat-row"><span class="stat-label">Painted Top:</span> <span class="stat-value">source y = 32</span></div>
+      <div class="stat-row"><span class="stat-label">Left Socket:</span> <span class="stat-value">(64, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Right Socket:</span> <span class="stat-value">(960, 32)</span></div>
+      <div class="stat-row"><span class="stat-label">Repeat Interval:</span> <span class="stat-value">896 px (210 units)</span></div>
+      <div class="stat-row"><span class="stat-label">Safe Margins:</span> <span class="stat-value">&ge; 16px (act 64/41px)</span></div>
+      <div class="stat-row"><span class="stat-label">Border Violations:</span> <span class="stat-value" style="color: var(--green);">0</span></div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="showSockets" checked> Show Sockets &amp; Baseline</label>
+        <label><input type="checkbox" id="showBounds" checked> Show Bounds &amp; Margins</label>
+        <label><input type="checkbox" id="showHero" checked> Show Hero Lineup (144u)</label>
+        <label><input type="checkbox" id="showLurker" checked> Show Cistern Lurker Lineup</label>
+      </div>
+
+      <h2>Geometry &amp; Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Visible Bounds:</span> <span class="stat-value">64..959 × 32..214</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Width:</span> <span class="stat-value">896 px</span></div>
+      <div class="stat-row"><span class="stat-label">Visible Height:</span> <span class="stat-value">183 px</span></div>
+      <div class="stat-row"><span class="stat-label">Stage Context:</span> <span class="stat-value">03 Flooded Cistern</span></div>
+      <div class="stat-row"><span class="stat-label">Dry Route Safety:</span> <span class="stat-value" style="color: var(--green);">Verified</span></div>
+    </aside>
+  </div>
+
+  <section class="review-gallery">
+    <h2>Preserved Multi-Panel Review Composite</h2>
+    <p style="margin-bottom: 12px;">Multi-panel verification across dark/light contrast, grayscale tonal distribution, 3-copy continuous platform run, and hero/enemy scale lineup:</p>
+    <img src="../../../../docs/reviews/cistern-damp-cap-v001.png" alt="Cistern Damp Cap Review Composite">
+  </section>
+
+  <script>
+    const canvas = document.getElementById("viewport");
+    const ctx = canvas.getContext("2d");
+    const container = document.getElementById("viewportContainer");
+
+    const modeSingleBtn = document.getElementById("modeSingleBtn");
+    const modeThreeBtn = document.getElementById("modeThreeBtn");
+    const modeSceneBtn = document.getElementById("modeSceneBtn");
+    const modeRuntimeBtn = document.getElementById("modeRuntimeBtn");
+    const bgSelect = document.getElementById("bgSelect");
+
+    const showSocketsCb = document.getElementById("showSockets");
+    const showBoundsCb = document.getElementById("showBounds");
+    const showHeroCb = document.getElementById("showHero");
+    const showLurkerCb = document.getElementById("showLurker");
+
+    const capImg = new Image();
+    capImg.src = "exports/damp-platform-cap-v001.png";
+
+    const lurkerImg = new Image();
+    lurkerImg.src = "../../13-cistern-lurker/v001/exports/cistern-lurker-v001.png";
+
+    let currentMode = "single";
+
+    function setMode(mode, btn) {
+      currentMode = mode;
+      [modeSingleBtn, modeThreeBtn, modeSceneBtn, modeRuntimeBtn].forEach(b => b.className = "");
+      btn.className = "active-action";
+      render();
+    }
+
+    modeSingleBtn.addEventListener("click", () => setMode("single", modeSingleBtn));
+    modeThreeBtn.addEventListener("click", () => setMode("three", modeThreeBtn));
+    modeSceneBtn.addEventListener("click", () => setMode("scene", modeSceneBtn));
+    modeRuntimeBtn.addEventListener("click", () => setMode("runtime", modeRuntimeBtn));
+
+    bgSelect.addEventListener("change", (e) => {
+      container.className = "viewport-container " + e.target.value;
+    });
+
+    showSocketsCb.addEventListener("change", render);
+    showBoundsCb.addEventListener("change", render);
+    showHeroCb.addEventListener("change", render);
+    showLurkerCb.addEventListener("change", render);
+
+    capImg.onload = render;
+    lurkerImg.onload = render;
+
+    function drawHero(ctx, x, groundY, scale = 1.0) {
+      const w = 48 * scale;
+      const h = 144 * scale;
+      const topY = groundY - h;
+
+      ctx.save();
+      ctx.fillStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(x - w / 2, topY, w, h);
+      ctx.strokeRect(x - w / 2, topY, w, h);
+
+      ctx.beginPath();
+      ctx.arc(x, topY + 22 * scale, 14 * scale, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = `${Math.max(9, 11 * scale)}px monospace`;
+      ctx.textAlign = "center";
+      ctx.fillText("Hero (144u)", x, topY - 6);
+      ctx.restore();
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!capImg.complete || capImg.naturalWidth === 0) return;
+
+      if (currentMode === "single") {
+        // HD Single Cap view
+        const scale = 0.72;
+        const dw = 1024 * scale;
+        const dh = 256 * scale;
+        const dx = (canvas.width - dw) / 2;
+        const dy = 200;
+
+        ctx.drawImage(capImg, dx, dy, dw, dh);
+
+        if (showBoundsCb.checked) {
+          ctx.strokeStyle = "#475569";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(dx, dy, dw, dh);
+
+          // Margins
+          ctx.strokeStyle = "#4ade80";
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(dx + 64 * scale, dy + 32 * scale, 896 * scale, 183 * scale);
+          ctx.fillStyle = "#4ade80";
+          ctx.font = "11px monospace";
+          ctx.fillText("Visible Bounds: 896 × 183 px", dx + 64 * scale, dy + 32 * scale - 6);
+        }
+
+        if (showSocketsCb.checked) {
+          const s1x = dx + 64 * scale;
+          const s1y = dy + 32 * scale;
+          const s2x = dx + 960 * scale;
+          const s2y = dy + 32 * scale;
+
+          ctx.fillStyle = "#38bdf8";
+          ctx.beginPath(); ctx.arc(s1x, s1y, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(s2x, s2y, 5, 0, Math.PI * 2); ctx.fill();
+
+          ctx.fillText("Left Socket (64, 32)", s1x - 30, s1y - 8);
+          ctx.fillText("Right Socket (960, 32)", s2x - 80, s2y - 8);
+
+          // Top line
+          ctx.strokeStyle = "rgba(56, 189, 248, 0.7)";
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(s1x, s1y); ctx.lineTo(s2x, s2y); ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        if (showHeroCb.checked) {
+          // Standing on top surface y=32
+          drawHero(ctx, dx + 320 * scale, dy + 32 * scale, scale * (144 / 256));
+        }
+
+      } else if (currentMode === "three") {
+        // 3-copy continuous run
+        const scale = 0.28;
+        const dw = 1024 * scale;
+        const dh = 256 * scale;
+        const step = 896 * scale;
+        const startX = (canvas.width - (step * 2 + dw)) / 2;
+        const startY = 220;
+
+        for (let i = 0; i < 3; i++) {
+          ctx.drawImage(capImg, startX + i * step, startY, dw, dh);
+        }
+
+        // Seam indicators
+        ctx.strokeStyle = "#f59e0b";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 3]);
+        for (let i = 1; i < 3; i++) {
+          const sx = startX + i * step + 64 * scale;
+          ctx.beginPath(); ctx.moveTo(sx, startY); ctx.lineTo(sx, startY + dh); ctx.stroke();
+          ctx.fillStyle = "#f59e0b";
+          ctx.font = "10px monospace";
+          ctx.fillText(`Join ${i}`, sx - 15, startY - 8);
+        }
+        ctx.setLineDash([]);
+
+        if (showHeroCb.checked) {
+          drawHero(ctx, startX + 400 * scale, startY + 32 * scale, 0.7);
+        }
+
+      } else if (currentMode === "scene") {
+        // Cistern Vault Scene with Water Hazard
+        const groundY = 320;
+        const uScale = 1.4;
+        const capW = 240 * uScale;
+        const capH = 60 * uScale;
+
+        // Platform
+        const px = 120;
+        ctx.drawImage(capImg, 0, 0, 1024, 256, px, groundY - (32 * 240 / 1024 * uScale), capW, capH);
+
+        // Water hazard below
+        ctx.fillStyle = "rgba(14, 116, 144, 0.4)";
+        ctx.fillRect(0, groundY + 120, canvas.width, canvas.height - (groundY + 120));
+        ctx.strokeStyle = "#38bdf8";
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(0, groundY + 120); ctx.lineTo(canvas.width, groundY + 120); ctx.stroke();
+        ctx.fillStyle = "#38bdf8";
+        ctx.font = "11px monospace";
+        ctx.fillText("Deep Cistern Water (Hazard)", 20, groundY + 140);
+
+        if (showHeroCb.checked) {
+          drawHero(ctx, px + 80, groundY, uScale);
+        }
+
+        if (showLurkerCb.checked && lurkerImg.complete && lurkerImg.naturalWidth > 0) {
+          const lw = 96 * uScale;
+          const lh = 51.57 * uScale;
+          ctx.drawImage(lurkerImg, px + 220, groundY - lh, lw, lh);
+          ctx.fillStyle = "#f59e0b";
+          ctx.font = "10px monospace";
+          ctx.fillText("Cistern Lurker (Ambush)", px + 210, groundY - lh - 6);
+        }
+
+      } else if (currentMode === "runtime") {
+        // 1:1 Pixel runtime scale
+        const rw = 240;
+        const rh = 60;
+        const cx = (canvas.width - rw) / 2;
+        const cy = 260;
+
+        ctx.drawImage(capImg, 0, 0, 1024, 256, cx, cy, rw, rh);
+
+        ctx.strokeStyle = "#38bdf8";
+        ctx.setLineDash([2, 2]);
+        ctx.beginPath(); ctx.moveTo(cx, cy + 7.5); ctx.lineTo(cx + rw, cy + 7.5); ctx.stroke();
+        ctx.setLineDash([]);
+
+        if (showHeroCb.checked) {
+          drawHero(ctx, cx + 60, cy + 7.5, 1.0);
+        }
+
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "11px monospace";
+        ctx.fillText("1:1 Pixel-Accurate Runtime Scale (240 × 60)", cx + 10, cy - 20);
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
