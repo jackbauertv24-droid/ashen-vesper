@@ -260,5 +260,11 @@ try {
   await page.locator('button[data-bg="bg-indigo"]').click();
   await page.screenshot({path:'tmp/job12-iron-sexton-motion-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/13-cistern-lurker/v003/preview.html');
+  await page.waitForFunction(() => window.cisternLurkerReady === true);
+  await page.locator('button[data-mode="anim-ambush"]').click();
+  await page.locator('button[data-bg="bg-blue"]').click();
+  await page.screenshot({path:'tmp/job13-cistern-lurker-motion-preview.png',fullPage:true});
+
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

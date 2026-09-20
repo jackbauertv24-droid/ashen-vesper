@@ -1,0 +1,144 @@
+{
+  "jobId": "13-cistern-lurker",
+  "status": "candidate",
+  "role": "low-ambush-enemy-motion-sheet",
+  "sheet": {
+    "path": "art/contributions/13-cistern-lurker/v003/exports/cistern-lurker-motion-v001.png",
+    "sha256": "9909a79383d144b26416a10e379d749f645c1ae58482a567e4df152aa15a56c0",
+    "width": 1536,
+    "height": 1024,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "cols": 3,
+    "rows": 2,
+    "groundPivot": [
+      256,
+      448
+    ],
+    "scale": 0.3,
+    "runtimeSize": [
+      96,
+      48
+    ],
+    "minCellMargin": 62,
+    "outer32pxViolations": 0,
+    "tuningTargets": {
+      "hp": 2,
+      "damage": 1,
+      "speed": 35,
+      "emergeWarningDuration": 0.7,
+      "lungeDuration": 0.25,
+      "recoveryDuration": 0.9
+    },
+    "frames": [
+      {
+        "name": "rest",
+        "col": 0,
+        "row": 0,
+        "duration": 0.5,
+        "localBounds": {
+          "minX": 129,
+          "maxX": 382,
+          "minY": 314,
+          "maxY": 448,
+          "width": 254,
+          "height": 135
+        },
+        "reliquaryCore": [
+          312,
+          374
+        ]
+      },
+      {
+        "name": "emerge",
+        "col": 1,
+        "row": 0,
+        "duration": 0.7,
+        "localBounds": {
+          "minX": 102,
+          "maxX": 410,
+          "minY": 283,
+          "maxY": 448,
+          "width": 309,
+          "height": 166
+        },
+        "reliquaryCore": [
+          325,
+          348
+        ]
+      },
+      {
+        "name": "crawl-a",
+        "col": 2,
+        "row": 0,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 96,
+          "maxX": 416,
+          "minY": 276,
+          "maxY": 448,
+          "width": 321,
+          "height": 173
+        },
+        "reliquaryCore": [
+          334,
+          350
+        ]
+      },
+      {
+        "name": "crawl-b",
+        "col": 0,
+        "row": 1,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 96,
+          "maxX": 416,
+          "minY": 278,
+          "maxY": 449,
+          "width": 321,
+          "height": 172
+        },
+        "reliquaryCore": [
+          325,
+          345
+        ]
+      },
+      {
+        "name": "lunge",
+        "col": 1,
+        "row": 1,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 89,
+          "maxX": 421,
+          "minY": 272,
+          "maxY": 447,
+          "width": 333,
+          "height": 176
+        },
+        "reliquaryCore": [
+          332,
+          340
+        ]
+      },
+      {
+        "name": "recover",
+        "col": 2,
+        "row": 1,
+        "duration": 0.9,
+        "localBounds": {
+          "minX": 121,
+          "maxX": 391,
+          "minY": 216,
+          "maxY": 449,
+          "width": 271,
+          "height": 234
+        },
+        "reliquaryCore": [
+          321,
+          276
+        ]
+      }
+    ]
+  }
+}

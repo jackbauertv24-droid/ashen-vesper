@@ -849,6 +849,34 @@
     {
       "path": "docs/reviews/iron-sexton-motion-v001.png",
       "sha256": "bc3c767cd4f6cd36334d7259237c65f93c628b3898f294225dd0baf2f4eb35e5"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/exports/cistern-lurker-motion-v001.png",
+      "sha256": "9909a79383d144b26416a10e379d749f645c1ae58482a567e4df152aa15a56c0"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/NOTES.md",
+      "sha256": "6eb82f67dc808f9483820ab76435065fabb846f0916d8fc733a8d7b731ac17bc"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/preview.html",
+      "sha256": "b713b816fcea67fed4e0a27615e420683fae4f9ce846dc065688f6faddeb89ae"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/PROMPT.txt",
+      "sha256": "9b3862a7f4ad4bb17a94da2e3865b4ef6e6bc85717b8273afebd2deb3207d229"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/source/cistern-lurker-motion-generated-v001.jpg",
+      "sha256": "db82a9bab7f97b4e00b4f29778d3a4d0edc6a1bf98a640bac32b86e8691df096"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v003/submission.json",
+      "sha256": "91b94a5aa2348f73cf4ea90f76781c6da66265cb3ff1d2836a09aceba16c82c9"
+    },
+    {
+      "path": "docs/reviews/cistern-lurker-motion-v001.png",
+      "sha256": "8e53c525130f1e03df8fc0e1d451e716cfd646e8cdacf5de15ad033b11f40ab5"
     }
   ]
 }
