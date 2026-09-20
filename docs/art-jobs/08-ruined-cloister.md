@@ -14,11 +14,15 @@ Modular asset prompt; use separately for each chosen piece:
 
 > Create ONE modular [arcade pier / arch span / platform cap / dry fountain / moss patch] for Ashen Vesper's moonlit ruined cloister. Match supplied retained masonry's worn limestone, cool blue-gray shading and restrained moss. Strict orthographic side-scroller elevation, painted HD non-pixel art. Genuine transparent background and open negative spaces, complete silhouette, no sky/floor scene/characters/text/ground shadow. Flat readable top edge for walkable pieces; architecture shading must not imply a different collision plane. Keep 16px transparent padding. Do not pack multiple disconnected props in one image or claim a repeated seam without testing it.
 
+Replacement seamless platform strip prompt:
+
+> Create ONE horizontally seamless center strip for an Ashen Vesper Ruined Cloister walkable platform. Worn limestone, neutral cool blue-gray material, orthographic side view, HD painted non-pixel art, genuine transparent background. Canvas 1024 × 256; flat contact surface at source y=32; intended runtime height 60. The left and right edges are the same cross-section with identical color, value, texture density, lighting and alpha. Use locally repeating stone variation with no overall left-to-right gradient, warm/cool shift, vignette, end bevel, terminal block, corbel, moss clump, unique crack or highlight at either boundary. The first column must join the last column without a visible vertical line. This export is the repeatable center only; decorative end caps are separate later assets. No scenery, characters, text, checkerboard or cast shadow.
+
 ## Contract
 
 - Layout: four horizontal screens, 5120 × 720, reference viewport 1280 × 720. Blockout JSON/JS with explicit geometry and spawn/interaction/checkpoint links; main floor y=600, gaps at most 90, steps at most 100, crawl clearance at least 90.
 - First bounded asset PR: one arch span and one pier. Each 1024 × 1024 RGBA, runtime 240 × 240, common ground pivot (512,960). Record arch opening bounds and sockets. Art collision stays separate; decorative arch is not automatically solid.
-- Platform cap: 1024 × 256 RGBA, runtime 240 × 60, top surface y=32 source, left/right sockets recorded. Any tiling claim needs a three-copy seam preview.
+- Platform center strip: 1024 × 256 RGBA, runtime 240 × 60, top surface y=32 source, left/right sockets recorded. Submit a lossless three-copy composite at runtime scale on white, black and Cloister-blue backgrounds. Include grayscale and an amplified edge-difference view. Both joins must be visually continuous in hue/value as well as geometry and alpha. Submit left/right decorative end caps separately; they are never part of the repeated strip.
 - Background arcade layer is a later PR: 2048 × 1024 RGBA, runtime 1280 × 640, camera factor proposed 0.45, no foreground collision. Preserve source and separate export.
 - Fountain/moss are optional later props; record pivots and bounds before generation. Concept PNG does not substitute for the kit.
 
@@ -28,4 +32,4 @@ Preview assembled kit over existing sky with hero/guard at their actual runtime 
 
 ## Latest contribution review
 
-PR 19 arch is integrated as distant scenery; pier is a decorative prototype. Ground/contact and shared socket claims require corrections before structural assembly. PR 21 cap supplies prototype floor material, using a runtime central crop.
+PR 19 arch is integrated as distant scenery; pier is a decorative prototype. Ground/contact and shared socket claims require corrections before structural assembly. PR 21 cap is retained but withdrawn from runtime floors: it contains authored ends and a cool-left/warm-right lighting shift, and stretching its center was rejected. The demo uses a neutral blockout surface until the replacement strip above passes its seam proof.

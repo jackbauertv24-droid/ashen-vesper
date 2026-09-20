@@ -8,7 +8,7 @@ The first standalone Stage02 build duplicated a reduced game loop and therefore 
 | Hero input | Keyboard/touch subset | Keyboard, touch and gamepad movement, jump, crouch, attack and interaction |
 | Enemy | Rectangle with health bar and no meaningful attack | Retained whole-body Hollow Pilgrim poses, approach, windup warning, contact, recovery, damage, invulnerability and defeat |
 | Architecture | Full transparent canvases repeated at the wrong interval; separate piers overlapped the spans | Crop to measured opaque arch bounds and repeat at its rendered width; do not layer incompatible pier copies |
-| Floors | Full padded cap canvases repeated, leaving regular gaps; repeating the corrected visible bounds still duplicated its tapered end shapes | Place the submitted left/right ends only at platform boundaries and tile its straight center crop through the interior |
+| Floors | Full repetition exposed tapered ends; stretching the middle removed joins but visibly distorted its cool-left/warm-right painted lighting | Withdraw v001 from runtime floors, keep it preserved, and use neutral blockout geometry until a separately generated seamless center strip passes three-copy color and grayscale review |
 | Player state | No damage or respawn loop | Five health, damage feedback, invulnerability, death/respawn, and preserved vial/lever state |
 | Verification | Browser captured before the runtime explicitly reported ready | Wait for `window.cloister.ready`, move the character, assert animation time advances, then capture |
 

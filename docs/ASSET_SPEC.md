@@ -26,6 +26,8 @@ For each character frame, record bounding box, foot pivot, facing, duration, and
 
 For each modular environment piece, record attachment points, dimensions, collision outline, parallax layer, and whether horizontal repetition was tested. Keep foreground occlusion off critical platform edges.
 
+For a horizontally tileable piece, the left and right repeat edges must match in silhouette, alpha, material color, brightness, lighting direction, scale and contact-surface height. Do not put a directional cool-to-warm gradient, vignette, bevel, cap, corbel, moss cluster, crack or highlight across the repeat boundary. Export the repeatable center strip separately from decorative left/right end caps. A wide illustration that merely contains several stones is not a tile.
+
 ## Validation checklist
 
 - Opens and decodes correctly.
@@ -35,4 +37,5 @@ For each modular environment piece, record attachment points, dimensions, collis
 - Lighting and proportions match the approved reference.
 - No clipped motion, shifting pivots, or inconsistent equipment across frames.
 - Layer seams and repeat edges checked where applicable.
+- Three copies shown edge-to-edge at runtime scale over white, black and stage color. The joins must remain invisible in color and grayscale; alpha or geometry continuity alone is insufficient.
 - Status and limitations accurately recorded.
