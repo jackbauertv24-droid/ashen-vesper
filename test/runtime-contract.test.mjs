@@ -16,7 +16,7 @@ import {
 } from "../prototype/physics.js";
 import fs from "node:fs";
 import { PNG } from "pngjs";
-import { platformCap } from "../prototype/environment-metrics.js";
+import { platformCap, censer, ember } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
 import { DAMAGE, DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
 import { LOOK, VIEW, trackCamera } from "../prototype/camera.js";
@@ -485,3 +485,45 @@ for (const [name, M] of stages) {
     assert.equal(s.cameraY, 0);
   });
 }
+
+// ---------- Part H: a prop is drawn the size of the thing you can hit ----------
+
+test("contract: the censer is drawn the size of its strike box", () => {
+  // encounter-sim gives each brazier a 48x62 strike box from b.y-48 to b.y+14.
+  // The art was once drawn at 96x103, twice the box, so the bell the player
+  // saw was not the bell the player could hit — and it towered over a hero
+  // only 144 units tall.
+  const box = { w: 48, h: 62, top: -48, bottom: 14 };
+  const bellH = censer.draw * (censer.bellBottom - censer.bellTop);
+  const bellW = censer.draw * censer.bellWidth;
+  const bellTop = censer.top + censer.draw * censer.bellTop;
+  const bellBottom = censer.top + censer.draw * censer.bellBottom;
+
+  assert.ok(
+    Math.abs(bellH - box.h) <= 6,
+    `bell is ${bellH.toFixed(0)} units tall against a ${box.h}-unit strike box`,
+  );
+  assert.ok(
+    bellW <= box.w * 1.3,
+    `bell is ${bellW.toFixed(0)} units wide against a ${box.w}-unit strike box`,
+  );
+  assert.ok(
+    Math.abs(bellTop - box.top) <= 6 && Math.abs(bellBottom - box.bottom) <= 6,
+    `bell spans ${bellTop.toFixed(0)}..${bellBottom.toFixed(0)}, box spans ${box.top}..${box.bottom}`,
+  );
+  assert.ok(
+    censer.draw < 144,
+    `the whole censer assembly (${censer.draw}) should not out-scale the 144-unit hero`,
+  );
+});
+
+test("contract: the ember reads as something that fell out of the censer", () => {
+  // The ember art is mostly transparent padding, so the draw box is much
+  // larger than what is visible. Judge the visible part.
+  const visible = ember.draw * ember.opaque.h;
+  const bellH = censer.draw * (censer.bellBottom - censer.bellTop);
+  assert.ok(
+    visible > bellH * 0.25 && visible < bellH * 0.8,
+    `visible ember is ${visible.toFixed(0)} units against a ${bellH.toFixed(0)}-unit bell; it should be clearly smaller but not a speck`,
+  );
+});

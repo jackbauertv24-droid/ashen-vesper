@@ -8,7 +8,7 @@ import {
   solidHeight,
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
-import { platformCap, arcade } from "./environment-metrics.js";
+import { platformCap, arcade, censer, ember } from "./environment-metrics.js";
 import * as run from "./run.js";
 import { DEATH_FADE } from "./iron-sexton.js";
 import { loadHero, drawHero } from "./hero-render.js";
@@ -312,12 +312,12 @@ function draw() {
     // The censer art carries its own ceiling mount and chains, so none of
     // this is drawn by hand. Struck, it is clipped above the bowl so the
     // chains are left hanging empty.
-    const top = b.y - 166;
-    const size = 200;
+    const top = b.y + censer.top;
+    const size = censer.draw;
     ctx.save();
     if (s.broken[i]) {
       ctx.beginPath();
-      ctx.rect(b.x - size / 2, top, size, b.y - 86 - top);
+      ctx.rect(b.x - size / 2, top, size, size * censer.bellTop);
       ctx.clip();
     }
     ctx.drawImage(art.brazier, b.x - size / 2, top, size, size);
@@ -327,10 +327,10 @@ function draw() {
     ctx.save();
     ctx.drawImage(
       art.ember,
-      d.x - 27,
-      d.y - 42 + Math.sin(s.time * 4) * 3,
-      54,
-      54,
+      d.x - ember.draw / 2,
+      d.y - ember.draw * 0.78 + Math.sin(s.time * 4) * 3,
+      ember.draw,
+      ember.draw,
     );
     ctx.restore();
   }
@@ -375,10 +375,10 @@ function draw() {
   if (s.checkpoint)
     ctx.drawImage(
       art.ember,
-      cx - 34,
-      524 + Math.sin(s.time * 3) * 4,
-      68,
-      68,
+      cx - ember.draw / 2,
+      530 + Math.sin(s.time * 3) * 4,
+      ember.draw,
+      ember.draw,
     );
   text("SANCTUARY", cx - 48, 496);
   for (const e of s.enemies) enemy(e);
