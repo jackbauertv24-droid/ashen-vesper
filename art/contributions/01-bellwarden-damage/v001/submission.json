@@ -1,0 +1,116 @@
+{
+  "jobId": "01-bellwarden-damage",
+  "version": "v001",
+  "status": "candidate",
+  "role": "protagonist-damage-motion-sheet",
+  "sheet": {
+    "path": "art/contributions/01-bellwarden-damage/v001/exports/bellwarden-damage-v001.png",
+    "sha256": "04a51cf14669c3d0965f7c6f6f208993bf8b246a22d8dbf7cd50fbe2eff9c5ec",
+    "width": 1024,
+    "height": 1024,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "cols": 2,
+    "rows": 2,
+    "groundAnchor": [
+      256,
+      464
+    ],
+    "standingSourceHeight": 418,
+    "runtimeHeight": 144,
+    "scale": 0.3444976,
+    "minCellMargin": 30,
+    "outer32pxViolations": 0,
+    "disconnectedFragments": 0,
+    "frames": [
+      {
+        "name": "hurt",
+        "col": 0,
+        "row": 0,
+        "duration": 0.35,
+        "localBounds": {
+          "minX": 124,
+          "maxX": 390,
+          "minY": 47,
+          "maxY": 464,
+          "width": 267,
+          "height": 418
+        },
+        "headTop": [
+          200,
+          47
+        ],
+        "swordTip": [
+          390,
+          400
+        ]
+      },
+      {
+        "name": "stagger",
+        "col": 1,
+        "row": 0,
+        "duration": 0.4,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 410,
+          "minY": 113,
+          "maxY": 464,
+          "width": 314,
+          "height": 352
+        },
+        "headTop": [
+          240,
+          113
+        ],
+        "swordTip": [
+          410,
+          480
+        ]
+      },
+      {
+        "name": "collapse",
+        "col": 0,
+        "row": 1,
+        "duration": 0.45,
+        "localBounds": {
+          "minX": 103,
+          "maxX": 406,
+          "minY": 135,
+          "maxY": 464,
+          "width": 304,
+          "height": 330
+        },
+        "headTop": [
+          245,
+          135
+        ],
+        "swordTip": [
+          330,
+          464
+        ]
+      },
+      {
+        "name": "death",
+        "col": 1,
+        "row": 1,
+        "duration": 0.8,
+        "localBounds": {
+          "minX": 30,
+          "maxX": 478,
+          "minY": 320,
+          "maxY": 464,
+          "width": 449,
+          "height": 145
+        },
+        "headTop": [
+          478,
+          390
+        ],
+        "swordTip": [
+          380,
+          464
+        ]
+      }
+    ]
+  }
+}

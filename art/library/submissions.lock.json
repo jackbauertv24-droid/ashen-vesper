@@ -1141,6 +1141,34 @@
     {
       "path": "docs/reviews/iron-sexton-motion-v003.png",
       "sha256": "f451a7b68ad0b36753529ffb4dcaef25440887fb196f68481d25963466e2f6dc"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/exports/bellwarden-damage-v001.png",
+      "sha256": "04a51cf14669c3d0965f7c6f6f208993bf8b246a22d8dbf7cd50fbe2eff9c5ec"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/NOTES.md",
+      "sha256": "09c61c1977a39688b4248e4bdfe6ea26a02a27080c0e87779e3802640392b703"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/preview.html",
+      "sha256": "8e3cdf863455c48324d9e487550bdbcd80c2a88f1ec318f79b4e9d186a60cabd"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/PROMPT.txt",
+      "sha256": "84293c6643b507e44b3e7b92f3858be9de7436a23a1d9f81d1b37b8661591a96"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/source/bellwarden-damage-generated-v001.jpg",
+      "sha256": "8686c29503884743710b050e6d8e42bd95843903b1386c55734e31c3b55cf322"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-damage/v001/submission.json",
+      "sha256": "c8988d3ab532f139e8dd4c5fa5269cc4c3d3007eeac1774f1f447123474f37d0"
+    },
+    {
+      "path": "docs/reviews/bellwarden-damage-v001.png",
+      "sha256": "7500ac8e2038176ec7877ef41cfe774a0341d5057a2aebf20ca2bd238dd0bdb3"
     }
   ]
 }

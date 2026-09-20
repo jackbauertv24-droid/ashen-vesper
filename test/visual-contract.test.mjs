@@ -1878,3 +1878,107 @@ test("Iron Sexton poses stay inside the hitbox the player can actually strike", 
     );
   }
 });
+
+test("Job 01 Bellwarden 4-pose damage reaction and death motion sheet satisfies visual and geometry contract", () => {
+  const meta = JSON.parse(
+    fs.readFileSync("art/contributions/01-bellwarden-damage/v001/submission.json", "utf8")
+  );
+  assert.equal(meta.jobId, "01-bellwarden-damage");
+  assert.equal(meta.version, "v001");
+  assert.equal(meta.sheet.cols, 2);
+  assert.equal(meta.sheet.rows, 2);
+  assert.equal(meta.sheet.cellWidth, 512);
+  assert.equal(meta.sheet.cellHeight, 512);
+  assert.equal(meta.sheet.width, 1024);
+  assert.equal(meta.sheet.height, 1024);
+  assert.equal(meta.sheet.groundAnchor[0], 256);
+  assert.equal(meta.sheet.groundAnchor[1], 464);
+  assert.equal(meta.sheet.standingSourceHeight, 418);
+  assert.equal(meta.sheet.runtimeHeight, 144);
+  assert.ok(Math.abs(meta.sheet.scale - (144 / 418)) < 0.001);
+  assert.equal(meta.sheet.disconnectedFragments, 0);
+
+  const bytes = fs.readFileSync(meta.sheet.path);
+  assert.equal(bytes[25], 6); // RGBA format
+  const im = PNG.sync.read(bytes);
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  // Outer 32px perimeter audit: must have 0 alpha across entire canvas border
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      if (x < 32 || x >= 1024 - 32 || y < 32 || y >= 1024 - 32) {
+        assert.equal(
+          im.data[(y * 1024 + x) * 4 + 3],
+          0,
+          `Outer 32px perimeter must be zero alpha at (${x}, ${y})`
+        );
+      }
+    }
+  }
+
+  // Connected component analysis per cell: exactly 1 contiguous mesh
+  const cell = 512;
+  for (let r = 0; r < 2; r++) {
+    for (let c = 0; c < 2; c++) {
+      const visited = new Uint8Array(cell * cell);
+      const isOpaque = (x, y) => {
+        const idx = (((r * cell + y) * im.width) + (c * cell + x)) * 4 + 3;
+        return im.data[idx] > 24;
+      };
+
+      const components = [];
+      for (let y = 0; y < cell; y++) {
+        for (let x = 0; x < cell; x++) {
+          const p = y * cell + x;
+          if (visited[p] || !isOpaque(x, y)) continue;
+
+          let compSize = 0;
+          const queue = [p];
+          visited[p] = 1;
+
+          while (queue.length > 0) {
+            const curr = queue.pop();
+            compSize++;
+            const cx = curr % cell;
+            const cy = Math.floor(curr / cell);
+
+            for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+              const nx = cx + dx, ny = cy + dy;
+              if (nx >= 0 && nx < cell && ny >= 0 && ny < cell) {
+                const np = ny * cell + nx;
+                if (!visited[np] && isOpaque(nx, ny)) {
+                  visited[np] = 1;
+                  queue.push(np);
+                }
+              }
+            }
+          }
+          if (compSize > 10) components.push(compSize);
+        }
+      }
+
+      assert.equal(
+        components.length,
+        1,
+        `Cell r${r}c${c} must be a single contiguous mesh (got ${components.length} components)`
+      );
+      assert.ok(
+        components[0] >= 30000,
+        `Cell r${r}c${c} component must be substantial body mass (got ${components[0]} px)`
+      );
+    }
+  }
+
+  // Check 4 frames defined in submission metadata
+  assert.equal(meta.sheet.frames.length, 4);
+  const frameNames = meta.sheet.frames.map(f => f.name);
+  assert.deepEqual(frameNames, ["hurt", "stagger", "collapse", "death"]);
+
+  // Review composite verification
+  const reviewBytes = fs.readFileSync("docs/reviews/bellwarden-damage-v001.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+
