@@ -22,12 +22,20 @@ The scale agreeing with the declared runtime height is worth calling out: the
 Iron Sexton sheet declared two figures that contradicted, and needed a
 recorded deviation. This one is internally consistent and needs none.
 
-## One integration detail
+## Facing — and a mistake worth recording
 
-The sheet is drawn **facing left**; the pilot and airborne sheets face right.
-The runtime mirrors it with `sheetFacing: -1` in `prototype/hero-render.js`.
-Not a defect — just a fact the renderer has to know, recorded next to the
-frame map.
+The sheet faces **right**, the same way the pilot and airborne sheets do, so
+it takes the same mirror from `s.facing` and needs no correction.
+
+On first integration this was misread as facing left and wired with
+`sheetFacing: -1`, which flipped the hero to face *away* from whatever had
+just hit her. It survived the composed-frame check, the route check and a
+screenshot review, because a mirrored character still renders perfectly and
+looks plausible in a still image — it is only wrong relative to the attacker.
+It was caught by the maintainer playing the game.
+
+`test/runtime-contract.test.mjs` now pins `DAMAGE.sheetFacing` to 1 with the
+reason, so changing it has to be deliberate.
 
 ## What it changed in the game
 

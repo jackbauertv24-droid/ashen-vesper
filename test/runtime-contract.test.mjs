@@ -18,7 +18,7 @@ import fs from "node:fs";
 import { PNG } from "pngjs";
 import { platformCap } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
-import { DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
+import { DAMAGE, DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
 import * as road from "../prototype/encounter-sim.js";
 import * as cloister from "../prototype/cloister-sim.js";
 import * as cistern from "../prototype/cistern-sim.js";
@@ -386,4 +386,16 @@ test("contract: a non-fatal hit shows the recoil pose, then clears", () => {
   assert.equal(damagePose(s), "hurt");
   for (let i = 0; i < 30; i++) cloister.step(s, {}, 1 / 60, {});
   assert.equal(damagePose(s), null, "the recoil is brief");
+});
+
+test("contract: the damage sheet faces the same way as the hero's other sheets", () => {
+  // All Bellwarden sheets are drawn facing right, so they all take the same
+  // mirror from s.facing. Setting this to -1 flips the hero to face away
+  // from whatever just hit her, which is easy to do and hard to notice in a
+  // still frame. Change it only with a sheet that genuinely faces left.
+  assert.equal(
+    DAMAGE.sheetFacing,
+    1,
+    "the damage sheet faces right like the pilot and airborne sheets",
+  );
 });

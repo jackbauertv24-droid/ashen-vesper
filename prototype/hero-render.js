@@ -19,14 +19,16 @@ const GROUND_SCALE = 144 / 418;
 
 /**
  * Job 01 damage reactions. Unlike the pilot and airborne sheets this one is
- * a clean RGBA cutout needing no colour keying, and it is drawn facing left
- * where the others face right, so it mirrors against them.
+ * a clean RGBA cutout needing no colour keying. It faces right, the same way
+ * the pilot and airborne sheets do, so it takes the same mirror and no
+ * correction. This was briefly set to -1 on a misreading, which flipped the
+ * hero to face away from whatever had just hit her.
  */
 export const DAMAGE = {
   path: "art/contributions/01-bellwarden-damage/v001/exports/bellwarden-damage-v001.png",
   cell: 512,
   anchor: [256, 464],
-  sheetFacing: -1,
+  sheetFacing: 1,
   frames: { hurt: [0, 0], stagger: [1, 0], collapse: [0, 1], death: [1, 1] },
 };
 
