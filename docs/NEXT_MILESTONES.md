@@ -2,11 +2,11 @@
 
 This queue follows the accepted assets and verified runtime. **Do code/blockout dependencies before further image generation.** Each task is one PR; use existing preservation, preview and test rules, and the tiers in [the build standard](BUILD_STANDARD.md).
 
-**Image generation: see [what is actually needed](IMAGE_GEN_REQUESTS.md).**
-The retained library holds 74 candidates and the game loads 12. Only three
-pieces of art are wanted — a Cloister backdrop, hero hurt and death poses,
-and optionally a re-anchored Iron Sexton hurt cell. Everything else on this
-queue is code with its art already accepted.
+**Image generation: see [wanted assets](WANTED_ASSETS.md).**
+The retained library holds 74 candidates and the game loads 12. Eighty percent of exported art is a
+single static image, and the game needs motion: finish a subject before
+starting another. Everything else on this queue is code whose art is
+already accepted.
 
 **Direction: no new stage until the engine is one engine.** Art supply is not the bottleneck — the retained library already holds selected assets for five stages, while one route is playable end to end. Runtime capability is the bottleneck. Every stage built on its own copy of the loop multiplies the drift, so a stage ships on `prototype/physics.js` and registers itself in `test/runtime-contract.test.mjs`, or it does not ship.
 

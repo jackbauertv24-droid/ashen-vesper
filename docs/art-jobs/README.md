@@ -1,5 +1,10 @@
 # Contributor art jobs
 
+> **Read [wanted assets](../WANTED_ASSETS.md) first.** Eighty percent of the
+> exported library is a single static image and only twelve assets are in the
+> running game. A one-pose submission will be retained, not integrated. Add
+> poses to a subject that is already accepted before starting a new subject.
+
 These are ready-to-use generation briefs for outside contributors, including other coding/image models. Submit work through a PR. Maintainer implementation changes go directly to main. No generation is requested by simply reading this document.
 
 For build order, gameplay ideas, dependencies and nice-to-have tasks, start with the [future-content queue](../FUTURE_CONTENT.md). **Next expansion: Ruined Cloister with Bell Moth, healing vial and lever/grate.** The later Cistern/Tower/boss jobs can supply candidates now; runtime integration waits for their listed systems.
