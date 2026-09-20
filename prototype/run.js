@@ -32,7 +32,11 @@ function load() {
   try {
     const raw = sessionStorage.getItem(KEY);
     const w = raw ? JSON.parse(raw) : null;
-    return w && w.rooms && w.rooms.road && w.rooms.cloister ? w : null;
+    return w &&
+      w.rooms &&
+      Object.keys(world.ROOMS).every((k) => w.rooms[k])
+      ? w
+      : null;
   } catch {
     return null;
   }
