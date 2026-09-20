@@ -32,6 +32,7 @@ const input = {
     jump: false,
     attack: false,
     interact: false,
+    dodge: false,
   },
   held = new Set(),
   touch = new Map();
@@ -55,6 +56,9 @@ const keys = {
   KeyE: "interact",
   KeyS: "crouch",
   ArrowDown: "crouch",
+  KeyK: "dodge",
+  ShiftLeft: "dodge",
+  ShiftRight: "dodge",
 };
 const load = (path) =>
   new Promise((resolve, reject) => {
@@ -159,6 +163,7 @@ function controls() {
     jump: 0,
     attack: 2,
     interact: 1,
+    dodge: 3,
   })) {
     const pressed = !!pad.buttons[index]?.pressed;
     if (pressed && !padPrevious[action]) input[action] = true;
@@ -180,6 +185,7 @@ function tone(event) {
     death: 45,
     defeat: 110,
     staff: 80,
+    dodge: 320,
   }[event];
   if (!hz) return;
   const oscillator = audioContext.createOscillator(),
@@ -435,7 +441,7 @@ function tick(now) {
     while (acc >= 1 / 60) {
       if (run.step(W, input, 1 / 60, options)) return; // crossing to the cloister
       for (const e of s.events) tone(e);
-      input.jump = input.attack = input.interact = false;
+      input.jump = input.attack = input.interact = input.dodge = false;
       acc -= 1 / 60;
     }
   }

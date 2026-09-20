@@ -30,6 +30,7 @@ const KEYS = {
   Space: "jump", KeyW: "jump", ArrowUp: "jump",
   KeyS: "crouch", ArrowDown: "crouch",
   KeyJ: "attack", KeyX: "attack", KeyE: "interact",
+  KeyK: "dodge", ShiftLeft: "dodge", ShiftRight: "dodge",
 };
 
 function input() {
@@ -38,13 +39,14 @@ function input() {
   const state = {
     left: down("left"), right: down("right"), crouch: down("crouch"),
     jump: down("jump"), attack: down("attack"), interact: down("interact"),
+    dodge: down("dodge"),
   };
   if (pad) {
     const ax = pad.axes[0] ?? 0;
     state.left ||= ax < -0.4 || pad.buttons[14]?.pressed;
     state.right ||= ax > 0.4 || pad.buttons[15]?.pressed;
     state.crouch ||= (pad.axes[1] ?? 0) > 0.5 || pad.buttons[13]?.pressed;
-    for (const [i, key] of [[0, "jump"], [2, "attack"], [1, "interact"]]) {
+    for (const [i, key] of [[0, "jump"], [2, "attack"], [1, "interact"], [3, "dodge"]]) {
       const now = !!pad.buttons[i]?.pressed;
       if (now && !padPrevious[key]) state[key] = true;
       padPrevious[key] = now;
@@ -57,7 +59,7 @@ addEventListener("keydown", (e) => {
   const k = KEYS[e.code];
   if (!k) return;
   e.preventDefault();
-  if (k === "jump" || k === "attack" || k === "interact") pulse[k] = true;
+  if (k === "jump" || k === "attack" || k === "interact" || k === "dodge") pulse[k] = true;
   held.add(k);
 });
 addEventListener("keyup", (e) => { const k = KEYS[e.code]; if (k) held.delete(k); });

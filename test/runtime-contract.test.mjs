@@ -436,6 +436,52 @@ test("contract: hurt state locks horizontal sprint, jumping, and new attack swin
   }
 });
 
+test("contract: tactical quick-step dodge grants evasion, i-frames and smooth deceleration", () => {
+  for (const [name, M] of stages) {
+    const s = M.create();
+    s.x = 400;
+    s.facing = 1;
+    const initialX = s.x;
+
+    // Neutral dodge triggers backward quick-step away from facing.
+    M.step(s, { dodge: true }, 1 / 60, {});
+    assert.ok(s.dodging > 0, `${name}: dodging must activate`);
+    assert.equal(s.dodgeDir, -1, `${name}: neutral dodge must retreat backwards`);
+    assert.ok(s.invulnerable > 0, `${name}: dodge must grant invulnerability`);
+    assert.ok(s.events.includes("dodge"), `${name}: dodge event must fire`);
+    assert.ok(s.vx < 0, `${name}: backward velocity must be applied`);
+
+    // While dodging, attack and jump cannot interrupt the slide.
+    M.step(s, { attack: true, jump: true }, 1 / 60, {});
+    assert.equal(s.attack, 0, `${name}: attack locked during dodge`);
+    assert.equal(s.grounded, true, `${name}: jump locked during dodge`);
+
+    // Let the dodge conclude.
+    for (let i = 0; i < 30; i++) M.step(s, {}, 1 / 60, {});
+    assert.equal(s.dodging, 0, `${name}: dodge clears`);
+    assert.ok(s.x < initialX, `${name}: player completed backward displacement`);
+  }
+});
+
+test("contract: striking an enemy applies physical flinch displacement", () => {
+  // Pilgrim Road enemy strike flinch
+  const rd = road.create();
+  const pe = rd.enemies[0];
+  rd.x = pe.x - 70;
+  const peBefore = pe.x;
+  road.step(rd, { attack: true }, 1 / 60, {});
+  for (let i = 0; i < 15; i++) road.step(rd, {}, 1 / 60, {});
+  assert.ok(pe.x > peBefore, "Pilgrim flinched backwards on hit");
+
+  // Cloister Sexton strike flinch
+  const cl = cloister.create();
+  cl.x = cl.enemy.x - 70;
+  const seBefore = cl.enemy.x;
+  cloister.step(cl, { attack: true }, 1 / 60, {});
+  for (let i = 0; i < 15; i++) cloister.step(cl, {}, 1 / 60, {});
+  assert.ok(cl.enemy.x > seBefore, "Sexton flinched backwards on hit");
+});
+
 test("contract: the damage sheet faces the same way as the hero's other sheets", () => {
   // All Bellwarden sheets are drawn facing right, so they all take the same
   // mirror from s.facing. Setting this to -1 flips the hero to face away
