@@ -43,7 +43,7 @@ Cross a five-screen causeway, break a hanging brazier, collect its falling ember
 - Optional air control, impact pause and synthesized sound cues.
 - Keyboard, touch and standard-mapped gamepad controls.
 
-**Keyboard:** A/D or arrows move · Space jumps · J strikes on the ground or in the air · S/down crouches and crawls · E interacts · R restarts. Gamepad: stick/D-pad move, A jump, X strike, B interact, down crouch. Sound starts muted.
+**Keyboard:** A/D or arrows move · Space jumps · J strikes on the ground or in the air · K or Shift quick-steps away from danger · S/down crouches and crawls · E interacts · R restarts. Gamepad: stick/D-pad move, A jump, X strike, Y dodge, B interact, down crouch. Sound starts muted.
 
 Masonry blocks have solid sides and undersides. New contributor-painted floor caps align with those collision tops, and pierced arcade arches appear in the distant scenery. Jump up the steps, or crouch through passages with enough headroom. Enemy staff damage follows the physical weapon sweep. The crouch pose and aerial strike art remain provisional; [contributor art jobs](docs/art-jobs/README.md) provide generation prompts, exact export specifications and acceptance tests for replacement animations.
 

@@ -19,6 +19,7 @@ export const MOVE = {
   hitstop: 0.045,
   dodgeTime: 0.22,
   dodgeSpeed: 340,
+  dodgeRecover: 0.18,
   edgeMargin: 20,
   killPlane: 900,
   maxFrame: 1 / 30,
@@ -89,7 +90,18 @@ export function stepHorizontal(s, input, dt, platforms, options = {}) {
   }
   if (s.attack > 0) s.attack = Math.max(0, s.attack - dt);
 
-  if (input.dodge && s.grounded && !s.attack && !s.hurtFor && !s.dodging) {
+  // The recovery window is what keeps a chained dodge from being permanent
+  // invulnerability: without it, tapping dodge every frame leaves no
+  // vulnerable frame at all.
+  if (s.dodgeCooldown > 0) s.dodgeCooldown = Math.max(0, s.dodgeCooldown - dt);
+  if (
+    input.dodge &&
+    s.grounded &&
+    !s.attack &&
+    !s.hurtFor &&
+    !s.dodging &&
+    !s.dodgeCooldown
+  ) {
     s.dodging = MOVE.dodgeTime;
     s.dodgeDir = dir || -s.facing;
     s.invulnerable = Math.max(s.invulnerable ?? 0, MOVE.dodgeTime);
@@ -98,6 +110,7 @@ export function stepHorizontal(s, input, dt, platforms, options = {}) {
 
   if (s.dodging > 0) {
     s.dodging = Math.max(0, s.dodging - dt);
+    if (s.dodging === 0) s.dodgeCooldown = MOVE.dodgeRecover;
     const decay = s.dodging / MOVE.dodgeTime;
     s.vx = s.dodgeDir * MOVE.dodgeSpeed * (decay * 0.7 + 0.3);
   } else if (s.grounded) {

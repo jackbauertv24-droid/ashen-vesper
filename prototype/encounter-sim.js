@@ -99,6 +99,9 @@ export function create() {
     hitstop: 0,
     dying: 0,
     hurtFor: 0,
+    dodging: 0,
+    dodgeDir: 0,
+    dodgeCooldown: 0,
     walk: 0,
   };
 }
@@ -159,6 +162,9 @@ export function respawn(s) {
   s.camera = Math.max(0, Math.min(5120, s.x - 500));
   s.dying = 0;
   s.hurtFor = 0;
+  s.dodging = 0;
+  s.dodgeDir = 0;
+  s.dodgeCooldown = 0;
   s.deaths++;
   s.events.push("death");
   message(

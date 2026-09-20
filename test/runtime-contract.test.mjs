@@ -463,6 +463,87 @@ test("contract: tactical quick-step dodge grants evasion, i-frames and smooth de
   }
 });
 
+test("contract: every stage declares its dodge state instead of leaning on undefined", () => {
+  // The dodge guards read s.dodging and s.dodgeCooldown before anything sets
+  // them. Relying on `undefined > 0` being false works until someone writes
+  // a guard the other way round, so each stage must own the fields.
+  for (const [name, M] of stages) {
+    const s = M.create();
+    for (const field of ["dodging", "dodgeDir", "dodgeCooldown"])
+      assert.equal(
+        typeof s[field],
+        "number",
+        `${name}: create() must declare ${field} as a number`,
+      );
+
+    s.x = 400;
+    M.step(s, { dodge: true }, 1 / 60, {});
+    assert.ok(s.dodging > 0, `${name}: dodge must be mid-flight before respawn`);
+    M.respawn(s);
+    assert.equal(s.dodging, 0, `${name}: respawn must clear the dodge`);
+    assert.equal(s.dodgeCooldown, 0, `${name}: respawn must clear the cooldown`);
+  }
+});
+
+test("contract: a chained dodge cannot buy permanent invulnerability", () => {
+  // Without a recovery window the i-frames of one dodge reach the start of the
+  // next, so holding the button is a free win. Two seconds of spam must still
+  // leave the player open for a meaningful share of the time.
+  for (const [name, M] of stages) {
+    const s = M.create();
+    s.x = 400;
+    let open = 0;
+    for (let i = 0; i < 120; i++) {
+      M.step(s, { dodge: true }, 1 / 60, {});
+      if (!(s.invulnerable > 0)) open++;
+    }
+    assert.ok(
+      open > 24,
+      `${name}: chained dodging left only ${open}/120 vulnerable frames`,
+    );
+  }
+});
+
+test("contract: dodge cannot start out of an attack, a flinch or the air", () => {
+  for (const [name, M] of stages) {
+    const attacking = M.create();
+    attacking.x = 400;
+    M.step(attacking, { attack: true }, 1 / 60, {});
+    assert.ok(attacking.attack > 0, `${name}: attack must be running`);
+    M.step(attacking, { dodge: true }, 1 / 60, {});
+    assert.equal(attacking.dodging, 0, `${name}: no dodge cancel out of a swing`);
+
+    const hurt = M.create();
+    hurt.x = 400;
+    hurt.hurtFor = HURT_TIME;
+    M.step(hurt, { dodge: true }, 1 / 60, {});
+    assert.equal(hurt.dodging, 0, `${name}: no dodge cancel out of a flinch`);
+
+    const airborne = M.create();
+    airborne.x = 400;
+    M.step(airborne, { jump: true }, 1 / 60, {});
+    assert.equal(airborne.grounded, false, `${name}: must be airborne`);
+    M.step(airborne, { dodge: true }, 1 / 60, {});
+    assert.equal(airborne.dodging, 0, `${name}: dodge is a grounded move`);
+  }
+});
+
+test("contract: a held direction steers the dodge, neutral retreats", () => {
+  for (const [name, M] of stages) {
+    const forward = M.create();
+    forward.x = 400;
+    forward.facing = 1;
+    M.step(forward, { dodge: true, right: true }, 1 / 60, {});
+    assert.equal(forward.dodgeDir, 1, `${name}: held direction steers the dodge`);
+
+    const neutral = M.create();
+    neutral.x = 400;
+    neutral.facing = 1;
+    M.step(neutral, { dodge: true }, 1 / 60, {});
+    assert.equal(neutral.dodgeDir, -1, `${name}: neutral dodge retreats`);
+  }
+});
+
 test("contract: striking an enemy applies physical flinch displacement", () => {
   // Pilgrim Road enemy strike flinch
   const rd = road.create();

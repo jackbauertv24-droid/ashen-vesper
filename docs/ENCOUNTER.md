@@ -14,7 +14,8 @@ A direct practiced run is short; exploring optional paths, learning combat and c
 
 ## Controls and comparisons
 
-- Keyboard: A/D or arrows move, Space/W/up jump, J/X attack on the ground or in the air, S/down crouch and crawl, E interact, R restart.
+- Keyboard: A/D or arrows move, Space/W/up jump, J/X attack on the ground or in the air, K/Shift dodge, S/down crouch and crawl, E interact, R restart.
+- The dodge is grounded only: 0.22s of invulnerable movement, then 0.18s of recovery before another is allowed. With no direction held it retreats away from facing; a held direction steers it.
 - Standard gamepad: left stick or D-pad move, A jump, X attack, B interact, down crouch. Enter the game first with its button. Browser standard mapping is assumed.
 - Touch: simultaneous movement and action buttons.
 - Camera: smooth or tighter exponential follow, horizontal dead zone, gradual facing look-ahead, fixed vertical position. Background, architecture silhouettes and foreground marks move at different rates.

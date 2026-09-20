@@ -173,7 +173,23 @@ than left in. The rule is in [the build standard](BUILD_STANDARD.md): no game
 object is drawn with code-drawn colour, and that now covers gradients and
 shading as well as flat boxes. The runtime contract test enforces both.
 
-### 8. Iron Sexton v006 hurt cell — optional
+### 8. Bellwarden quick-step dodge pose
+
+The dodge landed in PR43 as a real move: 0.22 seconds of grounded evasion
+with invulnerability, followed by a 0.18-second recovery. It has no art. The
+renderer currently borrows walk frame 4 for the whole slide, so the most
+readable defensive action in the game looks like the hero taking one ordinary
+step. A player cannot tell a dodge from a walk, which defeats the point of a
+telegraphed evade.
+
+Wanted: **two cells** on the existing Bellwarden atlas anchor — a low braced
+lean at the start of the slide, and a recovery cell as she rises out of it.
+Same 512px cell, same [256, 464] ground anchor, facing right like every other
+Bellwarden sheet. The move reads as a short backward hop away from the threat,
+not a roll; she keeps her feet and keeps her guard up. Two cells is the
+minimum that separates it from walking; four would let it ease.
+
+### 9. Iron Sexton v006 hurt cell — optional
 
 Low priority. Re-author `hurt` on the same anchor as the other seven cells
 so the runtime's recorded -59px correction can be deleted. Nothing is broken
