@@ -2612,6 +2612,90 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "niche-panel-generated-v002",
+      "path": "art/contributions/world-04-ossuary-gallery/v002/source/niche-panel-generated-v002.jpg",
+      "title": "niche-panel-generated-v002",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "781dd093a9cec442a20829323f5365cc1d8b13476b67dfec285b052e2787fe55",
+      "intendedUse": "Raw untouched Imagen 3 generation source for World 04 Ossuary Gallery clean burial niche panel without pseudo-lettering (v002).",
+      "limitations": [
+        "Raw generator output with solid background; use exports/niche-panel-v002.png for true alpha."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/world-04-ossuary-gallery/v002/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "niche-panel-v002",
+      "path": "art/contributions/world-04-ossuary-gallery/v002/exports/niche-panel-v002.png",
+      "title": "World 04 Ossuary Gallery Burial Niche Panel candidate (v002)",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "35689b97b001d030e4c2f86d85bb8ff824de91b272e0f83f7a81898afe49202c",
+      "intendedUse": "World 04 Ossuary Gallery clean burial niche wall panel module; 1024x1024 RGBA, runtime size 240x240 at scale 0.234375, ground pivot (512, 940). Smooth blank memorial tablet with 0 pseudo-lettering.",
+      "limitations": [
+        "Decorative architectural background module; does not provide collision."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA panel with white, black, indigo, grayscale, tablet detail proof and gallery wall assembly in docs/reviews/ossuary-niche-panel-v002.png",
+        "engineIntegration": "Candidate asset; Stage 04 Ossuary Gallery background assembly pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-architecture-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          240
+        ],
+        "groundPivot": [
+          512,
+          940
+        ]
+      }
+    },
+    {
+      "id": "ossuary-niche-panel-review-v002",
+      "path": "docs/reviews/ossuary-niche-panel-v002.png",
+      "title": "ossuary-niche-panel-review-v002",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": false,
+      "sha256": "cb356d30ab45c897f4ca280b462909e6e6e13fa084cdab6dcb2cf45f43d32ce0",
+      "intendedUse": "Multi-panel review composite certifying 0 pseudo-lettering, margin clearance, and wall assembly for World 04 Ossuary Gallery v002.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review composite with 4 background panels, tablet zoom proof, and multi-bay wall assembly.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
