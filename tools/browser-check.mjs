@@ -258,6 +258,12 @@ try {
   await page.locator('#btn-toggle-overlay').click();
   await page.screenshot({path:'tmp/job16-tollkeeper-v002-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/16-tollkeeper/v003/preview.html');
+  await page.waitForFunction(() => window.tollkeeperReady === true);
+  await page.locator('button[data-mode="anim-slam"]').click();
+  await page.locator('button[data-bg="bg-indigo"]').click();
+  await page.screenshot({path:'tmp/job16-tollkeeper-motion-preview.png',fullPage:true});
+
   await page.goto('http://127.0.0.1:4174/art/contributions/11-bell-moth/v003/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#btn-mode-anim').click();

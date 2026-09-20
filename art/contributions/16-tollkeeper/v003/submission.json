@@ -1,0 +1,227 @@
+{
+  "jobId": "16-tollkeeper",
+  "version": "v003",
+  "status": "candidate",
+  "role": "boss-motion-sheet",
+  "sheet": {
+    "path": "art/contributions/16-tollkeeper/v003/exports/tollkeeper-motion-v001.png",
+    "sha256": "2f8adb77d26b6e51b5ffbf85e4c0ee201f73e76ac55747044f4ca398ae491666",
+    "width": 2304,
+    "height": 1536,
+    "cellWidth": 768,
+    "cellHeight": 768,
+    "cols": 3,
+    "rows": 2,
+    "groundPivot": [
+      320,
+      704
+    ],
+    "standingHeight": 560,
+    "runtimeHeight": 220,
+    "scale": 0.392857,
+    "minCellMargin": 44,
+    "outer32pxViolations": 0,
+    "disconnectedFragments": 0,
+    "tuningTargets": {
+      "hp": 12,
+      "damage": 1,
+      "warningDuration": 1.2,
+      "slamDuration": 0.35,
+      "recoveryDuration": 1.3
+    },
+    "frames": [
+      {
+        "name": "ready",
+        "col": 0,
+        "row": 0,
+        "duration": 0.6,
+        "localBounds": {
+          "minX": 128,
+          "maxX": 665,
+          "minY": 147,
+          "maxY": 706,
+          "width": 538,
+          "height": 560
+        },
+        "landmarks": {
+          "headApex": [
+            320,
+            147
+          ],
+          "amberCore": [
+            300,
+            320
+          ],
+          "clapperHead": [
+            640,
+            310
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      },
+      {
+        "name": "brace",
+        "col": 1,
+        "row": 0,
+        "duration": 0.4,
+        "localBounds": {
+          "minX": 133,
+          "maxX": 703,
+          "minY": 190,
+          "maxY": 705,
+          "width": 571,
+          "height": 516
+        },
+        "landmarks": {
+          "headApex": [
+            320,
+            190
+          ],
+          "amberCore": [
+            290,
+            350
+          ],
+          "clapperHead": [
+            680,
+            420
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      },
+      {
+        "name": "warning",
+        "col": 2,
+        "row": 0,
+        "duration": 1.2,
+        "localBounds": {
+          "minX": 173,
+          "maxX": 589,
+          "minY": 90,
+          "maxY": 708,
+          "width": 417,
+          "height": 619
+        },
+        "landmarks": {
+          "headApex": [
+            310,
+            175
+          ],
+          "amberCore": [
+            300,
+            330
+          ],
+          "clapperHead": [
+            280,
+            95
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      },
+      {
+        "name": "swing",
+        "col": 0,
+        "row": 1,
+        "duration": 0.35,
+        "localBounds": {
+          "minX": 44,
+          "maxX": 707,
+          "minY": 100,
+          "maxY": 705,
+          "width": 664,
+          "height": 606
+        },
+        "landmarks": {
+          "headApex": [
+            320,
+            180
+          ],
+          "amberCore": [
+            340,
+            330
+          ],
+          "clapperHead": [
+            680,
+            240
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      },
+      {
+        "name": "contact",
+        "col": 1,
+        "row": 1,
+        "duration": 0.45,
+        "localBounds": {
+          "minX": 104,
+          "maxX": 707,
+          "minY": 229,
+          "maxY": 705,
+          "width": 604,
+          "height": 477
+        },
+        "landmarks": {
+          "headApex": [
+            310,
+            240
+          ],
+          "amberCore": [
+            320,
+            380
+          ],
+          "clapperHead": [
+            695,
+            680
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      },
+      {
+        "name": "recover",
+        "col": 2,
+        "row": 1,
+        "duration": 1.3,
+        "localBounds": {
+          "minX": 123,
+          "maxX": 560,
+          "minY": 244,
+          "maxY": 705,
+          "width": 438,
+          "height": 462
+        },
+        "landmarks": {
+          "headApex": [
+            290,
+            260
+          ],
+          "amberCore": [
+            280,
+            390
+          ],
+          "clapperHead": [
+            540,
+            680
+          ],
+          "groundPivot": [
+            320,
+            704
+          ]
+        }
+      }
+    ]
+  }
+}
