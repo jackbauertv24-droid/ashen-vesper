@@ -12,6 +12,11 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 [Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Play Stage 02: Ruined Cloister](https://jackbauertv24-droid.github.io/ashen-vesper/cloister.html) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
 
+The two stages are now one run. Light the sanctuary, cross the threshold
+beyond it, and the Cloister keeps your health and everything you changed on
+the road — and still does when you walk back. The crossing is still a page
+load; merging the renderers is the remaining half of that milestone.
+
 ## The Pilgrim Road
 
 Cross a five-screen causeway, break a hanging brazier, collect its falling ember, defeat the guards and offer the ember at the sealed gate. Reach the sanctuary to complete the encounter and set a checkpoint.
