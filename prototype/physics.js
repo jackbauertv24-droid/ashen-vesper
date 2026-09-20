@@ -17,6 +17,8 @@ export const MOVE = {
   hitFrom: 0.12,
   hitTo: 0.28,
   hitstop: 0.045,
+  dodgeTime: 0.22,
+  dodgeSpeed: 340,
   edgeMargin: 20,
   killPlane: 900,
   maxFrame: 1 / 30,
@@ -78,15 +80,27 @@ export function stepHorizontal(s, input, dt, platforms, options = {}) {
     (!!input.crouch ||
       (s.attack > 0 && s.attackCrouched) ||
       (s.crouching && blocked));
-  if (s.grounded && !s.attack && !s.hurtFor && dir) s.facing = dir;
-  if (input.attack && s.attack <= 0 && !s.hurtFor) {
+  if (s.grounded && !s.attack && !s.hurtFor && !s.dodging && dir) s.facing = dir;
+  if (input.attack && s.attack <= 0 && !s.hurtFor && !s.dodging) {
     s.attack = MOVE.attackTime;
     s.attackId++;
     s.attackCrouched = s.crouching;
     s.events.push("swing");
   }
   if (s.attack > 0) s.attack = Math.max(0, s.attack - dt);
-  if (s.grounded) {
+
+  if (input.dodge && s.grounded && !s.attack && !s.hurtFor && !s.dodging) {
+    s.dodging = MOVE.dodgeTime;
+    s.dodgeDir = dir || -s.facing;
+    s.invulnerable = Math.max(s.invulnerable ?? 0, MOVE.dodgeTime);
+    s.events.push("dodge");
+  }
+
+  if (s.dodging > 0) {
+    s.dodging = Math.max(0, s.dodging - dt);
+    const decay = s.dodging / MOVE.dodgeTime;
+    s.vx = s.dodgeDir * MOVE.dodgeSpeed * (decay * 0.7 + 0.3);
+  } else if (s.grounded) {
     s.vx =
       s.attack > 0 || s.hurtFor > 0
         ? 0

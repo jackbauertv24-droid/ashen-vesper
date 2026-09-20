@@ -8,13 +8,13 @@ const canvas=document.querySelector("#game"),ctx=canvas.getContext("2d"),$=q=>do
 const W=run.enter("cloister");
 let heroArt=null;
 let s=run.roomState(W),running=false,art={},atlas,last=0,acc=0,padPrevious={};const held=new Set,pulse={};
-const keys={KeyA:"left",ArrowLeft:"left",KeyD:"right",ArrowRight:"right",Space:"jump",KeyW:"jump",ArrowUp:"jump",KeyS:"crouch",ArrowDown:"crouch",KeyJ:"attack",KeyX:"attack",KeyE:"interact"};
+const keys={KeyA:"left",ArrowLeft:"left",KeyD:"right",ArrowRight:"right",Space:"jump",KeyW:"jump",ArrowUp:"jump",KeyS:"crouch",ArrowDown:"crouch",KeyJ:"attack",KeyX:"attack",KeyE:"interact",KeyK:"dodge",ShiftLeft:"dodge",ShiftRight:"dodge"};
 const load=path=>new Promise((ok,no)=>{const i=new Image;i.onload=()=>ok(i);i.onerror=()=>no(Error(path));i.src=path});
 
 function start(){running=true;$("#start-overlay").classList.add("hidden");canvas.focus()}function reset(){s=run.restart(W,"cloister");held.clear();start()}$("#enter").onclick=start;$("#reset").onclick=reset;
 addEventListener("keydown",e=>{if(document.activeElement!==canvas)return;const a=keys[e.code];if(a){e.preventDefault();held.add(a);if(!e.repeat&&!['left','right','crouch'].includes(a))pulse[a]=true}});addEventListener("keyup",e=>held.delete(keys[e.code]));addEventListener("blur",()=>held.clear());
 for(const b of document.querySelectorAll("[data-control]")){b.onpointerdown=e=>{e.preventDefault();start();const a=b.dataset.control;held.add(a);if(!['left','right','crouch'].includes(a))pulse[a]=true;b.setPointerCapture(e.pointerId)};for(const n of["pointerup","pointercancel","lostpointercapture"])b.addEventListener(n,()=>held.delete(b.dataset.control))}
-function input(){const i={left:held.has("left"),right:held.has("right"),crouch:held.has("crouch"),jump:!!pulse.jump,attack:!!pulse.attack,interact:!!pulse.interact},pad=[...(navigator.getGamepads?.()||[])].find(Boolean);if(pad){i.crouch||=pad.axes[1]>.5||pad.buttons[13]?.pressed;i.left||=pad.axes[0]<-.25||pad.buttons[14]?.pressed;i.right||=pad.axes[0]>.25||pad.buttons[15]?.pressed;for(const[a,n]of Object.entries({jump:0,attack:2,interact:1})){const down=!!pad.buttons[n]?.pressed;if(down&&!padPrevious[a])i[a]=true;padPrevious[a]=down}}return i}
+function input(){const i={left:held.has("left"),right:held.has("right"),crouch:held.has("crouch"),jump:!!pulse.jump,attack:!!pulse.attack,interact:!!pulse.interact,dodge:!!pulse.dodge},pad=[...(navigator.getGamepads?.()||[])].find(Boolean);if(pad){i.crouch||=pad.axes[1]>.5||pad.buttons[13]?.pressed;i.left||=pad.axes[0]<-.25||pad.buttons[14]?.pressed;i.right||=pad.axes[0]>.25||pad.buttons[15]?.pressed;for(const[a,n]of Object.entries({jump:0,attack:2,interact:1,dodge:3})){const down=!!pad.buttons[n]?.pressed;if(down&&!padPrevious[a])i[a]=true;padPrevious[a]=down}}return i}
 // The lever sheet is 1024x512: two 512px cells, inactive then active, both
 // pivoting on [256,464]. It was being sliced as two 1024px cells, so the off
 // state squeezed the whole sheet (both levers) into one box and the on state

@@ -120,6 +120,8 @@ export function drawHero(ctx, s, h) {
     frame = AIR_FRAMES[s.vy < -140 ? 0 : s.vy > 140 ? 2 : 1];
     sheet = h.air;
     scale = AIR_SCALE;
+  } else if (s.dodging > 0) {
+    frame = h.atlas.frames[4];
   } else if (Math.abs(s.vx) > 0) {
     frame = h.atlas.frames[1 + (Math.floor(s.walk / 0.115) % 4)];
   }

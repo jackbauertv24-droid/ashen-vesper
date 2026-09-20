@@ -197,6 +197,9 @@ function stepEnemy(s, dt, options) {
     e.timer = 0.35;
     s.events.push("hit");
     if (options.hitstop !== false) s.hitstop = MOVE.hitstop;
+    const pushDir = e.x >= s.x ? 1 : -1;
+    const pushedX = e.x + pushDir * 14;
+    if (groundAt(pushedX, e.y, platforms)) e.x = pushedX;
     return;
   }
 
