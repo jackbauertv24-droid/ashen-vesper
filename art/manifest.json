@@ -1914,6 +1914,95 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "bell-moth-motion-generated-v001",
+      "path": "art/contributions/11-bell-moth/v003/source/bell-moth-motion-generated-v001.jpg",
+      "title": "bell-moth-motion-generated-v001",
+      "status": "candidate",
+      "width": 1264,
+      "height": 848,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "05996f1140a111170e83b031d1eede970d7d1aa0c1ba942ee34b0a4af8b346ba",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 11 Bell Moth 6-pose motion sheet candidate.",
+      "limitations": [
+        "Uncropped 3x2 generation grid; see exports/bell-moth-motion-v001.png for game-ready 1536x1024 RGBA sheet."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/11-bell-moth/v003/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "bell-moth-motion-v001",
+      "path": "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png",
+      "title": "Job 11 Bell Moth 6-pose motion sheet candidate",
+      "status": "candidate",
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "7720f558a7c56823dd3e0ee211a30b1947d36aed058a0163fa93e355a6e9660b",
+      "intendedUse": "Job 11 Bell Moth 6-pose animation sheet; 1536x1024 sheet with 3x2 512px cells, runtime wingspan 64 units at scale 0.2, body anchor (256, 256).",
+      "limitations": [
+        "Candidate enemy motion sheet; state-machine and swooping flight path AI integration pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA sheet with checkerboard, white, black, indigo, and in-situ combat lineup in docs/reviews/bell-moth-motion-v001.png",
+        "engineIntegration": "Candidate asset; Cloister airborne combat integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.2,
+        "runtimeWingspan": 64,
+        "sheetGrid": [
+          3,
+          2
+        ],
+        "cellSize": [
+          512,
+          512
+        ],
+        "bodyAnchor": [
+          256,
+          256
+        ]
+      }
+    },
+    {
+      "id": "bell-moth-motion-review-v001",
+      "path": "docs/reviews/bell-moth-motion-v001.png",
+      "title": "bell-moth-motion-review-v001",
+      "status": "candidate",
+      "width": 1536,
+      "height": 1120,
+      "format": "png",
+      "alpha": true,
+      "sha256": "5b1bc9d4dea342449dd16430ba5dff3a3b69aa84b9e342cd56045a34fafdedb8",
+      "intendedUse": "Multi-panel review composite for Job 11 Bell Moth 6-pose motion sheet candidate.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with full grid, white, black, indigo, and in-situ Cloister combat lineup.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

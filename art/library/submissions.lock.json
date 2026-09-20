@@ -73,6 +73,548 @@
       "sha256": "12c197b36563d9e7a6331c8ef2f50dba53181b34b302a13377d868296e271f35"
     },
     {
+      "path": "art/contributions/01-bellwarden-crouch/v001/NOTES.md",
+      "sha256": "e6df582655c35e0b3fe3ce46ffa1d9c1c824b9cc62967a4ad5c1f176dc9f190a"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-crouch/v001/PROMPT.txt",
+      "sha256": "256889e33558eda89a132d4b129efd812c0b757f6bf1f402098a3896f87bbaa8"
+    },
+    {
+      "path": "art/contributions/01-bellwarden-crouch/v001/source/crouch-generated-v001.png",
+      "sha256": "4e12812fe4ca2982a55acce57e7ec1eb15f4f2454e26e42dd708ef3af429f963"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/exports/air-attack-v001.png",
+      "sha256": "a42c03592cdef788b2ccf076f17449cc43da3bfb9e7dbf6106dad5891818db76"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/NOTES.md",
+      "sha256": "43b41ae4c9c20966e0abe34738ce52c4687480fee0c269ba53cf8a43afa6d4fb"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/preview.html",
+      "sha256": "eef81e9f1d46a04fb6510ea7d9f015889c41f601743a72f92655f7ebdda57663"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/PROMPT.txt",
+      "sha256": "cd9c31bc44315931b06285634163345c9706235a097226423763b9629e5b4aa4"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/source/air-attack-generated-v001.png",
+      "sha256": "eb7792cea7664c6d605d2e6d549c8c956542ceda5b09b7c2e6a7ec022210b4a1"
+    },
+    {
+      "path": "art/contributions/02-bellwarden-air-attack/v001/submission.json",
+      "sha256": "c82b7df8da8067fee4490e5d27805f5374d08fa053fd8c5244dbd7f40862742c"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/NOTES.md",
+      "sha256": "4ba0f40f7fa6b969f93afb3cb5007995a1834b8868cf531d1693d29cdde793c7"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/PROMPT.txt",
+      "sha256": "5e114cea7959fdd3a4a2c8825adf6c0b55e8ba6f118adb16ea877dfd84078cf5"
+    },
+    {
+      "path": "art/contributions/03-hollow-pilgrim-melee/v001/source/melee-generated-v001.png",
+      "sha256": "f77f02a2c11b0ef43d10fcc8033066006791e3a73b32bcd689f55d7671eaf545"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/NOTES.md",
+      "sha256": "c13f0f5f83d938e52c910354747d6bce39e79f62a67041ddadd0b2ce87e32ab2"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/PROMPT.txt",
+      "sha256": "8900e11bae65f0ed021ad48cb1beeaafb3acf818614767bf765f5fbba1bf01cf"
+    },
+    {
+      "path": "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
+      "sha256": "61c9d993f03aa76d776e70756b4dae3c89f5534ed0a23197633bac21815cd252"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
+      "sha256": "adfc9f4a74de7467a55a334aa8e56f380daf2776f3dcdc341ec85ac2eb89f10b"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/NOTES.md",
+      "sha256": "dd1e3b8ad350ca511f9fe58a149d145d27c493ac26ced5ddaa9693ef4746ea7c"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/preview.html",
+      "sha256": "cfae668111712ce7bee437caca3ab9d09ea4ab9175d9b427f822fd7093da6ee5"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/PROMPT.txt",
+      "sha256": "2221224c657d574e413f64a7d7b641af7bff1dd11abd3e59644a65c78f1ce5f6"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/source/ember-alpha-generated-v001.png",
+      "sha256": "58fd3cfdfcd8be9b6f541ab0601e00f10885c0c3014f440331565db622527f21"
+    },
+    {
+      "path": "art/contributions/05-ember-alpha/v001/submission.json",
+      "sha256": "759b999330611f406f1e2df8183630323b85b06183b04ebaa98c645724045c8c"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
+      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
+      "intendedUse": "Preserved candidate export for Job 08 Ruined Cloister arch span module"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png",
+      "sha256": "4569ced2b7b2bd64240d7abe4d0b987da7619e9d5ffd9782a2fd26a763def2d6",
+      "bytes": 467063
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/NOTES.md",
+      "sha256": "4066374ceadeef462aeaa487e44ef2e13662d7c49cd1a5a72f6a7f96f92a739b"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/preview.html",
+      "sha256": "118231445a1367cebe2647d37d0e502812b2a6a54d5b6f6dd3600e60670d4e43"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/PROMPT.txt",
+      "sha256": "2d951d354f0d78bf57c3f187e25f2434f393e6237854ad49a34556fd93627710"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-arch-span-generated-v001.jpg",
+      "sha256": "dd198a2cfddb505a14861ca3a3bb19c2d270a1be38b1aba0736de2afcb3c1c79",
+      "intendedUse": "Untouched generator output for Job 08 Ruined Cloister arch span module"
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-pier-generated-v001.jpg",
+      "sha256": "b31f16728b2a90ca342ddb4391095a74baf561c46a21d18ba37031d7d64f8cae",
+      "bytes": 577419
+    },
+    {
+      "path": "art/contributions/08-ruined-cloister/v001/submission.json",
+      "sha256": "15189cac23012479ca6ef6374265cddb97b24066262680fd25628938a9f2c199"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png",
+      "sha256": "2220f6403089ee3e58d7e54abbbb1a65da1365bd285ea97ba4680d2784d3991a"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/NOTES.md",
+      "sha256": "f2491922c617fc3b4c52f95b9020ceea0b81bbb83c13588f9453ad52ec1427b6"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/preview.html",
+      "sha256": "407f7abdd6c4cc465b57c3aa837bc103c45f7db47a2af3d0b5d6402a3dd7a701"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/PROMPT.txt",
+      "sha256": "b93141b349d628e520d76da0897bdba12f438535e74733bc74e4c59afbca2337"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/source/cistern-vault-pier-generated-v001.jpg",
+      "sha256": "73e71eb6da10988d13cef0bd80f5a51eeba7b6ea61bac6bfe1c3e432c5f58576"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/submission.json",
+      "sha256": "c0e2b15f6f6f9b0a3070c0b47f6e685fdba5a15a9e152363661fad0a9f0fa755"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
+      "sha256": "85fbe43081604d4e1401cc5c9a5d3f508b0a779137237fe33a83a9e482c83b29"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/NOTES.md",
+      "sha256": "bdf33e5a8b16970b86bc19c4c240e870ad901c3ba6e4cc43dbf34490086211ec"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/preview.html",
+      "sha256": "b9c352f0b6cc241baa9525a2987d96bfd948760a59b204c02628941cd0aaffd4"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/PROMPT.txt",
+      "sha256": "49701b537a65f76e92194e3e918c8c3b56029fa6511e48890f4053cf3af79599"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/source/bronze-bell-generated-v001.jpg",
+      "sha256": "fdf0cb72ae72388de93c627bb77c651d63b4db0965911a32235d1119cdf20b19"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/submission.json",
+      "sha256": "3b702982dfb0c82b654b62fbb2ea97f7ab4ff4d9c199385b77d8c90d37aacb58"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
+      "sha256": "5ca014e8e3ddafb258f9c3895638c6594af4765a0093e59fb8f358f3affca06e"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/NOTES.md",
+      "sha256": "4b85ab0066ab257c97f310a6166221293cf57cec3e5e97b7e8750ddd50e0bb52"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/preview.html",
+      "sha256": "9e91e6d0356379bd9ce11b765436c5925a9490e8e798258e6a076291299370d4"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/PROMPT.txt",
+      "sha256": "d66a100dc19e28b9a9a2d119eb5bb48dace9550fd78fa714baa78c7bcb28818c"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/source/bell-moth-generated-v001.png",
+      "sha256": "2727381b36e1b0e12c1cffa81748a73df4d953575f415489bdbe7ef0028ea2f5"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v001/submission.json",
+      "sha256": "4b8a617f9eaf53bf2c696848be9a9480586ea50a1e138849bb92e7bfef0c128d"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v002/preview.html",
+      "sha256": "83dc86c750eae0a10f860ff7782ce1344a4e1cbe3e67b69289bb822f4d211739"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v002/runtime-metrics.json",
+      "sha256": "0a86105e5528ef091d726ac6cfb64ed3f1e1ec95cdd348cd7d1f001c82e7462a"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png",
+      "sha256": "7720f558a7c56823dd3e0ee211a30b1947d36aed058a0163fa93e355a6e9660b"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/NOTES.md",
+      "sha256": "85b71f5ccc74df14b48cbf832b360d9b8003f0fdad8f068285e39da9d44efcfd"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/preview.html",
+      "sha256": "26832cc0979fba05bd5ec895f8575800e8b5b61c6941d5e055d6a58c76f31575"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/PROMPT.txt",
+      "sha256": "5a9bdd5b1b7582bbbf5d59c7c1d8ffc3d8eddcf275fa95b576cd90c2713c02f8"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/source/bell-moth-motion-generated-v001.jpg",
+      "sha256": "05996f1140a111170e83b031d1eede970d7d1aa0c1ba942ee34b0a4af8b346ba"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/submission.json",
+      "sha256": "5f56ef214b81f85d78846fc082af6ef3fcc1a7fb2c47d427bdc8fd4c8e05ea1c"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/exports/iron-sexton-v001.png",
+      "sha256": "6160870a5e7ee90ce74a9ef889d2301991abefd726bc1091dcc4e0a85f801fb4"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/NOTES.md",
+      "sha256": "6eaea74c8144688db85009dfda397bbfa1cbd7d0580ff2f7a55921787f335078"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/preview.html",
+      "sha256": "0ff75010c529555441f79a2093d457469f7a94ee664633f1c0cd8a196750a707"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/PROMPT.txt",
+      "sha256": "3cf36168d4781d9e99a2e1e491d15b7105ad4def33f52577fb358aa50679d047"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/source/iron-sexton-generated-v001.png",
+      "sha256": "5472234b382e886f356fa856c0873dcf43397b072d4ab51d0a08d61a5ad020f0"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v001/submission.json",
+      "sha256": "b8fc3828bd98b9b5bed330f5383cf29b2f21a298615e6c62b4d67dbd2e0a718a"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v002/preview.html",
+      "sha256": "bd25b6b3922b4e63f50aecf45559decfcda2fca9ad826a6f1db5f422b2adcd08"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v002/runtime-metrics.json",
+      "sha256": "03174d35475045db33e0f192d3e9a015ac4c3de21d096385b7a2bea5d9576b52"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/exports/cistern-lurker-v001.png",
+      "sha256": "471b345fb3b3a4ffcaa9ace62e641f2f9c182b624cf4e6693126088263c46e5c"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/NOTES.md",
+      "sha256": "3d329c5fe43a02f63e4a93d75609f497edc232a53f63afd94e60d7df1e536793"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/preview.html",
+      "sha256": "a320591ed4336cf7626454ec6513a44be968517c890c6950b12b5a95505a050b"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/PROMPT.txt",
+      "sha256": "52fef00ece17bd95437650fbd17621f7aabe0c9099de989338fd1043845a7ef5"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/source/cistern-lurker-generated-v001.png",
+      "sha256": "5e6640b7c348eb380b9dcbde3c403a19ae66972f57b075d4a37a397635ab662e"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v001/submission.json",
+      "sha256": "e7d6ad463afa3235e9acdc9f76270d1a0c7335a4a0ba8f866041fae2ef38477b"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v002/preview.html",
+      "sha256": "013240709320825b7741a665a1b9e9b9546ae94c4ca20e9faeaa37fe124a0cd4"
+    },
+    {
+      "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
+      "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
+      "sha256": "da39fae9452fcb684df2f81ff7f861db6c80707f29a0c22f756972881885724c"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/NOTES.md",
+      "sha256": "498f7cb9ad06d64003d38bb5ca0471c0aa9acafdbc2338449a60b8f5b37093e0"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/preview.html",
+      "sha256": "7b1eba16c8eaa3346a38a7c06d6f09bb0e85bae47680c236ece0792124163e0a"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/PROMPT.txt",
+      "sha256": "9f6b507a88058ea13715e59d905fc15c3f9028670866c62b4f455820d718ce87"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/source/healing-vial-generated-v001.png",
+      "sha256": "c954cdf6f90404f0d3cc6599b0dc286588b7a4d063c854b13570f54ba0c9d2f6"
+    },
+    {
+      "path": "art/contributions/14-pickups-and-relics/v001/submission.json",
+      "sha256": "d9e913aecc3ffbfffd1bf6f6f8054cf9f5b51a77b9d3f12159a50b563755dcce"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/exports/lever-v001.png",
+      "sha256": "6a31f11eb267355e7d99f7a1651d6a89e1361d884847c99f5947994d2ed92c53"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/NOTES.md",
+      "sha256": "919a7078f9a036a74aeb3a173c0a1541ba222cddcce107fcbe04631fd6f225ac"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/preview.html",
+      "sha256": "54fac779eb0d8efbc73fa1ae478a0bb24410f959823834c016c262c11e504107"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/PROMPT.txt",
+      "sha256": "72590168890294ff0b0d141d7d97f0c9361113ae1c125a48a9e3e271757a766b"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/source/lever-generated-v001.png",
+      "sha256": "e51a4533e4c94ffb73ddc674e3bc0b7faba1fa30a1d4bcb7999325d25058a4da"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v001/submission.json",
+      "sha256": "25e0889ba12cdff034918dc2d7c9b251348f1d3ff6e5ad9fd108fe34bc9bfa47"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v002/preview.html",
+      "sha256": "b651723e483fd771777fbe428315351d9e02dbda7739a4a5fdc4790b872075d8"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v002/runtime-metrics.json",
+      "sha256": "43c147c903df716d7b7b96c3bf7164e7d92e29180dc8d5baccf8c65c7d63afc3"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
+      "sha256": "dd143330e1f424adcbf6d2e6e8525c24b9010abc00ca51aecbd8b3116e4d027a"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/NOTES.md",
+      "sha256": "47f046d86262c710d8fda2065b4b9d722421d5513c556afd172dc15f5be4ccca"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/preview.html",
+      "sha256": "be3153b4f8a15dc3cd2455b615acbc70e2b06416ec9e275e533d1ad995512df0"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/PROMPT.txt",
+      "sha256": "a19588d6f39f29eee8410ee65f88721679225ab171d000d1956102b99b4af11e"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/source/grate-generated-v001.jpg",
+      "sha256": "dfccda25e733278910a1e8e333a9ac6fc250109269912528060fdf74a9654103"
+    },
+    {
+      "path": "art/contributions/15-mechanisms/v003/submission.json",
+      "sha256": "1fc3e060ed11305bb17e9dfcdceee5715629d2f6046b3975753fcf996425e1a5"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
+      "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
+      "intendedUse": "Preserved candidate export for Job 16 Tollkeeper boss design reference"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/NOTES.md",
+      "sha256": "c7bcc6df26d7a7cbe24da650ad3aeb089698039e516594b3b52e9701b2b7298c"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/preview.html",
+      "sha256": "163c7bbabee6abe5dc588fe9cd08921ec2511c95d8112684fc50ce7fe8f24e53"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/PROMPT.txt",
+      "sha256": "a0ce223a16ee2b8dfd446157437b25f8caf5544ef965f44ac6f752f22d53d40c"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/source/tollkeeper-boss-generated-v001.jpg",
+      "sha256": "30836dcad17d04d8306aac866eabd965a28d8238c9ba18a7bc6341891f3b5e64",
+      "intendedUse": "Untouched generator output for Job 16 Tollkeeper boss design reference"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v001/submission.json",
+      "sha256": "73e00b72e42f22a4a31f024d8c7f67f3a7f2beb071618c210a066c6dcef39e39"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
+      "sha256": "453180ef8fdf91c1daed14dcee7cc208272a79579975f76317d2f195ed507ccb",
+      "bytes": 466817
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/NOTES.md",
+      "sha256": "c99e47d3a9a8cd7d4c04d0ec99b138e8da9729ab83049d73ab5c8fab8da4b645"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/preview.html",
+      "sha256": "e06c9b68fd5f7ac0e3350df11c7c77a977c93c55e60cc8a6ffe724839d46abb0"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/PROMPT.txt",
+      "sha256": "85451fc9dd88e8892f0e00bd741b39c10c348d78e09fd9b98480d5bd4c1578e5"
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/source/stair-flight-generated-v001.jpg",
+      "sha256": "8d7d53806f21d4d62e21685bc24bccf37ab710e68ce8cb41cb9eaa4f62023a7a",
+      "bytes": 410711
+    },
+    {
+      "path": "art/contributions/world-01-pilgrim-road/v001/submission.json",
+      "sha256": "05cfe52a540d3f20d707d0a8acb38996b22717b4c784829cc22127fadf606ea0"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
+      "sha256": "61628b86a94b85b0b775883d6e5b45479774856c0a0add2fff5a94f9d1c401bc",
+      "bytes": 328178
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/NOTES.md",
+      "sha256": "1abd9be075dd960d5e13756281d41c3f9f55cafd67b8e84e2054f88c9e252197"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/preview.html",
+      "sha256": "167d8ad943fa767aa0743644fb605df5e7116bbc46082562c642a6b6f1f32906"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/PROMPT.txt",
+      "sha256": "10e9a781d5fe002fa0b305851c741d0a49b9867bdbeac6d7da7de1e39254c0c8"
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/source/platform-cap-generated-v001.jpg",
+      "sha256": "d098ddb507835ee2a616ad61338b66ce73b1e00a09409e409084059577ff7291",
+      "bytes": 405633
+    },
+    {
+      "path": "art/contributions/world-02-ruined-cloister/v001/submission.json",
+      "sha256": "1ae0a354c43c48b18863a71ec0575418c94609871295216949513fbfb8031cb1"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/exports/damp-platform-cap-v001.png",
+      "sha256": "c59fc284b70bfb032a28355ae418bd718adff138b23030c43f23452ddce4146c"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/NOTES.md",
+      "sha256": "ab95687e6598f6a1fa9dcc684d29ff9e29586896b331d3d138bde0fd7e5325d5"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/preview.html",
+      "sha256": "2a8f7964ab9a99655d0e5b0441aa6b77c7822c91f050a445faf565e211bbfa92"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/PROMPT.txt",
+      "sha256": "4158e34a9076f879c92b42b28fadd8660e81f0a8468d0211acd42bc376bb422d"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/source/damp-platform-cap-generated-v001.jpg",
+      "sha256": "8386007695fae7e3c4a9c1e9f07d1aaec2394d86dd182ebd4c8766df08f3e3e0"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v001/submission.json",
+      "sha256": "9d29e0c6d04a29f1926202d0802736739576b942684bf6fdcb964e588d920545"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
+      "sha256": "9c2961c1e81dac1943af3a0db1a7f537abbeb85a98c8aa343138120045fa2360"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/NOTES.md",
+      "sha256": "785a82d6955979b13dcd79f8578c2507e3398fb80a741f6acfe935ebc9d88ce5"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/preview.html",
+      "sha256": "23bbd3a7ff900c59566e441b705aa479c4d813dd9e05d043f2d5e28853b1c46a"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/PROMPT.txt",
+      "sha256": "f27e34936ac84f6c07d20f9b068cc1e8de2871bb6af85e267d8fb768c4007b02"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/source/niche-panel-generated-v001.jpg",
+      "sha256": "e46299ba82d5f44c716303388d7866b480c631d3ac65db2a5c862d4050480a6d"
+    },
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/submission.json",
+      "sha256": "e97134617c79c95a5adf57bf241581e2a4728ce90b8765273d3f2094e8b3e4bc"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/exports/lift-deck-v001.png",
+      "sha256": "6bba3bea92b2eb248fcf0aa6334ce8d394d92dc1ad669a412d6f38d44b4d1263"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/NOTES.md",
+      "sha256": "04c4c16077bc971153ec0855a4a71c7ad980f623668df5018574a5a0a0ff9882"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/preview.html",
+      "sha256": "5e7d053712de28975b4e1586970066cd6bf467692d26717f7b9cd41f63b19ba7"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/PROMPT.txt",
+      "sha256": "dc862a5e08d12dd09a8cf530402218ab9ec70721ce07774e37d620431481dae2"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/source/lift-deck-generated-v001.jpg",
+      "sha256": "837c28397485750b712d75be149ab6113d447a51df1a63c13b4504c2e05f007b"
+    },
+    {
+      "path": "art/contributions/world-05-counterweight-works/v001/submission.json",
+      "sha256": "137848795557249a6351123aa26c3a30fee9848400e61224b6bb60e19b68cb98"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
+      "sha256": "9e9058c0762bef779e75e6899893cfd1ac3a0ed7c73048a36010e5c07397bd45"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/NOTES.md",
+      "sha256": "6e2aee5e8c8a072cf5aece9a6b986a1c2cb45bee847f609894a1bbf4decf1b1a"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/preview.html",
+      "sha256": "f7cbffb045b8794431ee6e829b9355251d0b50cf5b65f6e651d444f0e39b84dc"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/PROMPT.txt",
+      "sha256": "f980acf3d697bab9be9fe04fdc606e3b7f84fc65aaad3ae76a84fdfed3a1066c"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/source/tower-landing-generated-v001.jpg",
+      "sha256": "783288d82f222df1a939080252f5cdc27be44e4c564098d3ba497f3e7e3f7d1d"
+    },
+    {
+      "path": "art/contributions/world-06-bell-tower/v001/submission.json",
+      "sha256": "8cb5844f42c36aec508e064397ee4f289387c4812ef1d0ea1302bdbf20d40d8c"
+    },
+    {
       "path": "art/production/abbey/abbey-balustrade-railing-v001.json",
       "sha256": "a362ac4493fcdc3e2036ae60238ddc5b89cb27e35353a7336e733f2b37566aa8"
     },
@@ -169,303 +711,40 @@
       "sha256": "7affa9d546ad65519ab5b576353ec91668ba8ceb6f2633218ec8455ce765f1ae"
     },
     {
-      "path": "art/contributions/01-bellwarden-crouch/v001/source/crouch-generated-v001.png",
-      "sha256": "4e12812fe4ca2982a55acce57e7ec1eb15f4f2454e26e42dd708ef3af429f963"
-    },
-    {
-      "path": "art/contributions/01-bellwarden-crouch/v001/PROMPT.txt",
-      "sha256": "256889e33558eda89a132d4b129efd812c0b757f6bf1f402098a3896f87bbaa8"
-    },
-    {
-      "path": "art/contributions/01-bellwarden-crouch/v001/NOTES.md",
-      "sha256": "e6df582655c35e0b3fe3ce46ffa1d9c1c824b9cc62967a4ad5c1f176dc9f190a"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/source/air-attack-generated-v001.png",
-      "sha256": "eb7792cea7664c6d605d2e6d549c8c956542ceda5b09b7c2e6a7ec022210b4a1"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/exports/air-attack-v001.png",
-      "sha256": "a42c03592cdef788b2ccf076f17449cc43da3bfb9e7dbf6106dad5891818db76"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/PROMPT.txt",
-      "sha256": "cd9c31bc44315931b06285634163345c9706235a097226423763b9629e5b4aa4"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/NOTES.md",
-      "sha256": "43b41ae4c9c20966e0abe34738ce52c4687480fee0c269ba53cf8a43afa6d4fb"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/preview.html",
-      "sha256": "eef81e9f1d46a04fb6510ea7d9f015889c41f601743a72f92655f7ebdda57663"
-    },
-    {
-      "path": "art/contributions/03-hollow-pilgrim-melee/v001/source/melee-generated-v001.png",
-      "sha256": "f77f02a2c11b0ef43d10fcc8033066006791e3a73b32bcd689f55d7671eaf545"
-    },
-    {
-      "path": "art/contributions/03-hollow-pilgrim-melee/v001/PROMPT.txt",
-      "sha256": "5e114cea7959fdd3a4a2c8825adf6c0b55e8ba6f118adb16ea877dfd84078cf5"
-    },
-    {
-      "path": "art/contributions/03-hollow-pilgrim-melee/v001/NOTES.md",
-      "sha256": "4ba0f40f7fa6b969f93afb3cb5007995a1834b8868cf531d1693d29cdde793c7"
-    },
-    {
-      "path": "art/contributions/02-bellwarden-air-attack/v001/submission.json",
-      "sha256": "c82b7df8da8067fee4490e5d27805f5374d08fa053fd8c5244dbd7f40862742c"
-    },
-    {
-      "path": "docs/reviews/air-attack-v001.png",
-      "sha256": "88ae2a86f821abafe992eeb78e3e23fafb5abb20d61d0cd2accdbe02cd7556fd"
-    },
-    {
-      "path": "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
-      "sha256": "61c9d993f03aa76d776e70756b4dae3c89f5534ed0a23197633bac21815cd252"
-    },
-    {
-      "path": "art/contributions/04-brazier-alpha/v001/PROMPT.txt",
-      "sha256": "8900e11bae65f0ed021ad48cb1beeaafb3acf818614767bf765f5fbba1bf01cf"
-    },
-    {
-      "path": "art/contributions/04-brazier-alpha/v001/NOTES.md",
-      "sha256": "c13f0f5f83d938e52c910354747d6bce39e79f62a67041ddadd0b2ce87e32ab2"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/source/ember-alpha-generated-v001.png",
-      "sha256": "58fd3cfdfcd8be9b6f541ab0601e00f10885c0c3014f440331565db622527f21"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
-      "sha256": "adfc9f4a74de7467a55a334aa8e56f380daf2776f3dcdc341ec85ac2eb89f10b"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/PROMPT.txt",
-      "sha256": "2221224c657d574e413f64a7d7b641af7bff1dd11abd3e59644a65c78f1ce5f6"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/NOTES.md",
-      "sha256": "dd1e3b8ad350ca511f9fe58a149d145d27c493ac26ced5ddaa9693ef4746ea7c"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/preview.html",
-      "sha256": "cfae668111712ce7bee437caca3ab9d09ea4ab9175d9b427f822fd7093da6ee5"
-    },
-    {
-      "path": "art/contributions/05-ember-alpha/v001/submission.json",
-      "sha256": "759b999330611f406f1e2df8183630323b85b06183b04ebaa98c645724045c8c"
-    },
-    {
-      "path": "docs/reviews/ember-alpha-v001.png",
-      "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/source/healing-vial-generated-v001.png",
-      "sha256": "c954cdf6f90404f0d3cc6599b0dc286588b7a4d063c854b13570f54ba0c9d2f6"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
-      "sha256": "da39fae9452fcb684df2f81ff7f861db6c80707f29a0c22f756972881885724c"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/PROMPT.txt",
-      "sha256": "9f6b507a88058ea13715e59d905fc15c3f9028670866c62b4f455820d718ce87"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/NOTES.md",
-      "sha256": "498f7cb9ad06d64003d38bb5ca0471c0aa9acafdbc2338449a60b8f5b37093e0"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/preview.html",
-      "sha256": "7b1eba16c8eaa3346a38a7c06d6f09bb0e85bae47680c236ece0792124163e0a"
-    },
-    {
-      "path": "art/contributions/14-pickups-and-relics/v001/submission.json",
-      "sha256": "d9e913aecc3ffbfffd1bf6f6f8054cf9f5b51a77b9d3f12159a50b563755dcce"
-    },
-    {
-      "path": "docs/reviews/healing-vial-v001.png",
-      "sha256": "46b2e0fafbe0f9b34c875d7271378337a453bb689010341c0a82efdfba03c690"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/source/bell-moth-generated-v001.png",
-      "sha256": "2727381b36e1b0e12c1cffa81748a73df4d953575f415489bdbe7ef0028ea2f5"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/exports/bell-moth-v001.png",
-      "sha256": "5ca014e8e3ddafb258f9c3895638c6594af4765a0093e59fb8f358f3affca06e"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/PROMPT.txt",
-      "sha256": "d66a100dc19e28b9a9a2d119eb5bb48dace9550fd78fa714baa78c7bcb28818c"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/NOTES.md",
-      "sha256": "4b85ab0066ab257c97f310a6166221293cf57cec3e5e97b7e8750ddd50e0bb52"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/preview.html",
-      "sha256": "9e91e6d0356379bd9ce11b765436c5925a9490e8e798258e6a076291299370d4"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v001/submission.json",
-      "sha256": "4b8a617f9eaf53bf2c696848be9a9480586ea50a1e138849bb92e7bfef0c128d"
-    },
-    {
-      "path": "docs/reviews/bell-moth-v001.png",
-      "sha256": "eab0536de1aa6f3a7181d929d446e55e2e6f7aa0c2498ca1f86cd8321e2f28cf"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v002/preview.html",
-      "sha256": "83dc86c750eae0a10f860ff7782ce1344a4e1cbe3e67b69289bb822f4d211739"
-    },
-    {
-      "path": "art/contributions/11-bell-moth/v002/runtime-metrics.json",
-      "sha256": "0a86105e5528ef091d726ac6cfb64ed3f1e1ec95cdd348cd7d1f001c82e7462a"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/source/lever-generated-v001.png",
-      "sha256": "e51a4533e4c94ffb73ddc674e3bc0b7faba1fa30a1d4bcb7999325d25058a4da"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/exports/lever-v001.png",
-      "sha256": "6a31f11eb267355e7d99f7a1651d6a89e1361d884847c99f5947994d2ed92c53"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/PROMPT.txt",
-      "sha256": "72590168890294ff0b0d141d7d97f0c9361113ae1c125a48a9e3e271757a766b"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/NOTES.md",
-      "sha256": "919a7078f9a036a74aeb3a173c0a1541ba222cddcce107fcbe04631fd6f225ac"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/preview.html",
-      "sha256": "54fac779eb0d8efbc73fa1ae478a0bb24410f959823834c016c262c11e504107"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v001/submission.json",
-      "sha256": "25e0889ba12cdff034918dc2d7c9b251348f1d3ff6e5ad9fd108fe34bc9bfa47"
+      "path": "docs/reviews/abbey-grate-v001.png",
+      "sha256": "8181ab0cf8e24a68c659bef043b1a77db372dcfa591c31625ecc6528e3fa9135"
     },
     {
       "path": "docs/reviews/abbey-lever-v001.png",
       "sha256": "301f66801ea63ff89315ce1ed3b1bca0612d97cd5373f877131b5436aba6ae41"
     },
     {
-      "path": "art/contributions/12-iron-sexton/v001/source/iron-sexton-generated-v001.png",
-      "sha256": "5472234b382e886f356fa856c0873dcf43397b072d4ab51d0a08d61a5ad020f0"
+      "path": "docs/reviews/air-attack-v001.png",
+      "sha256": "88ae2a86f821abafe992eeb78e3e23fafb5abb20d61d0cd2accdbe02cd7556fd"
     },
     {
-      "path": "art/contributions/12-iron-sexton/v001/exports/iron-sexton-v001.png",
-      "sha256": "6160870a5e7ee90ce74a9ef889d2301991abefd726bc1091dcc4e0a85f801fb4"
+      "path": "docs/reviews/bell-moth-motion-v001.png",
+      "sha256": "5b1bc9d4dea342449dd16430ba5dff3a3b69aa84b9e342cd56045a34fafdedb8"
     },
     {
-      "path": "art/contributions/12-iron-sexton/v001/PROMPT.txt",
-      "sha256": "3cf36168d4781d9e99a2e1e491d15b7105ad4def33f52577fb358aa50679d047"
+      "path": "docs/reviews/bell-moth-v001.png",
+      "sha256": "eab0536de1aa6f3a7181d929d446e55e2e6f7aa0c2498ca1f86cd8321e2f28cf"
     },
     {
-      "path": "art/contributions/12-iron-sexton/v001/NOTES.md",
-      "sha256": "6eaea74c8144688db85009dfda397bbfa1cbd7d0580ff2f7a55921787f335078"
+      "path": "docs/reviews/bell-tower-bronze-bell-v001.png",
+      "sha256": "221e64a250311621677b64904212eabe2b9721bc7a2772518b1c94e481827791"
     },
     {
-      "path": "art/contributions/12-iron-sexton/v001/preview.html",
-      "sha256": "0ff75010c529555441f79a2093d457469f7a94ee664633f1c0cd8a196750a707"
-    },
-    {
-      "path": "art/contributions/12-iron-sexton/v001/submission.json",
-      "sha256": "b8fc3828bd98b9b5bed330f5383cf29b2f21a298615e6c62b4d67dbd2e0a718a"
-    },
-    {
-      "path": "docs/reviews/iron-sexton-v001.png",
-      "sha256": "cfa5787bc13e4927489201eec33793b5fd6703e8fb36a935b5c47e59d902299b"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/source/cistern-lurker-generated-v001.png",
-      "sha256": "5e6640b7c348eb380b9dcbde3c403a19ae66972f57b075d4a37a397635ab662e"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/exports/cistern-lurker-v001.png",
-      "sha256": "471b345fb3b3a4ffcaa9ace62e641f2f9c182b624cf4e6693126088263c46e5c"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/PROMPT.txt",
-      "sha256": "52fef00ece17bd95437650fbd17621f7aabe0c9099de989338fd1043845a7ef5"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/NOTES.md",
-      "sha256": "3d329c5fe43a02f63e4a93d75609f497edc232a53f63afd94e60d7df1e536793"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/preview.html",
-      "sha256": "a320591ed4336cf7626454ec6513a44be968517c890c6950b12b5a95505a050b"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v001/submission.json",
-      "sha256": "e7d6ad463afa3235e9acdc9f76270d1a0c7335a4a0ba8f866041fae2ef38477b"
+      "path": "docs/reviews/cistern-damp-cap-v001.png",
+      "sha256": "2d5381941a7aa9b5a1ab91f6bcf14c0d59747920e0cb7918264d4d3834aa9e77"
     },
     {
       "path": "docs/reviews/cistern-lurker-v001.png",
       "sha256": "b72e5f543e332dcace6e72307b4213f5e368225fbd97d165855441a421478264"
     },
     {
-      "path": "art/contributions/15-mechanisms/v002/preview.html",
-      "sha256": "b651723e483fd771777fbe428315351d9e02dbda7739a4a5fdc4790b872075d8"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v002/runtime-metrics.json",
-      "sha256": "43c147c903df716d7b7b96c3bf7164e7d92e29180dc8d5baccf8c65c7d63afc3"
-    },
-    {
-      "path": "art/contributions/12-iron-sexton/v002/preview.html",
-      "sha256": "bd25b6b3922b4e63f50aecf45559decfcda2fca9ad826a6f1db5f422b2adcd08"
-    },
-    {
-      "path": "art/contributions/12-iron-sexton/v002/runtime-metrics.json",
-      "sha256": "03174d35475045db33e0f192d3e9a015ac4c3de21d096385b7a2bea5d9576b52"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v002/preview.html",
-      "sha256": "013240709320825b7741a665a1b9e9b9546ae94c4ca20e9faeaa37fe124a0cd4"
-    },
-    {
-      "path": "art/contributions/13-cistern-lurker/v002/runtime-metrics.json",
-      "sha256": "d9ab0a93d11db3f433776d392bb9f2e7cd23860d05f1ebd01e271b9d25ca056d"
-    },
-    {
-      "path": "art/contributions/16-tollkeeper/v001/source/tollkeeper-boss-generated-v001.jpg",
-      "sha256": "30836dcad17d04d8306aac866eabd965a28d8238c9ba18a7bc6341891f3b5e64",
-      "intendedUse": "Untouched generator output for Job 16 Tollkeeper boss design reference"
-    },
-    {
-      "path": "art/contributions/16-tollkeeper/v001/exports/tollkeeper-design-v001.png",
-      "sha256": "0ad2abf73e45dcfe4e21527d242cbdc38654e01beb94bc956d144093e00f51e6",
-      "intendedUse": "Preserved candidate export for Job 16 Tollkeeper boss design reference"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-arch-span-generated-v001.jpg",
-      "sha256": "dd198a2cfddb505a14861ca3a3bb19c2d270a1be38b1aba0736de2afcb3c1c79",
-      "intendedUse": "Untouched generator output for Job 08 Ruined Cloister arch span module"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",
-      "sha256": "3bc3c7359f7f2ce2d587f0afd73e5982042365e1415710d746551040bc79451e",
-      "intendedUse": "Preserved candidate export for Job 08 Ruined Cloister arch span module"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/source/cloister-pier-generated-v001.jpg",
-      "sha256": "b31f16728b2a90ca342ddb4391095a74baf561c46a21d18ba37031d7d64f8cae",
-      "bytes": 577419
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/exports/cloister-pier-v001.png",
-      "sha256": "4569ced2b7b2bd64240d7abe4d0b987da7619e9d5ffd9782a2fd26a763def2d6",
-      "bytes": 467063
-    },
-    {
-      "path": "docs/reviews/cloister-pier-v001.png",
-      "sha256": "31afee209632c66845b164a7c256539397ef140c9ecb6e7c5025f5c953c175ef",
-      "bytes": 508080
+      "path": "docs/reviews/cistern-vault-pier-v001.png",
+      "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6"
     },
     {
       "path": "docs/reviews/cloister-arch-span-v001.png",
@@ -473,61 +752,9 @@
       "bytes": 1611394
     },
     {
-      "path": "art/contributions/world-01-pilgrim-road/v001/source/stair-flight-generated-v001.jpg",
-      "sha256": "8d7d53806f21d4d62e21685bc24bccf37ab710e68ce8cb41cb9eaa4f62023a7a",
-      "bytes": 410711
-    },
-    {
-      "path": "art/contributions/world-01-pilgrim-road/v001/exports/stair-flight-v001.png",
-      "sha256": "453180ef8fdf91c1daed14dcee7cc208272a79579975f76317d2f195ed507ccb",
-      "bytes": 466817
-    },
-    {
-      "path": "art/contributions/world-01-pilgrim-road/v001/PROMPT.txt",
-      "sha256": "85451fc9dd88e8892f0e00bd741b39c10c348d78e09fd9b98480d5bd4c1578e5"
-    },
-    {
-      "path": "art/contributions/world-01-pilgrim-road/v001/NOTES.md",
-      "sha256": "c99e47d3a9a8cd7d4c04d0ec99b138e8da9729ab83049d73ab5c8fab8da4b645"
-    },
-    {
-      "path": "art/contributions/world-01-pilgrim-road/v001/submission.json",
-      "sha256": "05cfe52a540d3f20d707d0a8acb38996b22717b4c784829cc22127fadf606ea0"
-    },
-    {
-      "path": "art/contributions/world-01-pilgrim-road/v001/preview.html",
-      "sha256": "e06c9b68fd5f7ac0e3350df11c7c77a977c93c55e60cc8a6ffe724839d46abb0"
-    },
-    {
-      "path": "docs/reviews/stair-flight-v001.png",
-      "sha256": "91e6d02560c8279eb8d99145190fd4b078dd7986a3dfc079aecf3df291a2f9d6",
-      "bytes": 398052
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/source/platform-cap-generated-v001.jpg",
-      "sha256": "d098ddb507835ee2a616ad61338b66ce73b1e00a09409e409084059577ff7291",
-      "bytes": 405633
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/exports/platform-cap-v001.png",
-      "sha256": "61628b86a94b85b0b775883d6e5b45479774856c0a0add2fff5a94f9d1c401bc",
-      "bytes": 328178
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/PROMPT.txt",
-      "sha256": "10e9a781d5fe002fa0b305851c741d0a49b9867bdbeac6d7da7de1e39254c0c8"
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/NOTES.md",
-      "sha256": "1abd9be075dd960d5e13756281d41c3f9f55cafd67b8e84e2054f88c9e252197"
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/submission.json",
-      "sha256": "1ae0a354c43c48b18863a71ec0575418c94609871295216949513fbfb8031cb1"
-    },
-    {
-      "path": "art/contributions/world-02-ruined-cloister/v001/preview.html",
-      "sha256": "167d8ad943fa767aa0743644fb605df5e7116bbc46082562c642a6b6f1f32906"
+      "path": "docs/reviews/cloister-pier-v001.png",
+      "sha256": "31afee209632c66845b164a7c256539397ef140c9ecb6e7c5025f5c953c175ef",
+      "bytes": 508080
     },
     {
       "path": "docs/reviews/cloister-platform-cap-v001.png",
@@ -535,236 +762,37 @@
       "bytes": 554274
     },
     {
-      "path": "art/contributions/16-tollkeeper/v001/NOTES.md",
-      "sha256": "c7bcc6df26d7a7cbe24da650ad3aeb089698039e516594b3b52e9701b2b7298c"
-    },
-    {
-      "path": "art/contributions/16-tollkeeper/v001/PROMPT.txt",
-      "sha256": "a0ce223a16ee2b8dfd446157437b25f8caf5544ef965f44ac6f752f22d53d40c"
-    },
-    {
-      "path": "art/contributions/16-tollkeeper/v001/preview.html",
-      "sha256": "163c7bbabee6abe5dc588fe9cd08921ec2511c95d8112684fc50ce7fe8f24e53"
-    },
-    {
-      "path": "art/contributions/16-tollkeeper/v001/submission.json",
-      "sha256": "73e00b72e42f22a4a31f024d8c7f67f3a7f2beb071618c210a066c6dcef39e39"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/NOTES.md",
-      "sha256": "4066374ceadeef462aeaa487e44ef2e13662d7c49cd1a5a72f6a7f96f92a739b"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/PROMPT.txt",
-      "sha256": "2d951d354f0d78bf57c3f187e25f2434f393e6237854ad49a34556fd93627710"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/preview.html",
-      "sha256": "118231445a1367cebe2647d37d0e502812b2a6a54d5b6f6dd3600e60670d4e43"
-    },
-    {
-      "path": "art/contributions/08-ruined-cloister/v001/submission.json",
-      "sha256": "15189cac23012479ca6ef6374265cddb97b24066262680fd25628938a9f2c199"
-    },
-    {
-      "path": "docs/reviews/tollkeeper-boss-v001.png",
-      "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/source/grate-generated-v001.jpg",
-      "sha256": "dfccda25e733278910a1e8e333a9ac6fc250109269912528060fdf74a9654103"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/exports/grate-v001.png",
-      "sha256": "dd143330e1f424adcbf6d2e6e8525c24b9010abc00ca51aecbd8b3116e4d027a"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/PROMPT.txt",
-      "sha256": "a19588d6f39f29eee8410ee65f88721679225ab171d000d1956102b99b4af11e"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/NOTES.md",
-      "sha256": "47f046d86262c710d8fda2065b4b9d722421d5513c556afd172dc15f5be4ccca"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/submission.json",
-      "sha256": "1fc3e060ed11305bb17e9dfcdceee5715629d2f6046b3975753fcf996425e1a5"
-    },
-    {
-      "path": "art/contributions/15-mechanisms/v003/preview.html",
-      "sha256": "be3153b4f8a15dc3cd2455b615acbc70e2b06416ec9e275e533d1ad995512df0"
-    },
-    {
-      "path": "docs/reviews/abbey-grate-v001.png",
-      "sha256": "8181ab0cf8e24a68c659bef043b1a77db372dcfa591c31625ecc6528e3fa9135"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/source/damp-platform-cap-generated-v001.jpg",
-      "sha256": "8386007695fae7e3c4a9c1e9f07d1aaec2394d86dd182ebd4c8766df08f3e3e0"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/exports/damp-platform-cap-v001.png",
-      "sha256": "c59fc284b70bfb032a28355ae418bd718adff138b23030c43f23452ddce4146c"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/PROMPT.txt",
-      "sha256": "4158e34a9076f879c92b42b28fadd8660e81f0a8468d0211acd42bc376bb422d"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/NOTES.md",
-      "sha256": "ab95687e6598f6a1fa9dcc684d29ff9e29586896b331d3d138bde0fd7e5325d5"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/submission.json",
-      "sha256": "9d29e0c6d04a29f1926202d0802736739576b942684bf6fdcb964e588d920545"
-    },
-    {
-      "path": "art/contributions/world-03-flooded-cistern/v001/preview.html",
-      "sha256": "2a8f7964ab9a99655d0e5b0441aa6b77c7822c91f050a445faf565e211bbfa92"
-    },
-    {
-      "path": "docs/reviews/cistern-damp-cap-v001.png",
-      "sha256": "2d5381941a7aa9b5a1ab91f6bcf14c0d59747920e0cb7918264d4d3834aa9e77"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/source/lift-deck-generated-v001.jpg",
-      "sha256": "837c28397485750b712d75be149ab6113d447a51df1a63c13b4504c2e05f007b"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/exports/lift-deck-v001.png",
-      "sha256": "6bba3bea92b2eb248fcf0aa6334ce8d394d92dc1ad669a412d6f38d44b4d1263"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/PROMPT.txt",
-      "sha256": "dc862a5e08d12dd09a8cf530402218ab9ec70721ce07774e37d620431481dae2"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/NOTES.md",
-      "sha256": "04c4c16077bc971153ec0855a4a71c7ad980f623668df5018574a5a0a0ff9882"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/submission.json",
-      "sha256": "137848795557249a6351123aa26c3a30fee9848400e61224b6bb60e19b68cb98"
-    },
-    {
-      "path": "art/contributions/world-05-counterweight-works/v001/preview.html",
-      "sha256": "5e7d053712de28975b4e1586970066cd6bf467692d26717f7b9cd41f63b19ba7"
-    },
-    {
       "path": "docs/reviews/counterweight-lift-deck-v001.png",
       "sha256": "a43558d4458d94cc9d6aa6b4189c5a854767020dcbb53ac6914055bbec1d6121"
     },
     {
-      "path": "art/contributions/world-06-bell-tower/v001/source/tower-landing-generated-v001.jpg",
-      "sha256": "783288d82f222df1a939080252f5cdc27be44e4c564098d3ba497f3e7e3f7d1d"
+      "path": "docs/reviews/ember-alpha-v001.png",
+      "sha256": "1b12a06dc3bf7174693b23adccbb7c988e90d82ca4e9136582ced5cd41c0dbc9"
     },
     {
-      "path": "art/contributions/world-06-bell-tower/v001/exports/tower-landing-v001.png",
-      "sha256": "9e9058c0762bef779e75e6899893cfd1ac3a0ed7c73048a36010e5c07397bd45"
+      "path": "docs/reviews/healing-vial-v001.png",
+      "sha256": "46b2e0fafbe0f9b34c875d7271378337a453bb689010341c0a82efdfba03c690"
     },
     {
-      "path": "docs/reviews/tower-landing-v001.png",
-      "sha256": "ee7874e43f383eec1d4d248ad33d4cf9cf17b7de478c4035092cd353b8649d3a"
-    },
-    {
-      "path": "art/contributions/world-06-bell-tower/v001/PROMPT.txt",
-      "sha256": "f980acf3d697bab9be9fe04fdc606e3b7f84fc65aaad3ae76a84fdfed3a1066c"
-    },
-    {
-      "path": "art/contributions/world-06-bell-tower/v001/NOTES.md",
-      "sha256": "6e2aee5e8c8a072cf5aece9a6b986a1c2cb45bee847f609894a1bbf4decf1b1a"
-    },
-    {
-      "path": "art/contributions/world-06-bell-tower/v001/submission.json",
-      "sha256": "8cb5844f42c36aec508e064397ee4f289387c4812ef1d0ea1302bdbf20d40d8c"
-    },
-    {
-      "path": "art/contributions/world-06-bell-tower/v001/preview.html",
-      "sha256": "f7cbffb045b8794431ee6e829b9355251d0b50cf5b65f6e651d444f0e39b84dc"
-    },
-    {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/source/niche-panel-generated-v001.jpg",
-      "sha256": "e46299ba82d5f44c716303388d7866b480c631d3ac65db2a5c862d4050480a6d"
-    },
-    {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
-      "sha256": "9c2961c1e81dac1943af3a0db1a7f537abbeb85a98c8aa343138120045fa2360"
+      "path": "docs/reviews/iron-sexton-v001.png",
+      "sha256": "cfa5787bc13e4927489201eec33793b5fd6703e8fb36a935b5c47e59d902299b"
     },
     {
       "path": "docs/reviews/ossuary-niche-panel-v001.png",
       "sha256": "343d18aadb1ab4f663b8f7cfb7ab0fc3da3322942d4e71a0b21d22b51e42a59b"
     },
     {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/PROMPT.txt",
-      "sha256": "f27e34936ac84f6c07d20f9b068cc1e8de2871bb6af85e267d8fb768c4007b02"
+      "path": "docs/reviews/stair-flight-v001.png",
+      "sha256": "91e6d02560c8279eb8d99145190fd4b078dd7986a3dfc079aecf3df291a2f9d6",
+      "bytes": 398052
     },
     {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/NOTES.md",
-      "sha256": "785a82d6955979b13dcd79f8578c2507e3398fb80a741f6acfe935ebc9d88ce5"
+      "path": "docs/reviews/tollkeeper-boss-v001.png",
+      "sha256": "87cf49f0abb59b04d8c72027a6e8bdc558d5debb30bb3f7e5b2816f19b70c0be"
     },
     {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/submission.json",
-      "sha256": "e97134617c79c95a5adf57bf241581e2a4728ce90b8765273d3f2094e8b3e4bc"
-    },
-    {
-      "path": "art/contributions/world-04-ossuary-gallery/v001/preview.html",
-      "sha256": "23bbd3a7ff900c59566e441b705aa479c4d813dd9e05d043f2d5e28853b1c46a"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/source/bronze-bell-generated-v001.jpg",
-      "sha256": "fdf0cb72ae72388de93c627bb77c651d63b4db0965911a32235d1119cdf20b19"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
-      "sha256": "85fbe43081604d4e1401cc5c9a5d3f508b0a779137237fe33a83a9e482c83b29"
-    },
-    {
-      "path": "docs/reviews/bell-tower-bronze-bell-v001.png",
-      "sha256": "221e64a250311621677b64904212eabe2b9721bc7a2772518b1c94e481827791"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/PROMPT.txt",
-      "sha256": "49701b537a65f76e92194e3e918c8c3b56029fa6511e48890f4053cf3af79599"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/NOTES.md",
-      "sha256": "bdf33e5a8b16970b86bc19c4c240e870ad901c3ba6e4cc43dbf34490086211ec"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/submission.json",
-      "sha256": "3b702982dfb0c82b654b62fbb2ea97f7ab4ff4d9c199385b77d8c90d37aacb58"
-    },
-    {
-      "path": "art/contributions/10-bell-tower/v001/preview.html",
-      "sha256": "b9c352f0b6cc241baa9525a2987d96bfd948760a59b204c02628941cd0aaffd4"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png",
-      "sha256": "2220f6403089ee3e58d7e54abbbb1a65da1365bd285ea97ba4680d2784d3991a"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/NOTES.md",
-      "sha256": "f2491922c617fc3b4c52f95b9020ceea0b81bbb83c13588f9453ad52ec1427b6"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/preview.html",
-      "sha256": "407f7abdd6c4cc465b57c3aa837bc103c45f7db47a2af3d0b5d6402a3dd7a701"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/PROMPT.txt",
-      "sha256": "b93141b349d628e520d76da0897bdba12f438535e74733bc74e4c59afbca2337"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/source/cistern-vault-pier-generated-v001.jpg",
-      "sha256": "73e71eb6da10988d13cef0bd80f5a51eeba7b6ea61bac6bfe1c3e432c5f58576"
-    },
-    {
-      "path": "art/contributions/09-flooded-cistern/v001/submission.json",
-      "sha256": "c0e2b15f6f6f9b0a3070c0b47f6e685fdba5a15a9e152363661fad0a9f0fa755"
-    },
-    {
-      "path": "docs/reviews/cistern-vault-pier-v001.png",
-      "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6"
+      "path": "docs/reviews/tower-landing-v001.png",
+      "sha256": "ee7874e43f383eec1d4d248ad33d4cf9cf17b7de478c4035092cd353b8649d3a"
     }
   ]
 }

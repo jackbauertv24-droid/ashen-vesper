@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job 11 — Bell Moth 6-Pose Motion Sheet Preview (v003)</title>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card: #111827;
+      --border: #334155;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    header { margin-bottom: 20px; }
+    h1 { font-size: 22px; color: var(--amber); margin: 0 0 6px 0; }
+    p { margin: 0; color: #94a3b8; font-size: 13px; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.active {
+      background: #1e293b;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .viewport {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: auto;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport.bg-checker {
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0f172a;
+    }
+    .viewport.bg-black { background: #000000; }
+    .viewport.bg-white { background: #ffffff; }
+    .viewport.bg-indigo { background: #090c14; }
+    canvas { display: block; margin: auto; }
+    .info-bar {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .info-card h3 {
+      margin: 0 0 4px 0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .info-card p {
+      font-size: 13px;
+      color: var(--text);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 11: Bell Moth — 6-Pose Motion Sheet Preview (v003)</h1>
+    <p>1536×1024 RGBA Sheet | 3×2 512px Cells | Runtime Wingspan 64 units (scale 0.2) | Milestone M1.5</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn active" onclick="setBg('bg-checker')">Checkerboard</button>
+    <button class="btn" onclick="setBg('bg-indigo')">Abbey Indigo</button>
+    <button class="btn" onclick="setBg('bg-black')">Black</button>
+    <button class="btn" onclick="setBg('bg-white')">White</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn active" id="btn-mode-sheet" onclick="setMode('sheet')">Full Sheet Grid</button>
+    <button class="btn" id="btn-mode-anim" onclick="setMode('anim')">Live Animation Loop</button>
+    <button class="btn" id="btn-mode-rt" onclick="setMode('rt')">Runtime Scale (0.2)</button>
+  </div>
+
+  <div class="viewport bg-checker" id="vp">
+    <canvas id="viewCanvas" width="1024" height="683"></canvas>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-card">
+      <h3>Sheet Format</h3>
+      <p>1536 × 1024 RGBA (3 cols × 2 rows of 512px)</p>
+    </div>
+    <div class="info-card">
+      <h3>Runtime Combat Scale</h3>
+      <p>64 units wingspan (uniform scale 0.2)</p>
+    </div>
+    <div class="info-card">
+      <h3>Body Anchor</h3>
+      <p>Shared (256, 256) inside every cell</p>
+    </div>
+    <div class="info-card">
+      <h3>Cell Padding</h3>
+      <p>Minimum 76px clear padding (>= 12px requirement)</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('viewCanvas');
+    const ctx = canvas.getContext('2d');
+    let mode = 'sheet';
+    let animFrame = 0;
+    let lastTime = 0;
+
+    const frames = [
+      { name: 'hover-high', col: 0, row: 0, dur: 120 },
+      { name: 'hover-low', col: 1, row: 0, dur: 120 },
+      { name: 'warn', col: 2, row: 0, dur: 600 },
+      { name: 'swoop-start', col: 0, row: 1, dur: 150 },
+      { name: 'swoop-contact', col: 1, row: 1, dur: 200 },
+      { name: 'climb', col: 2, row: 1, dur: 800 }
+    ];
+
+    const img = new Image();
+    img.src = 'exports/bell-moth-motion-v001.png';
+    img.onload = () => requestAnimationFrame(loop);
+
+    function loop(time) {
+      if (mode === 'sheet') {
+        renderSheet();
+      } else if (mode === 'anim' || mode === 'rt') {
+        const cur = frames[animFrame];
+        if (time - lastTime > cur.dur) {
+          animFrame = (animFrame + 1) % frames.length;
+          lastTime = time;
+        }
+        renderAnim(mode === 'rt');
+      }
+      requestAnimationFrame(loop);
+    }
+
+    function renderSheet() {
+      const w = 1024, h = Math.round(1024 * (1024 / 1536));
+      canvas.width = w; canvas.height = h;
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+
+      // Draw grid
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+      ctx.lineWidth = 1;
+      const cw = w / 3;
+      const ch = h / 2;
+      for (let r = 0; r < 2; r++) {
+        for (let c = 0; c < 3; c++) {
+          ctx.strokeRect(c * cw, r * ch, cw, ch);
+        }
+      }
+    }
+
+    function renderAnim(isRt) {
+      const scale = isRt ? 0.2 : 0.6;
+      const w = Math.round(512 * scale);
+      const h = Math.round(512 * scale);
+      canvas.width = Math.max(300, w + 40);
+      canvas.height = Math.max(300, h + 40);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const f = frames[animFrame];
+      const sx = f.col * 512;
+      const sy = f.row * 512;
+      const dx = Math.round((canvas.width - w) / 2);
+      const dy = Math.round((canvas.height - h) / 2);
+
+      ctx.drawImage(img, sx, sy, 512, 512, dx, dy, w, h);
+
+      // Label
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = '12px monospace';
+      ctx.fillText(f.name + ' (' + f.dur + 'ms)', 12, 24);
+    }
+
+    function setBg(cls) {
+      const vp = document.getElementById('vp');
+      vp.className = 'viewport ' + cls;
+      document.querySelectorAll('.controls .btn').forEach(b => {
+        if (b.textContent.includes('Checker') || b.textContent.includes('Indigo') || b.textContent.includes('Black') || b.textContent.includes('White')) {
+          b.classList.toggle('active', b.getAttribute('onclick').includes(cls));
+        }
+      });
+    }
+
+    function setMode(m) {
+      mode = m;
+      document.getElementById('btn-mode-sheet').classList.toggle('active', m === 'sheet');
+      document.getElementById('btn-mode-anim').classList.toggle('active', m === 'anim');
+      document.getElementById('btn-mode-rt').classList.toggle('active', m === 'rt');
+    }
+  </script>
+</body>
+</html>

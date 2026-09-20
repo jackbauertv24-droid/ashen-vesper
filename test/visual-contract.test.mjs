@@ -946,3 +946,48 @@ test("Job 09 Flooded Cistern vault pier candidate satisfies visual and geometry 
   assert.equal(pierAsset.pivot[1], 960);
 });
 
+test("Job 11 Bell Moth 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
+  const file = "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 1536);
+  assert.equal(im.height, 1024);
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/11-bell-moth/v003/submission.json", "utf8")
+  );
+  const sheet = submission.sheet;
+  assert.equal(sheet.cols, 3);
+  assert.equal(sheet.rows, 2);
+  assert.equal(sheet.cellWidth, 512);
+  assert.equal(sheet.cellHeight, 512);
+  assert.equal(sheet.frames.length, 6);
+
+  // Verify each of the 6 cells has >= 12px clear border padding
+  for (const f of sheet.frames) {
+    const ox = f.col * 512;
+    const oy = f.row * 512;
+    for (let y = oy; y < oy + 512; y++) {
+      for (let x = ox; x < ox + 512; x++) {
+        const relX = x - ox;
+        const relY = y - oy;
+        if (relX < 12 || relY < 12 || relX >= 500 || relY >= 500) {
+          const alpha = im.data[(y * 1536 + x) * 4 + 3];
+          assert.equal(alpha, 0, `Cell ${f.name} outer 12px padding must be transparent at rel (${relX}, ${relY})`);
+        }
+      }
+    }
+
+    // Verify solid body opacity near cell center
+    const bodyA = im.data[((oy + 240) * 1536 + (ox + 256)) * 4 + 3];
+    assert.ok(bodyA > 200, `Cell ${f.name} body center must be opaque`);
+  }
+
+  // Runtime wingspan and scale
+  assert.equal(sheet.scale, 0.2);
+  assert.equal(sheet.runtimeWingspan, 64);
+});
+
+
