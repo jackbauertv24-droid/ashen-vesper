@@ -160,3 +160,39 @@ test("restart clears both rooms", () => {
   assert.equal(w.rooms.cloister.leverOn, false);
   assert.equal(w.hp, 5);
 });
+
+test("crossing into cistern lands on the entrance ledge with zero drownings", () => {
+  const w = atExit(true);
+  tick(w, { interact: true }, 1);
+  assert.equal(w.room, "cloister");
+  const cl = world.active(w);
+  cl.complete = true;
+  cl.x = world.ROOMS.cloister.exits[1].x;
+  tick(w, {}, 2);
+  tick(w, { interact: true }, 1);
+  assert.equal(w.room, "cistern");
+  const cis = world.active(w);
+  assert.equal(cis.x, 150);
+  assert.equal(cis.y, 420);
+  tick(w, {}, 60);
+  assert.equal(cis.grounded, true, "settles on entrance ledge");
+  assert.equal(cis.y, 420, "does not plunge through the floor");
+  assert.equal(cis.drownings, 0, "no drowning on arrival");
+  assert.equal(cis.deaths, 0, "no death on arrival");
+});
+
+test("returning to cloister from cistern arrives at end spawn without gate snap", () => {
+  const w = world.create("cistern");
+  const cis = world.active(w);
+  cis.x = world.ROOMS.cistern.exits[0].x;
+  tick(w, {}, 2);
+  tick(w, { interact: true }, 1);
+  assert.equal(w.room, "cloister");
+  const cl = world.active(w);
+  assert.equal(cl.x, 3950);
+  assert.equal(cl.y, 600);
+  tick(w, {}, 30);
+  assert.ok(cl.x > 3800, `player must not be snapped backwards to gate, stayed at ${cl.x}`);
+  assert.equal(cl.grounded, true);
+});
+

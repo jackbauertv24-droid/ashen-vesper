@@ -306,6 +306,34 @@ test("contract: at stage start an idle enemy never slides in a standing pose", (
   assert.equal(slid, 0, `enemy slid in a standing pose on ${slid} of ${drifted} moving frames`);
 });
 
+test("contract: enemy disengaging from chase never teleports into patrol", () => {
+  // Cloister Sexton: lure enemy in approach mode, then step away.
+  const cl = cloister.create();
+  cl.x = cl.enemy.home - 200;
+  for (let i = 0; i < 60; i++) cloister.step(cl, {}, 1 / 60, {});
+  assert.equal(cl.enemy.mode, "approach");
+  cl.x = cl.enemy.x - 500;
+  const beforeClX = cl.enemy.x;
+  cloister.step(cl, {}, 1 / 60, {});
+  const deltaCl = Math.abs(cl.enemy.x - beforeClX);
+  assert.equal(cl.enemy.mode, "patrol");
+  assert.ok(deltaCl <= (78 / 60) + 0.05, `Sexton snapped ${deltaCl.toFixed(1)}px on disengage, expected smooth walk`);
+
+  // Pilgrim Road enemy: lure into approach, then disengage.
+  const rd = road.create();
+  const e = rd.enemies[0];
+  rd.x = e.home - 200;
+  for (let i = 0; i < 60; i++) road.step(rd, {}, 1 / 60, {});
+  assert.equal(e.mode, "approach");
+  rd.x = e.x - 500;
+  const beforeRdX = e.x;
+  road.step(rd, {}, 1 / 60, {});
+  const deltaRd = Math.abs(e.x - beforeRdX);
+  assert.equal(e.mode, "patrol");
+  assert.ok(deltaRd <= (78 / 60) + 0.05, `Pilgrim snapped ${deltaRd.toFixed(1)}px on disengage, expected smooth walk`);
+});
+
+
 // ---------- Part E: no game object is a coloured box ----------
 
 test("contract: filled rectangles are UI or debug only, never world objects", () => {
@@ -389,6 +417,23 @@ test("contract: a non-fatal hit shows the recoil pose, then clears", () => {
   assert.equal(damagePose(s), "hurt");
   for (let i = 0; i < 30; i++) cloister.step(s, {}, 1 / 60, {});
   assert.equal(damagePose(s), null, "the recoil is brief");
+});
+
+test("contract: hurt state locks horizontal sprint, jumping, and new attack swings", () => {
+  for (const [name, M] of stages) {
+    const s = M.create();
+    s.hurtFor = HURT_TIME;
+    const startX = s.x;
+
+    // Movement input while hurt must not slide the character.
+    M.step(s, { right: true }, 1 / 60, {});
+    assert.equal(s.vx, 0, `${name}: grounded sprint must be locked during hurt recoil`);
+    assert.equal(s.x, startX, `${name}: position must not advance during hurt recoil`);
+
+    // Attack input while hurt must not initiate a swing.
+    M.step(s, { attack: true }, 1 / 60, {});
+    assert.equal(s.attack, 0, `${name}: new attack must be locked during hurt recoil`);
+  }
 });
 
 test("contract: the damage sheet faces the same way as the hero's other sheets", () => {

@@ -170,11 +170,14 @@ function stepEnemy(s, dt, options) {
     } else {
       e.mode = "patrol";
       const drift = e.home + Math.sin(s.time * 0.5) * 45;
-      if (groundAt(drift, e.y, platforms)) {
+      const diff = drift - e.x;
+      const stepDist = Math.min(Math.abs(diff), 78 * dt);
+      const next = e.x + stepDist * Math.sign(diff);
+      if (groundAt(next, e.y, platforms)) {
         // On patrol it watches its route, not the player, so it does not
         // stride backwards. It turns to face the player once it engages.
-        if (Math.abs(drift - e.x) > 0.01) e.facing = drift > e.x ? 1 : -1;
-        e.x = drift;
+        if (Math.abs(next - e.x) > 0.01) e.facing = next > e.x ? 1 : -1;
+        e.x = next;
       }
     }
   }
@@ -202,7 +205,15 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
     ...options,
     levelWidth: LEVEL.width,
   });
-  if (!s.leverOn) s.x = Math.min(s.x, LEVEL.gate - 36);
+  if (!s.leverOn) {
+    if (ctx.oldX <= LEVEL.gate && s.x > LEVEL.gate - 36) {
+      s.x = LEVEL.gate - 36;
+      if (s.grounded) s.vx = 0;
+    } else if (ctx.oldX > LEVEL.gate && s.x < LEVEL.gate + 36) {
+      s.x = LEVEL.gate + 36;
+      if (s.grounded) s.vx = 0;
+    }
+  }
   stepVertical(s, ctx, dt, platforms);
 
   if (s.y > MOVE.killPlane) respawn(s);

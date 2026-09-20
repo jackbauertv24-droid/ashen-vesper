@@ -58,7 +58,7 @@ export const ROOMS = {
     sim: cistern,
     label: "The Flooded Cistern",
     page: "cistern.html",
-    spawns: { entrance: { x: 150, y: 600 }, end: { x: 4340, y: 600 } },
+    spawns: { entrance: { x: 150, y: 420 }, end: { x: 4340, y: 980 } },
     exits: [
       {
         x: 90,
