@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job 16 — Tollkeeper Two-Handed Boss Reference (v002)</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #111827;
+      --border: #334155;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    header { margin-bottom: 20px; }
+    h1 { font-size: 22px; color: var(--amber); margin: 0 0 6px 0; }
+    p { margin: 0; color: #94a3b8; font-size: 13px; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.active {
+      background: #1e293b;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .viewport {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: auto;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport.bg-checker {
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0f172a;
+    }
+    .viewport.bg-black { background: #000000; }
+    .viewport.bg-white { background: #ffffff; }
+    .viewport.bg-indigo { background: #090c14; }
+    canvas { display: block; margin: auto; }
+    .info-bar {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .info-card h3 {
+      margin: 0 0 4px 0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .info-card p {
+      font-size: 13px;
+      color: var(--text);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 16: Tollkeeper Boss — Corrected Two-Handed Reference (v002)</h1>
+    <p>1024×1024 RGBA | Runtime Height 220 units (scale 220/910) | Ground Pivot (512, 960) | Two-Handed Grip</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn active" onclick="setBg('bg-indigo')">Abbey Indigo</button>
+    <button class="btn" onclick="setBg('bg-checker')">Checkerboard</button>
+    <button class="btn" onclick="setBg('bg-black')">Black</button>
+    <button class="btn" onclick="setBg('bg-white')">White</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn active" id="btn-scale-half" onclick="setScale(0.5)">50% View</button>
+    <button class="btn" id="btn-scale-full" onclick="setScale(1.0)">100% Native</button>
+    <button class="btn" id="btn-scale-rt" onclick="setScale(0.241758)">Runtime (220u)</button>
+    <span style="color: #475569;">|</span>
+    <button class="btn active" id="btn-toggle-overlay" onclick="toggleOverlay()">Bounds & Landmarks</button>
+  </div>
+
+  <div class="viewport bg-indigo" id="vp">
+    <canvas id="viewCanvas" width="1024" height="1024"></canvas>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-card">
+      <h3>Visible Bounds</h3>
+      <p>[134, 50] to [889, 959] (756 × 910 px)</p>
+    </div>
+    <div class="info-card">
+      <h3>Safety Margins</h3>
+      <p>L: 134px | R: 134px | T: 50px | B: 64px (0 violations)</p>
+    </div>
+    <div class="info-card">
+      <h3>Combat Scale</h3>
+      <p>Standing: 910px -> Runtime: 220u (scale 0.241758)</p>
+    </div>
+    <div class="info-card">
+      <h3>Landmarks</h3>
+      <p>Amber Core: (470, 341) | Pivot: (512, 960)</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('viewCanvas');
+    const ctx = canvas.getContext('2d');
+    let showOverlay = true;
+    let currentScale = 0.5;
+
+    const img = new Image();
+    img.src = 'exports/tollkeeper-twohanded-v002.png';
+    img.onload = render;
+
+    function render() {
+      const w = Math.round(1024 * currentScale);
+      const h = Math.round(1024 * currentScale);
+      canvas.width = w;
+      canvas.height = h;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+
+      if (showOverlay) {
+        // Bounds box: [134, 50] to [889, 959]
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = Math.max(1, Math.round(currentScale * 2));
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(
+          Math.round(134 * currentScale),
+          Math.round(50 * currentScale),
+          Math.round((889 - 134 + 1) * currentScale),
+          Math.round((959 - 50 + 1) * currentScale)
+        );
+        ctx.setLineDash([]);
+
+        // Ground pivot: (512, 960)
+        const gpx = Math.round(512 * currentScale);
+        const gpy = Math.round(960 * currentScale);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(gpx, gpy, 6, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(gpx - 10, gpy); ctx.lineTo(gpx + 10, gpy);
+        ctx.moveTo(gpx, gpy - 10); ctx.lineTo(gpx, gpy + 10);
+        ctx.stroke();
+
+        // Amber core: (470, 341)
+        const acx = Math.round(470 * currentScale);
+        const acy = Math.round(341 * currentScale);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(acx, acy, 8, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    function setBg(cls) {
+      const vp = document.getElementById('vp');
+      vp.className = 'viewport ' + cls;
+      document.querySelectorAll('.controls .btn').forEach(b => {
+        if (b.textContent.includes('Indigo') || b.textContent.includes('Checker') || b.textContent.includes('Black') || b.textContent.includes('White')) {
+          b.classList.toggle('active', b.getAttribute('onclick').includes(cls));
+        }
+      });
+    }
+
+    function setScale(s) {
+      currentScale = s;
+      document.getElementById('btn-scale-half').classList.toggle('active', s === 0.5);
+      document.getElementById('btn-scale-full').classList.toggle('active', s === 1.0);
+      document.getElementById('btn-scale-rt').classList.toggle('active', s === 0.241758);
+      render();
+    }
+
+    function toggleOverlay() {
+      showOverlay = !showOverlay;
+      document.getElementById('btn-toggle-overlay').classList.toggle('active', showOverlay);
+      render();
+    }
+  </script>
+</body>
+</html>

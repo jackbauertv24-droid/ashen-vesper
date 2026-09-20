@@ -765,6 +765,34 @@
     {
       "path": "docs/reviews/cistern-vault-pier-v001.png",
       "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/exports/tollkeeper-twohanded-v002.png",
+      "sha256": "dfc3d200106a508492d23c15b4ccee795061a0c5f230adaab1872b76f5cef536"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/NOTES.md",
+      "sha256": "9e78b14b020bf506994b4fd59d784d74e189d328486ddf3d213f4cde0a4377f9"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/preview.html",
+      "sha256": "770d2ec500f361846f81405387046b6f07134e0173b9561583ef7a9d633ee67a"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/PROMPT.txt",
+      "sha256": "8a1a1de85005ee6d1763d7cf1eb0e512791dbf4fc0573d48912b760bc387c84d"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/source/tollkeeper-twohanded-generated-v002.jpg",
+      "sha256": "b3ea8a1aa208f6406cd87a020faf34ebbb6e568ad78b5dab420ff7f896079f38"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v002/submission.json",
+      "sha256": "d3c32c2ea2072c3e744db043df30fe4184102a5046720c3dbf827e13bcd3afef"
+    },
+    {
+      "path": "docs/reviews/tollkeeper-twohanded-v002.png",
+      "sha256": "afaa9fd0383524d19543a483caaef7f04ae78690a3af9761c1ff58e3c890fb12"
     }
   ]
 }
