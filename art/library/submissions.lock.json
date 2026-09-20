@@ -793,6 +793,34 @@
     {
       "path": "docs/reviews/tollkeeper-twohanded-v002.png",
       "sha256": "afaa9fd0383524d19543a483caaef7f04ae78690a3af9761c1ff58e3c890fb12"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png",
+      "sha256": "7720f558a7c56823dd3e0ee211a30b1947d36aed058a0163fa93e355a6e9660b"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/NOTES.md",
+      "sha256": "85b71f5ccc74df14b48cbf832b360d9b8003f0fdad8f068285e39da9d44efcfd"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/preview.html",
+      "sha256": "26832cc0979fba05bd5ec895f8575800e8b5b61c6941d5e055d6a58c76f31575"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/PROMPT.txt",
+      "sha256": "5a9bdd5b1b7582bbbf5d59c7c1d8ffc3d8eddcf275fa95b576cd90c2713c02f8"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/source/bell-moth-motion-generated-v001.jpg",
+      "sha256": "05996f1140a111170e83b031d1eede970d7d1aa0c1ba942ee34b0a4af8b346ba"
+    },
+    {
+      "path": "art/contributions/11-bell-moth/v003/submission.json",
+      "sha256": "5f56ef214b81f85d78846fc082af6ef3fcc1a7fb2c47d427bdc8fd4c8e05ea1c"
+    },
+    {
+      "path": "docs/reviews/bell-moth-motion-v001.png",
+      "sha256": "5b1bc9d4dea342449dd16430ba5dff3a3b69aa84b9e342cd56045a34fafdedb8"
     }
   ]
 }

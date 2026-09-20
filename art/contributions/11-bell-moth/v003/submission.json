@@ -1,0 +1,94 @@
+{
+  "jobId": "11-bell-moth",
+  "status": "candidate",
+  "sheet": {
+    "path": "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png",
+    "sha256": "7720f558a7c56823dd3e0ee211a30b1947d36aed058a0163fa93e355a6e9660b",
+    "width": 1536,
+    "height": 1024,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "cols": 3,
+    "rows": 2,
+    "bodyAnchor": [
+      256,
+      256
+    ],
+    "scale": 0.2,
+    "runtimeWingspan": 64,
+    "frames": [
+      {
+        "name": "hover-high",
+        "col": 0,
+        "row": 0,
+        "duration": 0.12,
+        "localBounds": {
+          "minX": 101,
+          "maxX": 430,
+          "minY": 94,
+          "maxY": 432
+        }
+      },
+      {
+        "name": "hover-low",
+        "col": 1,
+        "row": 0,
+        "duration": 0.12,
+        "localBounds": {
+          "minX": 93,
+          "maxX": 422,
+          "minY": 161,
+          "maxY": 382
+        }
+      },
+      {
+        "name": "warn",
+        "col": 2,
+        "row": 0,
+        "duration": 0.6,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 375,
+          "minY": 121,
+          "maxY": 419
+        }
+      },
+      {
+        "name": "swoop-start",
+        "col": 0,
+        "row": 1,
+        "duration": 0.15,
+        "localBounds": {
+          "minX": 147,
+          "maxX": 371,
+          "minY": 104,
+          "maxY": 427
+        }
+      },
+      {
+        "name": "swoop-contact",
+        "col": 1,
+        "row": 1,
+        "duration": 0.2,
+        "localBounds": {
+          "minX": 123,
+          "maxX": 397,
+          "minY": 130,
+          "maxY": 371
+        }
+      },
+      {
+        "name": "climb",
+        "col": 2,
+        "row": 1,
+        "duration": 0.8,
+        "localBounds": {
+          "minX": 126,
+          "maxX": 374,
+          "minY": 104,
+          "maxY": 435
+        }
+      }
+    ]
+  }
+}
