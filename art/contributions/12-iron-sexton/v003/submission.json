@@ -1,0 +1,210 @@
+{
+  "jobId": "12-iron-sexton",
+  "status": "candidate",
+  "role": "heavy-enemy-motion-sheet",
+  "sheet": {
+    "path": "art/contributions/12-iron-sexton/v003/exports/iron-sexton-motion-v001.png",
+    "sha256": "d0e294b0d02baf60010572c9ec5678740143f314ddeba115eba8f83b5df04a34",
+    "width": 2048,
+    "height": 1024,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "cols": 4,
+    "rows": 2,
+    "groundAnchor": [
+      208,
+      464
+    ],
+    "standingSourceHeight": 400,
+    "runtimeHeight": 160,
+    "scale": 0.4,
+    "minCellMargin": 16,
+    "outer32pxViolations": 0,
+    "tuningTargets": {
+      "hp": 4,
+      "damage": 1,
+      "speed": 45,
+      "warningDuration": 0.9,
+      "cleaveDuration": 0.3,
+      "recoveryDuration": 1.1
+    },
+    "frames": [
+      {
+        "name": "idle",
+        "col": 0,
+        "row": 0,
+        "duration": 0.6,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 460,
+          "minY": 65,
+          "maxY": 464,
+          "width": 364,
+          "height": 400
+        },
+        "shovelTip": [
+          460,
+          245
+        ],
+        "shovelButt": [
+          97,
+          324
+        ]
+      },
+      {
+        "name": "step-a",
+        "col": 1,
+        "row": 0,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 459,
+          "minY": 67,
+          "maxY": 464,
+          "width": 363,
+          "height": 398
+        },
+        "shovelTip": [
+          459,
+          246
+        ],
+        "shovelButt": [
+          97,
+          325
+        ]
+      },
+      {
+        "name": "step-b",
+        "col": 2,
+        "row": 0,
+        "duration": 0.25,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 461,
+          "minY": 67,
+          "maxY": 464,
+          "width": 365,
+          "height": 398
+        },
+        "shovelTip": [
+          461,
+          246
+        ],
+        "shovelButt": [
+          97,
+          325
+        ]
+      },
+      {
+        "name": "brace",
+        "col": 3,
+        "row": 0,
+        "duration": 0.3,
+        "localBounds": {
+          "minX": 87,
+          "maxX": 451,
+          "minY": 104,
+          "maxY": 464,
+          "width": 365,
+          "height": 361
+        },
+        "shovelTip": [
+          451,
+          266
+        ],
+        "shovelButt": [
+          87,
+          338
+        ]
+      },
+      {
+        "name": "windup",
+        "col": 0,
+        "row": 1,
+        "duration": 0.9,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 462,
+          "minY": 45,
+          "maxY": 464,
+          "width": 366,
+          "height": 420
+        },
+        "shovelTip": [
+          97,
+          60
+        ],
+        "shovelButt": [
+          462,
+          75
+        ]
+      },
+      {
+        "name": "contact",
+        "col": 1,
+        "row": 1,
+        "duration": 0.3,
+        "localBounds": {
+          "minX": 97,
+          "maxX": 495,
+          "minY": 111,
+          "maxY": 464,
+          "width": 399,
+          "height": 354
+        },
+        "shovelTip": [
+          495,
+          434
+        ],
+        "shovelButt": [
+          97,
+          161
+        ]
+      },
+      {
+        "name": "recover",
+        "col": 2,
+        "row": 1,
+        "duration": 1.1,
+        "localBounds": {
+          "minX": 98,
+          "maxX": 484,
+          "minY": 104,
+          "maxY": 463,
+          "width": 387,
+          "height": 360
+        },
+        "shovelTip": [
+          484,
+          443
+        ],
+        "shovelButt": [
+          98,
+          164
+        ]
+      },
+      {
+        "name": "hurt",
+        "col": 3,
+        "row": 1,
+        "duration": 0.4,
+        "localBounds": {
+          "minX": 80,
+          "maxX": 479,
+          "minY": 94,
+          "maxY": 464,
+          "width": 400,
+          "height": 371
+        },
+        "shovelTip": [
+          479,
+          261
+        ],
+        "shovelButt": [
+          80,
+          335
+        ]
+      }
+    ]
+  }
+}
