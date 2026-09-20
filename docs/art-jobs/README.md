@@ -68,7 +68,7 @@ npm ci
 node tools/validate-art-submission.mjs art/contributions/JOB/v001/submission.json
 npm run validate:assets
 npm test
-npm run test:encounter
+npm run test:route
 ```
 
 The submission validator checks each job's dimensions, frame order, grid bounds, shared anchor, SHA-256, actual transparency, nonempty frames and empty cell borders. It cannot judge anatomy, animation quality or exact visual weapon contact.

@@ -41,14 +41,15 @@ npm run dev
 Open http://127.0.0.1:4173. The original art study is at `/study.html`.
 
 ```sh
-npm test
-npm run validate:assets
-npx playwright install chromium --with-deps
-npm run test:encounter
-npm run test:browser
+npm test                  # ~1s   gameplay and the shared runtime contract
+npm run test:stage        # ~12s  every stage boots, plays and composes a correct frame
+npm run test:art          # ~2s   submitted image structure
+npm run validate:assets   # ~4s   originals preserved byte-for-byte
+npm run test:route        # ~22s  the full Pilgrim Road completed with real input
 ```
 
-The encounter browser check completes the main route using keyboard events, then checks settings, simulated gamepad movement and touch controls. The other browser check covers the original study and retained art gallery.
+Browser tiers need `npx playwright install chromium --with-deps` once.
+See [the build standard](docs/BUILD_STANDARD.md) for when each tier runs.
 
 ## Art preservation
 

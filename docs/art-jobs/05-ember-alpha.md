@@ -18,6 +18,6 @@ One 1024 × 1024 RGBA cutout, pivot (512,550), visible bounds recorded. Runtime 
 - Normal source-over composites against black, white, saturated blue and actual abbey sky/masonry, at source and runtime scale. No screen blending needed to hide a backdrop.
 - Show moving over two background regions, engraved metal, antialias edges and flame edges; no box or veil.
 - In-game: break brazier, watch pickup fall/settle, collect it, spend one at the gate. Exactly one ember drops; visual disappears immediately on collection.
-- Run npm test, npm run test:encounter, npm run validate:assets and npm run test:browser after catalog updates. State whether integration is complete.
+- Run npm test, npm run test:route, npm run validate:assets and npm run test:stage after catalog updates. State whether integration is complete.
 
 The character-sheet validator does not support this single-prop job. Supply alpha evidence and general resource checks; RGBA alone does not establish visual acceptance.

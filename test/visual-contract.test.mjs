@@ -539,20 +539,6 @@ test("World 02 Ruined Cloister platform cap candidate satisfies visual and geome
   }
 });
 
-test("runtime floor slice stays inside the opaque cap top and leaves collision height independent", async () => {
-  const { platformCap } = await import("../prototype/environment-metrics.js");
-  const im = PNG.sync.read(fs.readFileSync(platformCap.path)),
-    r = platformCap.source;
-  assert.equal(r.w * platformCap.scale, 150);
-  assert.ok(r.x >= 0 && r.x + r.w <= im.width && r.y + r.h <= im.height);
-  for (let x = r.x; x < r.x + r.w; x++)
-    assert.equal(
-      im.data[((r.y + 2) * im.width + x) * 4 + 3],
-      255,
-      "Repeat crop must not contain a transparent bevel in the top surface",
-    );
-});
-
 test("ruined cloister portcullis grate candidate has genuine RGBA transparency, 12px safe padding, sill contact, and opening alpha", () => {
   const bytes = fs.readFileSync(
     "art/contributions/15-mechanisms/v003/exports/grate-v001.png",

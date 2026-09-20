@@ -12,11 +12,26 @@ The first standalone Stage02 build duplicated a reduced game loop and therefore 
 | Player state | No damage or respawn loop | Five health, damage feedback, invulnerability, death/respawn, and preserved vial/lever state |
 | Verification | Browser captured before the runtime explicitly reported ready | Wait for `window.cloister.ready`, move the character, assert animation time advances, then capture |
 
+## Corrected after this review
+
+The presentation fixes above were real, but the simulation layer was not
+brought across at the time and this document previously implied it had been.
+Stage 02 ran a hand-copied `step()` that differed from Pilgrim Road in five
+measurable ways: crouch walk speed 90 against 85, no air control at all, no
+impact pause, no low-ceiling stand guard, and no collision epsilons or
+velocity reset on wall contact.
+
+Both stages now move the player through `prototype/physics.js`, and
+`test/runtime-contract.test.mjs` asserts the same contract against each one,
+so this class of drift fails a test instead of shipping. See
+[the build standard](BUILD_STANDARD.md).
+
 ## Still intentionally incomplete
 
 - The current enemy reuses the Hollow Pilgrim motion set. The Iron Sexton reference still needs an authored motion sheet before it can replace that placeholder.
 - Pilgrim Road and the Cloister remain separate entry points until cross-stage persistence, safe spawns and return travel are implemented.
 - The stage is a four-beat integration route rather than the final six-room layout adaptation.
 - Sound and a checkpoint object remain to be brought across before Stage02 can claim full Pilgrim Road parity.
+- Stage 02 exposes no settings UI, so the camera, air-control and sound options available on Pilgrim Road cannot be reached there yet.
 
 Future stages must start from the shared runtime contract or extract shared components first. A new stage may not replace an existing animated actor or interaction with rectangles merely to display environment art.

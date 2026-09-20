@@ -1,6 +1,8 @@
 # Next milestones and bounded contributor tasks
 
-This queue follows the accepted assets and verified runtime. **Do code/blockout dependencies before further image generation.** Each task is one PR; use existing preservation, preview and test rules.
+This queue follows the accepted assets and verified runtime. **Do code/blockout dependencies before further image generation.** Each task is one PR; use existing preservation, preview and test rules, and the tiers in [the build standard](BUILD_STANDARD.md).
+
+**Direction: no new stage until the engine is one engine.** Art supply is not the bottleneck — the retained library already holds selected assets for five stages, while one route is playable end to end. Runtime capability is the bottleneck. Every stage built on its own copy of the loop multiplies the drift, so a stage ships on `prototype/physics.js` and registers itself in `test/runtime-contract.test.mjs`, or it does not ship.
 
 ## Definition of a playable stage demonstration
 
@@ -10,7 +12,7 @@ Every stage milestone must ship with a discoverable link from the main demo, a s
 
 | Area | Available now | Still missing |
 | --- | --- | --- |
-| Ruined Cloister | Playable four-beat scrolling integration demo; arch, pier, cap, lever, grate and vial | Pilgrim Road transition, persistent room state, return path, authored enemy motion, final room-graph adaptation, gamepad browser route |
+| Ruined Cloister | Playable four-beat scrolling integration demo on the shared runtime contract; arch, pier, cap, lever, grate and vial | Pilgrim Road transition, persistent room state, return path, authored enemy motion, final room-graph adaptation, settings UI, sound and checkpoint object |
 | Flooded Cistern | Damp cap and selected pier | Playable layout, water hazard, valve behavior, separated lantern, enemy motion and transition |
 | Ossuary Gallery | Selected niche panel | Playable layout, lettering cleanup, doors/hazards and encounter placement |
 | Counterweight Works | Selected lift deck | Lift runner, shaft layout, chains/counterweights, crush/reversal rules and transition |
@@ -22,12 +24,12 @@ The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parit
 
 ## Milestone 1 — Ruined Cloister becomes playable
 
-1. **M1.1 Connected-room runtime (code, P0):** connect the current standalone Cloister demo to Pilgrim Road, then implement persistent room state, safe spawn and camera reset. Acceptance: Road completion → Cloister → return; checkpoint/death/restart; keyboard/touch/gamepad; no duplicate pickups.
+1. **M1.1 Connected-room runtime (code, P0, unblocked):** its prerequisite is done — both stages now step through `prototype/physics.js`, so a transition no longer has to bridge two divergent loops. Connect the current standalone Cloister demo to Pilgrim Road, then implement persistent room state, safe spawn and camera reset. Acceptance: Road completion → Cloister → return; checkpoint/death/restart; keyboard/touch/gamepad; no duplicate pickups.
 2. **M1.2 Cloister blockout (layout/code, P0, first playable version shipped):** adapt the current four-beat integration route to the Stage02 baseline JSON without changing source v001 silently. Record deviations. Verify main route, optional return, narrow viewport and both camera modes.
 3. **M1.3 Grate/lever interaction (code, P0):** reuse retained lever and integrated grate. Proximity E/B action, debounce, visible connection, grate collision follows its position, state persists across death. Provide closed/open/mid-travel tests; no invisible blocker.
 4. **M1.4 Healing vial (code, P1):** reuse selected vial. Carry at most one; use action restores2 up to5; full-health use does not waste it; persistence/restart and touch/gamepad binding visible.
 5. **M1.5 Bell Moth motion and AI (art then code, P1):** reuse selected reference; produce the documented motion sheet, then telegraphed swoop/two-hit behavior. No new design reference.
-6. **M1.6 Seamless Cloister platform kit (completed center strip; layout follow-up):** PR33 center strip passed three-copy color/grayscale/difference review and is integrated at its authored repeat scale. Separate end caps are retained. Snap final platform widths to whole repeat intervals before attaching those ends; do not stretch or crop a join to force them.
+6. **M1.6 Seamless Cloister platform kit (center strip integrated in both stages; layout follow-up):** PR33 center strip passed three-copy color/grayscale/difference review and is integrated at its authored repeat scale. Pilgrim Road was still repeating the v001 crop and tiling visible warm/cool stripes until this was ported; the tiling contract in `test/runtime-contract.test.mjs` now fails any runtime cap with a seam jump or lighting drift. Separate end caps are retained. Snap final platform widths to whole repeat intervals before attaching those ends; do not stretch or crop a join to force them.
 
 ## Milestone 2 — Heavy combat and moving platforms
 
@@ -58,4 +60,4 @@ The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parit
 
 ## Maintainer acceptance rule
 
-A retained image is not an integrated feature. Every PR must state one status: planning-only, retained candidate, selected prototype, usable export, or runtime integration. Previews cannot claim collision, movement, damage or persistence without corresponding code and actual-input tests. Unknown generation cost stays unknown. Preserve every original/reject and create derivatives in v002+.
+A retained image is not an integrated feature, and a test is only worth its cost if it prevents a defect someone would see. Every PR must state one status: planning-only, retained candidate, selected prototype, usable export, or runtime integration. Previews cannot claim collision, movement, damage or persistence without corresponding code and actual-input tests. Unknown generation cost stays unknown. Preserve every original/reject and create derivatives in v002+.

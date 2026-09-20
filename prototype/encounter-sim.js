@@ -1,4 +1,16 @@
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
+import {
+  BODY,
+  MOVE,
+  beginFrame,
+  bodyBox,
+  hitbox,
+  overlaps,
+  solidHeight,
+  stepHorizontal,
+  stepVertical,
+} from "./physics.js";
+export { BODY, MOVE, bodyBox, hitbox, overlaps, solidHeight };
 export const VIEW = { width: 1280, height: 720 };
 export const LEVEL = { width: 6400, height: 720, gate: 5700, checkpoint: 6020 };
 export const platforms = [
@@ -19,8 +31,6 @@ export const braziers = [
   { x: 3200, y: 515 },
   { x: 4880, y: 310 },
 ];
-export const overlaps = (a, b) =>
-  a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
 export function create() {
   return {
     x: 180,
@@ -87,14 +97,6 @@ export function message(s, text) {
   s.notice = text;
   s.noticeTime = 4;
 }
-export const BODY = { halfWidth: 13, standing: 120, crouched: 84 };
-export const solidHeight = (p) => p.h ?? 150;
-export const bodyBox = (s) => ({
-  x: s.x - BODY.halfWidth,
-  y: s.y - (s.crouching ? BODY.crouched : BODY.standing),
-  w: BODY.halfWidth * 2,
-  h: s.crouching ? BODY.crouched : BODY.standing,
-});
 export function staffPose(e) {
   const pose = pilgrimPose(e),
     frame = pilgrimFrames[pose];
@@ -135,16 +137,6 @@ export function staffHits(e, body, previousTimer = e.timer) {
   }
   return false;
 }
-export function hitbox(s) {
-  return s.attack > 0.12 && s.attack < 0.28
-    ? {
-        x: s.facing > 0 ? s.x + 8 : s.x - 115,
-        y: s.y - (s.attackCrouched ? 64 : 110),
-        w: 107,
-        h: s.attackCrouched ? 57 : 82,
-      }
-    : null;
-}
 export function respawn(s) {
   s.x = s.checkpoint ? 6020 : 180;
   s.y = 600;
@@ -181,86 +173,16 @@ function damage(s) {
   if (s.hp <= 0) respawn(s);
 }
 export function step(s, input, dt, options = {}) {
-  dt = Math.min(Math.max(dt, 0), 1 / 30);
-  s.events = [];
-  s.time += dt;
-  s.noticeTime = Math.max(0, s.noticeTime - dt);
-  s.invulnerable = Math.max(0, s.invulnerable - dt);
-  if (s.hitstop > 0) {
-    s.hitstop -= dt;
-    return;
-  }
-  const dir = Number(!!input.right) - Number(!!input.left);
-  // Never force the standing body through a low ceiling when crouch is released.
-  const standBlocked = platforms.some((p) =>
-    overlaps(
-      { x: s.x - 13, y: s.y - 120, w: 26, h: 120 },
-      { x: p.x, y: p.y, w: p.w, h: solidHeight(p) },
-    ),
-  );
-  s.crouching =
-    s.grounded &&
-    (!!input.crouch ||
-      (s.attack > 0 && s.attackCrouched) ||
-      (s.crouching && standBlocked));
-  if (s.grounded && !s.attack && dir) s.facing = dir;
-  if (input.attack && s.attack <= 0) {
-    s.attack = 0.42;
-    s.attackId++;
-    s.attackCrouched = s.crouching;
-    s.events.push("swing");
-  }
-  if (s.attack > 0) s.attack = Math.max(0, s.attack - dt);
-  if (s.grounded) {
-    s.vx = s.attack > 0 ? 0 : dir * (s.crouching ? 85 : 235);
-    if (input.jump && !s.crouching) {
-      s.vx = dir * 235;
-      s.vy = -650;
-      s.grounded = false;
-      s.events.push("jump");
-    }
-  } else if (options.airControl)
-    s.vx += (dir * 235 - s.vx) * Math.min(1, dt * 5);
-  const oldX = s.x,
-    oldY = s.y,
-    height = s.crouching ? BODY.crouched : BODY.standing;
-  s.x = Math.max(20, Math.min(6380, s.x + s.vx * dt));
-  // Resolve solid side faces independently from top/bottom collisions.
-  for (const p of platforms) {
-    if (oldY > p.y + 0.01 && oldY - height < p.y + solidHeight(p) - 0.01) {
-      if (s.vx > 0 && oldX + 13 <= p.x + 0.01 && s.x + 13 > p.x) {
-        s.x = p.x - 13;
-        if (s.grounded) s.vx = 0;
-      } else if (
-        s.vx < 0 &&
-        oldX - 13 >= p.x + p.w - 0.01 &&
-        s.x - 13 < p.x + p.w
-      ) {
-        s.x = p.x + p.w + 13;
-        if (s.grounded) s.vx = 0;
-      }
-    }
-  }
+  const frame = beginFrame(s, dt);
+  if (frame.frozen) return;
+  dt = frame.dt;
+  const ctx = stepHorizontal(s, input, dt, platforms, {
+    ...options,
+    levelWidth: LEVEL.width,
+  });
   if (!s.gateOpen) s.x = Math.min(s.x, LEVEL.gate - 36);
-  s.vy += 1850 * dt;
-  s.y += s.vy * dt;
-  s.grounded = false;
-  for (const p of platforms) {
-    if (s.x + 13 <= p.x || s.x - 13 >= p.x + p.w) continue;
-    if (s.vy >= 0 && oldY <= p.y + 0.01 && s.y >= p.y) {
-      s.y = p.y;
-      s.vy = 0;
-      s.grounded = true;
-    } else if (
-      s.vy < 0 &&
-      oldY - height >= p.y + solidHeight(p) - 0.01 &&
-      s.y - height < p.y + solidHeight(p)
-    ) {
-      s.y = p.y + solidHeight(p) + height;
-      s.vy = 0;
-    }
-  }
-  if (s.y > 900) respawn(s);
+  stepVertical(s, ctx, dt, platforms);
+  if (s.y > MOVE.killPlane) respawn(s);
   if (s.grounded && Math.abs(s.vx) > 1) s.walk += dt;
   else s.walk = 0;
   const box = hitbox(s);
@@ -315,7 +237,7 @@ export function step(s, input, dt, options = {}) {
       e.mode = e.hp ? "hurt" : "dead";
       e.timer = 0.35;
       s.events.push("hit");
-      if (options.hitstop !== false) s.hitstop = 0.045;
+      if (options.hitstop !== false) s.hitstop = MOVE.hitstop;
       if (!e.hp) {
         s.events.push("defeat");
         message(s, "The pilgrim falls. The path is clear.");

@@ -310,19 +310,13 @@ function platform(p) {
       80,
     );
   }
-  const cap = platformCap.source,
-    repeat = cap.w * platformCap.scale;
-  for (let x = p.x; x < p.x + p.w; x += repeat) {
+  for (let x = p.x; x < p.x + p.w; x += platformCap.repeat) {
     ctx.drawImage(
       art.platformCap,
-      cap.x,
-      cap.y,
-      cap.w,
-      cap.h,
       x,
-      p.y,
-      repeat,
-      cap.h * platformCap.scale,
+      p.y - platformCap.lift,
+      platformCap.repeat,
+      platformCap.height,
     );
   }
   ctx.restore();

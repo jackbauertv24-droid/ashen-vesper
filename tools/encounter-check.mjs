@@ -29,7 +29,6 @@ try {
   await page.locator("#enter").click();
   await mkdir("tmp", { recursive: true });
   await page.clock.runFor(100);
-  await page.screenshot({ path: "tmp/encounter-entrance.png", fullPage: true });
   await page.keyboard.down("KeyS");
   await page.clock.runFor(50);
   assert.equal(
@@ -42,7 +41,6 @@ try {
     await page.evaluate(() => window.encounter.snapshot().attackCrouched),
     true,
   );
-  await page.locator("#game").screenshot({ path: "tmp/feedback-crouch.png" });
   await page.keyboard.up("KeyS");
   await page.clock.runFor(400);
   assert.equal(
@@ -58,9 +56,6 @@ try {
   const jumpAfter = await page.evaluate(() => window.encounter.snapshot());
   assert.ok(jumpAfter.attack > 0 && !jumpAfter.grounded);
   assert.ok(jumpAfter.x > jumpBefore.x && jumpAfter.y < jumpBefore.y);
-  await page
-    .locator("#game")
-    .screenshot({ path: "tmp/feedback-air-attack.png" });
   await page.keyboard.up("KeyD");
   await page.locator("#reset").click();
   let right = false,
@@ -114,21 +109,12 @@ try {
     if (interact) await page.keyboard.press("KeyE");
     await page.clock.runFor(50);
     if (jump && !airShot) {
-      await page.screenshot({ path: "tmp/encounter-jump.png", fullPage: true });
       airShot = true;
     }
     if (enemy && !fightShot) {
-      await page.screenshot({
-        path: "tmp/encounter-combat.png",
-        fullPage: true,
-      });
       fightShot = true;
     }
     if (!mid && s.x > 3100) {
-      await page.screenshot({
-        path: "tmp/encounter-middle.png",
-        fullPage: true,
-      });
       mid = true;
     }
   }
@@ -138,7 +124,6 @@ try {
   assert.equal(result.enemies.filter((e) => e.hp <= 0).length, 3);
   assert.ok(result.camera > 4900);
   await page.keyboard.up("KeyD");
-  await page.screenshot({ path: "tmp/encounter-finish.png", fullPage: true });
   await page.locator("#reset").click();
   assert.equal(await page.evaluate(() => window.encounter.snapshot().x), 180);
   await page.locator("#camera").selectOption("tight");
@@ -209,7 +194,6 @@ try {
     touchPoints: [],
   });
   await mobile.waitForFunction(() => !window.encounter.snapshot().crouching);
-  await mobile.screenshot({ path: "tmp/encounter-mobile.png", fullPage: true });
   assert.deepEqual(errors, []);
   console.log(
     "Full encounter, solid-step traversal, aerial attack momentum, crouch/low attack, gamepad crouch, touch release and layout passed.",
