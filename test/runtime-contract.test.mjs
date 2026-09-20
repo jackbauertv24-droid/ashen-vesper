@@ -399,3 +399,36 @@ test("contract: the damage sheet faces the same way as the hero's other sheets",
     "the damage sheet faces right like the pilot and airborne sheets",
   );
 });
+
+test("contract: hand-drawn strokes and arcs are accounted for", () => {
+  // fillRect and gradients are covered above. Paths are the third way a
+  // world object gets faked: the Pilgrim Road drew a censer's chain as a
+  // line, its broken remnant as an arc, a highlight along every platform
+  // lip, and the sanctuary checkpoint as a filled circle. Each renderer
+  // declares what it still draws by hand and why.
+  const expected = {
+    encounter: {
+      arc: 1, // enemy windup timer ring (HUD drawn in world space)
+      stroke: 1, // the same ring
+      fill: 0,
+      moveTo: 1, // gate seal outline, a clip path over the portal art
+      lineTo: 1, // the same outline
+    },
+    cloister: { arc: 0, stroke: 0, fill: 0, moveTo: 0, lineTo: 0 },
+    cistern: { arc: 0, stroke: 0, fill: 0, moveTo: 0, lineTo: 0 },
+  };
+  for (const [file, counts] of Object.entries(expected)) {
+    const src = fs.readFileSync(
+      new URL(`../prototype/${file}.js`, import.meta.url),
+      "utf8",
+    );
+    for (const [call, want] of Object.entries(counts)) {
+      const found = (src.match(new RegExp(`ctx\\.${call}\\(`, "g")) || []).length;
+      assert.equal(
+        found,
+        want,
+        `${file}.js has ${found} ctx.${call}() calls, expected ${want}. A new one must either be UI or use an art asset.`,
+      );
+    }
+  }
+});

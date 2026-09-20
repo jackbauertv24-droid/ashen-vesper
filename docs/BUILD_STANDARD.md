@@ -76,9 +76,12 @@ world. This covers gradients and shading, not only flat rectangles: Stage
 03 shipped its water as a gradient with a sine-wave stroke for ripples, and
 that read as cheap shading against painted art.
 
-This is enforced, not just advised: `test/runtime-contract.test.mjs` scans
-the renderers and fails on any `fillRect` colour outside a short allowlist,
-each entry carrying its reason. Placeholders of this kind are invisible to
+This is enforced on all three fronts a fake can take.
+`test/runtime-contract.test.mjs` scans the renderers and fails on any
+`fillRect` colour outside a short allowlist, on a second gradient in any
+renderer beyond its one atmospheric wash, and on any `arc`, `stroke`,
+`fill`, `moveTo` or `lineTo` beyond a declared per-file count. Every
+exception carries its reason in the test. Placeholders of this kind are invisible to
 structural tests — a rectangle always renders correctly — and they are the
 cheapest possible tell that something is unfinished. Four shipped this way
 before the rule existed: a struck censer's remnant, a defeated guard's

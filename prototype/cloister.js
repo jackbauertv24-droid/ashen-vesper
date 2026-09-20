@@ -28,7 +28,7 @@ function platform(p){
   const H=p.h??150;ctx.save();ctx.beginPath();ctx.rect(p.x,p.y,p.w,H);ctx.clip();for(let x=p.x;x<p.x+p.w;x+=240){ctx.drawImage(art.stone,x,p.y,240,80);for(let y=p.y+80;y<p.y+H;y+=80)ctx.drawImage(art.stone,0,180,art.stone.width,art.stone.height-180,x,y,240,80)}ctx.restore();
   ctx.save();ctx.beginPath();ctx.rect(p.x,p.y,p.w,60);ctx.clip();
   for(let x=p.x;x<p.x+p.w;x+=240)ctx.drawImage(art.capCenter,x,p.y-7.5,240,60);
-  ctx.restore();ctx.strokeStyle="#9baaa4";ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+p.w,p.y);ctx.stroke();
+  ctx.restore();
 }
 
 function enemy(){const e=s.enemy;const dying=e.hp<=0,fade=dying?1-e.deadFor/DEATH_FADE:1;if(fade<=0)return;const pose=dying?"hurt":sextonFrame(e,s.time),[col,row]=IRON_SEXTON.frames[pose],C=IRON_SEXTON.cell,S=IRON_SEXTON.scale,ax=IRON_SEXTON.anchor[0]-sextonOffset(pose);ctx.save();ctx.translate(e.x,e.y);ctx.scale(e.facing*IRON_SEXTON.sheetFacing,1);ctx.globalAlpha=dying?fade:(e.mode==='hurt'?.5:1);if(dying)ctx.translate(0,(1-fade)*10);ctx.drawImage(art.enemy,col*C,row*C,C,C,-ax*S,-IRON_SEXTON.anchor[1]*S,C*S,C*S);ctx.restore();if(dying)return;if(e.mode==='windup'){ctx.fillStyle="#ffcc77";ctx.font="28px Georgia";ctx.fillText("!",e.x-5,e.y-170)}ctx.fillStyle="#392832";ctx.fillRect(e.x-22,e.y-150,44,4);ctx.fillStyle="#d0a079";ctx.fillRect(e.x-22,e.y-150,44*e.hp/3,4)}

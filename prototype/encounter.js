@@ -254,11 +254,7 @@ function platform(p) {
     );
   }
   ctx.restore();
-  ctx.strokeStyle = "#afbdc7";
-  ctx.beginPath();
-  ctx.moveTo(p.x, p.y);
-  ctx.lineTo(p.x + p.w, p.y);
-  ctx.stroke();
+  // No drawn highlight along the lip: the cap art already has a lit top.
 }
 
 function enemy(e) {
@@ -313,19 +309,19 @@ function draw() {
   for (const p of platforms)
     if (p.x + p.w > s.camera && p.x < s.camera + 1280) platform(p);
   braziers.forEach((b, i) => {
-    ctx.strokeStyle = "#67747c";
-    ctx.beginPath();
-    ctx.moveTo(b.x, b.y - 165);
-    // A struck censer leaves its chain hanging short and empty. The previous
-    // remnant was a filled 24x4 bar, which read as a floating health bar.
-    ctx.lineTo(b.x, b.y - (s.broken[i] ? 122 : 75));
-    ctx.stroke();
-    if (!s.broken[i]) ctx.drawImage(art.brazier, b.x - 42, b.y - 86, 84, 100);
-    else {
+    // The censer art carries its own ceiling mount and chains, so none of
+    // this is drawn by hand. Struck, it is clipped above the bowl so the
+    // chains are left hanging empty.
+    const top = b.y - 166;
+    const size = 200;
+    ctx.save();
+    if (s.broken[i]) {
       ctx.beginPath();
-      ctx.arc(b.x, b.y - 116, 6, Math.PI * 0.15, Math.PI * 0.85, true);
-      ctx.stroke();
+      ctx.rect(b.x - size / 2, top, size, b.y - 86 - top);
+      ctx.clip();
     }
+    ctx.drawImage(art.brazier, b.x - size / 2, top, size, size);
+    ctx.restore();
   });
   for (const d of s.drops) {
     ctx.save();
@@ -374,11 +370,17 @@ function draw() {
     text("E · 1 EMBER", LEVEL.gate - 45, 262);
   } else text("PATH OPEN", LEVEL.gate - 42, 262, "#a3d7bd");
   const cx = LEVEL.checkpoint + 30;
-  ctx.fillStyle = s.checkpoint ? "#f9d88c" : "#677a82";
-  ctx.beginPath();
-  ctx.arc(cx, 555, 14, 0, Math.PI * 2);
-  ctx.fill();
-  text("SANCTUARY", cx - 48, 520);
+  // Lit, the sanctuary is a consecration ember. Unlit, there is nothing to
+  // draw: a grey disc standing in for a flame is worse than an empty niche.
+  if (s.checkpoint)
+    ctx.drawImage(
+      art.ember,
+      cx - 34,
+      524 + Math.sin(s.time * 3) * 4,
+      68,
+      68,
+    );
+  text("SANCTUARY", cx - 48, 496);
   for (const e of s.enemies) enemy(e);
   drawHero(ctx, s, heroArt);
   const signs = [
