@@ -1,0 +1,154 @@
+{
+  "stageId": "03-flooded-cistern",
+  "module": "seamless-damp-platform-kit",
+  "version": "v002",
+  "status": "candidate",
+  "assets": [
+    {
+      "id": "damp-platform-cap-center-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-center-v002.png",
+      "sha256": "ed2bc3ce7f3195f245330984416b588da876d707fcc13ddf829eaaafff4bfdde",
+      "width": 1024,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        240,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 0,
+        "maxX": 1023,
+        "minY": 32,
+        "maxY": 214,
+        "width": 1024,
+        "height": 183
+      },
+      "sockets": {
+        "leftContact": [
+          0,
+          32
+        ],
+        "rightContact": [
+          1024,
+          32
+        ],
+        "runtimeLeftContact": [
+          0,
+          7.5
+        ],
+        "runtimeRightContact": [
+          240,
+          7.5
+        ],
+        "repeatInterval": 1024,
+        "runtimeRepeatInterval": 240
+      },
+      "padding": {
+        "left": 0,
+        "right": 0,
+        "top": 32,
+        "bottom": 41
+      },
+      "seamDelta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "damp-platform-cap-end-left-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-left-v002.png",
+      "sha256": "7dd07076fef8fb46162ee41400d115bf17b74144eb420135367df1bdbb552aa8",
+      "width": 256,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        60,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 65,
+        "maxX": 255,
+        "minY": 32,
+        "maxY": 214,
+        "width": 191,
+        "height": 183
+      },
+      "sockets": {
+        "leftContact": [
+          65,
+          32
+        ],
+        "rightSocket": [
+          256,
+          32
+        ],
+        "runtimeLeftContact": [
+          15.2,
+          7.5
+        ],
+        "runtimeRightSocket": [
+          60,
+          7.5
+        ]
+      },
+      "padding": {
+        "left": 65,
+        "right": 0,
+        "top": 32,
+        "bottom": 41
+      }
+    },
+    {
+      "id": "damp-platform-cap-end-right-v002",
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-right-v002.png",
+      "sha256": "964c236a3b0933a5322fe506849813c7fc17398692270ccf40f8ee720cdb8031",
+      "width": 256,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        60,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 0,
+        "maxX": 190,
+        "minY": 32,
+        "maxY": 214,
+        "width": 191,
+        "height": 183
+      },
+      "sockets": {
+        "leftSocket": [
+          0,
+          32
+        ],
+        "rightContact": [
+          191,
+          32
+        ],
+        "runtimeLeftSocket": [
+          0,
+          7.5
+        ],
+        "runtimeRightContact": [
+          44.8,
+          7.5
+        ]
+      },
+      "padding": {
+        "left": 0,
+        "right": 65,
+        "top": 32,
+        "bottom": 41
+      }
+    }
+  ]
+}

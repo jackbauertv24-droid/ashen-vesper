@@ -1053,6 +1053,46 @@
     {
       "path": "docs/reviews/cistern-vault-pier-unlit-v002.png",
       "sha256": "cb9882b2df1d77f92eef38f15cddb755b4d2848c8a8acd7d6a9036fb72bf538a"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-center-v002.png",
+      "sha256": "ed2bc3ce7f3195f245330984416b588da876d707fcc13ddf829eaaafff4bfdde"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-left-v002.png",
+      "sha256": "7dd07076fef8fb46162ee41400d115bf17b74144eb420135367df1bdbb552aa8"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/exports/damp-platform-cap-end-right-v002.png",
+      "sha256": "964c236a3b0933a5322fe506849813c7fc17398692270ccf40f8ee720cdb8031"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/source/cistern-platform-strip-generated-v001.jpg",
+      "sha256": "4f830911e4433348af00616fa4e07c5ea40e01b760d377d2dd42ea9f4f37d96f"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/source/cistern-cap-corbel-generated-v001.jpg",
+      "sha256": "560d38fcab140f2ee9314d75f0bc0d5d9a1dd772686dd58d70de7dbe9bac7ead"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/NOTES.md",
+      "sha256": "82ba21613b5ad081e6b6325b7e5c2b6dbe3a5f6e59ac1c08e6388f5f954612a5"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/preview.html",
+      "sha256": "6146d80c9c09f2e5dcc0be1cee66f9060c66b8d1d87194d06c114b6a54b61335"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/PROMPT.txt",
+      "sha256": "3c4a16fff23e8392e627e98d39d7e4cae318128c59ab303ae8680a0bae0977b9"
+    },
+    {
+      "path": "art/contributions/world-03-flooded-cistern/v002/submission.json",
+      "sha256": "f7ebef6b943a0eb93af0fb4f97a893dcae630a9fb19aedd2c9648fb281af9f8e"
+    },
+    {
+      "path": "docs/reviews/cistern-damp-platform-seamless-v002.png",
+      "sha256": "cdb80b40799b33112ebcf510cba13ad30669cf573cf2cdb673ca958f27a4723a"
     }
   ]
 }

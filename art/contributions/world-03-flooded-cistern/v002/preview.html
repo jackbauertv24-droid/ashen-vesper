@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 03 — Flooded Cistern Seamless Damp Platform Kit Review (v002)</title>
+  <style>
+    :root {
+      --bg: #0b1118;
+      --panel: #131c27;
+      --border: #263548;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1240px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; color: #f59e0b; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport-container {
+      position: relative;
+      border: 1px solid #334155;
+      background: #070d14;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport-container.bg-dark { background: #070d14; }
+    .viewport-container.bg-white { background: #ffffff; }
+    .viewport-container.bg-blue { background: #0a1926; }
+    .viewport-container.bg-abbey { background: #111827; }
+    canvas { display: block; }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover, select:hover { background: #334155; }
+    button.active-action {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      color: var(--accent);
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .stat-value { font-family: monospace; }
+    .checkbox-group {
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .review-gallery {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .review-gallery h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      color: #f59e0b;
+    }
+    .review-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 03 — Flooded Cistern Seamless Damp Platform Kit (v002)</h1>
+    <p>Versioned production kit directly resolving PR 23 maintainer review &bull; 1024×256 Seamless Center Strip (Δ=0) + 256×256 Decorative End Cap Corbels</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div id="viewport" class="viewport-container bg-dark">
+        <canvas id="viewCanvas" width="1024" height="256"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="modeSingleBtn" class="active-action" onclick="setMode('single')">Single Center Strip</button>
+        <button id="modeThreeBtn" onclick="setMode('three')">Three-Copy Seam Repeat</button>
+        <button id="modeSceneBtn" onclick="setMode('scene')">Full Platform Assembly</button>
+        <button id="modeRuntimeBtn" onclick="setMode('runtime')">Runtime Scale (240×60)</button>
+        <select id="bgSelect" onchange="changeBg(this.value)">
+          <option value="bg-dark">Dark Cistern</option>
+          <option value="bg-blue">Subterranean Indigo</option>
+          <option value="bg-white">High Contrast White</option>
+          <option value="bg-abbey">Chamber Ambient</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Module Specifications</h2>
+      <div class="stat-row"><span class="stat-label">Center Strip:</span><span class="stat-value">1024 × 256 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">End Cap Corbels:</span><span class="stat-value">256 × 256 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Seam Delta (Δ):</span><span class="stat-value" style="color: var(--green);">0 (Exact Closure)</span></div>
+      <div class="stat-row"><span class="stat-label">Top Walk Surface:</span><span class="stat-value">y = 32 (rt: 7.5)</span></div>
+      <div class="stat-row"><span class="stat-label">Slab Height:</span><span class="stat-value">183 px (y=32..214)</span></div>
+      <div class="stat-row"><span class="stat-label">Repeat Interval:</span><span class="stat-value">1024 px (rt: 240)</span></div>
+
+      <h2>Overlays & Context</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="showSockets" checked onchange="render()"> Sockets & Interlock Points</label>
+        <label><input type="checkbox" id="showBounds" checked onchange="render()"> Visible Bounds</label>
+        <label><input type="checkbox" id="showHero" checked onchange="render()"> Bellwarden Hero Scale</label>
+        <label><input type="checkbox" id="showLurker" checked onchange="render()"> Water Level Line</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-gallery">
+    <h2>Preserved Review Evidence Composite</h2>
+    <img src="../../../../docs/reviews/cistern-damp-platform-seamless-v002.png" alt="Flooded Cistern Seamless Platform Review">
+  </div>
+
+  <script>
+    const canvas = document.getElementById('viewCanvas');
+    const ctx = canvas.getContext('2d');
+    let mode = 'single';
+
+    const centerImg = new Image();
+    centerImg.src = 'exports/damp-platform-cap-center-v002.png';
+    const leftImg = new Image();
+    leftImg.src = 'exports/damp-platform-cap-end-left-v002.png';
+    const rightImg = new Image();
+    rightImg.src = 'exports/damp-platform-cap-end-right-v002.png';
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    let loaded = 0;
+    function onImageLoad() {
+      loaded++;
+      if (loaded >= 3) render();
+    }
+    centerImg.onload = onImageLoad;
+    leftImg.onload = onImageLoad;
+    rightImg.onload = onImageLoad;
+    heroImg.onload = onImageLoad;
+
+    function setMode(newMode) {
+      mode = newMode;
+      document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active-action'));
+      if (mode === 'single') document.getElementById('modeSingleBtn').classList.add('active-action');
+      if (mode === 'three') document.getElementById('modeThreeBtn').classList.add('active-action');
+      if (mode === 'scene') document.getElementById('modeSceneBtn').classList.add('active-action');
+      if (mode === 'runtime') document.getElementById('modeRuntimeBtn').classList.add('active-action');
+      render();
+    }
+
+    function changeBg(val) {
+      const vp = document.getElementById('viewport');
+      vp.className = 'viewport-container ' + val;
+    }
+
+    function render() {
+      if (loaded < 3) return;
+
+      const showSockets = document.getElementById('showSockets').checked;
+      const showBounds = document.getElementById('showBounds').checked;
+      const showHero = document.getElementById('showHero').checked;
+      const showWater = document.getElementById('showLurker').checked;
+
+      if (mode === 'single') {
+        canvas.width = 1024;
+        canvas.height = 256;
+        ctx.clearRect(0, 0, 1024, 256);
+        ctx.drawImage(centerImg, 0, 0);
+
+        if (showBounds) {
+          ctx.strokeStyle = '#38bdf8';
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(0, 32, 1024, 183);
+          ctx.setLineDash([]);
+        }
+        if (showSockets) {
+          ctx.fillStyle = '#4ade80';
+          ctx.fillRect(0, 30, 4, 6);
+          ctx.fillRect(1020, 30, 4, 6);
+        }
+      } else if (mode === 'three') {
+        canvas.width = 1024;
+        canvas.height = 256;
+        ctx.clearRect(0, 0, 1024, 256);
+        // Draw 3 scaled copies (341px each)
+        const sw = 341;
+        for (let i = 0; i < 3; i++) {
+          ctx.drawImage(centerImg, 0, 0, 1024, 256, i * sw, 0, sw, 256);
+        }
+        if (showSockets) {
+          ctx.strokeStyle = '#f59e0b';
+          ctx.setLineDash([2, 2]);
+          ctx.strokeRect(sw, 0, 1, 256);
+          ctx.strokeRect(sw * 2, 0, 1, 256);
+          ctx.setLineDash([]);
+        }
+      } else if (mode === 'scene') {
+        canvas.width = 1024;
+        canvas.height = 400;
+        ctx.clearRect(0, 0, 1024, 400);
+
+        const py = 200;
+        const capW = 128;
+        const cW = 384;
+
+        // Assembly: Left Cap + 2 Center + Right Cap
+        ctx.drawImage(leftImg, 0, 0, 256, 256, 0, py, capW, 128);
+        ctx.drawImage(centerImg, 0, 0, 1024, 256, capW, py, cW, 128);
+        ctx.drawImage(centerImg, 0, 0, 1024, 256, capW + cW, py, cW, 128);
+        ctx.drawImage(rightImg, 0, 0, 256, 256, capW + cW * 2, py, capW, 128);
+
+        if (showHero && heroImg.complete) {
+          const hh = 120;
+          const hw = hh * (heroImg.width / heroImg.height);
+          ctx.drawImage(heroImg, 450, py + 16 - hh, hw, hh);
+        }
+
+        if (showWater) {
+          ctx.fillStyle = 'rgba(14, 116, 144, 0.4)';
+          ctx.fillRect(0, py + 140, 1024, 60);
+        }
+      } else if (mode === 'runtime') {
+        canvas.width = 240;
+        canvas.height = 60;
+        ctx.clearRect(0, 0, 240, 60);
+        ctx.drawImage(centerImg, 0, 0, 1024, 256, 0, 0, 240, 60);
+      }
+    }
+  </script>
+</body>
+</html>
