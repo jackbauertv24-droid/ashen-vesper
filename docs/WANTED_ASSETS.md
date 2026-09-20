@@ -144,7 +144,20 @@ Two pickups exist in the whole game: the consecration ember and the healing
 vial. No relics, no keys, no throwables. A small set that shares one cutout
 convention would be worth more than another architectural module.
 
-### 6. Two cutouts to replace removed placeholders
+### 6. Flooded Cistern water surface
+
+Stage 03 is built and playable, and its channels are currently empty dark
+gaps. They briefly had a canvas gradient with a sine-wave stroke for ripples;
+that was removed rather than shipped, because code-drawn shading does not fit
+the painted look of everything around it.
+
+Wanted: a still, dark water surface that can repeat horizontally along a
+channel — a top edge with a little reflected light, falling off to black
+below. It needs to tile like the platform kits do, since the stage has three
+channels of different widths, and it must read as deep rather than as a
+puddle: falling in drowns the player.
+
+### 7. Two cutouts to replace removed placeholders
 
 Both of these were flat rectangles and have been deleted rather than left
 in, so the game is currently missing the detail entirely.
@@ -158,7 +171,12 @@ in, so the game is currently missing the detail entirely.
 - **Fallen-enemy remains.** A defeated guard left a grey bar on the floor.
   Wanted: a small rubble, dust or scorch decal that a body can fade into.
 
-### 7. Iron Sexton v006 hurt cell — optional
+Every one of these exists because a procedural placeholder was removed rather
+than left in. The rule is in [the build standard](BUILD_STANDARD.md): no game
+object is drawn with code-drawn colour, and that now covers gradients and
+shading as well as flat boxes. The runtime contract test enforces both.
+
+### 8. Iron Sexton v006 hurt cell — optional
 
 Low priority. Re-author `hurt` on the same anchor as the other seven cells
 so the runtime's recorded -59px correction can be deleted. Nothing is broken

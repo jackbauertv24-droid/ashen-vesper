@@ -1,5 +1,5 @@
 // Stage 03 — Flooded Cistern renderer.
-import { LEVEL, platforms, WATER, VIAL } from "./cistern-sim.js";
+import { LEVEL, platforms, VIAL } from "./cistern-sim.js";
 import { LURKER, DEATH_FADE, lurkerPose } from "./cistern-lurker.js";
 import { loadHero, drawHero } from "./hero-render.js";
 import { platformCap } from "./environment-metrics.js";
@@ -95,25 +95,6 @@ function platform(p) {
   ctx.restore();
 }
 
-function water() {
-  // Standing water fills every channel between the dry ledges.
-  const shimmer = ctx.createLinearGradient(0, WATER.surface, 0, 720);
-  shimmer.addColorStop(0, "#35707f");
-  shimmer.addColorStop(0.35, "#1b4250");
-  shimmer.addColorStop(1, "#06121a");
-  ctx.fillStyle = shimmer;
-  ctx.fillRect(0, WATER.surface, LEVEL.width, 720 - WATER.surface);
-  ctx.strokeStyle = "#7fb3c0";
-  ctx.globalAlpha = 0.35;
-  ctx.beginPath();
-  for (let x = 0; x < LEVEL.width; x += 24) {
-    const y = WATER.surface + Math.sin(s.time * 1.4 + x * 0.02) * 2;
-    x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
-  }
-  ctx.stroke();
-  ctx.globalAlpha = 1;
-}
-
 function enemy() {
   const e = s.enemy;
   const dying = e.hp <= 0;
@@ -162,7 +143,10 @@ function draw() {
 
   ctx.save();
   ctx.translate(-s.camera, 0);
-  water();
+  // The channels are left as open dark water. They had a canvas gradient
+  // with a sine-wave stroke for ripples, which read as cheap shading rather
+  // than a flooded cistern. A painted water surface is requested in
+  // docs/WANTED_ASSETS.md; until it exists the gaps stay honest.
   for (const p of platforms) platform(p);
   for (let x = 520; x < LEVEL.width; x += 940)
     ctx.drawImage(art.lantern, x, 196, 74, 74);

@@ -335,5 +335,17 @@ test("contract: filled rectangles are UI or debug only, never world objects", ()
         `${file}.js fills a rectangle with ${literal[1]}, which is not a permitted UI or debug colour. Game objects must use an art asset.`,
       );
     }
+
+    // Gradients are the other way a world object gets faked. Each renderer
+    // gets exactly one: the full-screen atmospheric wash behind the art. A
+    // second one means something in the world is being shaded by hand —
+    // Stage 03's water was a gradient with a sine-wave stroke for ripples
+    // before it was removed.
+    const gradients = (src.match(/create(Linear|Radial)Gradient/g) || []).length;
+    assert.equal(
+      gradients,
+      1,
+      `${file}.js creates ${gradients} gradients; one full-screen wash is allowed and anything else must be an art asset`,
+    );
   }
 });

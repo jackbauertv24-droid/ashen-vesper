@@ -69,9 +69,12 @@ not in the loop.
 
 ## No game object is a coloured box
 
-A flat filled rectangle may be UI chrome, a debug overlay or a full-screen
-wash. It may never stand in for a prop, an actor, a platform body or any
-other object the player reads as part of the world.
+Code-drawn colour may be UI chrome, a debug overlay or a full-screen
+atmospheric wash. It may never stand in for a prop, an actor, a platform
+body, a hazard surface or any other object the player reads as part of the
+world. This covers gradients and shading, not only flat rectangles: Stage
+03 shipped its water as a gradient with a sine-wave stroke for ripples, and
+that read as cheap shading against painted art.
 
 This is enforced, not just advised: `test/runtime-contract.test.mjs` scans
 the renderers and fails on any `fillRect` colour outside a short allowlist,
