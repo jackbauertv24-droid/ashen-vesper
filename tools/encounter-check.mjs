@@ -123,6 +123,44 @@ try {
   assert.equal(result.deaths, 0);
   assert.equal(result.enemies.filter((e) => e.hp <= 0).length, 3);
   assert.ok(result.camera > 4900);
+
+  // M1.1: cross the threshold into the Ruined Cloister and confirm the run
+  // carried rather than restarted.
+  await page.evaluate(() => (window.encounter.snapshot(), true));
+  const hurt = await page.evaluate(() => window.encounter.snapshot().hp);
+  await page.keyboard.down("KeyD");
+  for (let i = 0; i < 80; i++) {
+    const x = await page.evaluate(() => window.encounter.snapshot().x);
+    if (x > 6240) break;
+    await page.clock.runFor(50);
+  }
+  await page.keyboard.up("KeyD");
+  const atThreshold = await page.evaluate(() => window.encounter.snapshot().x);
+  assert.ok(atThreshold > 6200, `must reach the threshold, got ${atThreshold}`);
+  // The clock is frozen, so the loop only sees the press once time advances.
+  await page.keyboard.press("KeyE");
+  for (let i = 0; i < 40 && !/cloister\.html/.test(page.url()); i++) {
+    try {
+      await page.clock.runFor(50);
+    } catch {
+      break; // navigation tore down the frame mid-tick
+    }
+  }
+  await page.waitForURL(/cloister\.html/, { timeout: 15000 });
+  await page.clock.install();
+  await page.clock.pauseAt(new Date(Date.now() + 1000));
+  await page.waitForFunction(() => window.cloister?.ready);
+  await page.clock.runFor(100);
+  const arrived = await page.evaluate(() => window.cloister.snapshot());
+  assert.ok(arrived.grounded, "must arrive standing on a floor");
+  assert.equal(arrived.attack, 0, "no pending swing crosses the threshold");
+  assert.equal(arrived.vx, 0, "no stale velocity crosses the threshold");
+  assert.equal(arrived.hp, hurt, "health must carry across");
+  console.log(`Threshold: crossed into the Cloister with ${arrived.hp} health.`);
+
+  await page.goto(baseURL);
+  await page.waitForFunction(() => window.encounter?.ready);
+  await page.locator("#enter").click();
   await page.keyboard.up("KeyD");
   await page.locator("#reset").click();
   assert.equal(await page.evaluate(() => window.encounter.snapshot().x), 180);

@@ -3,8 +3,6 @@ import {
   LEVEL,
   platforms,
   braziers,
-  create,
-  step,
   hitbox,
   bodyBox,
   solidHeight,
@@ -12,9 +10,11 @@ import {
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
 import { platformCap, arcade } from "./environment-metrics.js";
 import { crouchScale, crouchAnchors } from "./character-metrics.js";
+import * as run from "./run.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d");
-let s = create(),
+const W = run.enter("road");
+let s = run.roomState(W),
   running = false,
   art,
   atlas,
@@ -143,7 +143,7 @@ function start() {
   canvas.focus({ preventScroll: true });
 }
 function reset() {
-  s = create();
+  s = run.restart(W, "road");
   clear();
   start();
 }
@@ -549,7 +549,7 @@ function tick(now) {
     controls();
     acc += Math.min((now - last) / 1000, 0.1);
     while (acc >= 1 / 60) {
-      step(s, input, 1 / 60, options);
+      if (run.step(W, input, 1 / 60, options)) return; // crossing to the cloister
       for (const e of s.events) tone(e);
       input.jump = input.attack = input.interact = false;
       acc -= 1 / 60;
