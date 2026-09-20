@@ -155,7 +155,7 @@ function draw() {
     LEVEL.lever - 56, 600 - 102, 112, 112);
   drawPortcullis(ctx,{x:LEVEL.gate,floorY:600,open:s.leverOn,grate:art.grate,stone:art.stone})
   if (!s.vialTaken)
-    ctx.drawImage(art.vial, VIAL.x - props.vial.draw / 2, 566 + Math.sin(s.time * 3) * 5, props.vial.draw, props.vial.draw);
+    ctx.drawImage(art.vial, VIAL.x - props.vial.draw / 2, 546 + Math.sin(s.time * 3) * 5, props.vial.draw, props.vial.draw);
   enemy();
   drawHero(ctx, s, hero);
   ctx.fillStyle = "#d9bc82";

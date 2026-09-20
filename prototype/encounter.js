@@ -376,7 +376,7 @@ function draw() {
     ctx.drawImage(
       art.ember,
       cx - props.ember.draw / 2,
-      556 + Math.sin(s.time * 3) * 4,
+      534 + Math.sin(s.time * 3) * 4,
       props.ember.draw,
       props.ember.draw,
     );

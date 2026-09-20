@@ -33,24 +33,30 @@ export const censer = {
 
 // The consecration ember, as a falling pickup and as the lit sanctuary.
 // The art is mostly transparent padding: only 365x554 of 1024x1024 is opaque.
-// Every hand prop, sized against the hero rather than against each other.
+// Prop sizes, judged by what the player needs to see rather than by what
+// the object would measure in life.
 //
-// The hero is 144 units tall and reads as about 170cm, so one unit is
-// roughly 1.2cm. Judging props one at a time produced a 34cm ember, a 41cm
-// bottle and an 82cm lantern; these are set from what the object is.
+// Sizing these to physical plausibility was a mistake: it produced a 22cm
+// ember, which is a believable coal and an unreadable game item. A pickup
+// is not a prop — it is a thing the player has to spot across a scrolling
+// room, and the consecration ember is the object the entire Pilgrim Road
+// encounter is about. It gets to be obvious.
+//
+// Scenery is different: nobody has to find a lantern, so it can simply look
+// right. The two categories are judged by different rules on purpose.
 //
 // `opaque` is the fraction of each sheet that is not transparent padding,
-// measured from the art, because every one of these sheets is mostly empty
-// and the draw box is a poor guide to what you actually see.
+// measured from the art, because these sheets are mostly empty and the draw
+// box is a poor guide to what is actually seen.
 export const HERO_HEIGHT = 144;
 
 export const props = {
-  // a glowing coal you can carry: ~21cm
-  ember: { draw: 34, opaque: { w: 0.3564, h: 0.541 } },
-  // a hand bottle: ~26cm
-  vial: { draw: 40, opaque: { w: 0.2637, h: 0.543 } },
-  // a hanging lantern: ~50cm
-  lantern: { draw: 45, opaque: { w: 0.4648, h: 0.9375 } },
+  // PICKUP — the quest item. Roughly a third of the hero, unmistakable.
+  ember: { draw: 85, opaque: { w: 0.3564, h: 0.541 }, kind: "pickup" },
+  // PICKUP — a consumable, clearly readable but below the quest item.
+  vial: { draw: 66, opaque: { w: 0.2637, h: 0.543 }, kind: "pickup" },
+  // SCENERY — nobody hunts for it, so plausible size is the right rule.
+  lantern: { draw: 45, opaque: { w: 0.4648, h: 0.9375 }, kind: "scenery" },
 };
 
 /** Visible size on screen, ignoring the sheet's transparent padding. */

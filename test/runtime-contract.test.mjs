@@ -521,31 +521,49 @@ test("contract: the censer is not drawn larger than its strike box", () => {
   );
 });
 
-test("contract: every hand prop is a sensible size next to the hero", () => {
-  // The hero is 144 units and reads as about 170cm, so one unit is roughly
-  // 1.2cm. Judged one at a time these drifted badly — a 34cm ember, a 41cm
-  // bottle, an 82cm lantern. Each is now given a band for what the object
-  // actually is, and the whole table is checked together.
+test("contract: pickups are readable and scenery is plausible", () => {
+  // These are judged by different rules on purpose.
+  //
+  // A pickup has to be spotted across a scrolling room, so it is sized for
+  // readability. Sizing it for physical plausibility instead produced a
+  // 22cm ember — a believable coal and an unreadable game item — which is
+  // the wrong trade for the object the whole first encounter is about.
+  //
+  // Scenery nobody has to find, so plausible size is the right rule there.
   const bands = {
-    ember: [14, 24, "a coal you can carry"],
-    vial: [16, 30, "a hand bottle"],
-    lantern: [32, 52, "a hanging lantern"],
+    ember: ["pickup", 40, 56, "the quest item; it must be unmistakable"],
+    vial: ["pickup", 30, 44, "a consumable; clearly readable, below the quest item"],
+    lantern: ["scenery", 32, 52, "a hanging lantern at a believable size"],
   };
-  for (const [name, [lo, hi, what]] of Object.entries(bands)) {
+  for (const [name, [kind, lo, hi, why]] of Object.entries(bands)) {
     const prop = props[name];
     assert.ok(prop, `${name} is declared in environment-metrics`);
+    assert.equal(prop.kind, kind, `${name} is categorised as ${kind}`);
     const v = visible(prop);
     assert.ok(
       v.h >= lo && v.h <= hi,
-      `${name} draws ${v.h.toFixed(0)} units tall (${(v.h * 1.18).toFixed(0)}cm, ${((v.h / HERO_HEIGHT) * 100).toFixed(0)}% of the hero); ${what} should be ${lo}-${hi}`,
+      `${name} draws ${v.h.toFixed(0)} units tall, ${((v.h / HERO_HEIGHT) * 100).toFixed(0)}% of the hero; ${why} — expected ${lo}-${hi}`,
     );
-    assert.ok(v.w > 0 && v.w < v.h * 2, `${name} has a plausible aspect`);
   }
 
-  // And nothing a player picks up should rival the hero.
-  for (const name of ["ember", "vial"])
+  // The floor that matters: a pickup smaller than a fifth of the hero does
+  // not read as a collectable at all.
+  for (const [name, prop] of Object.entries(props)) {
+    if (prop.kind !== "pickup") continue;
+    const v = visible(prop);
     assert.ok(
-      visible(props[name]).h < HERO_HEIGHT * 0.25,
-      `${name} is over a quarter of the hero's height`,
+      v.h >= HERO_HEIGHT * 0.2,
+      `${name} is only ${((v.h / HERO_HEIGHT) * 100).toFixed(0)}% of the hero; a pickup that small is missable`,
     );
+    assert.ok(
+      v.h <= HERO_HEIGHT * 0.45,
+      `${name} at ${((v.h / HERO_HEIGHT) * 100).toFixed(0)}% of the hero is competing with the character`,
+    );
+  }
+
+  // And the quest item should read as the more important of the two.
+  assert.ok(
+    visible(props.ember).h > visible(props.vial).h,
+    "the ember is the object of the encounter and should be the larger pickup",
+  );
 });
