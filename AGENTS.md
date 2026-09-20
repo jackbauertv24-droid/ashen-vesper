@@ -8,3 +8,4 @@
 - New image generation is budget-sensitive. Prefer the retained library and contributor briefs; do not generate additional art merely to polish a gameplay fix.
 - Run `npm test` on every change. Add `npm run test:stage` when a stage, renderer or runtime art changes; `npm run test:art` and `npm run validate:assets` when art files change; `npm run test:route` before a release or after movement/combat changes.
 - A test must name the defect it catches. Do not capture screenshots nothing compares.
+- CI runs every tier on each push and pull request. Do not merge red.

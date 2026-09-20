@@ -20,6 +20,11 @@ PNG is well-formed," and everyone read it as "the game is fine."
 | `npm run validate:assets` | ~4s | when art files change | Are the originals preserved byte-for-byte? |
 | `npm run test:route` | ~22s | before a release, or when movement/combat changes | Can a human still finish the Pilgrim Road? |
 
+CI (`.github/workflows/ci.yml`) runs all of this on every push and pull
+request, split into a fast no-browser job and one browser job. A failing
+composed-frame check uploads the frame it rejected as a build artifact, so the
+evidence exists exactly when someone needs it and never otherwise.
+
 `npm test` is the loop you work in. It must stay about a second; if it grows,
 move the slow thing down a tier rather than accepting a slower loop.
 
