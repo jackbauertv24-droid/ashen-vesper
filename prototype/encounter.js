@@ -8,7 +8,7 @@ import {
   solidHeight,
 } from "./encounter-sim.js";
 import { pilgrimFrames, pilgrimScale, pilgrimPose } from "./pilgrim-poses.js";
-import { platformCap, arcade, censer, ember } from "./environment-metrics.js";
+import { platformCap, arcade, censer, props } from "./environment-metrics.js";
 import * as run from "./run.js";
 import { DEATH_FADE } from "./iron-sexton.js";
 import { loadHero, drawHero } from "./hero-render.js";
@@ -327,10 +327,10 @@ function draw() {
     ctx.save();
     ctx.drawImage(
       art.ember,
-      d.x - ember.draw / 2,
-      d.y - ember.draw * 0.78 + Math.sin(s.time * 4) * 3,
-      ember.draw,
-      ember.draw,
+      d.x - props.ember.draw / 2,
+      d.y - props.ember.draw * 0.78 + Math.sin(s.time * 4) * 3,
+      props.ember.draw,
+      props.ember.draw,
     );
     ctx.restore();
   }
@@ -375,10 +375,10 @@ function draw() {
   if (s.checkpoint)
     ctx.drawImage(
       art.ember,
-      cx - ember.draw / 2,
-      530 + Math.sin(s.time * 3) * 4,
-      ember.draw,
-      ember.draw,
+      cx - props.ember.draw / 2,
+      556 + Math.sin(s.time * 3) * 4,
+      props.ember.draw,
+      props.ember.draw,
     );
   text("SANCTUARY", cx - 48, 496);
   for (const e of s.enemies) enemy(e);

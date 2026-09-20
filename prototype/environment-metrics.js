@@ -33,10 +33,33 @@ export const censer = {
 
 // The consecration ember, as a falling pickup and as the lit sanctuary.
 // The art is mostly transparent padding: only 365x554 of 1024x1024 is opaque.
-// Back to its original 54 as well: the bump to 64 was judged against the
-// oversized bell. At 54 the visible ember is 19x29, which is 57% of the
-// bell's height — the proportion it always had.
-export const ember = { draw: 54, opaque: { w: 365 / 1024, h: 554 / 1024 } };
+// Every hand prop, sized against the hero rather than against each other.
+//
+// The hero is 144 units tall and reads as about 170cm, so one unit is
+// roughly 1.2cm. Judging props one at a time produced a 34cm ember, a 41cm
+// bottle and an 82cm lantern; these are set from what the object is.
+//
+// `opaque` is the fraction of each sheet that is not transparent padding,
+// measured from the art, because every one of these sheets is mostly empty
+// and the draw box is a poor guide to what you actually see.
+export const HERO_HEIGHT = 144;
+
+export const props = {
+  // a glowing coal you can carry: ~21cm
+  ember: { draw: 34, opaque: { w: 0.3564, h: 0.541 } },
+  // a hand bottle: ~26cm
+  vial: { draw: 40, opaque: { w: 0.2637, h: 0.543 } },
+  // a hanging lantern: ~50cm
+  lantern: { draw: 45, opaque: { w: 0.4648, h: 0.9375 } },
+};
+
+/** Visible size on screen, ignoring the sheet's transparent padding. */
+export const visible = (prop) => ({
+  w: prop.draw * prop.opaque.w,
+  h: prop.draw * prop.opaque.h,
+});
+
+export const ember = props.ember;
 
 export const arcade = {
   path: "art/contributions/08-ruined-cloister/v001/exports/cloister-arch-span-v001.png",

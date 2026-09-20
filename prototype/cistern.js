@@ -2,7 +2,7 @@
 import { LEVEL, platforms, VIAL } from "./cistern-sim.js";
 import { LURKER, DEATH_FADE, lurkerPose } from "./cistern-lurker.js";
 import { loadHero, drawHero } from "./hero-render.js";
-import { platformCap } from "./environment-metrics.js";
+import { platformCap, props } from "./environment-metrics.js";
 import { solidHeight } from "./physics.js";
 import * as run from "./run.js";
 import { drawPortcullis } from "./portcullis.js";
@@ -150,12 +150,12 @@ function draw() {
   // docs/WANTED_ASSETS.md; until it exists the gaps stay honest.
   for (const p of platforms) platform(p);
   for (let x = 520; x < LEVEL.width; x += 940)
-    ctx.drawImage(art.lantern, x, 196, 74, 74);
+    ctx.drawImage(art.lantern, x, 196, props.lantern.draw, props.lantern.draw);
   ctx.drawImage(art.lever, s.leverOn ? 512 : 0, 0, 512, 512,
     LEVEL.lever - 56, 600 - 102, 112, 112);
   drawPortcullis(ctx,{x:LEVEL.gate,floorY:600,open:s.leverOn,grate:art.grate,stone:art.stone})
   if (!s.vialTaken)
-    ctx.drawImage(art.vial, VIAL.x - 32, 520 + Math.sin(s.time * 3) * 5, 64, 64);
+    ctx.drawImage(art.vial, VIAL.x - props.vial.draw / 2, 566 + Math.sin(s.time * 3) * 5, props.vial.draw, props.vial.draw);
   enemy();
   drawHero(ctx, s, hero);
   ctx.fillStyle = "#d9bc82";

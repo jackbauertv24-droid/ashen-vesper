@@ -16,7 +16,7 @@ import {
 } from "../prototype/physics.js";
 import fs from "node:fs";
 import { PNG } from "pngjs";
-import { platformCap, censer, ember } from "../prototype/environment-metrics.js";
+import { HERO_HEIGHT, platformCap, censer, props, visible } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
 import { DAMAGE, DEATH_TIME, HURT_TIME, damagePose } from "../prototype/hero-render.js";
 import { LOOK, VIEW, trackCamera } from "../prototype/camera.js";
@@ -521,13 +521,31 @@ test("contract: the censer is not drawn larger than its strike box", () => {
   );
 });
 
-test("contract: the ember reads as something that fell out of the censer", () => {
-  // The ember art is mostly transparent padding, so the draw box is much
-  // larger than what is visible. Judge the visible part.
-  const visible = ember.draw * ember.opaque.h;
-  const bellH = censer.draw * (censer.bellBottom - censer.bellTop);
-  assert.ok(
-    visible > bellH * 0.25 && visible < bellH * 0.8,
-    `visible ember is ${visible.toFixed(0)} units against a ${bellH.toFixed(0)}-unit bell; it should be clearly smaller but not a speck`,
-  );
+test("contract: every hand prop is a sensible size next to the hero", () => {
+  // The hero is 144 units and reads as about 170cm, so one unit is roughly
+  // 1.2cm. Judged one at a time these drifted badly — a 34cm ember, a 41cm
+  // bottle, an 82cm lantern. Each is now given a band for what the object
+  // actually is, and the whole table is checked together.
+  const bands = {
+    ember: [14, 24, "a coal you can carry"],
+    vial: [16, 30, "a hand bottle"],
+    lantern: [32, 52, "a hanging lantern"],
+  };
+  for (const [name, [lo, hi, what]] of Object.entries(bands)) {
+    const prop = props[name];
+    assert.ok(prop, `${name} is declared in environment-metrics`);
+    const v = visible(prop);
+    assert.ok(
+      v.h >= lo && v.h <= hi,
+      `${name} draws ${v.h.toFixed(0)} units tall (${(v.h * 1.18).toFixed(0)}cm, ${((v.h / HERO_HEIGHT) * 100).toFixed(0)}% of the hero); ${what} should be ${lo}-${hi}`,
+    );
+    assert.ok(v.w > 0 && v.w < v.h * 2, `${name} has a plausible aspect`);
+  }
+
+  // And nothing a player picks up should rival the hero.
+  for (const name of ["ember", "vial"])
+    assert.ok(
+      visible(props[name]).h < HERO_HEIGHT * 0.25,
+      `${name} is over a quarter of the hero's height`,
+    );
 });
