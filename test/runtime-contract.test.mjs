@@ -171,12 +171,14 @@ for (const [name, M] of stages) {
 
   test(`${name}: falling off the world respawns and counts a death`, () => {
     const s = M.create();
-    s.y = MOVE.killPlane + 10;
+    // A stage deeper than one screen sets its own floor; the shared 900-unit
+    // plane was written when every stage fitted the viewport.
+    s.y = (M.LEVEL.killPlane ?? MOVE.killPlane) + 10;
     s.grounded = false;
     tick(s, {}, 1);
     assert.equal(s.deaths, 1);
     assert.equal(s.hp, 5);
-    assert.ok(s.y <= MOVE.killPlane);
+    assert.ok(s.y <= (M.LEVEL.killPlane ?? MOVE.killPlane));
   });
 }
 
@@ -479,10 +481,16 @@ test("contract: vertical tracking follows the player on a tall stage", () => {
 });
 
 for (const [name, M] of stages) {
-  test(`${name}: does not scroll vertically, being one screen tall`, () => {
+  test(`${name}: scrolls vertically only as far as the stage is deep`, () => {
     const s = M.create();
-    for (let i = 0; i < 200; i++) M.step(s, { right: true }, 1 / 60, {});
-    assert.equal(s.cameraY, 0);
+    const limit = Math.max(0, (M.LEVEL.height ?? 720) - VIEW.height);
+    for (let i = 0; i < 400; i++) M.step(s, { right: true }, 1 / 60, {});
+    assert.ok(
+      s.cameraY >= 0 && s.cameraY <= limit,
+      `${name}: camera y ${s.cameraY} outside 0..${limit}`,
+    );
+    if (limit === 0)
+      assert.equal(s.cameraY, 0, "a one-screen stage must not scroll at all");
   });
 }
 

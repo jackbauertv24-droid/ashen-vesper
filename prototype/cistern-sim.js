@@ -23,33 +23,62 @@ import { DEATH_TIME, HURT_TIME } from "./hero-render.js";
 
 export const VIEW = { width: 1280, height: 720 };
 export const LEVEL = {
-  width: 4400,
-  height: 720,
-  lever: 2400,
-  gate: 2900,
-  finish: 4300,
+  width: 4600,
+  // Taller than a screen, so the camera tracks vertically. This is the first
+  // stage that is not a single floor line.
+  height: 1700,
+  // The stage is 1700 deep, so the shared 900-unit kill plane — written when
+  // every stage fitted one screen — would fire in mid-air.
+  killPlane: 1620,
+  lever: 3700,
+  gate: 4050,
+  finish: 4480,
 };
 
-/** Dry ledges. The gaps between them are open water. */
+// A descent, a fork, and a climb back out.
+//
+// Jump envelope: the hero clears 114 units of height and 165 of distance, so
+// every climb here is 90-95 and every gap 120 or less. Drops are free, which
+// is why the way down is quick and the way back up is worked for.
 export const platforms = [
-  { x: 0, y: 600, w: 820 },
-  { x: 940, y: 600, w: 1060 },
-  { x: 2120, y: 600, w: 940 },
-  { x: 3180, y: 600, w: 1220 },
-  { x: 1550, y: 505, w: 240, h: 95 },
-  { x: 3600, y: 505, w: 250, h: 95 },
+  // Descent from the sluice, top left.
+  { x: 0, y: 420, w: 760 },
+  { x: 880, y: 420, w: 400 },
+  { x: 1180, y: 640, w: 440 },
+  { x: 1520, y: 880, w: 520 },
+
+  // The fork is at the foot of the descent. Left and down is the flooded
+  // floor: shorter, and the Lurker lives there. Right and up is the gallery:
+  // longer, safer, and it passes the vial.
+  { x: 2000, y: 790, w: 160 },
+  { x: 2220, y: 700, w: 160 },
+  { x: 2440, y: 610, w: 160 },
+  { x: 2660, y: 610, w: 740 },
+
+  // The low way: down to the water floor.
+  { x: 1960, y: 1120, w: 540 },
+  { x: 2440, y: 1360, w: 640 },
+
+  // Climbing back out of the flood, three worked steps.
+  { x: 3020, y: 1265, w: 140 },
+  { x: 3220, y: 1170, w: 140 },
+  { x: 3420, y: 1075, w: 140 },
+
+  // The valve chamber, where both ways meet, and the way out.
+  { x: 3480, y: 980, w: 1120 },
 ];
 
 /** Falling below this drowns you. There is no swimming in this stage. */
-export const WATER = { surface: 626, drown: 700 };
-export const VIAL = { x: 1500, y: 600 };
+export const WATER = { surface: 1430, drown: 1500 };
+/** On the high gallery, so the safe route is the one that pays. */
+export const VIAL = { x: 3000, y: 610 };
 
 export { bodyBox, hitbox, overlaps };
 
 export function create() {
   return {
     x: 150,
-    y: 600,
+    y: 420,
     vx: 0,
     vy: 0,
     grounded: true,
@@ -74,9 +103,9 @@ export function create() {
     deaths: 0,
     drownings: 0,
     enemy: {
-      x: 1300,
-      y: 600,
-      home: 1300,
+      x: 2700,
+      y: 1360,
+      home: 2700,
       hp: 3,
       facing: -1,
       lastHit: -1,
@@ -99,7 +128,7 @@ export function message(s, text) {
 
 export function respawn(s, reason) {
   s.x = 150;
-  s.y = 600;
+  s.y = 420;
   s.vx = s.vy = 0;
   s.grounded = true;
   s.hp = 5;
@@ -160,7 +189,9 @@ function stepEnemy(s, dt, options) {
     if (!e.timer) e.mode = "crawl";
   } else if (e.mode === "rest") {
     // Submerged and harmless until the player is close enough to wake it.
-    if (Math.abs(distance) < 320 && Math.abs(s.y - e.y) < 120) {
+    // Narrower than the flooded floor is wide, so there is a stretch of
+    // ground where it is still hidden and you can choose to keep your distance.
+    if (Math.abs(distance) < 200 && Math.abs(s.y - e.y) < 120) {
       e.mode = "emerge";
       e.timer = 0.7;
       s.events.push("emerge");
@@ -223,8 +254,8 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
   // Explicit hazard bounds: fall between the ledges and you drown.
   if (s.y > WATER.drown) {
     s.drownings++;
-    respawn(s, "The cistern water took you. Jump the channels.");
-  } else if (s.y > MOVE.killPlane) {
+    respawn(s, "The cistern water took you. Mind the flooded floor.");
+  } else if (s.y > (LEVEL.killPlane ?? MOVE.killPlane)) {
     respawn(s);
   }
 

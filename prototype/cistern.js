@@ -7,6 +7,9 @@ import { solidHeight } from "./physics.js";
 import * as run from "./run.js";
 import { drawPortcullis } from "./portcullis.js";
 
+/** The floor of the valve chamber, where the lever and gate stand. */
+const VALVE_FLOOR = 980;
+
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 const $ = (q) => document.querySelector(q);
@@ -136,10 +139,12 @@ function draw() {
   ctx.fillRect(0, 0, 1280, 720);
   if (!hero) return;
 
+  // Vault piers run the depth of the cistern, not along one line.
   ctx.save();
   ctx.translate(-s.camera * 0.3, -s.cameraY * 0.3);
   for (let x = -200; x < LEVEL.width; x += 460)
-    ctx.drawImage(art.pier, x, 40, 240, 590);
+    for (let y = 60; y < LEVEL.height; y += 560)
+      ctx.drawImage(art.pier, x, y, 240, 560);
   ctx.restore();
 
   ctx.save();
@@ -149,20 +154,33 @@ function draw() {
   // than a flooded cistern. A painted water surface is requested in
   // docs/WANTED_ASSETS.md; until it exists the gaps stay honest.
   for (const p of platforms) platform(p);
-  for (let x = 520; x < LEVEL.width; x += 940)
-    ctx.drawImage(art.lantern, x, 196, props.lantern.draw, props.lantern.draw);
+  for (const [x, y] of [
+    [620, 300], [1400, 520], [2300, 500], [2900, 480], [3900, 840],
+  ])
+    ctx.drawImage(art.lantern, x, y, props.lantern.draw, props.lantern.draw);
   ctx.drawImage(art.lever, s.leverOn ? 512 : 0, 0, 512, 512,
-    LEVEL.lever - 56, 600 - 102, 112, 112);
-  drawPortcullis(ctx,{x:LEVEL.gate,floorY:600,open:s.leverOn,grate:art.grate,stone:art.stone})
+    LEVEL.lever - 56, VALVE_FLOOR - 102, 112, 112);
+  drawPortcullis(ctx,{x:LEVEL.gate,floorY:VALVE_FLOOR,open:s.leverOn,grate:art.grate,stone:art.stone})
   if (!s.vialTaken)
-    ctx.drawImage(art.vial, VIAL.x - props.vial.draw / 2, 546 + Math.sin(s.time * 3) * 5, props.vial.draw, props.vial.draw);
+    ctx.drawImage(
+      art.vial,
+      VIAL.x - props.vial.draw / 2,
+      VIAL.y - props.vial.draw * 0.75 + Math.sin(s.time * 3) * 5,
+      props.vial.draw,
+      props.vial.draw,
+    );
   enemy();
   drawHero(ctx, s, hero);
   ctx.fillStyle = "#d9bc82";
   ctx.font = "17px Georgia";
-  for (const [x, t] of [[200, "I · THE SLUICE"], [1450, "II · STILL WATER"],
-                        [2400, "III · THE VALVE"], [3600, "IV · THE OUTFALL"]])
-    ctx.fillText(t, x, 340);
+  for (const [x, y, t] of [
+    [180, 330, "I · THE SLUICE"],
+    [1700, 790, "II · THE FORK"],
+    [2720, 540, "III · THE GALLERY"],
+    [2500, 1290, "III · THE FLOOD"],
+    [3700, 900, "IV · THE VALVE"],
+  ])
+    ctx.fillText(t, x, y);
   ctx.restore();
 
   $("#health").textContent = "♥".repeat(Math.max(0, s.hp));

@@ -1,6 +1,26 @@
 # Map design — why the stages feel alike, and the plan
 
-## The three stages are the same map
+## Progress
+
+Phase 1 is done and the Flooded Cistern has been rebuilt on it. The stage is
+now 4600 x 1700 — taller than the 720-unit viewport, so the camera scrolls
+vertically for the first time — with 14 platforms across 12 distinct heights
+spanning 420 to 1360. It descends from the sluice, forks at the foot of the
+descent into a flooded low road and a high gallery, hides the vial on the
+longer safer way, and rejoins at the valve chamber before climbing out.
+
+Every climb in it is 90 to 95 units and every gap 120 or less, against a
+measured jump envelope of 114 up and 165 across. `prototype/reachability.js`
+walks the platform graph with that envelope and fails the build if any ledge
+cannot be reached from the entrance, which is the mistake a hand-authored
+vertical map invites.
+
+This layout is authored rather than loaded: the loader exists and all six
+baselines pass through it, but the baselines remain sketches with empty spawn
+and checkpoint lists, so adapting one is still Phase 2 proper. The two stages
+below are unchanged and still corridors.
+
+## The three stages were the same map
 
 Measured from the runtime geometry:
 
