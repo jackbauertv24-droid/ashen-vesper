@@ -2,6 +2,12 @@
 
 This queue follows the accepted assets and verified runtime. **Do code/blockout dependencies before further image generation.** Each task is one PR; use existing preservation, preview and test rules, and the tiers in [the build standard](BUILD_STANDARD.md).
 
+**Image generation: see [what is actually needed](IMAGE_GEN_REQUESTS.md).**
+The retained library holds 74 candidates and the game loads 12. Only three
+pieces of art are wanted — a Cloister backdrop, hero hurt and death poses,
+and optionally a re-anchored Iron Sexton hurt cell. Everything else on this
+queue is code with its art already accepted.
+
 **Direction: no new stage until the engine is one engine.** Art supply is not the bottleneck — the retained library already holds selected assets for five stages, while one route is playable end to end. Runtime capability is the bottleneck. Every stage built on its own copy of the loop multiplies the drift, so a stage ships on `prototype/physics.js` and registers itself in `test/runtime-contract.test.mjs`, or it does not ship.
 
 ## Definition of a playable stage demonstration
@@ -21,6 +27,17 @@ Every stage milestone must ship with a discoverable link from the main demo, a s
 The standalone [Ruined Cloister demo](../cloister.html) is the first asset-integration stage. It proves scrolling, platform collision, a collectible, a lever-controlled grate and a combat target. It is deliberately separate until M1.1 connects stage state and transitions safely.
 
 The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parity checklist for every new stage. Sound and checkpoint parity are still open even after the animation, input, enemy, damage and tiling corrections.
+
+## Standing now
+
+| Area | State |
+| --- | --- |
+| Shared runtime contract | Both stages step through `prototype/physics.js`; `test/runtime-contract.test.mjs` holds them to it |
+| Shared sprite preparation | One copy in `prototype/render.js` |
+| Connected run | `prototype/world.js` joins both rooms — threshold, safe spawn, carried health, per-room persistence |
+| Rendering | **Still two pages.** A crossing is a page load |
+| Ruined Cloister enemy | Drawn from the accepted Iron Sexton sheet; behaviour is still the placeholder melee loop |
+| CI | Every tier runs on each push and pull request |
 
 ## Milestone 1 — Ruined Cloister becomes playable
 
