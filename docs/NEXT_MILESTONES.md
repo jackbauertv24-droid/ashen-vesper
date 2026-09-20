@@ -8,6 +8,14 @@ single static image, and the game needs motion: finish a subject before
 starting another. Everything else on this queue is code whose art is
 already accepted.
 
+**Direction: map complexity is the next frontier, and it is runtime work.**
+The three playable stages are one floor line each with three gaps and no
+verticality, while the six baselines in this repository specify 3–6 rooms
+apiece over up to 2,640 units of height. We render roughly two percent of
+the geometry already designed. See [map design](MAP_DESIGN.md) for the
+measurements and the phased plan: baseline loader, vertical camera, rooms
+within a stage, then rebuild the Cistern from its own baseline.
+
 **Direction: no new stage until the engine is one engine.** Art supply is not the bottleneck — the retained library already holds selected assets for five stages, while one route is playable end to end. Runtime capability is the bottleneck. Every stage built on its own copy of the loop multiplies the drift, so a stage ships on `prototype/physics.js` and registers itself in `test/runtime-contract.test.mjs`, or it does not ship.
 
 ## Definition of a playable stage demonstration
