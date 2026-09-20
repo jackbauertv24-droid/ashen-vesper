@@ -149,8 +149,8 @@ for (const stage of stages) {
 // Secondary pages: boot cleanly and draw something. These replace a 26-shot
 // screenshot tour that compared nothing.
 for (const [name, url] of [
-  ["Original study", "study.html"],
-  ["Retained art gallery", "art/library/gallery.html"],
+  ["Art study", "study.html"],
+  ["Art library", "art/library/gallery.html"],
 ]) {
   const errors = [];
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
@@ -164,6 +164,47 @@ for (const [name, url] of [
   assert.deepEqual(errors, [], `${name}: console must be clean`);
   await page.close();
   console.log(`${name}: loads clean.`);
+}
+
+// Every page carries the same menu, in the same order, marking itself.
+// The four pages used to have four different menus, and the art study was
+// called three different things depending on which one you were looking at.
+{
+  const pages = [
+    "index.html",
+    "cloister.html",
+    "study.html",
+    "art/library/gallery.html",
+  ];
+  let expected = null;
+  for (const url of pages) {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await page.goto(`${baseURL}/${url}`, { waitUntil: "networkidle" });
+    const nav = await page.evaluate(() => {
+      const h = document.querySelector("header.site-header");
+      if (!h) return null;
+      return {
+        brand: h.querySelector(".wordmark")?.textContent.replace(/\s+/g, " ").trim(),
+        labels: [...h.querySelectorAll("nav a")].map((a) => a.textContent.replace(/\s+/g, " ").trim()),
+        current: [...h.querySelectorAll("nav a[aria-current=page]")].map((a) => a.textContent.trim()),
+        hrefs: [...h.querySelectorAll("nav a")].map((a) => a.href),
+      };
+    });
+    assert.ok(nav, `${url}: no shared header`);
+    assert.equal(nav.current.length, 1, `${url}: exactly one nav entry marks the current page, got ${nav.current.length}`);
+    if (expected === null) expected = { brand: nav.brand, labels: nav.labels };
+    else {
+      assert.equal(nav.brand, expected.brand, `${url}: wordmark differs`);
+      assert.deepEqual(nav.labels, expected.labels, `${url}: menu differs from the other pages`);
+    }
+    for (const href of nav.hrefs) {
+      if (href.startsWith("https://")) continue;
+      const res = await fetch(href);
+      assert.ok(res.ok, `${url}: menu link ${href} returns ${res.status}`);
+    }
+    await page.close();
+  }
+  console.log(`Shared menu: ${expected.labels.join(" / ")} — identical on ${pages.length} pages.`);
 }
 
 await browser.close();

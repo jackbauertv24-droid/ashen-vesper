@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c1016">
   <meta name="description" content="Enter the abbey. An interactive study of painted Gothic game art, character movement, and modular stonework.">
-  <title>Ashen Vesper — The Abbey Gate</title>
+  <title>Ashen Vesper — Art study</title>
   <link rel="stylesheet" href="prototype/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="wordmark" href="./"><span class="sigil" aria-hidden="true">✧</span> ASHEN VESPER</a>
-    <nav aria-label="Main"><a href="art/library/gallery.html">Art library</a><a href="#the-study">The study</a><a href="https://github.com/jackbauertv24-droid/ashen-vesper">Repository <span aria-hidden="true">↗</span></a></nav>
-  </header>
+  <header class="site-header"></header>
   <main>
     <section class="intro" aria-labelledby="title">
       <div><p class="eyebrow"><span></span> FIELD STUDY 001 <span class="divider">/</span> THE ABBEY GATE</p>
@@ -45,5 +42,5 @@
   </main>
   <footer><span>ASHEN VESPER <span class="footer-sep">/</span> An original Gothic adventure in development.</span><a href="https://github.com/jackbauertv24-droid/ashen-vesper/issues">Follow the work ↗</a></footer>
   <script type="module" src="prototype/game.js"></script>
-</body>
+<script type="module">import{mountNav}from"./prototype/site-nav.js";mountNav("./")</script></body>
 </html>

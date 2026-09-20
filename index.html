@@ -9,18 +9,7 @@
     <link rel="stylesheet" href="prototype/encounter.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="wordmark" href="./">✧ ASHEN VESPER</a>
-      <nav>
-        <a href="cloister.html">Stage 02 · Ruined Cloister</a
-        >
-        <a href="art/library/gallery.html">Art library</a
-        ><a href="study.html">Original study</a
-        ><a href="https://github.com/jackbauertv24-droid/ashen-vesper"
-          >Repository ↗</a
-        >
-      </nav>
-    </header>
+    <header class="site-header"></header>
     <main>
       <section class="intro">
         <div>
@@ -158,5 +147,5 @@
       ><a href="study.html">Return to the original art study ↗</a>
     </footer>
     <script type="module" src="prototype/encounter.js"></script>
-  </body>
+  <script type="module">import{mountNav}from"./prototype/site-nav.js";mountNav("./")</script></body>
 </html>

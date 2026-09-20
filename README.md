@@ -10,7 +10,19 @@ An original Gothic action-platformer inspired by classic side-scrolling adventur
 
 **Stage layout baselines:** [six map examples and contributor instructions](docs/world/examples/README.md) · [neutral scrolling diagrams](docs/world/examples/v001/preview.html). Geometry is supplied separately from written HD art direction; new stages remain planning-only.
 
-[Play the Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) · [Play Stage 02: Ruined Cloister](https://jackbauertv24-droid.github.io/ashen-vesper/cloister.html) · [Original art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) · [Retained art gallery](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html)
+There are four pages, and every one carries the same menu:
+
+| Page | What it is |
+| --- | --- |
+| [Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) | Stage 01, playable |
+| [Ruined Cloister](https://jackbauertv24-droid.github.io/ashen-vesper/cloister.html) | Stage 02, playable |
+| [Art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) | The original motion and masonry study; not a stage |
+| [Art library](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html) | Every retained asset at original resolution |
+
+Each art submission also ships its own preview page under
+`art/contributions/`, but those are review evidence rather than part of the
+demo.
+
 
 The two stages are now one run. Light the sanctuary, cross the threshold
 beyond it, and the Cloister keeps your health and everything you changed on
@@ -43,7 +55,7 @@ npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:4173. The original art study is at `/study.html`.
+Open http://127.0.0.1:4173. The art study is at `/study.html`.
 
 ```sh
 npm test                  # ~1s   gameplay and the shared runtime contract
