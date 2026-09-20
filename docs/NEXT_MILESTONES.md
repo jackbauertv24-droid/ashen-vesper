@@ -33,7 +33,7 @@ The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parit
 
 ## Milestone 2 — Heavy combat and moving platforms
 
-7. **M2.1 Iron Sexton motion/AI (art accepted; code outstanding):** the v005 sheet is selected — hurt-cell shovel restored, zero detached fragments, distinct walk cadence (see [the PR40 review](PR_40_REVIEW.md)). Eight poses and physical shovel contact. Implement bait/miss/recovery and wall behavior with current movement.
+7. **M2.1 Iron Sexton motion/AI (art accepted and now rendered in the Cloister; behaviour outstanding):** see [the integration note](IRON_SEXTON_INTEGRATION.md) for the two recorded deviations. the v005 sheet is selected — hurt-cell shovel restored, zero detached fragments, distinct walk cadence (see [the PR40 review](PR_40_REVIEW.md)). Eight poses and physical shovel contact. Implement bait/miss/recovery and wall behavior with current movement.
 8. **M2.2 Lift runner (code, blockout first):** use rectangles or selected lift deck. Carry grounded player, permit jump-off, solid sides/underside, safe reversal, no silent crush, camera/checkpoint tests. Art is not evidence of behavior.
 9. **M2.3 Lift assembly (art cleanup after M2.2):** separate deck, chain and counterweight sockets; chain three-copy seam. Reuse selected deck. Generate only missing pieces proven visible by the runner.
 

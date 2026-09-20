@@ -1837,3 +1837,44 @@ test("Job 12 Iron Sexton 8-pose motion sheet hurt shovel restore (v005) satisfie
   assert.equal(reviewPng.width, 1680);
   assert.equal(reviewPng.height, 1260);
 });
+
+test("Iron Sexton poses stay inside the hitbox the player can actually strike", async () => {
+  const { IRON_SEXTON, sextonOffset } = await import(
+    "../prototype/iron-sexton.js"
+  );
+  const im = PNG.sync.read(fs.readFileSync(IRON_SEXTON.path));
+  const C = IRON_SEXTON.cell;
+  const at = (x, y) => im.data[(((y * im.width) + x) << 2) | 3];
+
+  // Torso centre: the widest contiguous opaque run per row across the chest
+  // band, which ignores the shovel and outflung limbs.
+  const torso = ([col, row]) => {
+    const ox = col * C, oy = row * C;
+    let sum = 0, rows = 0;
+    for (let y = 200; y <= 330; y++) {
+      let best = 0, mid = 0, run = 0, start = 0;
+      for (let x = 0; x < C; x++) {
+        if (at(ox + x, oy + y) > 24) { if (!run) start = x; run++; }
+        else { if (run > best) { best = run; mid = start + run / 2; } run = 0; }
+      }
+      if (run > best) { best = run; mid = start + run / 2; }
+      if (best > 60) { sum += mid; rows++; }
+    }
+    assert.ok(rows > 0, "no torso band found");
+    return sum / rows;
+  };
+
+  // The simulation's enemy hitbox is 48 units wide, so the drawn body may not
+  // wander more than half of that from the pose the player reads as "standing
+  // here". Anything further is corrected in IRON_SEXTON.offsets, not ignored.
+  const halfWidth = 24;
+  const limit = halfWidth / IRON_SEXTON.scale; // source pixels
+  const base = torso(IRON_SEXTON.frames.idle);
+  for (const [name, cell] of Object.entries(IRON_SEXTON.frames)) {
+    const drift = torso(cell) - base + sextonOffset(name);
+    assert.ok(
+      Math.abs(drift) <= limit,
+      `${name} draws ${(drift * IRON_SEXTON.scale).toFixed(1)} units from the hitbox centre (limit ${halfWidth})`,
+    );
+  }
+});

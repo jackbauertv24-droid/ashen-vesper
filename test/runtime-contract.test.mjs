@@ -16,6 +16,7 @@ import {
 import fs from "node:fs";
 import { PNG } from "pngjs";
 import { platformCap } from "../prototype/environment-metrics.js";
+import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
 import * as road from "../prototype/encounter-sim.js";
 import * as cloister from "../prototype/cloister-sim.js";
 
@@ -218,4 +219,29 @@ test("contract: the repeated floor cap tiles without a seam or lighting drift", 
   };
   const drift = Math.abs(band(0, Math.floor(w * 0.1)) - band(Math.floor(w * 0.9), w));
   assert.ok(drift <= 8, `cool-to-warm drift of ${drift.toFixed(1)} will stripe`);
+});
+
+// ---------- Part D: stage actors are wired to real sheet cells ----------
+
+test("contract: every enemy mode maps to a real Iron Sexton pose", () => {
+  const { cell, frames, offsets, anchor, scale } = IRON_SEXTON;
+  const modes = ["patrol", "approach", "windup", "strike", "recover", "hurt"];
+  for (const mode of modes) {
+    for (const timer of [0.8, 0.2]) {
+      const pose = sextonFrame({ mode, timer }, 0);
+      assert.ok(frames[pose], `${mode} -> unknown pose ${pose}`);
+      const [col, row] = frames[pose];
+      assert.ok(col >= 0 && col < 4 && row >= 0 && row < 2, `${pose} outside the grid`);
+    }
+  }
+  // the walk alternates rather than sticking on one foot
+  const a = sextonFrame({ mode: "approach", timer: 0 }, 0);
+  const b = sextonFrame({ mode: "approach", timer: 0 }, 0.3);
+  assert.notEqual(a, b, "approach must alternate its step poses");
+  // every recorded offset names a pose that exists
+  for (const name of Object.keys(offsets))
+    assert.ok(frames[name], `offset recorded for unknown pose ${name}`);
+  assert.equal(cell, 512);
+  assert.ok(anchor[0] > 0 && anchor[1] > 0);
+  assert.ok(scale > 0.4 && scale < 0.5, `unexpected runtime scale ${scale}`);
 });
