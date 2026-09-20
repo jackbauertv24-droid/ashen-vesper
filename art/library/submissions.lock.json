@@ -933,6 +933,34 @@
     {
       "path": "docs/reviews/platform-cap-seamless-v002.png",
       "sha256": "c54d6fb69969237225c86f786a5724dbfc3ddcec08e04d442b869302b939e6f2"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/exports/iron-sexton-motion-v002.png",
+      "sha256": "c67cb4fa643b5ab8dd7c84204a50c76ab3580b3d98cf40118cc0a1b40453642f"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/NOTES.md",
+      "sha256": "23f00d56811afa308c8f058e0a13f59b763d8a09aa05e9a63c1f8adefc1bf5b1"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/preview.html",
+      "sha256": "951f9f07f13f04951dff3be759abba4304a1c52e07a69c85cdb9e0fa16553066"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/PROMPT.txt",
+      "sha256": "e49dad717d73e46b080e3f50445ca9b43d867ef5c095d981e5cbaa55ebb05435"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/source/iron-sexton-motion-generated-v002.jpg",
+      "sha256": "13ebc6dd86bddbc8ecead8ed3a808f46cbd9bcdb6df510e833447c1ebdc868ef"
+    },
+    {
+      "path": "art/contributions/12-iron-sexton/v004/submission.json",
+      "sha256": "b341160394b77ed9037e3b0ec6d4fc6d0f566d7bf159de3af402db1c12c69438"
+    },
+    {
+      "path": "docs/reviews/iron-sexton-motion-v002.png",
+      "sha256": "5a79264c15d4d7e0ea805d58684400cea9a4fe6db6c42181bff523dfeb5fb156"
     }
   ]
 }
