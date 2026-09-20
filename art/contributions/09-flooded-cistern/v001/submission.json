@@ -1,0 +1,76 @@
+{
+  "jobId": "09-flooded-cistern",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png",
+      "sha256": "2220f6403089ee3e58d7e54abbbb1a65da1365bd285ea97ba4680d2784d3991a",
+      "width": 1024,
+      "height": 1024,
+      "pivot": [
+        512,
+        960
+      ],
+      "visibleBounds": {
+        "minX": 270,
+        "maxX": 752,
+        "minY": 43,
+        "maxY": 979,
+        "width": 483,
+        "height": 937
+      },
+      "runtimeCanvas": [
+        240,
+        240
+      ],
+      "scale": 0.234375,
+      "sockets": {
+        "topContact": {
+          "y": 43,
+          "runtimeY": 10.1
+        },
+        "springCapital": {
+          "y": 260,
+          "runtimeY": 60.9,
+          "span": [
+            270,
+            752
+          ]
+        },
+        "shaft": {
+          "span": [
+            390,
+            630
+          ],
+          "width": 240,
+          "centerX": 511
+        },
+        "lanternBracket": {
+          "x": 670,
+          "y": 512,
+          "runtimeX": 157,
+          "runtimeY": 120
+        },
+        "baseFooting": {
+          "y": 979,
+          "runtimeY": 229.5
+        },
+        "groundPivot": {
+          "x": 512,
+          "y": 960,
+          "runtimeX": 120,
+          "runtimeY": 225
+        }
+      },
+      "openings": {
+        "bracketLoop": {
+          "transparentPixels": 2510,
+          "center": [
+            630,
+            460
+          ]
+        }
+      }
+    }
+  ]
+}
