@@ -7,6 +7,7 @@ import {
   crouchHead,
   crouchScale,
 } from "../prototype/character-metrics.js";
+
 test("calibrated crouch head matches standing anatomy within five percent", () => {
   for (const axis of ["width", "height"]) {
     const reference = standingHead[axis] * standingHead.scale;
@@ -15,6 +16,7 @@ test("calibrated crouch head matches standing anatomy within five percent", () =
     );
   }
 });
+
 test("replacement brazier has real exterior and chain-gap transparency", () => {
   const bytes = fs.readFileSync(
     "art/contributions/04-brazier-alpha/v001/source/brazier-alpha-generated-v001.png",
@@ -36,6 +38,7 @@ test("replacement brazier has real exterior and chain-gap transparency", () => {
       0,
     );
 });
+
 test("ember cutout has genuine RGBA transparency and clear 32px outer border", () => {
   const bytes = fs.readFileSync(
     "art/contributions/05-ember-alpha/v001/exports/ember-alpha-v001.png",
@@ -52,6 +55,7 @@ test("ember cutout has genuine RGBA transparency and clear 32px outer border", (
     }
   assert.ok(im.data[(550 * im.width + 512) * 4 + 3] > 200);
 });
+
 test("healing vial pickup candidate has genuine RGBA transparency, clear 32px border, and valid envelope", () => {
   const bytes = fs.readFileSync(
     "art/contributions/14-pickups-and-relics/v001/exports/healing-vial-v001.png",
@@ -764,7 +768,6 @@ test("World 06 Bell Tower timber landing candidate satisfies visual and geometry
   }
 });
 
-
 test("World 04 Ossuary Gallery burial niche panel candidate satisfies visual and geometry contract", () => {
   const bytes = fs.readFileSync(
     "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
@@ -818,7 +821,6 @@ test("World 04 Ossuary Gallery burial niche panel candidate satisfies visual and
     );
   }
 });
-
 
 test("Job 10 Bell Tower Great Bronze Bell candidate satisfies visual and geometry contract", () => {
   const bytes = fs.readFileSync(
@@ -880,7 +882,6 @@ test("Job 10 Bell Tower Great Bronze Bell candidate satisfies visual and geometr
     );
   }
 });
-
 
 test("Job 09 Flooded Cistern vault pier candidate satisfies visual and geometry contract", () => {
   const file = "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png";
@@ -990,7 +991,6 @@ test("Job 16 Tollkeeper corrected two-handed boss candidate satisfies visual and
   assert.equal(tkAsset.pivot[1], 960);
 });
 
-
 test("Job 11 Bell Moth 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
   const file = "art/contributions/11-bell-moth/v003/exports/bell-moth-motion-v001.png";
   const bytes = fs.readFileSync(file);
@@ -1034,7 +1034,6 @@ test("Job 11 Bell Moth 6-pose motion sheet candidate satisfies visual and geomet
   assert.equal(sheet.scale, 0.2);
   assert.equal(sheet.runtimeWingspan, 64);
 });
-
 
 test("Job 12 Iron Sexton 8-pose motion sheet candidate satisfies visual and geometry contract", () => {
   const file = "art/contributions/12-iron-sexton/v003/exports/iron-sexton-motion-v001.png";
@@ -1091,6 +1090,162 @@ test("Job 12 Iron Sexton 8-pose motion sheet candidate satisfies visual and geom
   assert.equal(sheet.runtimeHeight, 160);
   assert.equal(sheet.groundAnchor[0], 208);
   assert.equal(sheet.groundAnchor[1], 464);
+});
+
+test("Job 13 Cistern Lurker 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
+  const file = "art/contributions/13-cistern-lurker/v003/exports/cistern-lurker-motion-v001.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 1536);
+  assert.equal(im.height, 1024);
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/13-cistern-lurker/v003/submission.json", "utf8")
+  );
+  const sheet = submission.sheet;
+  assert.equal(sheet.cols, 3);
+  assert.equal(sheet.rows, 2);
+  assert.equal(sheet.cellWidth, 512);
+  assert.equal(sheet.cellHeight, 512);
+  assert.equal(sheet.frames.length, 6);
+
+  // Verify each of the 6 cells has >= 12px clear border padding
+  for (const f of sheet.frames) {
+    const ox = f.col * 512;
+    const oy = f.row * 512;
+    for (let y = oy; y < oy + 512; y++) {
+      for (let x = ox; x < ox + 512; x++) {
+        const relX = x - ox;
+        const relY = y - oy;
+        if (relX < 12 || relY < 12 || relX >= 500 || relY >= 500) {
+          const alpha = im.data[(y * 1536 + x) * 4 + 3];
+          assert.equal(alpha, 0, `Cell ${f.name} outer 12px padding must be transparent at rel (${relX}, ${relY})`);
+        }
+      }
+    }
+
+    // Verify solid body opacity near center of local bounds
+    const cx = Math.round((f.localBounds.minX + f.localBounds.maxX) / 2);
+    const cy = Math.round((f.localBounds.minY + f.localBounds.maxY) / 2);
+    const bodyA = im.data[((oy + cy) * 1536 + (ox + cx)) * 4 + 3];
+    assert.ok(bodyA > 200, `Cell ${f.name} body center must be opaque`);
+  }
+
+  // Verify outer 32px perimeter of the 1536x1024 sheet has 0 alpha
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1536; x++) {
+      if (x < 32 || x >= 1536 - 32 || y < 32 || y >= 1024 - 32) {
+        assert.equal(im.data[(y * 1536 + x) * 4 + 3], 0, `Outer 32px perimeter must be zero alpha at (${x}, ${y})`);
+      }
+    }
+  }
+
+  // Runtime scale and size
+  assert.equal(sheet.scale, 0.3);
+  assert.equal(sheet.runtimeSize[0], 96);
+  assert.equal(sheet.runtimeSize[1], 48);
+  assert.equal(sheet.groundPivot[0], 256);
+  assert.equal(sheet.groundPivot[1], 448);
+});
+
+test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual, geometry, and zero-delta seam contract", () => {
+  const centerBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
+  );
+  const center = PNG.sync.read(centerBytes);
+  assert.equal(centerBytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(center.width, 1024);
+  assert.equal(center.height, 256);
+
+  // Check mathematical seamlessness across repeating seam boundary:
+  // Column 0 must exactly equal Column 1023 across all 256 vertical scanlines
+  let maxSeamDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const idx0 = (y * 1024 + 0) * 4;
+    const idxLast = (y * 1024 + 1023) * 4;
+    for (let c = 0; c < 4; c++) {
+      const delta = Math.abs(center.data[idx0 + c] - center.data[idxLast + c]);
+      if (delta > maxSeamDelta) maxSeamDelta = delta;
+    }
+  }
+  assert.equal(maxSeamDelta, 0, "Seam repeat delta must be exactly 0 across all channels (R, G, B, A)");
+
+  // Top surface must be planar at y=32 and top clearance border (y < 16) must be transparent
+  for (let y = 0; y < 16; y++) {
+    for (let x = 0; x < 1024; x++) {
+      assert.equal(center.data[(y * 1024 + x) * 4 + 3], 0, `Top margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Top walking contact surface must be solid opaque across entire width at y=32
+  for (let x = 0; x < 1024; x++) {
+    assert.ok(
+      center.data[(32 * 1024 + x) * 4 + 3] > 240,
+      `Top contact surface at x=${x} must be solid opaque`,
+    );
+  }
+
+  // Left end cap verification
+  const leftBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
+  );
+  const leftEnd = PNG.sync.read(leftBytes);
+  assert.equal(leftBytes[25], 6, "Left end must be Color Type 6 (RGBA)");
+  assert.equal(leftEnd.width, 256);
+  assert.equal(leftEnd.height, 256);
+
+  // Left end outer clearance border: x < 32 must be transparent
+  for (let y = 0; y < 256; y++) {
+    for (let x = 0; x < 32; x++) {
+      assert.equal(leftEnd.data[(y * 256 + x) * 4 + 3], 0, `Left end outer margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Left end column 255 must match center column 0
+  let leftToCenterDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const iL = (y * 256 + 255) * 4;
+    const iC = (y * 1024 + 0) * 4;
+    for (let c = 0; c < 4; c++) {
+      leftToCenterDelta = Math.max(leftToCenterDelta, Math.abs(leftEnd.data[iL + c] - center.data[iC + c]));
+    }
+  }
+  assert.equal(leftToCenterDelta, 0, "Left end to center strip junction delta must be 0");
+
+  // Right end cap verification
+  const rightBytes = fs.readFileSync(
+    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
+  );
+  const rightEnd = PNG.sync.read(rightBytes);
+  assert.equal(rightBytes[25], 6, "Right end must be Color Type 6 (RGBA)");
+  assert.equal(rightEnd.width, 256);
+  assert.equal(rightEnd.height, 256);
+
+  // Right end outer clearance border: x >= 224 must be transparent
+  for (let y = 0; y < 256; y++) {
+    for (let x = 224; x < 256; x++) {
+      assert.equal(rightEnd.data[(y * 256 + x) * 4 + 3], 0, `Right end outer margin violation at (${x}, ${y})`);
+    }
+  }
+
+  // Center column 1023 must match right end column 0
+  let centerToRightDelta = 0;
+  for (let y = 0; y < 256; y++) {
+    const iC = (y * 1024 + 1023) * 4;
+    const iR = (y * 256 + 0) * 4;
+    for (let c = 0; c < 4; c++) {
+      centerToRightDelta = Math.max(centerToRightDelta, Math.abs(center.data[iC + c] - rightEnd.data[iR + c]));
+    }
+  }
+  assert.equal(centerToRightDelta, 0, "Center strip to right end junction delta must be 0");
+
+  // Review composite verification
+  const reviewBytes = fs.readFileSync("docs/reviews/platform-cap-seamless-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
 });
 
 test("Job 12 Iron Sexton 8-pose motion sheet cleanup (v004) satisfies visual, geometry, and mesh contiguity contract", () => {
@@ -1193,64 +1348,6 @@ test("Job 12 Iron Sexton 8-pose motion sheet cleanup (v004) satisfies visual, ge
   assert.equal(sheet.groundAnchor[1], 464);
 });
 
-test("Job 13 Cistern Lurker 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
-  const file = "art/contributions/13-cistern-lurker/v003/exports/cistern-lurker-motion-v001.png";
-  const bytes = fs.readFileSync(file);
-  const im = PNG.sync.read(bytes);
-
-  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
-  assert.equal(im.width, 1536);
-  assert.equal(im.height, 1024);
-
-  const submission = JSON.parse(
-    fs.readFileSync("art/contributions/13-cistern-lurker/v003/submission.json", "utf8")
-  );
-  const sheet = submission.sheet;
-  assert.equal(sheet.cols, 3);
-  assert.equal(sheet.rows, 2);
-  assert.equal(sheet.cellWidth, 512);
-  assert.equal(sheet.cellHeight, 512);
-  assert.equal(sheet.frames.length, 6);
-
-  // Verify each of the 6 cells has >= 12px clear border padding
-  for (const f of sheet.frames) {
-    const ox = f.col * 512;
-    const oy = f.row * 512;
-    for (let y = oy; y < oy + 512; y++) {
-      for (let x = ox; x < ox + 512; x++) {
-        const relX = x - ox;
-        const relY = y - oy;
-        if (relX < 12 || relY < 12 || relX >= 500 || relY >= 500) {
-          const alpha = im.data[(y * 1536 + x) * 4 + 3];
-          assert.equal(alpha, 0, `Cell ${f.name} outer 12px padding must be transparent at rel (${relX}, ${relY})`);
-        }
-      }
-    }
-
-    // Verify solid body opacity near center of local bounds
-    const cx = Math.round((f.localBounds.minX + f.localBounds.maxX) / 2);
-    const cy = Math.round((f.localBounds.minY + f.localBounds.maxY) / 2);
-    const bodyA = im.data[((oy + cy) * 1536 + (ox + cx)) * 4 + 3];
-    assert.ok(bodyA > 200, `Cell ${f.name} body center must be opaque`);
-  }
-
-  // Verify outer 32px perimeter of the 1536x1024 sheet has 0 alpha
-  for (let y = 0; y < 1024; y++) {
-    for (let x = 0; x < 1536; x++) {
-      if (x < 32 || x >= 1536 - 32 || y < 32 || y >= 1024 - 32) {
-        assert.equal(im.data[(y * 1536 + x) * 4 + 3], 0, `Outer 32px perimeter must be zero alpha at (${x}, ${y})`);
-      }
-    }
-  }
-
-  // Runtime scale and size
-  assert.equal(sheet.scale, 0.3);
-  assert.equal(sheet.runtimeSize[0], 96);
-  assert.equal(sheet.runtimeSize[1], 48);
-  assert.equal(sheet.groundPivot[0], 256);
-  assert.equal(sheet.groundPivot[1], 448);
-});
-
 test("Job 16 Tollkeeper Boss 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
   const file = "art/contributions/16-tollkeeper/v003/exports/tollkeeper-motion-v001.png";
   const bytes = fs.readFileSync(file);
@@ -1350,104 +1447,6 @@ test("Job 16 Tollkeeper Boss 6-pose motion sheet candidate satisfies visual and 
   assert.equal(sheet.groundPivot[1], 704);
 });
 
-test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual, geometry, and zero-delta seam contract", () => {
-  const centerBytes = fs.readFileSync(
-    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
-  );
-  const center = PNG.sync.read(centerBytes);
-  assert.equal(centerBytes[25], 6, "Must be Color Type 6 (RGBA)");
-  assert.equal(center.width, 1024);
-  assert.equal(center.height, 256);
-
-  // Check mathematical seamlessness across repeating seam boundary:
-  // Column 0 must exactly equal Column 1023 across all 256 vertical scanlines
-  let maxSeamDelta = 0;
-  for (let y = 0; y < 256; y++) {
-    const idx0 = (y * 1024 + 0) * 4;
-    const idxLast = (y * 1024 + 1023) * 4;
-    for (let c = 0; c < 4; c++) {
-      const delta = Math.abs(center.data[idx0 + c] - center.data[idxLast + c]);
-      if (delta > maxSeamDelta) maxSeamDelta = delta;
-    }
-  }
-  assert.equal(maxSeamDelta, 0, "Seam repeat delta must be exactly 0 across all channels (R, G, B, A)");
-
-  // Top surface must be planar at y=32 and top clearance border (y < 16) must be transparent
-  for (let y = 0; y < 16; y++) {
-    for (let x = 0; x < 1024; x++) {
-      assert.equal(center.data[(y * 1024 + x) * 4 + 3], 0, `Top margin violation at (${x}, ${y})`);
-    }
-  }
-
-  // Top walking contact surface must be solid opaque across entire width at y=32
-  for (let x = 0; x < 1024; x++) {
-    assert.ok(
-      center.data[(32 * 1024 + x) * 4 + 3] > 240,
-      `Top contact surface at x=${x} must be solid opaque`,
-    );
-  }
-
-  // Left end cap verification
-  const leftBytes = fs.readFileSync(
-    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
-  );
-  const leftEnd = PNG.sync.read(leftBytes);
-  assert.equal(leftBytes[25], 6, "Left end must be Color Type 6 (RGBA)");
-  assert.equal(leftEnd.width, 256);
-  assert.equal(leftEnd.height, 256);
-
-  // Left end outer clearance border: x < 32 must be transparent
-  for (let y = 0; y < 256; y++) {
-    for (let x = 0; x < 32; x++) {
-      assert.equal(leftEnd.data[(y * 256 + x) * 4 + 3], 0, `Left end outer margin violation at (${x}, ${y})`);
-    }
-  }
-
-  // Left end column 255 must match center column 0
-  let leftToCenterDelta = 0;
-  for (let y = 0; y < 256; y++) {
-    const iL = (y * 256 + 255) * 4;
-    const iC = (y * 1024 + 0) * 4;
-    for (let c = 0; c < 4; c++) {
-      leftToCenterDelta = Math.max(leftToCenterDelta, Math.abs(leftEnd.data[iL + c] - center.data[iC + c]));
-    }
-  }
-  assert.equal(leftToCenterDelta, 0, "Left end to center strip junction delta must be 0");
-
-  // Right end cap verification
-  const rightBytes = fs.readFileSync(
-    "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
-  );
-  const rightEnd = PNG.sync.read(rightBytes);
-  assert.equal(rightBytes[25], 6, "Right end must be Color Type 6 (RGBA)");
-  assert.equal(rightEnd.width, 256);
-  assert.equal(rightEnd.height, 256);
-
-  // Right end outer clearance border: x >= 224 must be transparent
-  for (let y = 0; y < 256; y++) {
-    for (let x = 224; x < 256; x++) {
-      assert.equal(rightEnd.data[(y * 256 + x) * 4 + 3], 0, `Right end outer margin violation at (${x}, ${y})`);
-    }
-  }
-
-  // Center column 1023 must match right end column 0
-  let centerToRightDelta = 0;
-  for (let y = 0; y < 256; y++) {
-    const iC = (y * 1024 + 1023) * 4;
-    const iR = (y * 256 + 0) * 4;
-    for (let c = 0; c < 4; c++) {
-      centerToRightDelta = Math.max(centerToRightDelta, Math.abs(center.data[iC + c] - rightEnd.data[iR + c]));
-    }
-  }
-  assert.equal(centerToRightDelta, 0, "Center strip to right end junction delta must be 0");
-
-  // Review composite verification
-  const reviewBytes = fs.readFileSync("docs/reviews/platform-cap-seamless-v002.png");
-  const reviewPng = PNG.sync.read(reviewBytes);
-  assert.equal(reviewPng.width, 1680);
-  assert.equal(reviewPng.height, 1260);
-});
-
 test("World 04 Ossuary Gallery burial niche panel clean derivative (v002) satisfies visual and geometry contract", () => {
   const bytes = fs.readFileSync(
     "art/contributions/world-04-ossuary-gallery/v002/exports/niche-panel-v002.png",
@@ -1472,28 +1471,6 @@ test("World 04 Ossuary Gallery burial niche panel clean derivative (v002) satisf
         if (x > maxX) maxX = x;
         if (y < minY) minY = y;
         if (y > maxY) maxY = y;
-test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy visual and geometry contract", () => {
-  // 1. Unlit Vault Pier
-  const pierBytes = fs.readFileSync(
-    "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
-  );
-  const pier = PNG.sync.read(pierBytes);
-  assert.equal(pierBytes[25], 6, "Pier must be Color Type 6 (RGBA)");
-  assert.equal(pier.width, 1024);
-  assert.equal(pier.height, 1024);
-
-  let pMinX = 1024, pMaxX = 0, pMinY = 1024, pMaxY = 0;
-  for (let y = 0; y < 1024; y++) {
-    for (let x = 0; x < 1024; x++) {
-      const alpha = pier.data[(y * 1024 + x) * 4 + 3];
-      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
-        assert.equal(alpha, 0, `Pier perimeter violation at (${x}, ${y})`);
-      }
-      if (alpha > 0) {
-        if (x < pMinX) pMinX = x;
-        if (x > pMaxX) pMaxX = x;
-        if (y < pMinY) pMinY = y;
-        if (y > pMaxY) pMaxY = y;
       }
     }
   }
@@ -1527,6 +1504,37 @@ test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy
 
   // Review composite verification
   const reviewBytes = fs.readFileSync("docs/reviews/ossuary-niche-panel-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+
+test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy visual and geometry contract", () => {
+  // 1. Unlit Vault Pier
+  const pierBytes = fs.readFileSync(
+    "art/contributions/09-flooded-cistern/v002/exports/cistern-vault-pier-unlit-v002.png",
+  );
+  const pier = PNG.sync.read(pierBytes);
+  assert.equal(pierBytes[25], 6, "Pier must be Color Type 6 (RGBA)");
+  assert.equal(pier.width, 1024);
+  assert.equal(pier.height, 1024);
+
+  let pMinX = 1024, pMaxX = 0, pMinY = 1024, pMaxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = pier.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Pier perimeter violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < pMinX) pMinX = x;
+        if (x > pMaxX) pMaxX = x;
+        if (y < pMinY) pMinY = y;
+        if (y > pMaxY) pMaxY = y;
+      }
+    }
+  }
+
   assert.equal(pMinX, 114, "Pier minX must be 114px");
   assert.equal(pMaxX, 909, "Pier maxX must be 909px");
   assert.equal(pMinY, 36, "Pier minY must be 36px");
@@ -1547,7 +1555,6 @@ test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy
     const idx = (sy * 1024 + sx) * 4;
     assert.ok(pier.data[idx + 3] > 240, `Pier material at (${sx}, ${sy}) must be solid opaque`);
   }
-
 
   // 2. Hanging Lantern Prop
   const lanternBytes = fs.readFileSync(
@@ -1597,6 +1604,11 @@ test("Job 09 Flooded Cistern unlit vault pier and hanging lantern (v002) satisfy
 
   // 3. Review composite verification
   const reviewBytes = fs.readFileSync("docs/reviews/cistern-vault-pier-unlit-v002.png");
+  const reviewPng = PNG.sync.read(reviewBytes);
+  assert.equal(reviewPng.width, 1680);
+  assert.equal(reviewPng.height, 1260);
+});
+
 test("World 03 Flooded Cistern seamless damp platform kit candidate satisfies visual, geometry, and zero-delta seam contract", () => {
   // Center strip verification
   const centerBytes = fs.readFileSync(
@@ -1692,5 +1704,3 @@ test("World 03 Flooded Cistern seamless damp platform kit candidate satisfies vi
   assert.equal(reviewPng.width, 1680);
   assert.equal(reviewPng.height, 1260);
 });
-
-
