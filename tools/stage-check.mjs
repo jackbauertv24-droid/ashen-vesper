@@ -16,6 +16,7 @@ const baseURL = `http://127.0.0.1:${PORT}`;
 const stages = [
   { name: "Pilgrim Road", page: "index.html", key: "encounter" },
   { name: "Ruined Cloister", page: "cloister.html", key: "cloister" },
+  { name: "Flooded Cistern", page: "cistern.html", key: "cistern" },
 ];
 
 const server = spawn(process.execPath, ["tools/serve.mjs"], {
@@ -173,6 +174,7 @@ for (const [name, url] of [
   const pages = [
     "index.html",
     "cloister.html",
+    "cistern.html",
     "study.html",
     "art/library/gallery.html",
   ];

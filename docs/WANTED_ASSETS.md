@@ -78,7 +78,7 @@ does not need its own.
 
 | Stage | Floor | Scenery | Enemy with motion | Verdict |
 | --- | --- | --- | --- | --- |
-| 03 Flooded Cistern | damp centre strip + both end caps | unlit vault pier, hanging lantern | Lurker, 6 poses | **buildable with no new art** |
+| 03 Flooded Cistern | damp centre strip + both end caps | unlit vault pier, hanging lantern | Lurker, 6 poses | **built — playable at `cistern.html`** |
 | 06 Bell Tower | landing only | none | Tollkeeper 6 poses, Bell Moth 6 poses | actors ready, no environment, and needs the vertical camera |
 | 04 Ossuary Gallery | none | one niche wall panel | none | not close |
 | 05 Counterweight Works | lift deck only | none | none | not close, and the lift runner is uncoded |

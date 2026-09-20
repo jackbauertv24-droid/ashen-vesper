@@ -16,6 +16,7 @@ There are four pages, and every one carries the same menu:
 | --- | --- |
 | [Pilgrim Road](https://jackbauertv24-droid.github.io/ashen-vesper/) | Stage 01, playable |
 | [Ruined Cloister](https://jackbauertv24-droid.github.io/ashen-vesper/cloister.html) | Stage 02, playable |
+| [Flooded Cistern](https://jackbauertv24-droid.github.io/ashen-vesper/cistern.html) | Stage 03, playable |
 | [Art study](https://jackbauertv24-droid.github.io/ashen-vesper/study.html) | The original motion and masonry study; not a stage |
 | [Art library](https://jackbauertv24-droid.github.io/ashen-vesper/art/library/gallery.html) | Every retained asset at original resolution |
 

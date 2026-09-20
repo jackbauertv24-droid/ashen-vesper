@@ -20,10 +20,12 @@ import { platformCap } from "../prototype/environment-metrics.js";
 import { IRON_SEXTON, sextonFrame } from "../prototype/iron-sexton.js";
 import * as road from "../prototype/encounter-sim.js";
 import * as cloister from "../prototype/cloister-sim.js";
+import * as cistern from "../prototype/cistern-sim.js";
 
 const stages = [
   ["Pilgrim Road", road],
   ["Ruined Cloister", cloister],
+  ["Flooded Cistern", cistern],
 ];
 
 const body = (over = {}) => ({
@@ -313,8 +315,9 @@ test("contract: filled rectangles are UI or debug only, never world objects", ()
     "#d0a079": "enemy health bar fill (UI)",
     "#ffa95a66": "attack hitbox, only behind the guide toggle (debug)",
     "#0b131b": "Stage 02 background clear, pending a painted backdrop",
+    "#1d2b33": "Stage 03 enemy health bar backing (UI)",
   };
-  for (const file of ["encounter", "cloister"]) {
+  for (const file of ["encounter", "cloister", "cistern"]) {
     const src = fs.readFileSync(
       new URL(`../prototype/${file}.js`, import.meta.url),
       "utf8",

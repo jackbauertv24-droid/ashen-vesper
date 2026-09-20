@@ -19,7 +19,7 @@ Every stage milestone must ship with a discoverable link from the main demo, a s
 | Area | Available now | Still missing |
 | --- | --- | --- |
 | Ruined Cloister | Playable four-beat scrolling integration demo on the shared runtime contract; arch, pier, cap, lever, grate and vial | Pilgrim Road transition, persistent room state, return path, authored enemy motion, final room-graph adaptation, settings UI, sound and checkpoint object |
-| Flooded Cistern | Damp cap and selected pier | Playable layout, water hazard, valve behavior, separated lantern, enemy motion and transition |
+| Flooded Cistern | **Playable four-beat route**; damp kit, unlit pier, lantern, Lurker all integrated | Baseline six-room adaptation, backdrop, Lurker hurt and death poses |
 | Ossuary Gallery | Selected niche panel | Playable layout, lettering cleanup, doors/hazards and encounter placement |
 | Counterweight Works | Selected lift deck | Lift runner, shaft layout, chains/counterweights, crush/reversal rules and transition |
 | Bell Tower | Selected landing and bell | Vertical camera, playable layout, hanging support, bell interaction/audio and boss |

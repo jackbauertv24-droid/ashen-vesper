@@ -8,6 +8,7 @@
 // come back.
 import * as road from "./encounter-sim.js";
 import * as cloister from "./cloister-sim.js";
+import * as cistern from "./cistern-sim.js";
 
 export const ROOMS = {
   road: {
@@ -34,7 +35,7 @@ export const ROOMS = {
     sim: cloister,
     label: "The Ruined Cloister",
     page: "cloister.html",
-    spawns: { entrance: { x: 200, y: 600 }, end: { x: 4040, y: 600 } },
+    spawns: { entrance: { x: 200, y: 600 }, end: { x: 3950, y: 600 } },
     exits: [
       {
         x: 110,
@@ -42,6 +43,29 @@ export const ROOMS = {
         spawn: "sanctuary",
         open: () => true,
         label: "The road back lies through the arch. Press interact to return.",
+      },
+      {
+        x: 4140,
+        to: "cistern",
+        spawn: "entrance",
+        open: (s) => s.complete,
+        label: "Steps fall away toward water. Press interact to descend.",
+        locked: "The cloister is not yet crossed.",
+      },
+    ],
+  },
+  cistern: {
+    sim: cistern,
+    label: "The Flooded Cistern",
+    page: "cistern.html",
+    spawns: { entrance: { x: 150, y: 600 }, end: { x: 4340, y: 600 } },
+    exits: [
+      {
+        x: 90,
+        to: "cloister",
+        spawn: "end",
+        open: () => true,
+        label: "The stair back to the cloister. Press interact to climb.",
       },
     ],
   },

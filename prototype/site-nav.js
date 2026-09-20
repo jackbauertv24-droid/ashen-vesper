@@ -10,6 +10,7 @@
 export const PAGES = [
   { href: "index.html", label: "Pilgrim Road" },
   { href: "cloister.html", label: "Ruined Cloister" },
+  { href: "cistern.html", label: "Flooded Cistern" },
   { href: "study.html", label: "Art study" },
   { href: "art/library/gallery.html", label: "Art library" },
 ];

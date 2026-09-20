@@ -6,7 +6,7 @@
   "description": "A playable Gothic art study: character motion and modular masonry.",
   "scripts": {
     "dev": "node tools/serve.mjs",
-    "test": "node --test test/runtime-contract.test.mjs test/world.test.mjs test/encounter.test.mjs test/cloister.test.mjs test/simulation.test.mjs",
+    "test": "node --test test/runtime-contract.test.mjs test/world.test.mjs test/encounter.test.mjs test/cloister.test.mjs test/cistern.test.mjs test/simulation.test.mjs",
     "test:stage": "node tools/stage-check.mjs",
     "test:route": "node tools/encounter-check.mjs",
     "test:art": "node --test test/visual-contract.test.mjs test/art-submission.test.mjs",
