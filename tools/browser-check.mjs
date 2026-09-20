@@ -44,9 +44,11 @@ try {
   assert.equal(await page.locator('article').count(),manifest.assets.length);
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>{im.loading='eager';return im.decode();}));});
   await page.goto('http://127.0.0.1:4174/cloister.html');
-  await page.waitForFunction(()=>document.querySelector('#enter') && [...document.images].every(im=>im.complete));
+  await page.waitForFunction(()=>window.cloister?.ready);
   await page.locator('#enter').click();
-  await page.keyboard.down('KeyD'); await page.waitForFunction(()=>document.querySelector('#progress').value>2); await page.keyboard.up('KeyD');
+  await page.keyboard.down('KeyD'); await page.waitForFunction(()=>window.cloister.snapshot().x>300);
+  assert.ok((await page.evaluate(()=>window.cloister.snapshot().walk))>0);
+  await page.keyboard.up('KeyD');
   assert.equal(await page.locator('#status').textContent(),'BROKEN ARCADE');
   await page.screenshot({path:'tmp/cloister-stage.png',fullPage:true});
   await page.goto('http://127.0.0.1:4174/art/contributions/02-bellwarden-air-attack/v001/preview.html');

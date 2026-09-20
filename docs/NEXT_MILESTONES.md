@@ -18,6 +18,8 @@ Every stage milestone must ship with a discoverable link from the main demo, a s
 
 The standalone [Ruined Cloister demo](../cloister.html) is the first asset-integration stage. It proves scrolling, platform collision, a collectible, a lever-controlled grate and a combat target. It is deliberately separate until M1.1 connects stage state and transitions safely.
 
+The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parity checklist for every new stage. Sound and checkpoint parity are still open even after the animation, input, enemy, damage and tiling corrections.
+
 ## Milestone 1 — Ruined Cloister becomes playable
 
 1. **M1.1 Connected-room runtime (code, P0):** connect the current standalone Cloister demo to Pilgrim Road, then implement persistent room state, safe spawn and camera reset. Acceptance: Road completion → Cloister → return; checkpoint/death/restart; keyboard/touch/gamepad; no duplicate pickups.
