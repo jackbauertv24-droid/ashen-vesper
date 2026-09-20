@@ -3135,6 +3135,95 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "bellwarden-damage-generated-v001",
+      "path": "art/contributions/01-bellwarden-damage/v001/source/bellwarden-damage-generated-v001.jpg",
+      "title": "bellwarden-damage-generated-v001",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "8686c29503884743710b050e6d8e42bd95843903b1386c55734e31c3b55cf322",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 01 Bellwarden 4-pose damage reaction and death motion sheet (v001).",
+      "limitations": [
+        "Raw generation source; opaque white background requiring clean alpha extraction."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved contributor source under art/contributions/01-bellwarden-damage/v001/source/.",
+        "engineIntegration": "Not integrated; raw generator source."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "retained-source",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "bellwarden-damage-v001",
+      "path": "art/contributions/01-bellwarden-damage/v001/exports/bellwarden-damage-v001.png",
+      "title": "Job 01 Bellwarden 4-pose damage reaction and death motion sheet candidate (v001)",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "04a51cf14669c3d0965f7c6f6f208993bf8b246a22d8dbf7cd50fbe2eff9c5ec",
+      "intendedUse": "Job 01 Bellwarden 4-pose damage reaction and death animation sheet; 1024x1024 sheet with 2x2 512px cells, runtime height 144 units at scale 0.3444976, ground anchor (256, 464). Zero disconnected fragments, safe margins >= 30px, standing reference height 418px.",
+      "limitations": [
+        "Candidate protagonist damage reaction sheet; hurt/stagger/collapse/death state integration pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA sheet with white, black, indigo, grayscale, detail proofs and runtime lineup in docs/reviews/bellwarden-damage-v001.png",
+        "engineIntegration": "Candidate asset; protagonist combat reaction integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-motion-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.3444976,
+        "runtimeHeight": 144,
+        "sheetGrid": [
+          2,
+          2
+        ],
+        "cellSize": [
+          512,
+          512
+        ],
+        "groundAnchor": [
+          256,
+          464
+        ]
+      }
+    },
+    {
+      "id": "bellwarden-damage-review-v001",
+      "path": "docs/reviews/bellwarden-damage-v001.png",
+      "title": "bellwarden-damage-review-v001",
+      "status": "candidate",
+      "width": 1680,
+      "height": 1260,
+      "format": "png",
+      "alpha": false,
+      "sha256": "7500ac8e2038176ec7877ef41cfe774a0341d5057a2aebf20ca2bd238dd0bdb3",
+      "intendedUse": "Multi-panel review composite certifying 0 detached fragments, steady ground anchor (256, 464), safe margins >= 30px, and runtime lineup for Job 01 Bellwarden v001.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with 4 background panels, continuity detail proof, and runtime actor lineup.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

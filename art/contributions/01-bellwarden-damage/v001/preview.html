@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job 01 — Bellwarden Damage Reactions &amp; Death Motion Sheet Preview (v001)</title>
+  <style>
+    :root {
+      --bg: #080c14;
+      --card: #111827;
+      --border: #334155;
+      --text: #e2e8f0;
+      --accent: #38bdf8;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    header { margin-bottom: 20px; }
+    h1 { font-size: 22px; color: var(--amber); margin: 0 0 6px 0; }
+    p { margin: 0; color: #94a3b8; font-size: 13px; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.active {
+      background: #1e293b;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .viewport {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: auto;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport.bg-checker {
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0f172a;
+    }
+    .viewport.bg-white { background: #ffffff; }
+    .viewport.bg-black { background: #000000; }
+    .viewport.bg-indigo { background: #090d14; }
+    .viewport.bg-stone { background: #2a2d36; }
+    canvas { max-width: 100%; height: auto; display: block; }
+    .stats {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 6px;
+    }
+    .stat-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; }
+    .stat-val { font-size: 14px; font-weight: 600; color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job 01 — Bellwarden Damage Reactions &amp; Death Motion Sheet (v001)</h1>
+    <p>Calibrated 4-pose damage reaction and death sprite sheet with 0 detached fragments, uniform 418px reference height, and fixed (256, 464) ground anchor</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn active" data-mode="sheet">Full Sheet (1024×1024)</button>
+    <button class="btn" data-mode="anim-recoil">Loop: Recoil (hurt &rarr; stagger)</button>
+    <button class="btn" data-mode="anim-death">Loop: Defeat (collapse &rarr; death)</button>
+    <button class="btn" data-mode="anim-all">Loop: Full Sequence (all 4 poses)</button>
+    <span style="color: #64748b; margin: 0 8px;">|</span>
+    <button class="btn active" data-bg="bg-checker">Checkerboard</button>
+    <button class="btn" data-bg="bg-indigo">Abbey Indigo</button>
+    <button class="btn" data-bg="bg-stone">Stone</button>
+    <button class="btn" data-bg="bg-black">Black</button>
+    <button class="btn" data-bg="bg-white">White</button>
+    <span style="color: #64748b; margin: 0 8px;">|</span>
+    <button class="btn" id="btn-facing">Facing: Right</button>
+    <button class="btn" id="btn-scale">Scale: 1x (512px)</button>
+  </div>
+
+  <div class="viewport bg-checker" id="viewport">
+    <canvas id="stage" width="1024" height="1024"></canvas>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Sheet Dimensions</div>
+      <div class="stat-val">1024 × 1024 RGBA (2×2 cells)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Ground Anchor</div>
+      <div class="stat-val">(256, 464) fixed across all frames</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Mesh Contiguity</div>
+      <div class="stat-val" style="color: var(--emerald);">0 detached fragments (100% contiguous)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cell Safety Margin</div>
+      <div class="stat-val">&ge; 30px (0 border violations)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Reference Standing Height</div>
+      <div class="stat-val">418px source &rarr; 144 units runtime</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Priority 1 In WANTED_ASSETS</div>
+      <div class="stat-val" style="color: var(--amber);">Fulfills #1 Requested Asset</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('stage');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'exports/bellwarden-damage-v001.png';
+
+    const frames = [
+      { name: 'hurt', col: 0, row: 0, dur: 0.35 },
+      { name: 'stagger', col: 1, row: 0, dur: 0.40 },
+      { name: 'collapse', col: 0, row: 1, dur: 0.45 },
+      { name: 'death', col: 1, row: 1, dur: 0.80 }
+    ];
+
+    let currentMode = 'sheet';
+    let facing = 1; // 1 = right, -1 = left
+    let renderScale = 1.0;
+    let animIndex = 0;
+    let animTimer = 0;
+    let lastTime = 0;
+
+    img.onload = () => {
+      window.bellwardenReady = true;
+      requestAnimationFrame(render);
+    };
+
+    function render(time) {
+      if (!lastTime) lastTime = time;
+      const dt = (time - lastTime) / 1000;
+      lastTime = time;
+
+      if (currentMode === 'sheet') {
+        canvas.width = 1024;
+        canvas.height = 1024;
+        ctx.clearRect(0, 0, 1024, 1024);
+        ctx.drawImage(img, 0, 0);
+
+        // Draw grid overlay
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+        ctx.lineWidth = 1;
+        for (let r = 0; r < 2; r++) {
+          for (let c = 0; c < 2; c++) {
+            ctx.strokeRect(c * 512, r * 512, 512, 512);
+            // Anchor crosshair
+            const ax = c * 512 + 256;
+            const ay = r * 512 + 464;
+            ctx.fillStyle = '#ef4444';
+            ctx.fillRect(ax - 4, ay - 1, 9, 2);
+            ctx.fillRect(ax - 1, ay - 4, 2, 9);
+          }
+        }
+      } else {
+        canvas.width = 512;
+        canvas.height = 512;
+        ctx.clearRect(0, 0, 512, 512);
+
+        let activeSet = frames;
+        if (currentMode === 'anim-recoil') activeSet = frames.slice(0, 2);
+        else if (currentMode === 'anim-death') activeSet = frames.slice(2, 4);
+
+        animTimer += dt;
+        const curFrame = activeSet[animIndex % activeSet.length];
+        if (animTimer >= curFrame.dur) {
+          animTimer = 0;
+          animIndex = (animIndex + 1) % activeSet.length;
+        }
+
+        const f = activeSet[animIndex % activeSet.length];
+        ctx.save();
+        if (facing === -1) {
+          ctx.translate(512, 0);
+          ctx.scale(-1, 1);
+        }
+        ctx.drawImage(img, f.col * 512, f.row * 512, 512, 512, 0, 0, 512, 512);
+        ctx.restore();
+
+        // Ground guide line at y=464
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, 464);
+        ctx.lineTo(512, 464);
+        ctx.stroke();
+
+        // Frame label
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+        ctx.fillRect(10, 10, 160, 24);
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText(f.name + ' (' + f.dur + 's)', 16, 26);
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    // Control event listeners
+    document.querySelectorAll('.btn[data-mode]').forEach(b => {
+      b.onclick = () => {
+        document.querySelectorAll('.btn[data-mode]').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        currentMode = b.getAttribute('data-mode');
+        animIndex = 0; animTimer = 0;
+      };
+    });
+
+    document.querySelectorAll('.btn[data-bg]').forEach(b => {
+      b.onclick = () => {
+        document.querySelectorAll('.btn[data-bg]').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        const vp = document.getElementById('viewport');
+        vp.className = 'viewport ' + b.getAttribute('data-bg');
+      };
+    });
+
+    const facingBtn = document.getElementById('btn-facing');
+    facingBtn.onclick = () => {
+      facing *= -1;
+      facingBtn.textContent = 'Facing: ' + (facing === 1 ? 'Right' : 'Left');
+    };
+
+    const scaleBtn = document.getElementById('btn-scale');
+    scaleBtn.onclick = () => {
+      renderScale = (renderScale === 1.0) ? 0.3445 : 1.0;
+      scaleBtn.textContent = 'Scale: ' + (renderScale === 1.0 ? '1x (512px)' : '0.34x (Runtime)');
+      canvas.style.transform = (renderScale === 0.3445) ? 'scale(0.3445)' : 'scale(1.0)';
+    };
+  </script>
+</body>
+</html>
