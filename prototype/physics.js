@@ -78,8 +78,8 @@ export function stepHorizontal(s, input, dt, platforms, options = {}) {
     (!!input.crouch ||
       (s.attack > 0 && s.attackCrouched) ||
       (s.crouching && blocked));
-  if (s.grounded && !s.attack && dir) s.facing = dir;
-  if (input.attack && s.attack <= 0) {
+  if (s.grounded && !s.attack && !s.hurtFor && dir) s.facing = dir;
+  if (input.attack && s.attack <= 0 && !s.hurtFor) {
     s.attack = MOVE.attackTime;
     s.attackId++;
     s.attackCrouched = s.crouching;
@@ -87,14 +87,17 @@ export function stepHorizontal(s, input, dt, platforms, options = {}) {
   }
   if (s.attack > 0) s.attack = Math.max(0, s.attack - dt);
   if (s.grounded) {
-    s.vx = s.attack > 0 ? 0 : dir * (s.crouching ? MOVE.crouchRun : MOVE.run);
-    if (input.jump && !s.crouching) {
+    s.vx =
+      s.attack > 0 || s.hurtFor > 0
+        ? 0
+        : dir * (s.crouching ? MOVE.crouchRun : MOVE.run);
+    if (input.jump && !s.crouching && !s.hurtFor) {
       s.vx = dir * MOVE.run;
       s.vy = MOVE.jump;
       s.grounded = false;
       s.events.push("jump");
     }
-  } else if (options.airControl) {
+  } else if (options.airControl && !s.hurtFor) {
     s.vx += (dir * MOVE.run - s.vx) * Math.min(1, dt * MOVE.airControlRate);
   }
 

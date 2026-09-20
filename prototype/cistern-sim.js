@@ -248,7 +248,15 @@ export function step(s, input = {}, dt = 1 / 60, options = {}) {
     ...options,
     levelWidth: LEVEL.width,
   });
-  if (!s.leverOn) s.x = Math.min(s.x, LEVEL.gate - 36);
+  if (!s.leverOn) {
+    if (ctx.oldX <= LEVEL.gate && s.x > LEVEL.gate - 36) {
+      s.x = LEVEL.gate - 36;
+      if (s.grounded) s.vx = 0;
+    } else if (ctx.oldX > LEVEL.gate && s.x < LEVEL.gate + 36) {
+      s.x = LEVEL.gate + 36;
+      if (s.grounded) s.vx = 0;
+    }
+  }
   stepVertical(s, ctx, dt, platforms);
 
   // Explicit hazard bounds: fall between the ledges and you drown.
