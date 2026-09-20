@@ -681,6 +681,34 @@
     {
       "path": "art/contributions/world-04-ossuary-gallery/v001/preview.html",
       "sha256": "23bbd3a7ff900c59566e441b705aa479c4d813dd9e05d043f2d5e28853b1c46a"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/source/bronze-bell-generated-v001.jpg",
+      "sha256": "fdf0cb72ae72388de93c627bb77c651d63b4db0965911a32235d1119cdf20b19"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
+      "sha256": "85fbe43081604d4e1401cc5c9a5d3f508b0a779137237fe33a83a9e482c83b29"
+    },
+    {
+      "path": "docs/reviews/bell-tower-bronze-bell-v001.png",
+      "sha256": "221e64a250311621677b64904212eabe2b9721bc7a2772518b1c94e481827791"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/PROMPT.txt",
+      "sha256": "49701b537a65f76e92194e3e918c8c3b56029fa6511e48890f4053cf3af79599"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/NOTES.md",
+      "sha256": "bdf33e5a8b16970b86bc19c4c240e870ad901c3ba6e4cc43dbf34490086211ec"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/submission.json",
+      "sha256": "3b702982dfb0c82b654b62fbb2ea97f7ab4ff4d9c199385b77d8c90d37aacb58"
+    },
+    {
+      "path": "art/contributions/10-bell-tower/v001/preview.html",
+      "sha256": "b9c352f0b6cc241baa9525a2987d96bfd948760a59b204c02628941cd0aaffd4"
     }
   ]
 }

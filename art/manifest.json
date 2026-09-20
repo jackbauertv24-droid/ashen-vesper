@@ -1734,6 +1734,96 @@
         "runtimeStatus": "review-evidence",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "bronze-bell-generated-v001",
+      "path": "art/contributions/10-bell-tower/v001/source/bronze-bell-generated-v001.jpg",
+      "title": "bronze-bell-generated-v001",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "fdf0cb72ae72388de93c627bb77c651d63b4db0965911a32235d1119cdf20b19",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 10 Bell Tower Great Bronze Bell module candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/bronze-bell-v001.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/10-bell-tower/v001/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "bronze-bell-v001",
+      "path": "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
+      "title": "Job 10 Bell Tower Great Bronze Bell module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "85fbe43081604d4e1401cc5c9a5d3f508b0a779137237fe33a83a9e482c83b29",
+      "intendedUse": "Job 10 Bell Tower Great Bronze Bell; 160x160 runtime canvas at scale 160/1024, hanging pivot (512, 64).",
+      "limitations": [
+        "Candidate centerpiece asset; overhead rigging and belfry swinging animations pending stage assembly."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, cold midnight, grayscale, belfry suspension, and 1:1 gameplay scale review in docs/reviews/bell-tower-bronze-bell-v001.png",
+        "engineIntegration": "Candidate asset; stage layout and vertical camera dependencies pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.15625,
+        "runtimeSize": [
+          160,
+          160
+        ],
+        "hangingPivot": [
+          512,
+          64
+        ],
+        "measuredVisibleBounds": {
+          "minX": 165,
+          "maxX": 858,
+          "minY": 64,
+          "maxY": 924
+        }
+      }
+    },
+    {
+      "id": "bell-tower-bronze-bell-review-v001",
+      "path": "docs/reviews/bell-tower-bronze-bell-v001.png",
+      "title": "bell-tower-bronze-bell-review-v001",
+      "status": "candidate",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": true,
+      "sha256": "221e64a250311621677b64904212eabe2b9721bc7a2772518b1c94e481827791",
+      "intendedUse": "Six-panel review sheet demonstrating transparent cutout, contrast backdrops, grayscale tonal values, belfry suspension, and 1:1 gameplay scale.",
+      "limitations": [
+        "Review evidence only."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Comprehensive review composite in docs/reviews/bell-tower-bronze-bell-v001.png",
+        "engineIntegration": "Review document only; not loaded by game engine."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "review-evidence",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

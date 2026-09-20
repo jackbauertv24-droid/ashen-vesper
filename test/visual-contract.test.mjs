@@ -833,3 +833,65 @@ test("World 04 Ossuary Gallery burial niche panel candidate satisfies visual and
   }
 });
 
+
+test("Job 10 Bell Tower Great Bronze Bell candidate satisfies visual and geometry contract", () => {
+  const bytes = fs.readFileSync(
+    "art/contributions/10-bell-tower/v001/exports/bronze-bell-v001.png",
+  );
+  const im = PNG.sync.read(bytes);
+  assert.equal(bytes[25], 6, "Must be Color Type 6 (RGBA)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024,
+    maxX = 0,
+    minY = 1024,
+    maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Border violation at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // Exact bounds check: 165px margins on left/right, top margin at y=64, bottom margin at y=924
+  assert.equal(minX, 165, "Left margin must be 165px");
+  assert.equal(maxX, 858, "Right margin must be 858px (inclusive)");
+  assert.equal(minY, 64, "Top apex must begin at y=64 (hanging pivot elevation)");
+  assert.equal(maxY, 924, "Bottom clapper edge must be at y=924");
+
+  // Span width 694px
+  const width = maxX - minX + 1;
+  assert.equal(width, 694, "Width must be 694px");
+
+  // Pierced canon loop eyelet transparency
+  assert.equal(
+    im.data[(137 * 1024 + 512) * 4 + 3],
+    0,
+    "Eyelet hole inside canon suspension loop must be genuinely transparent",
+  );
+
+  // Solid bronze and clapper verification
+  for (const [sx, sy] of [
+    [460, 137],
+    [564, 137],
+    [512, 400],
+    [512, 700],
+    [512, 900],
+  ]) {
+    const idx = (sy * 1024 + sx) * 4;
+    assert.ok(
+      im.data[idx + 3] > 240,
+      `Material at (${sx}, ${sy}) must be solid opaque`,
+    );
+  }
+});
+
