@@ -32,4 +32,4 @@ Preview assembled kit over existing sky with hero/guard at their actual runtime 
 
 ## Latest contribution review
 
-PR 19 arch is integrated as distant scenery; pier is a decorative prototype. Ground/contact and shared socket claims require corrections before structural assembly. PR 21 cap is retained but withdrawn from runtime floors: it contains authored ends and a cool-left/warm-right lighting shift, and stretching its center was rejected. The demo uses a neutral blockout surface until the replacement strip above passes its seam proof.
+PR 19 arch is integrated as distant scenery; pier is a decorative prototype. Ground/contact and shared socket claims require corrections before structural assembly. PR 21 cap is retained but withdrawn from runtime floors: it contains authored ends and a cool-left/warm-right lighting shift, and stretching its center was rejected. PR33 supplies the replacement v002 center strip and separate ends. The center strip passed its seam proof and is integrated at authored scale; end caps await final socket-aligned platform widths.

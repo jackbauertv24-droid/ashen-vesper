@@ -1961,7 +1961,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-design-reference",
         "metadataStatus": "ready-for-review",
         "scale": 0.241758,
         "runtimeHeight": 220,
@@ -2059,7 +2059,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-motion-candidate",
         "metadataStatus": "ready-for-review",
         "scale": 0.2,
         "runtimeWingspan": 64,
@@ -2148,7 +2148,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "retained-motion-candidate-needs-continuity-cleanup",
         "metadataStatus": "ready-for-review",
         "scale": 0.4,
         "runtimeHeight": 160,
@@ -2237,7 +2237,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate",
+        "runtimeStatus": "selected-motion-candidate",
         "metadataStatus": "ready-for-review",
         "scale": 0.3,
         "runtimeSize": [
@@ -2304,7 +2304,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate-floor-material",
+        "runtimeStatus": "integrated-seamless-floor-strip",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -2342,7 +2342,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate-terminal-bracket",
+        "runtimeStatus": "selected-terminal-not-integrated",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [
@@ -2374,7 +2374,7 @@
       },
       "review": {
         "retention": "preserve-original",
-        "runtimeStatus": "candidate-terminal-bracket",
+        "runtimeStatus": "selected-terminal-not-integrated",
         "metadataStatus": "ready-for-review",
         "scale": 0.234375,
         "runtimeSize": [

@@ -27,7 +27,7 @@ The [Stage02 runtime regression review](CLOISTER_RUNTIME_REVIEW.md) is the parit
 3. **M1.3 Grate/lever interaction (code, P0):** reuse retained lever and integrated grate. Proximity E/B action, debounce, visible connection, grate collision follows its position, state persists across death. Provide closed/open/mid-travel tests; no invisible blocker.
 4. **M1.4 Healing vial (code, P1):** reuse selected vial. Carry at most one; use action restores2 up to5; full-health use does not waste it; persistence/restart and touch/gamepad binding visible.
 5. **M1.5 Bell Moth motion and AI (art then code, P1):** reuse selected reference; produce the documented motion sheet, then telegraphed swoop/two-hit behavior. No new design reference.
-6. **M1.6 Seamless Cloister platform kit (art, P0, contributor help wanted):** create the repeatable center strip specified in Job08, with identical left/right color, value, lighting, silhouette and alpha. Supply three-copy color/grayscale/difference proofs. Keep decorative left/right ends as separate exports. The retained v001 cap and the rejected stretched runtime assembly stay preserved; the playable stage uses neutral blockout floors until this task passes review.
+6. **M1.6 Seamless Cloister platform kit (completed center strip; layout follow-up):** PR33 center strip passed three-copy color/grayscale/difference review and is integrated at its authored repeat scale. Separate end caps are retained. Snap final platform widths to whole repeat intervals before attaching those ends; do not stretch or crop a join to force them.
 
 ## Milestone 2 — Heavy combat and moving platforms
 
