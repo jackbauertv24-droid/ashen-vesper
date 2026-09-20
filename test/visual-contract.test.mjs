@@ -895,3 +895,54 @@ test("Job 10 Bell Tower Great Bronze Bell candidate satisfies visual and geometr
   }
 });
 
+
+test("Job 09 Flooded Cistern vault pier candidate satisfies visual and geometry contract", () => {
+  const file = "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 1024);
+  assert.equal(im.height, 1024);
+
+  let minX = 1024, maxX = 0, minY = 1024, maxY = 0;
+  for (let y = 0; y < 1024; y++) {
+    for (let x = 0; x < 1024; x++) {
+      const alpha = im.data[(y * 1024 + x) * 4 + 3];
+      if (x < 32 || y < 32 || x >= 992 || y >= 992) {
+        assert.equal(alpha, 0, `Outer 32px safety border must be completely transparent at (${x}, ${y})`);
+      }
+      if (alpha > 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/09-flooded-cistern/v001/submission.json", "utf8")
+  );
+  const pierAsset = submission.assets.find(a => a.path.includes("cistern-vault-pier"));
+  assert.ok(pierAsset, "Asset must be declared in submission.json");
+  assert.equal(maxX - minX + 1, pierAsset.visibleBounds.width);
+  assert.equal(maxY - minY + 1, pierAsset.visibleBounds.height);
+  assert.equal(minX, pierAsset.visibleBounds.minX);
+  assert.equal(maxX, pierAsset.visibleBounds.maxX);
+  assert.equal(minY, pierAsset.visibleBounds.minY);
+  assert.equal(maxY, pierAsset.visibleBounds.maxY);
+
+  // Solid masonry column core verification
+  assert.equal(im.data[(600 * 1024 + 512) * 4 + 3], 255, "Column shaft core must be solid opaque");
+  assert.equal(im.data[(300 * 1024 + 512) * 4 + 3], 255, "Capital core must be solid opaque");
+  assert.equal(im.data[(900 * 1024 + 512) * 4 + 3], 255, "Base plinth core must be solid opaque");
+
+  // Pierced bracket aperture genuine transparency
+  assert.equal(im.data[(460 * 1024 + 630) * 4 + 3], 0, "Lantern bracket loop must be genuinely transparent");
+
+  // Ground pivot alignment: (512, 960) rests on the plinth base
+  assert.equal(pierAsset.pivot[0], 512);
+  assert.equal(pierAsset.pivot[1], 960);
+});
+

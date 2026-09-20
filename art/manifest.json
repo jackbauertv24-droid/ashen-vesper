@@ -1824,6 +1824,96 @@
         "runtimeStatus": "review-evidence",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "cistern-vault-pier-generated-v001",
+      "path": "art/contributions/09-flooded-cistern/v001/source/cistern-vault-pier-generated-v001.jpg",
+      "title": "cistern-vault-pier-generated-v001",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "73e71eb6da10988d13cef0bd80f5a51eeba7b6ea61bac6bfe1c3e432c5f58576",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 09 Flooded Cistern vault pier module candidate.",
+      "limitations": [
+        "Uncropped generation artifact; see exports/cistern-vault-pier-v001.png for game-ready RGBA cutout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/09-flooded-cistern/v001/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "cistern-vault-pier-v001",
+      "path": "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png",
+      "title": "Job 09 Flooded Cistern vault pier module",
+      "status": "candidate",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "alpha": true,
+      "sha256": "2220f6403089ee3e58d7e54abbbb1a65da1365bd285ea97ba4680d2784d3991a",
+      "intendedUse": "Job 09 Flooded Cistern vault pier; 240x240 runtime canvas at scale 240/1024, ground pivot (512, 960).",
+      "limitations": [
+        "Candidate architectural module; vault springline connection and water hazard assembly pending stage layout."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA cutout with white, black, cistern indigo, alpha checkerboard, bracket aperture, and in-situ runtime scale review in docs/reviews/cistern-vault-pier-v001.png",
+        "engineIntegration": "Candidate asset; Flooded Cistern stage layout integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.234375,
+        "runtimeSize": [
+          240,
+          240
+        ],
+        "groundPivot": [
+          512,
+          960
+        ],
+        "measuredVisibleBounds": {
+          "minX": 270,
+          "maxX": 752,
+          "minY": 43,
+          "maxY": 979
+        }
+      }
+    },
+    {
+      "id": "cistern-vault-pier-review-v001",
+      "path": "docs/reviews/cistern-vault-pier-v001.png",
+      "title": "cistern-vault-pier-review-v001",
+      "status": "candidate",
+      "width": 1440,
+      "height": 1040,
+      "format": "png",
+      "alpha": true,
+      "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6",
+      "intendedUse": "Multi-panel review composite for Job 09 Flooded Cistern vault pier module candidate.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with pure white, pure black, cistern indigo, alpha checkerboard, core opacity mask, and in-situ runtime scene.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }

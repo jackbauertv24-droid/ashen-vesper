@@ -709,6 +709,34 @@
     {
       "path": "art/contributions/10-bell-tower/v001/preview.html",
       "sha256": "b9c352f0b6cc241baa9525a2987d96bfd948760a59b204c02628941cd0aaffd4"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/exports/cistern-vault-pier-v001.png",
+      "sha256": "2220f6403089ee3e58d7e54abbbb1a65da1365bd285ea97ba4680d2784d3991a"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/NOTES.md",
+      "sha256": "f2491922c617fc3b4c52f95b9020ceea0b81bbb83c13588f9453ad52ec1427b6"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/preview.html",
+      "sha256": "407f7abdd6c4cc465b57c3aa837bc103c45f7db47a2af3d0b5d6402a3dd7a701"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/PROMPT.txt",
+      "sha256": "b93141b349d628e520d76da0897bdba12f438535e74733bc74e4c59afbca2337"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/source/cistern-vault-pier-generated-v001.jpg",
+      "sha256": "73e71eb6da10988d13cef0bd80f5a51eeba7b6ea61bac6bfe1c3e432c5f58576"
+    },
+    {
+      "path": "art/contributions/09-flooded-cistern/v001/submission.json",
+      "sha256": "c0e2b15f6f6f9b0a3070c0b47f6e685fdba5a15a9e152363661fad0a9f0fa755"
+    },
+    {
+      "path": "docs/reviews/cistern-vault-pier-v001.png",
+      "sha256": "cfd909a6e1d729fe3cb1e0e336ef8aa79abca775002ff2a59fa7d968831269f6"
     }
   ]
 }
