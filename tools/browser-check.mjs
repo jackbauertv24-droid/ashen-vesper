@@ -211,5 +211,12 @@ try {
   for(const val of ['single', 'climb', 'runtime']) await page.locator('#modeSelect').selectOption(val);
   await page.screenshot({path:'tmp/world06-tower-landing-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/world-04-ossuary-gallery/v001/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btnToggleGuides').click();
+  await page.locator('#btnToggleHero').click();
+  for(const val of ['single', 'wall', 'runtime']) await page.locator('#modeSelect').selectOption(val);
+  await page.screenshot({path:'tmp/world04-niche-panel-preview.png',fullPage:true});
+
   assert.deepEqual(errors,[]);console.log('Desktop movement, gap jump, attack, reset, guides; mobile controls/layout: passed.');
 } finally {await browser?.close();server.kill();}

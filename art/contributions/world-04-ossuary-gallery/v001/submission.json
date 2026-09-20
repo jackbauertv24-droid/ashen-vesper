@@ -1,0 +1,40 @@
+{
+  "stageId": "04-ossuary-gallery",
+  "module": "niche-panel",
+  "status": "candidate",
+  "assets": [
+    {
+      "path": "art/contributions/world-04-ossuary-gallery/v001/exports/niche-panel-v001.png",
+      "sha256": "9c2961c1e81dac1943af3a0db1a7f537abbeb85a98c8aa343138120045fa2360",
+      "width": 1024,
+      "height": 1024,
+      "scale": 0.234375,
+      "runtimeSize": [
+        240,
+        240
+      ],
+      "groundPivot": [
+        512,
+        960
+      ],
+      "runtimeGroundPivot": [
+        120,
+        225
+      ],
+      "visibleBounds": {
+        "minX": 71,
+        "maxX": 952,
+        "minY": 23,
+        "maxY": 1000,
+        "width": 882,
+        "height": 978
+      },
+      "padding": {
+        "left": 71,
+        "right": 71,
+        "top": 23,
+        "bottom": 23
+      }
+    }
+  ]
+}
