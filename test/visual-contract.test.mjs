@@ -1251,6 +1251,105 @@ test("Job 13 Cistern Lurker 6-pose motion sheet candidate satisfies visual and g
   assert.equal(sheet.groundPivot[1], 448);
 });
 
+test("Job 16 Tollkeeper Boss 6-pose motion sheet candidate satisfies visual and geometry contract", () => {
+  const file = "art/contributions/16-tollkeeper/v003/exports/tollkeeper-motion-v001.png";
+  const bytes = fs.readFileSync(file);
+  const im = PNG.sync.read(bytes);
+
+  assert.equal(bytes[25], 6, "Must be color type 6 (RGBA with true alpha)");
+  assert.equal(im.width, 2304);
+  assert.equal(im.height, 1536);
+
+  const submission = JSON.parse(
+    fs.readFileSync("art/contributions/16-tollkeeper/v003/submission.json", "utf8")
+  );
+  const sheet = submission.sheet;
+  assert.equal(sheet.cols, 3);
+  assert.equal(sheet.rows, 2);
+  assert.equal(sheet.cellWidth, 768);
+  assert.equal(sheet.cellHeight, 768);
+  assert.equal(sheet.frames.length, 6);
+
+  // Verify each of the 6 cells has >= 16px clear border padding (measured >= 44px)
+  for (const f of sheet.frames) {
+    const ox = f.col * 768;
+    const oy = f.row * 768;
+    for (let y = oy; y < oy + 768; y++) {
+      for (let x = ox; x < ox + 768; x++) {
+        const relX = x - ox;
+        const relY = y - oy;
+        if (relX < 16 || relY < 16 || relX >= 768 - 16 || relY >= 768 - 16) {
+          const alpha = im.data[(y * 2304 + x) * 4 + 3];
+          assert.equal(alpha, 0, `Cell ${f.name} outer 16px padding must be transparent at rel (${relX}, ${relY})`);
+        }
+      }
+    }
+
+    // Verify solid torso opacity inside character body core
+    const cx = Math.round((f.localBounds.minX + f.localBounds.maxX) / 2);
+    const cy = Math.round((f.localBounds.minY + f.localBounds.maxY) / 2);
+    let hasOpaqueCore = false;
+    for (let dy = -20; dy <= 20; dy += 5) {
+      for (let dx = -20; dx <= 20; dx += 5) {
+        if (im.data[((oy + cy + dy) * 2304 + (ox + cx + dx)) * 4 + 3] > 200) {
+          hasOpaqueCore = true;
+          break;
+        }
+      }
+      if (hasOpaqueCore) break;
+    }
+    assert.ok(hasOpaqueCore, `Cell ${f.name} body core must be opaque`);
+
+    // Verify 0 detached components (100% contiguous mesh per cell)
+    const visited = new Uint8Array(768 * 768);
+    let componentCount = 0;
+    for (let cy = 0; cy < 768; cy++) {
+      for (let cx = 0; cx < 768; cx++) {
+        const pIdx = cy * 768 + cx;
+        const a = im.data[((oy + cy) * 2304 + (ox + cx)) * 4 + 3];
+        if (a > 20 && !visited[pIdx]) {
+          componentCount++;
+          const queue = [pIdx];
+          visited[pIdx] = 1;
+          let head = 0;
+          while (head < queue.length) {
+            const curr = queue[head++];
+            const qy = Math.floor(curr / 768);
+            const qx = curr % 768;
+            for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+              const nx = qx + dx;
+              const ny = qy + dy;
+              if (nx >= 0 && nx < 768 && ny >= 0 && ny < 768) {
+                const nIdx = ny * 768 + nx;
+                if (!visited[nIdx] && im.data[((oy + ny) * 2304 + (ox + nx)) * 4 + 3] > 20) {
+                  visited[nIdx] = 1;
+                  queue.push(nIdx);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    assert.equal(componentCount, 1, `Cell ${f.name} must have exactly 1 connected component`);
+  }
+
+  // Verify outer 32px perimeter of the 2304x1536 sheet has 0 alpha
+  for (let y = 0; y < 1536; y++) {
+    for (let x = 0; x < 2304; x++) {
+      if (x < 32 || x >= 2304 - 32 || y < 32 || y >= 1536 - 32) {
+        assert.equal(im.data[(y * 2304 + x) * 4 + 3], 0, `Outer 32px perimeter must be zero alpha at (${x}, ${y})`);
+      }
+    }
+  }
+
+  // Runtime scale, height, and pivot
+  assert.equal(sheet.scale, 0.392857);
+  assert.equal(sheet.runtimeHeight, 220);
+  assert.equal(sheet.groundPivot[0], 320);
+  assert.equal(sheet.groundPivot[1], 704);
+});
+
 test("World 02 Ruined Cloister seamless platform kit candidate satisfies visual, geometry, and zero-delta seam contract", () => {
   const centerBytes = fs.readFileSync(
     "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",

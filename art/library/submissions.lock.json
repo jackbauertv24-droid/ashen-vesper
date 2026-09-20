@@ -961,6 +961,34 @@
     {
       "path": "docs/reviews/iron-sexton-motion-v002.png",
       "sha256": "5a79264c15d4d7e0ea805d58684400cea9a4fe6db6c42181bff523dfeb5fb156"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/exports/tollkeeper-motion-v001.png",
+      "sha256": "2f8adb77d26b6e51b5ffbf85e4c0ee201f73e76ac55747044f4ca398ae491666"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/NOTES.md",
+      "sha256": "07d01e5130d7a53aad569e3b5761a8817b335b4e54300ca6430159c27ca6ab49"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/preview.html",
+      "sha256": "a3b776c40776e0505f2bc3eb87abfb7e95d058dd15a1b4442a7cfd9322890aa0"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/PROMPT.txt",
+      "sha256": "ae15a5907e600d17da26a2c5fa9ed39b591edb99c8893b142d0efc43215d7134"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/source/tollkeeper-motion-generated-v001.jpg",
+      "sha256": "4d9fd7354f7c81d754b9a5ea7b8b557c3d931dc44554a6060d938d70d1d32c50"
+    },
+    {
+      "path": "art/contributions/16-tollkeeper/v003/submission.json",
+      "sha256": "1bb2fac79253d53a9dcda8756d5e1c25e4b7cdcd5165ea8d5ca20b39b4a82b16"
+    },
+    {
+      "path": "docs/reviews/tollkeeper-motion-v001.png",
+      "sha256": "60651c4aaee890fe7fd30ef846c129e4611d4b97f5a1fdfc3771c0d8c5e46b42"
     }
   ]
 }

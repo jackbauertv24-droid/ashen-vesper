@@ -2523,6 +2523,95 @@
         "runtimeStatus": "not-integrated",
         "metadataStatus": "ready-for-review"
       }
+    },
+    {
+      "id": "tollkeeper-motion-generated-v001",
+      "path": "art/contributions/16-tollkeeper/v003/source/tollkeeper-motion-generated-v001.jpg",
+      "title": "tollkeeper-motion-generated-v001",
+      "status": "candidate",
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg",
+      "alpha": false,
+      "sha256": "4d9fd7354f7c81d754b9a5ea7b8b557c3d931dc44554a6060d938d70d1d32c50",
+      "intendedUse": "Raw untouched Imagen 3 generation source for Job 16 Tollkeeper boss 6-pose motion sheet candidate.",
+      "limitations": [
+        "Uncropped 3x2 generation grid; see exports/tollkeeper-motion-v001.png for game-ready 2304x1536 RGBA sheet."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Preserved raw generation source in art/contributions/16-tollkeeper/v003/source/.",
+        "engineIntegration": "Not integrated; raw generator asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
+    },
+    {
+      "id": "tollkeeper-motion-v001",
+      "path": "art/contributions/16-tollkeeper/v003/exports/tollkeeper-motion-v001.png",
+      "title": "Job 16 Tollkeeper Boss 6-pose motion sheet candidate",
+      "status": "candidate",
+      "width": 2304,
+      "height": 1536,
+      "format": "png",
+      "alpha": true,
+      "sha256": "2f8adb77d26b6e51b5ffbf85e4c0ee201f73e76ac55747044f4ca398ae491666",
+      "intendedUse": "Job 16 Tollkeeper Boss 6-stage physical clapper slam animation sheet; 2304x1536 sheet with 3x2 768px cells, runtime height 220 units at scale 0.393, ground pivot (320, 704).",
+      "limitations": [
+        "Candidate boss motion sheet; arena layout and AI state machine integration pending."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Candidate RGBA sheet with white, indigo, black, grayscale, detail slam sequence and runtime lineup in docs/reviews/tollkeeper-motion-v001.png",
+        "engineIntegration": "Candidate asset; Bell Tower boss encounter integration pending."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "selected-motion-candidate",
+        "metadataStatus": "ready-for-review",
+        "scale": 0.392857,
+        "runtimeHeight": 220,
+        "sheetGrid": [
+          3,
+          2
+        ],
+        "cellSize": [
+          768,
+          768
+        ],
+        "groundPivot": [
+          320,
+          704
+        ]
+      }
+    },
+    {
+      "id": "tollkeeper-motion-review-v001",
+      "path": "docs/reviews/tollkeeper-motion-v001.png",
+      "title": "tollkeeper-motion-review-v001",
+      "status": "candidate",
+      "width": 1728,
+      "height": 1296,
+      "format": "png",
+      "alpha": false,
+      "sha256": "60651c4aaee890fe7fd30ef846c129e4611d4b97f5a1fdfc3771c0d8c5e46b42",
+      "intendedUse": "Multi-panel review composite certifying 0 detached fragments, slam sequence timing, safety margins, and runtime lineup for Job 16 Tollkeeper v003.",
+      "limitations": [
+        "Review composite; not used in gameplay."
+      ],
+      "validation": {
+        "fileDecoded": true,
+        "visualReview": "Full review sheet with 4 background panels, sequential slam stages, and Bellwarden hero lineup.",
+        "engineIntegration": "Not integrated; documentation asset."
+      },
+      "review": {
+        "retention": "preserve-original",
+        "runtimeStatus": "not-integrated",
+        "metadataStatus": "ready-for-review"
+      }
     }
   ]
 }
