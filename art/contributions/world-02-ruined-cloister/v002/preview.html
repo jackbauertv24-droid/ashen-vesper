@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World 02 — Ruined Cloister Seamless Platform Kit Review (v002)</title>
+  <style>
+    :root {
+      --bg: #0d1219;
+      --panel: #161e2b;
+      --border: #2c394c;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #4ade80;
+      --cyan: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    header { max-width: 1200px; margin: 0 auto 20px; }
+    h1 { margin: 0 0 8px; font-size: 24px; font-family: Georgia, serif; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    .main-stage {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .viewport {
+      width: 640px;
+      height: 480px;
+      border: 1px solid #475569;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: background-color 0.2s;
+      overflow: hidden;
+    }
+    .viewport.bg-dark { background-color: #0b0d13; }
+    .viewport.bg-white { background-color: #ffffff; }
+    .viewport.bg-blue { background-color: #141624; }
+    .viewport.bg-abbey {
+      background-color: #142130;
+      background-image: url('../../../concepts/abbey-gate-concept-v001.png');
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    button, select {
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:hover, select:hover { background: #334155; }
+    .sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .quad-sheet {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .quad-sheet img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World 02: Ruined Cloister — Seamless Walkable Platform Kit (v002)</h1>
+    <p>Contract compliance review: 1024×256 center strip + 256×256 left/right end caps, top contact surface y=32, measured seam delta &Delta;=0, three-copy proof.</p>
+  </header>
+
+  <div class="layout">
+    <div class="main-stage">
+      <div class="viewport bg-dark" id="viewport">
+        <canvas id="view" width="640" height="480"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="btn-mode">Mode: Three-Copy Center Seam</button>
+        <button id="btn-scale">Scale: Reference (0.5×)</button>
+        <select id="sel-bg">
+          <option value="bg-dark">Background: Dark (#0b0d13)</option>
+          <option value="bg-white">Background: White (#ffffff)</option>
+          <option value="bg-blue">Background: Cloister Indigo (#141624)</option>
+          <option value="bg-abbey">Background: Abbey Backdrop</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Module Telemetry</h2>
+      <div class="stat-row"><span class="stat-label">Center Strip:</span><span>platform-cap-center-v002.png</span></div>
+      <div class="stat-row"><span class="stat-label">Center Canvas:</span><span>1024 × 256 RGBA</span></div>
+      <div class="stat-row"><span class="stat-label">Seam &Delta;(R,G,B,A):</span><span style="color:var(--green);font-weight:bold;">[0, 0, 0, 0]</span></div>
+      <div class="stat-row"><span class="stat-label">Left End Cap:</span><span>platform-cap-end-left-v002.png</span></div>
+      <div class="stat-row"><span class="stat-label">Right End Cap:</span><span>platform-cap-end-right-v002.png</span></div>
+      <div class="stat-row"><span class="stat-label">End Cap Canvases:</span><span>256 × 256 RGBA each</span></div>
+      <div class="stat-row"><span class="stat-label">Top Walkable Y:</span><span>y = 32 (y = 7.5 runtime)</span></div>
+      <div class="stat-row"><span class="stat-label">Runtime Height:</span><span>60 units (Scale 240/1024)</span></div>
+      <div class="stat-row"><span class="stat-label">Center Repeat:</span><span>1024px &rarr; 240 units</span></div>
+      <div class="stat-row"><span class="stat-label">Acceptance:</span><span style="color:var(--cyan);">Candidate (M1.6 P0)</span></div>
+
+      <h2 style="margin-top: 16px;">Visual Guides</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="chk-seams" checked> Seam Boundary Markers</label>
+        <label><input type="checkbox" id="chk-sockets" checked> Contact Sockets</label>
+        <label><input type="checkbox" id="chk-bounds" checked> Silhouette Bounds</label>
+        <label><input type="checkbox" id="chk-hero" checked> Show Bellwarden Hero (144u)</label>
+        <label><input type="checkbox" id="chk-grid"> 32-Unit World Grid</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="quad-sheet">
+    <h2 style="margin: 0 0 12px; font-size: 18px; color: var(--accent);">Lossless Multi-Panel Review (White, Black, Cloister Indigo, Grayscale, Assembly, Amplified Seam Diff)</h2>
+    <img src="../../../../docs/reviews/platform-cap-seamless-v002.png" alt="Seamless Platform Cap Review Composite">
+  </div>
+
+  <script type="module">
+    const centerImg = new Image();
+    centerImg.src = 'exports/platform-cap-center-v002.png';
+
+    const leftEndImg = new Image();
+    leftEndImg.src = 'exports/platform-cap-end-left-v002.png';
+
+    const rightEndImg = new Image();
+    rightEndImg.src = 'exports/platform-cap-end-right-v002.png';
+
+    const heroImg = new Image();
+    heroImg.src = '../../../production/bellwarden/bellwarden-pilot-v001.png';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('viewport');
+
+    let modeIndex = 0; // 0: Three-Copy Center Seam, 1: Complete Assembly, 2: Single Center Strip
+    const modes = ['Three-Copy Center Seam', 'Complete Platform Assembly', 'Single Center Strip'];
+    let isRuntime = false;
+
+    const btnMode = document.getElementById('btn-mode');
+    const btnScale = document.getElementById('btn-scale');
+    const selBg = document.getElementById('sel-bg');
+    const chkSeams = document.getElementById('chk-seams');
+    const chkSockets = document.getElementById('chk-sockets');
+    const chkBounds = document.getElementById('chk-bounds');
+    const chkHero = document.getElementById('chk-hero');
+    const chkGrid = document.getElementById('chk-grid');
+
+    let heroPrepared = false;
+    const heroCanvas = document.createElement('canvas');
+
+    function prepareHero() {
+      if (heroPrepared || !heroImg.complete || !heroImg.naturalWidth) return;
+      heroCanvas.width = heroImg.width;
+      heroCanvas.height = heroImg.height;
+      const hCtx = heroCanvas.getContext('2d');
+      hCtx.drawImage(heroImg, 0, 0);
+      const p = hCtx.getImageData(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = 0; i < p.data.length; i += 4) {
+        const r = p.data[i], g = p.data[i + 1], b = p.data[i + 2];
+        const excess = Math.min(r, b) - g;
+        if (excess > 80) p.data[i + 3] = 0;
+        else if (excess > 20) p.data[i + 3] = Math.round(255 * (1 - (excess - 20) / 60));
+      }
+      hCtx.putImageData(p, 0, 0);
+      heroPrepared = true;
+    }
+
+    let loadedCount = 0;
+    const onLoad = () => {
+      loadedCount++;
+      if (loadedCount >= 3) draw();
+    };
+    centerImg.onload = onLoad;
+    leftEndImg.onload = onLoad;
+    rightEndImg.onload = onLoad;
+    heroImg.onload = () => draw();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!centerImg.complete || !leftEndImg.complete || !rightEndImg.complete) return;
+      prepareHero();
+
+      if (chkGrid.checked) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= canvas.width; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y <= canvas.height; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+      }
+
+      const baseScale = isRuntime ? (240 / 1024) : 0.5;
+
+      if (modeIndex === 0) {
+        // Three-Copy Center Seam
+        // Total width: 3 * 1024 = 3072px. Fit into 640px width: scale = (640 - 40) / 3072 = ~0.195
+        const s = isRuntime ? (240 / 1024) : ((canvas.width - 40) / 3072);
+        const ox = (canvas.width - 3 * 1024 * s) / 2;
+        const oy = canvas.height / 2 - 128 * s;
+
+        for (let copy = 0; copy < 3; copy++) {
+          ctx.drawImage(centerImg, 0, 0, 1024, 256, ox + copy * 1024 * s, oy, 1024 * s, 256 * s);
+        }
+
+        if (chkSeams.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.9)'; // Red vertical seam markers
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 3]);
+          for (let seam = 1; seam < 3; seam++) {
+            const sx = ox + seam * 1024 * s;
+            ctx.beginPath(); ctx.moveTo(sx, oy); ctx.lineTo(sx, oy + 256 * s); ctx.stroke();
+          }
+          ctx.setLineDash([]);
+        }
+
+        if (chkSockets.checked) {
+          for (let copy = 0; copy <= 3; copy++) {
+            drawSocketCircle(ox + copy * 1024 * s, oy + 32 * s, copy % 2 === 0 ? '#10b981' : '#f59e0b');
+          }
+        }
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(ox, oy + 32 * s, 3 * 1024 * s, 183 * s);
+          ctx.setLineDash([]);
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + 1.5 * 1024 * s, oy + 32 * s, s);
+        }
+      } else if (modeIndex === 1) {
+        // Complete Platform Assembly: Left End (256px, visible from 64..255 = 192px) + Center (1024px) + Right End (256px, visible 0..191 = 192px)
+        // Total assembled span: 192 + 1024 + 192 = 1408px.
+        const totalSpan = 1408;
+        const s = isRuntime ? (240 / 1024) : ((canvas.width - 40) / totalSpan);
+        const ox = (canvas.width - totalSpan * s) / 2;
+        const oy = canvas.height / 2 - 128 * s;
+
+        // Left End cap: drawn such that its right socket at x=256 aligns with Center strip left edge at ox + 192 * s
+        // Since visible is 64..255, draw leftEndImg at (ox - 64 * s, oy)
+        ctx.drawImage(leftEndImg, 0, 0, 256, 256, ox - 64 * s, oy, 256 * s, 256 * s);
+        // Center strip: at ox + 192 * s
+        ctx.drawImage(centerImg, 0, 0, 1024, 256, ox + 192 * s, oy, 1024 * s, 256 * s);
+        // Right End cap: at ox + (192 + 1024) * s
+        ctx.drawImage(rightEndImg, 0, 0, 256, 256, ox + (192 + 1024) * s, oy, 256 * s, 256 * s);
+
+        if (chkSeams.checked) {
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.9)';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 3]);
+          const seamL = ox + 192 * s;
+          const seamR = ox + (192 + 1024) * s;
+          ctx.beginPath(); ctx.moveTo(seamL, oy); ctx.lineTo(seamL, oy + 256 * s); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(seamR, oy); ctx.lineTo(seamR, oy + 256 * s); ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        if (chkSockets.checked) {
+          drawSocketCircle(ox, oy + 32 * s, '#10b981'); // Left terminal contact
+          drawSocketCircle(ox + 192 * s, oy + 32 * s, '#38bdf8'); // Left-center junction
+          drawSocketCircle(ox + (192 + 1024) * s, oy + 32 * s, '#38bdf8'); // Center-right junction
+          drawSocketCircle(ox + totalSpan * s, oy + 32 * s, '#f59e0b'); // Right terminal contact
+        }
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(ox, oy + 32 * s, totalSpan * s, 183 * s);
+          ctx.setLineDash([]);
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + (192 + 512) * s, oy + 32 * s, s);
+        }
+      } else if (modeIndex === 2) {
+        // Single Center Strip
+        const s = isRuntime ? (240 / 1024) : 0.55;
+        const dw = 1024 * s;
+        const dh = 256 * s;
+        const ox = (canvas.width - dw) / 2;
+        const oy = (canvas.height - dh) / 2;
+
+        ctx.drawImage(centerImg, 0, 0, 1024, 256, ox, oy, dw, dh);
+
+        if (chkSockets.checked) {
+          drawSocketCircle(ox, oy + 32 * s, '#10b981');
+          drawSocketCircle(ox + dw, oy + 32 * s, '#f59e0b');
+        }
+
+        if (chkBounds.checked) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(ox, oy + 32 * s, dw, 183 * s);
+          ctx.setLineDash([]);
+        }
+
+        if (chkHero.checked && heroPrepared) {
+          drawHero(ox + 512 * s, oy + 32 * s, s);
+        }
+      }
+    }
+
+    function drawSocketCircle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function drawHero(feetX, feetY, canvasScale) {
+      const heroH = 144 * (1024 / 240) * canvasScale;
+      const heroScale = heroH / 418;
+      const fw = 260, fh = 433, px = 96, py = 427;
+
+      ctx.save();
+      ctx.translate(feetX, feetY);
+      ctx.drawImage(heroCanvas, 80, 5, fw, fh, -px * heroScale, -py * heroScale, fw * heroScale, fh * heroScale);
+      ctx.restore();
+    }
+
+    btnMode.onclick = () => {
+      modeIndex = (modeIndex + 1) % modes.length;
+      btnMode.textContent = `Mode: ${modes[modeIndex]}`;
+      draw();
+    };
+
+    btnScale.onclick = () => {
+      isRuntime = !isRuntime;
+      btnScale.textContent = `Scale: ${isRuntime ? 'Runtime (240/1024)' : 'Reference (0.5×)'}`;
+      draw();
+    };
+
+    selBg.onchange = () => {
+      viewport.className = `viewport ${selBg.value}`;
+    };
+
+    for (const chk of [chkSeams, chkSockets, chkBounds, chkHero, chkGrid]) {
+      chk.onchange = () => draw();
+    }
+  </script>
+</body>
+</html>

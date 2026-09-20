@@ -177,6 +177,17 @@ try {
   }
   await page.screenshot({path:'tmp/world02-platform-cap-preview.png',fullPage:true});
 
+  await page.goto('http://127.0.0.1:4174/art/contributions/world-02-ruined-cloister/v002/preview.html');
+  await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
+  await page.locator('#btn-mode').click();
+  await page.locator('#btn-scale').click();
+  for(const id of ['#chk-seams','#chk-sockets','#chk-bounds','#chk-hero','#chk-grid']) await page.locator(id).uncheck();
+  for(const value of await page.locator('#sel-bg option').evaluateAll(options=>options.map(o=>o.value))) {
+    await page.locator('#sel-bg').selectOption(value);
+  }
+  await page.screenshot({path:'tmp/world02-seamless-platform-cap-v002-preview.png',fullPage:true});
+
+
   await page.goto('http://127.0.0.1:4174/art/contributions/15-mechanisms/v003/preview.html');
   await page.evaluate(async()=>{await Promise.all([...document.images].map(im=>im.decode()));});
   await page.locator('#toggleStateBtn').click();

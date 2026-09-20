@@ -1,0 +1,154 @@
+{
+  "stageId": "02-ruined-cloister",
+  "module": "seamless-platform-cap-kit",
+  "version": "v002",
+  "status": "candidate",
+  "assets": [
+    {
+      "id": "platform-cap-center-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-center-v002.png",
+      "sha256": "defc94087e00370c8cddd700e07d429ad2b1128d703a0b020d996bbafb98861a",
+      "width": 1024,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        240,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 0,
+        "maxX": 1023,
+        "minY": 32,
+        "maxY": 214,
+        "width": 1024,
+        "height": 183
+      },
+      "sockets": {
+        "leftContact": [
+          0,
+          32
+        ],
+        "rightContact": [
+          1024,
+          32
+        ],
+        "runtimeLeftContact": [
+          0,
+          7.5
+        ],
+        "runtimeRightContact": [
+          240,
+          7.5
+        ],
+        "repeatInterval": 1024,
+        "runtimeRepeatInterval": 240
+      },
+      "padding": {
+        "left": 0,
+        "right": 0,
+        "top": 32,
+        "bottom": 41
+      },
+      "seamDelta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "platform-cap-end-left-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-left-v002.png",
+      "sha256": "537e941fd5c56db9e5c53523d60bd56a38df61f8280973bfe62155a487b0ce1b",
+      "width": 256,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        60,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 64,
+        "maxX": 255,
+        "minY": 32,
+        "maxY": 214,
+        "width": 192,
+        "height": 183
+      },
+      "sockets": {
+        "leftContact": [
+          64,
+          32
+        ],
+        "rightSocket": [
+          256,
+          32
+        ],
+        "runtimeLeftContact": [
+          15,
+          7.5
+        ],
+        "runtimeRightSocket": [
+          60,
+          7.5
+        ]
+      },
+      "padding": {
+        "left": 64,
+        "right": 0,
+        "top": 32,
+        "bottom": 41
+      }
+    },
+    {
+      "id": "platform-cap-end-right-v002",
+      "path": "art/contributions/world-02-ruined-cloister/v002/exports/platform-cap-end-right-v002.png",
+      "sha256": "c9543af5aae4ce77f89fbe0958488988225ceb065f1354edc222a1b58fdd7ea2",
+      "width": 256,
+      "height": 256,
+      "scale": 0.234375,
+      "runtimeSize": [
+        60,
+        60
+      ],
+      "paintedTopY": 32,
+      "runtimeTopY": 7.5,
+      "visibleBounds": {
+        "minX": 0,
+        "maxX": 191,
+        "minY": 32,
+        "maxY": 214,
+        "width": 192,
+        "height": 183
+      },
+      "sockets": {
+        "leftSocket": [
+          0,
+          32
+        ],
+        "rightContact": [
+          192,
+          32
+        ],
+        "runtimeLeftSocket": [
+          0,
+          7.5
+        ],
+        "runtimeRightContact": [
+          45,
+          7.5
+        ]
+      },
+      "padding": {
+        "left": 0,
+        "right": 64,
+        "top": 32,
+        "bottom": 41
+      }
+    }
+  ]
+}
